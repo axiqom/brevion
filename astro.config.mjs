@@ -4,6 +4,15 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [tailwind(), react()],
-  server: { host: '127.0.0.1', port: Number(process.env.PORT || 4321) },
+  server: {
+    host: '127.0.0.1',
+    port: Number(process.env.PORT || 4321),
+    allowedHosts: true,
+  },
+  vite: {
+    server: {
+      allowedHosts: true,
+    },
+  },
   devToolbar: { enabled: false },
 });
