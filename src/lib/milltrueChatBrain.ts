@@ -51,29 +51,29 @@ export const STATE_KEY = 'milltrue-chat-v4-state';
 
 /** Soft shortcuts only — work-oriented, never a cert/lead-time/tolerance menu. */
 const OPENING_CHIPS: Chip[] = [
+  { label: 'Describe a part', send: 'I have a bracket to machine' },
   { label: 'Need a quote', send: 'I need a quote on a part' },
-  { label: 'CAD upload', send: 'How do I upload CAD?' },
 ];
 
 const CHIPS_BY_INTENT: Record<Intent, Chip[]> = {
   quote: [
-    { label: 'Attach STEP', send: 'How do I attach a STEP file?' },
     { label: 'Describe the job', send: 'It is a titanium bracket, prototype qty 10' },
+    { label: 'Attach STEP', send: 'How do I attach a STEP file?' },
   ],
   certs: [
+    { label: 'Describe the job', send: 'I have a part to machine' },
     { label: 'Get a quote', send: 'I need a quote on a part' },
-    { label: 'Upload CAD', send: 'How do I upload CAD?' },
   ],
   cad: [
     { label: 'CAD formats', send: 'What CAD formats do you accept?' },
     { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   materials: [
-    { label: 'DFM review', send: 'Do you do DFM review?' },
+    { label: 'Prototype vs production', send: 'Is this better as a prototype or production run?' },
     { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   dfm: [
-    { label: 'Upload CAD', send: 'How do I upload CAD?' },
+    { label: 'Upload drawing', send: 'How do I upload a drawing?' },
     { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   hello: OPENING_CHIPS,
@@ -227,11 +227,13 @@ export function saveState(state: ConversationState): void {
   }
 }
 
-function extractSlots(raw: string, prior: Slots): { slots: Slots; askedNda: boolean; askedFai: boolean } {
+function extractSlots(raw: string, prior: Slots): { slots: Slots; askedNda: boolean; askedFai: boolean; askedLeadTime: boolean; askedTolerance: boolean } {
   const next: Slots = { ...prior };
   const t = raw;
   let askedNda = false;
   let askedFai = false;
+  let askedLeadTime = false;
+  let askedTolerance = false;
 
   for (const m of MATERIAL_PATTERNS) {
     if (m.re.test(t)) {
@@ -258,8 +260,14 @@ function extractSlots(raw: string, prior: Slots): { slots: Slots; askedNda: bool
 
   if (/\basap\b|\burgent\b|\bthis\s*week\b|\bby\s*friday\b|\bneed\s*(it\s*)?(soon|fast)\b/i.test(t)) {
     next.urgency = /this\s*week|by\s*friday/i.test(t) ? 'this week' : 'urgent';
+    askedLeadTime = true;
   } else if (/\blead\s*time|\bturnaround|\bhow\s*fast|\b24\s*h/i.test(t)) {
     next.urgency = next.urgency || 'lead-time question';
+    askedLeadTime = true;
+  }
+
+  if (/\btoleran|\b±\s*0\.0001|\b0\.0001\b/i.test(t)) {
+    askedTolerance = true;
   }
 
   if (/\bbracket/i.test(t)) next.partType = 'brackets';
@@ -278,7 +286,7 @@ function extractSlots(raw: string, prior: Slots): { slots: Slots; askedNda: bool
     next.cadMention = true;
   }
 
-  return { slots: next, askedNda, askedFai };
+  return { slots: next, askedNda, askedFai, askedLeadTime, askedTolerance };
 }
 
 function scoreIntents(normalized: string, raw: string): Intent[] {
@@ -363,15 +371,24 @@ function answerForIntent(
   intent: Intent,
   slots: Slots,
   seed: number,
-  turn?: { askedNda?: boolean; askedFai?: boolean },
+  turn?: { askedNda?: boolean; askedFai?: boolean; askedLeadTime?: boolean; askedTolerance?: boolean },
 ): string {
   switch (intent) {
     case 'quote':
+      if (turn?.askedLeadTime || slots.urgency === 'lead-time question') {
+        return pick(
+          [
+            'Most quote paths come back within 24h once we have part type, material, and qty.',
+            'We target a quote path within 24h when the basics are clear — part, material, quantity.',
+          ],
+          seed,
+        );
+      }
       return pick(
         [
-          'Most quote paths come back within 24h once we have part type, material, and qty.',
-          'We target a quote path within 24h when the basics are clear — part, material, quantity.',
-          'Quote turnaround is usually within 24h after we have enough to size the job.',
+          'Happy to size a quote — part type, material, and quantity are enough to start.',
+          'We can quote from a short note, or Full RFQ if you have drawings ready.',
+          'Tell me what you are machining and roughly how many, and I will point you at the right quote path.',
         ],
         seed,
       );
@@ -391,40 +408,58 @@ function answerForIntent(
       }
       return pick(
         [
-          'We run AS9100-minded process discipline with an ITAR-ready workflow. AS9102 FAI and NDAs are available when required.',
-          'AS9100-minded controls and ITAR-ready handling are in place; FAI or NDA can be layered when your program needs them.',
+          'Yes — AS9100-minded process discipline with an ITAR-ready workflow. FAI or NDA when your program needs them.',
+          'We can support AS9100-minded controls and ITAR-ready handling. Say if you need FAI or an NDA.',
         ],
         seed,
       );
     case 'cad':
       return pick(
         [
-          'Preferred package is STEP (.step/.stp) plus a PDF drawing for tolerances. IGES, DXF/DWG, SolidWorks, or a ZIP also work — Full RFQ is the attach path.',
+          'Preferred package is STEP (.step/.stp) plus a PDF drawing. IGES, DXF/DWG, SolidWorks, or a ZIP also work — Full RFQ is the attach path.',
           'Send STEP with a PDF drawing when you can. We also take IGES, DXF/DWG, SolidWorks, and ZIP packages on the Full RFQ.',
         ],
         seed,
       );
     case 'materials':
+      if (turn?.askedTolerance) {
+        return pick(
+          [
+            'Critical dims held to print — including ±0.0001" where the drawing demands it.',
+            'We hold tight tolerances to print, down to ±0.0001" on critical dims when required.',
+          ],
+          seed,
+        );
+      }
       return pick(
         [
-          'Critical dims held to ±0.0001" where the print demands it. Aerospace metals and engineering plastics (Delrin, PEEK, Ultem) are in the shop mix.',
-          'We hold tight tolerances to print — including ±0.0001" on critical dims — across aerospace metals and plastics like Delrin, PEEK, and Ultem.',
+          'Aerospace metals and engineering plastics are in the mix — titanium, aluminum, stainless, Inconel, Delrin, PEEK, Ultem.',
+          'We machine common aerospace metals and plastics. Share the alloy or plastic and we will confirm fit.',
         ],
         seed,
       );
     case 'dfm':
+      if (turn?.askedLeadTime) {
+        return pick(
+          [
+            'Prototypes typically 2–3 weeks; production 4–6 weeks depending on material and finish.',
+            'Prototype windows are usually 2–3 weeks; production often 4–6 weeks based on material and finish.',
+          ],
+          seed,
+        );
+      }
       return pick(
         [
-          'CAD/reverse engineering, DFM, and CAM happen before cut. Prototypes typically 2–3 weeks; production 4–6 weeks depending on material and finish.',
-          'We DFM the job before chips fly. Prototype windows are usually 2–3 weeks; production often 4–6 weeks based on material and finish.',
+          'CAD/reverse engineering, DFM, and CAM happen before cut — we catch issues before the first chip.',
+          'We DFM the job before chips fly. Share the part or drawing and we will flag fit-for-process notes.',
         ],
         seed,
       );
     case 'hello':
       return pick(
         [
-          'Hey — I can help with quotes, certs, CAD, materials, and lead times.',
-          'Hi — ask in plain language about machining, certs, or getting a quote.',
+          'Hey — tell me about the part or what you are trying to get made.',
+          'Hi — describe the job in plain language and I will help from there.',
         ],
         seed,
       );
@@ -436,8 +471,8 @@ function answerForIntent(
     default:
       return pick(
         [
-          'I can help with quotes, certs, CAD, materials, and lead times — rephrase anytime, or start a short quote when you are ready.',
-          'Not sure I caught that. I cover quotes, AS9100/ITAR, CAD formats, materials, and lead times — or you can start a quote.',
+          'I can help with machining questions, drawings, materials, or getting a quote started — rephrase anytime.',
+          'Not sure I caught that. Tell me about the part, material, or drawing and I will steer you.',
         ],
         seed,
       );
@@ -447,14 +482,14 @@ function answerForIntent(
 function nextStep(slots: Slots, intents: Intent[], usefulAnswers: number, seed: number): string | null {
   if (intents.includes('thanks') && intents.length === 1) {
     return pick(
-      ['Want a quick quote path, or anything else on certs or CAD?', 'I can also point you to Start quote or Full RFQ if useful.'],
+      ['Want a quick quote path, or anything else on the job?', 'I can also point you to Start quote or Full RFQ if useful.'],
       seed,
     );
   }
 
   if (intents.includes('hello') && intents.length === 1) {
     return pick(
-      ['What are you trying to machine or quote?', 'Tell me the part, material, or cert need and I will steer you.'],
+      ['What are you trying to machine?', 'Material, drawing, or prototype vs production — whatever you have is fine.'],
       seed,
     );
   }
@@ -497,7 +532,7 @@ function composeBubbles(
   slots: Slots,
   state: ConversationState,
   raw: string,
-  turn: { askedNda: boolean; askedFai: boolean },
+  turn: { askedNda: boolean; askedFai: boolean; askedLeadTime: boolean; askedTolerance: boolean },
 ): string[] {
   const seed = seedFrom(raw, state.turnCount);
   const ack = slotAck(slots, seed);
@@ -522,7 +557,7 @@ function composeBubbles(
     } else {
       answers.push(extra);
     }
-  } else if (slots.cert && primary === 'quote' && !turn.askedNda) {
+  } else if (intents.includes('certs') && primary === 'quote' && !turn.askedNda) {
     answers[0] = `${answers[0]} ${answerForIntent('certs', slots, seed + 3, turn)}`;
   } else if (slots.material && primary === 'quote' && !answers[0].toLowerCase().includes(slots.material.toLowerCase())) {
     answers[0] = `${answers[0]} ${slots.material} is in scope for us.`;
@@ -589,7 +624,7 @@ export function respond(input: string, prior?: ConversationState): { reply: Desk
   const intents = scoreIntents(normalized, raw);
   const extracted = extractSlots(raw, state.slots);
   const slots = extracted.slots;
-  const turn = { askedNda: extracted.askedNda, askedFai: extracted.askedFai };
+  const turn = { askedNda: extracted.askedNda, askedFai: extracted.askedFai, askedLeadTime: extracted.askedLeadTime, askedTolerance: extracted.askedTolerance };
 
   const topic = primaryTopic(intents, state);
   const useful =

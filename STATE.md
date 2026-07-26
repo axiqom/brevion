@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Interactive chat UX live on Pages (typing-first)
+- **focus:** Dial back certs / lead-time / stats focus (chat + hero)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production LLM later if Mendel wants
-- **updated:** 2026-07-26T21:08:00.000Z
+- **next:** Mendel hard-refresh confirm; optional milltrue.com domain
+- **updated:** 2026-07-26T21:12:00.000Z
 
 ## Current focus
-Typing-first MillTrue chat: no chip wall on open, 0–2 work shortcuts, longer typing + staggered bubbles. Live on Pages (commit 3deba96). Playwright 6/6.
+Work/conversation-first MillTrue: chat greets about the part/job; AS9100/24h/tolerance only when asked. Hero capability strip (not cert-clock-stat billboard). Shipping to Pages (t_825cc49b).
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Await Mendel hard-refresh confirm
+Deploy + verify Pages; notify Mendel

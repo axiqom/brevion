@@ -234,12 +234,12 @@ export default function MillTrueChat() {
     await sleep(prefersReducedMotion() ? 70 : 380);
     if (runRef.current.cancelled) return;
     setTyping(false);
-    // Opening: invite typing — no chip wall on first paint
+    // Opening: invite the job — no certs/stats menu, no chip wall
     setMessages([
       {
         id: uid(),
         role: 'bot',
-        text: 'Hi — just type what you need. Quotes, CAD, materials, whatever the job is.',
+        text: 'Hi — tell me about the part or job and I will help from there.',
       },
     ]);
   }, [welcomeDone]);

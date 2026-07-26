@@ -140,7 +140,7 @@ export default function HeroContactForm() {
           Talk to engineering
         </h2>
         <p className="mt-1.5 text-sm leading-snug text-zinc-300">
-          Three fields. Quotes in 24h — CAD optional for now.
+          Three fields. Part, material, qty — CAD optional for now.
         </p>
       </div>
 

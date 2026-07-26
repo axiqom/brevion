@@ -1,11 +1,12 @@
 ---
-import { ShieldCheck, Clock, Layers, FileCheck } from 'lucide-react';
+import { Layers, Cog, Workflow, ShieldCheck } from 'lucide-react';
 
+/** Capability-first row — certs stay quiet, not the lead. */
 const claims = [
-  { icon: ShieldCheck, label: 'AS9100 processes' },
+  { icon: Cog, label: '5-axis CNC milling' },
   { icon: Layers, label: 'Aerospace metals & engineering plastics' },
-  { icon: Clock, label: 'Quotes in 24h' },
-  { icon: FileCheck, label: 'ITAR-ready workflow' },
+  { icon: Workflow, label: 'Prototype → production in one shop' },
+  { icon: ShieldCheck, label: 'Documentation when programs need it' },
 ];
 ---
 <section class="border-b border-zinc-900/60 bg-zinc-950 py-10 md:py-12" aria-label="Trust signals">

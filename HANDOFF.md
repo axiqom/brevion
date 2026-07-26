@@ -37,7 +37,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
 - Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
-- **MillTrueChat** (`MillTrueChat.tsx` + `src/lib/milltrueChatBrain.ts`): messenger-style hybrid desk brain (home + RFQ via BaseLayout). Client-side slot extraction + scored intents + modular plain-text replies — **no external LLM / Intercom / API keys**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM). When open: quiet MillTrue header, thread-first layout, typing-first welcome (no chip wall), longer typing delay + staggered bubbles; soft **0–2 work-oriented** in-thread shortcuts (hidden while typing / after 2 free-text turns); **Start quote** / **Full RFQ** under useful/quote-ready bot turns. Composer is **input + send only**. Conversation slots/intents in `sessionStorage` (`milltrue-chat-v4-state`); thread in `localStorage` (`milltrue-chat-v5-thread`; legacy v1–v4 cleared). z-[47] above MobileConvertBar. Production messaging (Intercom/Crisp/LLM) TBD.
+- **MillTrueChat** (`MillTrueChat.tsx` + `src/lib/milltrueChatBrain.ts`): messenger-style hybrid desk brain (home + RFQ via BaseLayout). Work/conversation-first voice — greets by inviting the part/job; AS9100 / ITAR / 24h / ±0.0001" answers only when asked. Client-side slots + scored intents + plain-text replies (**no external LLM / Intercom / API keys**). Launcher **Chat** (`data-milltrue-chat-launcher`); closed = launcher only. Typing-first welcome (no chip wall); soft 0–2 work shortcuts; **Start quote** / **Full RFQ** under useful turns. Composer input+send only. State: `sessionStorage` `milltrue-chat-v4-state`, thread `localStorage` `milltrue-chat-v5-thread`. z-[47] above MobileConvertBar.
 - Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
@@ -97,7 +97,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 **2026-07-26 EnSima conversion-pattern pass (preview only):**
 
-- Hero reframed around buyer need (tolerance / lead time / DFM / AS9100) — intake form primary; secondary Full RFQ.
+- Hero: need-led headline (parts to print); capability strip (5-axis / metals+plastics / proto→prod) instead of AS9100/24h/±0.0001" billboard; intake primary; secondary Full RFQ.
 - Capabilities: numbered 01–04 cards with concrete metrics (5-axis, ±0.0001", 24h, AS9102 FAI, Type II/III, 2–3 wk proto) + self-select bullets.
 - WhyChooseUs → proof section: big-number stats strip + MillTrue vs typical shop comparison (no fake logos).
 - Section rhythm: thin eyebrows on Capabilities / Industries / Quality / Portfolio / WhyChooseUs (+ ValueProp).
@@ -108,7 +108,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 - Home funnel tightened: MidCta bands after Capabilities and Portfolio; Team collapsed to thin strip; Resources to short links row.
 - Hero intake anchors: `#intake` and `#contact`; bottom CTA offers Full RFQ + quick note → `#intake` + mailto Book a Call.
-- LogoCloud: removed fake customer marks; honest trust claims only (AS9100 processes, materials, quotes in 24h, ITAR-ready).
+- LogoCloud: capability-first trust strip (5-axis, materials, proto→prod, documentation when needed) — certs/timeframes not the lead.
 - ValueProp: card grid → hairline proof columns (fewer mega-cards).
 - Sticky mobile convert bar (dismissible once, `localStorage`); body padding when visible so CTAs stay clear; respects reduced motion.
 - Still no production email / SMS / DB / Formspree / Resend.
@@ -140,7 +140,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 |------|---------|--------------|
 | Hero image | Local `public/hero-cnc.jpg` (+ `hero-cnc-sm.jpg`) full-bleed | Own shop photography |
 | Section imagery | Local `public/media/` (cap-*, ind-*, port-*, team-*, bg-*) via `withBase('media/...')` | Owned / cleared photography |
-| Logo cloud | Honest claim strip (AS9100 / materials / 24h quotes / ITAR-ready) | Real (approved) customer marks only if cleared |
+| Logo cloud | Capability strip (5-axis / materials / proto→prod / docs when needed) | Real (approved) customer marks only if cleared |
 | Contact | sales@milltrue.com (no phone until real number) | Real phone + address when available |
 | Portfolio case studies | Sample titanium bracket / sensor housing | Real (cleared) projects |
 

@@ -3,15 +3,16 @@ import HeroContactForm from './HeroContactForm';
 import { withBase } from '../lib/base';
 
 const trustChips = [
-  'ITAR-ready',
-  'DFM before first chip',
+  '5-axis milling',
+  'Aerospace metals & plastics',
   'Proto → production',
 ];
 
+/** Capability language — not a cert/clock/tolerance billboard. */
 const stats = [
-  { value: '±0.0001"', label: 'where needed' },
-  { value: '24h', label: 'quote path' },
-  { value: 'AS9100', label: 'processes' },
+  { value: '5-axis', label: 'CNC milling' },
+  { value: 'Metals + plastics', label: 'shop mix' },
+  { value: 'Proto → prod', label: 'one shop' },
 ];
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-zinc-950">
@@ -56,10 +57,10 @@ const stats = [
         </p>
 
         <h1 class="mb-3 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-4 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          When tolerances and lead times can&apos;t slip.
+          Precision parts, machined to your print.
         </h1>
         <p class="max-w-lg text-sm font-medium leading-relaxed text-zinc-300 sm:text-base md:text-lg">
-          Hold critical dims to print. Quotes in 24h — AS9100-minded, ITAR-ready, with DFM before the first chip.
+          Tell us the part, material, and quantity. We DFM before the first chip — and keep documentation ready when your program needs it.
         </p>
       </div>
 
@@ -74,17 +75,17 @@ const stats = [
         </div>
       </div>
 
-      {/* 3. Stats & Trust (Below form on mobile, bottom left on desktop) */}
+      {/* 3. Capabilities & Trust (secondary — not a stats billboard) */}
       <div class="animate-fade-up opacity-0 md:col-start-1 md:row-start-2 md:self-start md:pt-2" style="animation-delay: 0.15s">
-        <dl class="mb-5 flex flex-wrap items-center gap-x-6 gap-y-4 sm:mb-6 sm:gap-8" aria-label="Key capabilities">
+        <dl class="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3 sm:mb-6 sm:gap-x-7" aria-label="Key capabilities">
           {stats.map((stat, i) => (
             <>
-              {i > 0 && <div class="hidden h-10 w-px bg-zinc-700/50 sm:block" aria-hidden="true"></div>}
+              {i > 0 && <div class="hidden h-8 w-px bg-zinc-700/40 sm:block" aria-hidden="true"></div>}
               <div class="flex flex-col">
-                <dt class="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
+                <dt class="font-display text-base font-bold tracking-tight text-zinc-100 sm:text-lg md:text-xl">
                   {stat.value}
                 </dt>
-                <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[11px]">
+                <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-500 sm:text-[11px]">
                   {stat.label}
                 </dd>
               </div>
@@ -92,7 +93,7 @@ const stats = [
           ))}
         </dl>
 
-        <ul class="mb-6 flex flex-wrap items-center gap-2.5 text-[10px] font-bold uppercase tracking-wider text-zinc-300 sm:mb-8 sm:text-[11px]" aria-label="Trust signals">
+        <ul class="mb-6 flex flex-wrap items-center gap-2.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 sm:mb-8 sm:text-[11px]" aria-label="Trust signals">
           {trustChips.map((chip, i) => (
             <>
               <li>{chip}</li>

@@ -1,10 +1,9 @@
 ---
+/** Capability-led strip — certs / 24h / tolerance live lower in the comparison, not as a billboard. */
 const stats = [
-  { value: '±0.0001"', label: 'Critical dims where needed' },
-  { value: '24h', label: 'Most quotes returned' },
   { value: '5-axis', label: 'CNC milling capacity' },
-  { value: 'AS9100', label: 'Process discipline' },
-  { value: '2–3 wk', label: 'Typical prototype lead' },
+  { value: 'Metals + plastics', label: 'Aerospace shop mix' },
+  { value: 'One shop', label: 'Proto → production' },
 ];
 
 const rows = [
@@ -14,24 +13,24 @@ const rows = [
     typical: 'Proto shop handoff to a production vendor.',
   },
   {
-    facet: 'Certs & documentation',
-    milltrue: 'AS9100-minded controls; AS9102 FAI when required.',
-    typical: 'Inconsistent process docs; FAI often extra.',
-  },
-  {
     facet: 'Materials',
     milltrue: 'Aerospace metals & engineering plastics.',
     typical: 'Limited specialty alloys and plastics.',
   },
   {
-    facet: 'Turnaround',
-    milltrue: 'Quotes in 24h; 2–3 wk proto, 4–6 wk production.',
-    typical: 'Slow quotes; fuzzy dates that slip.',
+    facet: 'DFM / first article',
+    milltrue: 'DFM before chips fly; FAI validates setup when required.',
+    typical: 'Quote-and-hope — issues found on the floor.',
   },
   {
-    facet: 'DFM / first article',
-    milltrue: 'DFM before chips fly; FAI validates setup.',
-    typical: 'Quote-and-hope — issues found on the floor.',
+    facet: 'Documentation',
+    milltrue: 'AS9100-minded controls; AS9102 FAI and NDAs when needed.',
+    typical: 'Inconsistent process docs; FAI often extra.',
+  },
+  {
+    facet: 'Turnaround',
+    milltrue: 'Clear quote path once the job is sized; typical proto 2–3 wk, production 4–6 wk.',
+    typical: 'Slow quotes; fuzzy dates that slip.',
   },
 ];
 ---
@@ -45,14 +44,14 @@ const rows = [
         MillTrue vs a typical shop
       </h2>
       <p class="text-base font-medium text-zinc-400 md:text-lg">
-        Specs, schedules, and documentation — not slogans.
+        How the work gets done — not a wall of slogans.
       </p>
     </div>
 
-    <div class="mb-12 grid grid-cols-2 gap-3 sm:gap-4 md:mb-16 md:grid-cols-5">
+    <div class="mb-12 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mb-16">
       {stats.map((stat) => (
-        <div class="flex min-h-[5.5rem] flex-col justify-center rounded-2xl bg-zinc-900/45 px-4 py-5 text-center shadow-[0_14px_40px_rgba(0,0,0,0.28)] md:rounded-3xl md:px-3 md:py-6">
-          <p class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[1.65rem] lg:text-3xl">
+        <div class="flex min-h-[5rem] flex-col justify-center rounded-2xl bg-zinc-900/45 px-4 py-5 text-center shadow-[0_14px_40px_rgba(0,0,0,0.28)] md:rounded-3xl md:px-3 md:py-6">
+          <p class="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-[1.45rem] lg:text-2xl">
             {stat.value}
           </p>
           <p class="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">
