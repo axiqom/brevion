@@ -1,5 +1,6 @@
 ---
 import { ArrowRight } from 'lucide-react';
+import { withBase } from '../../lib/base';
 
 const projects = [
   {
@@ -9,8 +10,8 @@ const projects = [
     tolerance: '±0.0005"',
     challenge: 'Reduce weight while holding structural strength under dynamic loads.',
     solution: '5-axis strategy to lighten non-critical sections; tight control on mating faces.',
-    img: 'https://images.unsplash.com/photo-1611078810237-67c46927cc1a?q=80&w=1200&auto=format&fit=crop',
-    caption: 'Sample case · Ti bracket',
+    img: withBase('media/port-01.jpg'),
+    alt: 'Precision-machined titanium aerospace bracket on a dark surface',
   },
   {
     title: 'Optical Sensor Housing',
@@ -19,12 +20,12 @@ const projects = [
     tolerance: '±0.0002"',
     challenge: 'Complex internals with surface finish critical to optics alignment.',
     solution: 'Custom tooling and multi-stage precision boring against print.',
-    img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
-    caption: 'Sample case · sensor housing',
+    img: withBase('media/port-02.jpg'),
+    alt: 'Machined aluminum optical sensor housing with fine surface finish',
   },
 ];
 ---
-<section id="projects" class="scroll-mt-28 border-t border-zinc-800 bg-zinc-900 py-20 md:py-24">
+<section id="projects" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-900/30 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end">
       <div class="max-w-2xl">
@@ -35,7 +36,7 @@ const projects = [
           Sample work
         </h2>
         <p class="text-base text-zinc-400 md:text-lg">
-          Representative jobs — material, tolerance, and approach. Placeholder imagery until cleared photos ship.
+          Representative sample jobs — material, tolerance, and machining approach.
         </p>
       </div>
       <a
@@ -49,14 +50,15 @@ const projects = [
     <div class="space-y-16 md:space-y-20">
       {projects.map((proj, idx) => (
         <div class={`flex flex-col items-stretch gap-8 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-          <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 md:rounded-3xl lg:w-1/2">
+          <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-2xl bg-zinc-950 shadow-[0_28px_80px_rgba(0,0,0,0.45)] md:rounded-3xl lg:w-1/2">
             <img
               src={proj.img}
-              alt=""
-              class="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-luminosity"
-              data-placeholder="portfolio"
+              alt={proj.alt}
+              class="absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none hover:scale-[1.02]"
+              loading="lazy"
+              decoding="async"
             />
-            <figcaption class="placeholder-caption">{proj.caption}</figcaption>
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" aria-hidden="true" />
           </figure>
 
           <div class="flex w-full flex-col justify-center lg:w-1/2">
@@ -67,7 +69,7 @@ const projects = [
               {proj.title}
             </h3>
 
-            <div class="mb-8 flex gap-8 border-b border-zinc-800 pb-8 md:gap-10">
+            <div class="mb-8 flex gap-8 pb-8 md:gap-10">
               <div>
                 <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-zinc-500">Material</span>
                 <span class="text-base font-bold text-white md:text-lg">{proj.material}</span>

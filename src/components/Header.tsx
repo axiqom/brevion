@@ -27,10 +27,10 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
 
   return (
     <nav
-      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none ${
+      className={`sticky top-0 z-50 transition-[background-color,backdrop-filter,box-shadow] duration-200 motion-reduce:transition-none ${
         scrolled || isMobileMenuOpen
-          ? 'border-zinc-800/80 bg-zinc-950/95 backdrop-blur-xl'
-          : 'border-transparent bg-zinc-950/55 backdrop-blur-md'
+          ? 'bg-zinc-950/95 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl'
+          : 'bg-zinc-950/55 backdrop-blur-md'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -96,7 +96,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="border-b border-zinc-800 bg-zinc-950 px-4 pb-6 pt-1 lg:hidden"
+          className="border-b border-zinc-800/50 bg-zinc-950 px-4 pb-6 pt-1 lg:hidden"
         >
           <div className="space-y-0.5">
             {navLinks.map((link) => (

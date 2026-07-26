@@ -17,10 +17,9 @@ const TOTAL_STEPS = 5;
 const STEP_LABELS = ['Contact', 'Files', 'Details', 'Timeline', 'Review'] as const;
 
 const inputClass =
-  'w-full min-h-11 rounded-xl border border-zinc-700/80 bg-zinc-950/80 px-3.5 py-3.5 text-sm font-medium text-white transition-colors placeholder:text-zinc-600 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl bg-zinc-800/70 px-3.5 py-3.5 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/20 sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400 sm:mb-2';
-
 export default function RfqWizard() {
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -61,7 +60,7 @@ export default function RfqWizard() {
   if (isSubmitted) {
     return (
       <div className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden bg-zinc-950 px-4 py-12 sm:py-16">
-        <div className="animate-fade-up relative z-10 w-full max-w-2xl rounded-[1.5rem] border border-zinc-800 bg-zinc-900/70 p-6 text-center sm:rounded-[2rem] sm:p-10 md:rounded-[2.5rem] md:p-16">
+        <div className="animate-fade-up relative z-10 w-full max-w-2xl rounded-[1.5rem] bg-zinc-900/60 p-6 text-center shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl sm:rounded-[2rem] sm:p-10 md:rounded-[2.5rem] md:p-16">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-zinc-950 sm:mb-8 sm:h-20 sm:w-20 sm:rounded-3xl md:mb-10 md:h-24 md:w-24">
             <CheckCircle2 size={40} aria-hidden="true" />
           </div>
@@ -92,9 +91,21 @@ export default function RfqWizard() {
     <div className="relative flex min-h-[85vh] flex-col overflow-x-hidden bg-zinc-950 px-4 py-8 pb-20 sm:py-12 md:py-20">
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         <div className="mb-6 md:mb-10">
-          <p className="mb-2 font-display text-xs font-bold uppercase tracking-[0.22em] text-zinc-500">
-            MillTrue RFQ
-          </p>
+          <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white sm:h-9 sm:w-9">
+              <img
+                src={withBase('milltrue-mark.svg')}
+                alt=""
+                width={18}
+                height={18}
+                className="h-4 w-4"
+                aria-hidden="true"
+              />
+            </div>
+            <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">
+              MillTrue RFQ
+            </p>
+          </div>
           <h1 className="mb-6 font-display text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl md:mb-8">
             Request a quote
           </h1>
@@ -119,7 +130,7 @@ export default function RfqWizard() {
               </span>
             ))}
           </div>
-          <div className="h-1.5 w-full overflow-hidden rounded-full border border-zinc-800 bg-zinc-900">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-900/80">
             <div
               className="h-full rounded-full bg-white transition-[width] duration-300 ease-in-out motion-reduce:transition-none"
               style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
@@ -129,13 +140,13 @@ export default function RfqWizard() {
 
         <form
           onSubmit={handleSubmit}
-          className="relative flex min-h-0 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:min-h-[520px] sm:rounded-3xl sm:p-6 md:min-h-[560px] md:p-10 lg:p-12"
+          className="relative flex min-h-0 flex-col rounded-2xl bg-zinc-900/60 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.7)] backdrop-blur-2xl sm:min-h-[520px] sm:rounded-3xl sm:p-6 md:min-h-[560px] md:p-10 lg:p-12"
         >
           <div key={animKey} className="animate-fade-in flex-grow">
             {step === 1 && (
               <div className="space-y-6 sm:space-y-8">
-                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
-                  <div className="shrink-0 rounded-xl bg-zinc-800 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
+                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800/60 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
+                  <div className="shrink-0 rounded-xl bg-zinc-800/90 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
                     <Briefcase size={24} aria-hidden="true" />
                   </div>
                   <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
@@ -179,8 +190,8 @@ export default function RfqWizard() {
 
             {step === 2 && (
               <div className="flex h-full flex-col space-y-6 sm:space-y-8">
-                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
-                  <div className="shrink-0 rounded-xl bg-zinc-800 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
+                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800/60 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
+                  <div className="shrink-0 rounded-xl bg-zinc-800/90 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
                     <FileUp size={24} aria-hidden="true" />
                   </div>
                   <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
@@ -207,16 +218,16 @@ export default function RfqWizard() {
                       fileInputRef.current?.click();
                     }
                   }}
-                  className="flex min-h-[220px] flex-grow cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-700 bg-zinc-950/50 p-6 transition-all hover:border-zinc-500 sm:min-h-[280px] sm:rounded-3xl sm:p-10 md:p-16"
+                  className="flex min-h-[220px] flex-grow cursor-pointer flex-col items-center justify-center rounded-2xl bg-zinc-800/40 p-6 ring-1 ring-inset ring-zinc-700/50 transition-colors hover:bg-zinc-800/55 hover:ring-zinc-600/60 focus-visible:ring-2 focus-visible:ring-white/30 sm:min-h-[280px] sm:rounded-3xl sm:p-10 md:p-16"
                 >
-                  <UploadCloud size={48} className="mb-4 text-zinc-600 sm:mb-5 md:mb-6" aria-hidden="true" />
+                  <UploadCloud size={48} className="mb-4 text-zinc-500 sm:mb-5 md:mb-6" aria-hidden="true" />
                   <p className="mb-2 text-center text-lg font-bold text-white sm:text-xl md:mb-3 md:text-2xl">
                     Drag & Drop files here
                   </p>
                   <p className="mb-5 text-center text-sm font-medium text-zinc-500 sm:mb-6 md:mb-8 md:text-base">
                     Supported: STEP, PDF, DXF, ZIP
                   </p>
-                  <span className="inline-flex min-h-11 items-center rounded-full border border-zinc-700 bg-zinc-800 px-8 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-zinc-700">
+                  <span className="inline-flex min-h-11 items-center rounded-full bg-zinc-800 px-8 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-zinc-700">
                     Browse Files
                   </span>
                   {files.length > 0 && (
@@ -240,8 +251,8 @@ export default function RfqWizard() {
 
             {step === 3 && (
               <div className="space-y-6 sm:space-y-8">
-                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
-                  <div className="shrink-0 rounded-xl bg-zinc-800 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
+                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800/60 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
+                  <div className="shrink-0 rounded-xl bg-zinc-800/90 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
                     <Settings size={24} aria-hidden="true" />
                   </div>
                   <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
@@ -301,8 +312,8 @@ export default function RfqWizard() {
 
             {step === 4 && (
               <div className="space-y-6 sm:space-y-8">
-                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
-                  <div className="shrink-0 rounded-xl bg-zinc-800 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
+                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800/60 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
+                  <div className="shrink-0 rounded-xl bg-zinc-800/90 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
                     <Calendar size={24} aria-hidden="true" />
                   </div>
                   <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
@@ -313,7 +324,7 @@ export default function RfqWizard() {
                   <div>
                     <p className="mb-4 text-xs font-bold uppercase tracking-widest text-zinc-400">Run Type</p>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-6">
-                      <label className="relative flex min-h-11 cursor-pointer rounded-2xl border border-zinc-800 bg-zinc-950/50 p-4 shadow-sm transition-colors has-[:checked]:border-white has-[:checked]:bg-zinc-800 sm:p-5 md:p-6">
+                      <label className="relative flex min-h-11 cursor-pointer rounded-2xl bg-zinc-800/40 p-4 transition-colors has-[:checked]:bg-zinc-800 has-[:checked]:ring-1 has-[:checked]:ring-white/40 sm:p-5 md:p-6">
                         <input type="radio" name="runType" value="prototype" className="sr-only" />
                         <div className="flex flex-col">
                           <span className="mb-1 text-base font-bold uppercase text-white sm:mb-2 md:text-lg">
@@ -322,7 +333,7 @@ export default function RfqWizard() {
                           <span className="text-sm font-medium text-zinc-400">1-10 parts for testing</span>
                         </div>
                       </label>
-                      <label className="relative flex min-h-11 cursor-pointer rounded-2xl border border-zinc-800 bg-zinc-950/50 p-4 shadow-sm transition-colors has-[:checked]:border-white has-[:checked]:bg-zinc-800 sm:p-5 md:p-6">
+                      <label className="relative flex min-h-11 cursor-pointer rounded-2xl bg-zinc-800/40 p-4 transition-colors has-[:checked]:bg-zinc-800 has-[:checked]:ring-1 has-[:checked]:ring-white/40 sm:p-5 md:p-6">
                         <input type="radio" name="runType" value="production" className="sr-only" />
                         <div className="flex flex-col">
                           <span className="mb-1 text-base font-bold uppercase text-white sm:mb-2 md:text-lg">
@@ -349,8 +360,8 @@ export default function RfqWizard() {
 
             {step === 5 && (
               <div className="space-y-6 sm:space-y-8">
-                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
-                  <div className="shrink-0 rounded-xl bg-zinc-800 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
+                <div className="mb-6 flex items-start gap-3 border-b border-zinc-800/60 pb-6 sm:mb-8 sm:items-center sm:gap-4 sm:pb-8 md:mb-10 md:gap-5 md:pb-10">
+                  <div className="shrink-0 rounded-xl bg-zinc-800/90 p-2.5 text-white sm:rounded-2xl sm:p-3 md:p-4">
                     <MessageSquare size={24} aria-hidden="true" />
                   </div>
                   <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
@@ -372,7 +383,7 @@ export default function RfqWizard() {
             )}
           </div>
 
-          <div className="mt-8 flex items-center justify-between gap-3 border-t border-zinc-800 pt-5 sm:mt-10 sm:pt-6 md:mt-16 md:pt-8">
+          <div className="mt-8 flex items-center justify-between gap-3 border-t border-zinc-800/60 pt-5 sm:mt-10 sm:pt-6 md:mt-16 md:pt-8">
             {step > 1 ? (
               <button
                 type="button"

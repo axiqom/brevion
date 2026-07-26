@@ -1,5 +1,6 @@
 ---
 import { ShieldCheck, Ruler, CheckSquare, Search, Award, FileText } from 'lucide-react';
+import { withBase } from '../../lib/base';
 
 const points = [
   { icon: Search, title: 'Inspection', desc: 'Calibrated CMM and vision checks before every shipment.' },
@@ -9,11 +10,14 @@ const points = [
   { icon: ShieldCheck, title: 'Repeatability', desc: 'Fixturing and proven CAM so run N matches run 1.' },
   { icon: CheckSquare, title: 'First article', desc: 'FAI validates setup before production volume ships.' },
 ];
+
+const bgUrl = withBase('media/bg-quality.jpg');
 ---
-<section id="quality" class="scroll-mt-28 relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-20 text-white md:py-24">
+<section id="quality" class="scroll-mt-28 relative overflow-hidden border-t border-zinc-900/60 bg-zinc-950 py-20 text-white md:py-24">
   <div
-    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.04] mix-blend-luminosity"
-    data-placeholder="quality-bg"
+    class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity"
+    style={`background-image:url(${bgUrl})`}
+    aria-hidden="true"
   />
 
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -31,8 +35,8 @@ const points = [
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
       {points.map((pt) => (
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 md:rounded-3xl md:p-7">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-800 text-white">
+        <div class="rounded-2xl bg-zinc-900/45 p-6 shadow-[0_16px_48px_rgba(0,0,0,0.28)] backdrop-blur-sm transition-colors duration-300 hover:bg-zinc-900/70 motion-reduce:transition-none md:rounded-3xl md:p-7">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-800/90 text-white">
             <pt.icon size={22} strokeWidth={1.5} aria-hidden="true" />
           </div>
           <h3 class="mb-2 text-lg font-bold uppercase tracking-tight md:text-xl">{pt.title}</h3>

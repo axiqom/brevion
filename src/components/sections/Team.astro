@@ -1,6 +1,22 @@
 ---
+import { withBase } from '../../lib/base';
+
+const portraits = [
+  {
+    src: withBase('media/team-01.jpg'),
+    alt: 'MillTrue engineer at a CAD workstation',
+  },
+  {
+    src: withBase('media/team-02.jpg'),
+    alt: 'Machinist inspecting a precision part on the shop floor',
+  },
+  {
+    src: withBase('media/team-03.jpg'),
+    alt: 'Quality technician reviewing inspection results',
+  },
+];
 ---
-<section id="about" class="scroll-mt-28 border-t border-zinc-800 bg-zinc-900 py-10 md:py-12">
+<section id="about" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-900/30 py-10 md:py-12">
   <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
     <div class="max-w-2xl">
       <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
@@ -10,18 +26,15 @@
         Engineers and machinists under one roof — transparent process from print review to first article.
       </p>
     </div>
-    <div class="flex gap-2" aria-hidden="true">
-      {[
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=400&auto=format&fit=crop',
-      ].map((src) => (
-        <div class="relative h-14 w-14 overflow-hidden rounded-xl border border-zinc-700 bg-zinc-950 sm:h-16 sm:w-16">
+    <div class="flex gap-2.5">
+      {portraits.map((person) => (
+        <div class="relative h-14 w-14 overflow-hidden rounded-xl bg-zinc-950 shadow-[0_12px_32px_rgba(0,0,0,0.45)] sm:h-16 sm:w-16 sm:rounded-2xl">
           <img
-            src={src}
-            alt=""
-            class="h-full w-full object-cover opacity-70 mix-blend-luminosity"
-            data-placeholder="team"
+            src={person.src}
+            alt={person.alt}
+            class="h-full w-full object-cover opacity-80 mix-blend-luminosity"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       ))}

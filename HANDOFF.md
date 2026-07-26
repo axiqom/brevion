@@ -71,7 +71,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 **Production later needs:**
 
 - CMS (or structured content) for capabilities, industries, portfolio, resources, FAQ
-- Real photography / video assets (replace Unsplash/Pexels URLs)
+- Real photography / video assets (optional: replace local stock under `public/media/` and hero with owned shop photos)
 - **Hero intake + RFQ email hookup:** form endpoint or serverless action → CRM/email (e.g. Resend or ESP) with spam protection; keep hero as low-friction path and RFQ for drawings/CAD uploads
 - RFQ backend: file upload (S3 or similar), spam protection, CRM/email notification, optional ITAR-aware handling
 - Analytics, SEO meta polish, legal pages (privacy/terms)
@@ -93,10 +93,13 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 | Slot | Current | Replace with |
 |------|---------|--------------|
 | Hero image | Local `public/hero-cnc.jpg` (+ `hero-cnc-sm.jpg`) full-bleed | Own shop photography |
-| Section imagery | Unsplash CNC/aerospace (`data-placeholder` / "Placeholder" caption) | Owned photography |
+| Section imagery | Local `public/media/` (cap-*, ind-*, port-*, team-*, bg-*) via `withBase('media/...')` | Owned / cleared photography |
 | Logo cloud | Honest claim strip (AS9100 / materials / 24h quotes / ITAR-ready) | Real (approved) customer marks only if cleared |
 | Contact | sales@milltrue.com, 555 number, Austin address | Real contact |
 | Portfolio case studies | Sample titanium bracket / sensor housing | Real (cleared) projects |
+
+**2026-07-26 $100k polish + local media:** Unsplash hotlinks and placeholder captions removed from Capabilities / Industries / Portfolio / Team / Quality / Cta. Soft-surface zinc language site-wide (including RFQ). PrototypeDisclaimer retained.
+
 
 ## Design deltas vs reference-source
 

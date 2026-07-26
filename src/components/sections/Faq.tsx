@@ -36,7 +36,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-zinc-800 bg-zinc-900 py-20 md:py-24">
+    <section className="border-t border-zinc-900/60 bg-zinc-900/30 py-20 md:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center md:mb-12">
           <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
@@ -50,7 +50,7 @@ export default function Faq() {
             return (
               <div
                 key={faq.q}
-                className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950"
+                className="overflow-hidden rounded-2xl bg-zinc-900/50 shadow-[0_14px_40px_rgba(0,0,0,0.28)]"
               >
                 <button
                   type="button"

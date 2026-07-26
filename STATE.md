@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Hero redesign live on Pages (verified)
+- **focus:** $100k polish images local
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production email later
-- **updated:** 2026-07-26T17:33:00.000Z
+- **next:** Pages deploy verify
+- **updated:** 2026-07-26T17:45:00.000Z
 
 ## Current focus
-Hero major redesign live: full-bleed CNC photo, borderless stats/trust/form, mobile form-early composition. Brand MillTrue. Commit `cddd095`.
+$100k visual polish + all section imagery local under `public/media/` (no Unsplash / placeholder chrome). Hero redesign preserved. Brand MillTrue.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Optional domain + real email later (HANDOFF)
+Pages deploy verify (orchestrator). Optional domain + real email later (HANDOFF).

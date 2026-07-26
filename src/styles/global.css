@@ -33,12 +33,6 @@
   }
 }
 
-@layer utilities {
-  .placeholder-caption {
-    @apply absolute bottom-3 right-3 rounded-md bg-zinc-950/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

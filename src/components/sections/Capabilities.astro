@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const capabilities = [
   {
     num: '01',
@@ -6,8 +8,8 @@ const capabilities = [
     metrics: ['DFM before cut', 'CAD → CAM'],
     items: ['CAD / reverse engineering', 'DFM analysis', 'CAM programming'],
     select: 'Need design help or manufacturability review first.',
-    img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?q=80&w=1200&auto=format&fit=crop',
-    caption: 'Engineering / CAM',
+    img: withBase('media/cap-engineering.jpg'),
+    alt: 'Engineer reviewing CAD model and toolpaths on a workstation',
   },
   {
     num: '02',
@@ -15,8 +17,8 @@ const capabilities = [
     metrics: ['3 / 4 / 5-axis', '2–3 wk prototypes'],
     items: ['Mill: 3-, 4-, 5-axis CNC', 'Turn: CNC turning', 'Prototype → production'],
     select: 'Self-select mill vs turn, proto vs volume.',
-    img: 'https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=1200&auto=format&fit=crop',
-    caption: 'CNC machining',
+    img: withBase('media/cap-manufacturing.jpg'),
+    alt: 'CNC machining center cutting a precision metal part',
   },
   {
     num: '03',
@@ -24,8 +26,8 @@ const capabilities = [
     metrics: ['±0.0001"', 'AS9102 FAI'],
     items: ['CMM inspection', 'AS9102 FAI when required', 'Full material traceability'],
     select: 'For prints that demand documented first article.',
-    img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1200&auto=format&fit=crop',
-    caption: 'Metrology',
+    img: withBase('media/cap-quality.jpg'),
+    alt: 'Coordinate measuring machine inspecting a machined component',
   },
   {
     num: '04',
@@ -33,12 +35,12 @@ const capabilities = [
     metrics: ['Type II / III anodize', 'One handoff'],
     items: ['Anodize Type II & III', 'Powder coat / heat treat', 'Laser engrave + hardware'],
     select: 'Machining and finishing coordinated — no vendor hop.',
-    img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
-    caption: 'Finishing',
+    img: withBase('media/cap-finishing.jpg'),
+    alt: 'Finished precision parts with surface treatment ready for assembly',
   },
 ];
 ---
-<section id="capabilities" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-20 md:py-24">
+<section id="capabilities" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 max-w-2xl md:mb-14">
       <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
@@ -54,16 +56,16 @@ const capabilities = [
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
       {capabilities.map((group) => (
-        <article class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 md:rounded-3xl">
-          <div class="relative aspect-[16/10] overflow-hidden border-b border-zinc-800 bg-zinc-950">
+        <article class="group flex flex-col overflow-hidden rounded-2xl bg-zinc-900/40 shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition-[transform,background-color] duration-300 hover:bg-zinc-900/70 focus-within:ring-2 focus-within:ring-white/20 motion-reduce:transition-none md:rounded-3xl">
+          <div class="relative aspect-[16/10] overflow-hidden bg-zinc-950">
             <img
               src={group.img}
-              alt=""
-              class="absolute inset-0 h-full w-full object-cover opacity-45 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
-              data-placeholder="capability"
+              alt={group.alt}
+              class="absolute inset-0 h-full w-full object-cover opacity-50 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-65"
+              loading="lazy"
+              decoding="async"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
-            <span class="placeholder-caption">{group.caption} · Placeholder</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent" />
             <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-white/90 md:text-3xl">
               {group.num}
             </span>
@@ -74,7 +76,7 @@ const capabilities = [
             </h3>
             <div class="mb-4 flex flex-wrap gap-2">
               {group.metrics.map((m) => (
-                <span class="inline-flex min-h-9 items-center rounded-full border border-zinc-700 bg-zinc-950/60 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-zinc-200">
+                <span class="inline-flex min-h-9 items-center rounded-full bg-zinc-800/80 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-zinc-200">
                   {m}
                 </span>
               ))}
@@ -87,7 +89,7 @@ const capabilities = [
                 </li>
               ))}
             </ul>
-            <p class="mt-auto border-t border-zinc-800 pt-4 text-xs font-medium leading-relaxed text-zinc-500">
+            <p class="mt-auto pt-4 text-xs font-medium leading-relaxed text-zinc-500">
               {group.select}
             </p>
           </div>

@@ -22,7 +22,7 @@ const pillars = [
   },
 ];
 ---
-<section class="relative overflow-hidden border-b border-zinc-900 bg-zinc-950 py-20 md:py-24">
+<section class="relative overflow-hidden border-b border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center md:mb-16">
       <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
@@ -36,10 +36,10 @@ const pillars = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-8 border-t border-zinc-800 pt-10 md:grid-cols-3 md:gap-10 md:pt-12">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
       {pillars.map((pillar) => (
-        <div class={`md:border-l md:pl-8 ${pillar.featured ? 'md:border-white/40' : 'md:border-zinc-800'} first:md:border-l-0 first:md:pl-0`}>
-          <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-white">
+        <div class={`rounded-2xl bg-zinc-900/35 p-6 shadow-[0_16px_48px_rgba(0,0,0,0.22)] md:rounded-3xl md:p-8 ${pillar.featured ? 'md:bg-zinc-900/55' : ''}`}>
+          <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-800/90 text-white">
             <pillar.icon size={20} strokeWidth={1.5} aria-hidden="true" />
           </div>
           <h3 class="mb-2.5 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">

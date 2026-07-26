@@ -11,7 +11,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
   - Mark: `/public/milltrue-mark.svg`
   - Lockup: `/public/milltrue-logo.svg`
   - Favicon: `/public/favicon.svg`
-- **Images:** Unsplash/Pexels CNC/metrology placeholders marked with "Placeholder" caption or `data-placeholder`
+- **Images:** Local section media under `public/media/` (capabilities, industries, portfolio, team, Quality/CTA backgrounds); hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
 - **Contact:** sales@milltrue.com, +1 (555) 123-4567, 100 Precision Way, Austin TX (placeholder)
 
 ## Visual language
@@ -19,7 +19,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
 - **Palette:** zinc-950 / zinc-900 / zinc-800 surfaces; white primary CTAs; zinc-400 body text
 - **Fonts:** Manrope (body), Rajdhani (display / headings) via Google Fonts in BaseLayout
 - **Icons:** lucide-react only — no emoji (brand mark is custom SVG, not a lucide icon)
-- **Shape:** large rounded corners (2–2.5rem), hairline zinc borders, luminosity-blended imagery
+- **Shape:** large rounded corners (2–2.5rem), soft surfaces (blur / opacity / shadow) over hard borders where chrome feels prototype-y; luminosity-blended imagery
 - **Motion:** 3 subtle intentional motions — hero CSS fade-up, RFQ step fade-in, FAQ accordion expand — not noisy
 
 ## Hero composition

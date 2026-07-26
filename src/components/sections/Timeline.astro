@@ -10,7 +10,7 @@ const steps = [
   { icon: PackageSearch, title: 'Ship', desc: 'Packed and delivered on date.' },
 ];
 ---
-<section class="border-t border-zinc-900 bg-zinc-950 py-20 md:py-24">
+<section class="border-t border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
       <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
@@ -22,13 +22,13 @@ const steps = [
     </div>
 
     <div class="relative">
-      <div class="absolute left-10 right-10 top-12 hidden h-px bg-zinc-800 md:block" />
+      <div class="absolute left-10 right-10 top-12 hidden h-px bg-zinc-800/70 md:block" />
       <div class="grid grid-cols-1 gap-1 md:grid-cols-6 md:gap-4">
         {steps.map((step, idx) => (
           <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-zinc-700 bg-zinc-900 text-white md:mb-5 md:h-24 md:w-24 md:rounded-3xl">
+            <div class="relative z-10 mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-zinc-900/70 text-white shadow-[0_14px_40px_rgba(0,0,0,0.35)] md:mb-5 md:h-24 md:w-24 md:rounded-3xl">
               <step.icon size={26} strokeWidth={1.5} aria-hidden="true" />
-              <div class="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full border-2 border-zinc-950 bg-white text-[10px] font-bold text-zinc-950 md:h-7 md:w-7 md:text-xs">
+              <div class="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white text-[10px] font-bold text-zinc-950 md:h-7 md:w-7 md:text-xs">
                 {idx + 1}
               </div>
             </div>
@@ -37,7 +37,7 @@ const steps = [
             </h3>
             <p class="px-1 text-xs font-medium leading-snug text-zinc-500 md:text-sm">{step.desc}</p>
             {idx !== steps.length - 1 && (
-              <div class="my-4 h-6 w-px bg-zinc-800 md:hidden" />
+              <div class="my-4 h-6 w-px bg-zinc-800/70 md:hidden" />
             )}
           </div>
         ))}
