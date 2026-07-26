@@ -12,6 +12,13 @@
     @apply overflow-x-hidden font-sans text-zinc-400 bg-zinc-950 antialiased selection:bg-white selection:text-zinc-950;
   }
 
+  /* Reserve space so fixed mobile convert bar does not cover CTAs / footer */
+  @media (max-width: 767px) {
+    body.has-mobile-convert {
+      padding-bottom: 5.5rem;
+    }
+  }
+
   h1,
   h2,
   h3,
@@ -29,5 +36,18 @@
 @layer utilities {
   .placeholder-caption {
     @apply absolute bottom-3 right-3 rounded-md bg-zinc-950/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

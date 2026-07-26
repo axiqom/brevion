@@ -2,38 +2,38 @@
 import { ShieldCheck, Ruler, CheckSquare, Search, Award, FileText } from 'lucide-react';
 
 const points = [
-  { icon: Search, title: 'Inspection', desc: 'Every part is inspected before it leaves our facility using calibrated CMM and vision systems.' },
-  { icon: FileText, title: 'Documentation', desc: 'Comprehensive inspection reports and AS9102 First Article Inspection reports available.' },
-  { icon: Award, title: 'Material Traceability', desc: 'Full material certifications provided. We know exactly where your raw material came from.' },
-  { icon: Ruler, title: 'Tight Tolerances', desc: 'Consistently holding tolerances down to ±0.0001" on critical dimensions.' },
-  { icon: ShieldCheck, title: 'Repeatability', desc: 'Robust fixturing and proven CAM strategies ensure the 1,000th part matches the 1st.' },
-  { icon: CheckSquare, title: 'First Article', desc: 'Rigorous FAI process to validate programming and setup before full production runs.' },
+  { icon: Search, title: 'Inspection', desc: 'Calibrated CMM and vision checks before every shipment.' },
+  { icon: FileText, title: 'Documentation', desc: 'Inspection packs and AS9102 first-article reports when required.' },
+  { icon: Award, title: 'Material traceability', desc: 'Certs and lot tracking from stock to finished part.' },
+  { icon: Ruler, title: 'Tight tolerances', desc: 'Critical dims held to print — down to ±0.0001" where needed.' },
+  { icon: ShieldCheck, title: 'Repeatability', desc: 'Fixturing and proven CAM so run N matches run 1.' },
+  { icon: CheckSquare, title: 'First article', desc: 'FAI validates setup before production volume ships.' },
 ];
 ---
-<section class="relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-24 text-white md:py-32">
+<section id="quality" class="scroll-mt-28 relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-20 text-white md:py-24">
   <div
-    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.05] mix-blend-luminosity"
+    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.04] mix-blend-luminosity"
     data-placeholder="quality-bg"
   />
 
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-16 max-w-3xl md:mb-24">
-      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight md:text-5xl lg:text-6xl">
-        Quality isn't an afterthought.
+    <div class="mb-12 max-w-2xl md:mb-14">
+      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight md:text-4xl lg:text-5xl">
+        Quality built into the process.
       </h2>
-      <p class="text-lg font-medium text-zinc-400 md:text-xl">
-        It's built into every stage of production. From material arrival to final packaging, our quality management system ensures precision is verified and documented.
+      <p class="text-base font-medium text-zinc-400 md:text-lg">
+        AS9100-minded controls from material receipt through packaging — verified and documented.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
       {points.map((pt) => (
-        <div class="group rounded-[1.75rem] border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-zinc-700 md:rounded-[2rem] md:p-10">
-          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-800 text-white transition-transform group-hover:scale-110 md:mb-8 md:h-14 md:w-14">
-            <pt.icon size={26} strokeWidth={1.5} aria-hidden="true" />
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 md:rounded-3xl md:p-7">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-800 text-white">
+            <pt.icon size={22} strokeWidth={1.5} aria-hidden="true" />
           </div>
-          <h3 class="mb-3 text-xl font-bold uppercase tracking-tight md:mb-4 md:text-2xl">{pt.title}</h3>
-          <p class="text-base leading-relaxed text-zinc-400 md:text-lg">{pt.desc}</p>
+          <h3 class="mb-2 text-lg font-bold uppercase tracking-tight md:text-xl">{pt.title}</h3>
+          <p class="text-sm leading-relaxed text-zinc-400 md:text-[15px]">{pt.desc}</p>
         </div>
       ))}
     </div>

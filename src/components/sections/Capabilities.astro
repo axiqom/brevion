@@ -4,59 +4,66 @@ const capabilities = [
     title: 'Engineering',
     items: ['CAD Design', 'Reverse Engineering', 'DFM Analysis', 'CAM Programming'],
     img: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?q=80&w=1200&auto=format&fit=crop',
+    caption: 'Engineering / CAM',
   },
   {
     title: 'Manufacturing',
     items: ['3-Axis CNC', '4-Axis CNC', '5-Axis CNC', 'CNC Turning', 'Rapid Prototyping', 'Production Runs'],
     img: 'https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=1200&auto=format&fit=crop',
+    caption: 'CNC machining',
   },
   {
     title: 'Quality',
     items: ['CMM Inspection', 'Documentation', 'Material Certifications', 'Full Traceability', 'First Article Inspection'],
     img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1200&auto=format&fit=crop',
+    caption: 'Metrology',
   },
   {
     title: 'Finishing',
     items: ['Anodizing (Type II & III)', 'Powder Coat', 'Heat Treat', 'Laser Engraving', 'Hardware Assembly'],
     img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
+    caption: 'Finishing',
   },
 ];
 ---
-<section id="capabilities" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-24 md:py-32">
+<section id="capabilities" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-16 max-w-3xl md:mb-24">
-      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
-        Everything you need to manufacture a part.
+    <div class="mb-12 max-w-2xl md:mb-14">
+      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+        Capabilities under one roof.
       </h2>
-      <p class="text-lg text-zinc-400 md:text-xl">
-        A complete ecosystem of precision manufacturing capabilities under one roof.
+      <p class="text-base text-zinc-400 md:text-lg">
+        Engineering, multi-axis machining, inspection, and finishing — coordinated for aerospace and defense programs.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
       {capabilities.map((group) => (
-        <div class="group relative h-[380px] overflow-hidden rounded-[1.5rem] bg-zinc-900 sm:h-[420px] sm:rounded-[2rem] md:h-[480px] md:rounded-[2.5rem]">
-          <img
-            src={group.img}
-            alt={`${group.title} capability`}
-            class="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-luminosity transition-all duration-700 group-hover:scale-110 group-hover:opacity-20"
-            data-placeholder="capability"
-          />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent p-6 sm:p-8 md:p-10">
-            <h3 class="mb-4 text-2xl font-bold uppercase tracking-tight text-white sm:mb-6 md:mb-8 md:text-3xl">
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 md:rounded-3xl">
+          <div class="relative aspect-[16/10] overflow-hidden border-b border-zinc-800 bg-zinc-950">
+            <img
+              src={group.img}
+              alt=""
+              class="absolute inset-0 h-full w-full object-cover opacity-45 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
+              data-placeholder="capability"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
+            <span class="placeholder-caption">{group.caption} · Placeholder</span>
+          </div>
+          <div class="flex flex-1 flex-col p-6 md:p-7">
+            <h3 class="mb-4 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
               {group.title}
             </h3>
-            <ul class="space-y-3 md:space-y-4">
+            <ul class="space-y-2.5">
               {group.items.map((item) => (
-                <li class="flex items-center gap-3 text-sm font-medium text-zinc-400 md:gap-4 md:text-base">
-                  <div class="h-1.5 w-1.5 rounded-full bg-white/70" />
+                <li class="flex items-center gap-2.5 text-sm font-medium text-zinc-400">
+                  <span class="h-1 w-1 shrink-0 rounded-full bg-zinc-500" aria-hidden="true" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <span class="placeholder-caption">Placeholder</span>
-        </div>
+        </article>
       ))}
     </div>
   </div>

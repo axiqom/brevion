@@ -2,34 +2,48 @@
 import { ArrowRight } from 'lucide-react';
 import { withBase } from '../../lib/base';
 ---
-<section class="relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-28 md:py-40">
+<section class="relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-20 md:py-28">
   <div
-    class="pointer-events-none absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.03] mix-blend-luminosity"
+    class="pointer-events-none absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.04] mix-blend-luminosity"
     data-placeholder="cta-bg"
   />
-  <div class="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-800/30 blur-[120px]" />
 
-  <div class="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-    <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white sm:text-5xl md:mb-8 md:text-7xl lg:text-8xl">
-      Let's Build It.
-    </h2>
-    <p class="mx-auto mb-10 max-w-3xl text-base font-medium leading-relaxed text-zinc-400 sm:text-lg md:mb-14 md:text-2xl">
-      Whether you're machining one prototype or scaling to production, we're ready to help. Experience the difference of a precision manufacturing partner.
-    </p>
-    <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-6">
-      <a
-        href={withBase('rfq')}
-        class="group flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 shadow-2xl shadow-white/10 transition-colors hover:bg-zinc-200 sm:px-10 sm:py-5 sm:text-base md:px-12 md:py-6 md:text-lg"
-      >
-        Request a Quote
-        <ArrowRight size={20} className="transition-transform group-hover:translate-x-2" aria-hidden="true" />
-      </a>
-      <a
-        href="mailto:sales@milltrue.com"
-        class="flex min-h-11 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-zinc-600 hover:bg-zinc-800 sm:px-10 sm:py-5 sm:text-base md:px-12 md:py-6 md:text-lg"
-      >
-        Book a Call
-      </a>
+  <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-white sm:text-4xl md:mb-5 md:text-5xl lg:text-6xl">
+        Clear quotes. DFM in the loop. Parts on schedule.
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-base font-medium leading-relaxed text-zinc-400 sm:text-lg md:mb-10">
+        Send the print for a full RFQ — or drop a short note if you want an engineer to start the conversation.
+      </p>
+      <div class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+        <a
+          href={withBase('rfq')}
+          class="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+        >
+          Full RFQ
+          <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
+        </a>
+        <a
+          href="#intake"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-600 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-zinc-500 hover:bg-zinc-900"
+        >
+          Prefer a quick note?
+        </a>
+        <a
+          href="mailto:sales@milltrue.com"
+          class="inline-flex min-h-11 items-center justify-center rounded-full border border-transparent px-6 py-4 text-sm font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
+        >
+          Book a Call
+        </a>
+      </div>
+      <p class="mt-6 hidden text-sm text-zinc-500 md:block">
+        Or jump to the{' '}
+        <a href="#intake" class="font-semibold text-zinc-300 underline-offset-2 hover:text-white hover:underline">
+          hero intake
+        </a>{' '}
+        for a quick note — no CAD required.
+      </p>
     </div>
   </div>
 </section>

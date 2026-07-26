@@ -36,9 +36,19 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Hero contact intake (`HeroContactForm.tsx`) is preview-only: validates client-side, shows thank-you / follow-up success state. No API, no email, no storage.
 - RFQ form is preview-only: multi-step UI, local file list in memory, submit shows thank-you. No API, no email, no storage.
 - FAQ accordion is client-side only.
+- Mobile convert bar (`MobileConvertBar.tsx`) is UI-only; dismiss preference in `localStorage` (`milltrue-mobile-convert-dismissed`).
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
 **Why:** Marketing + first-contact + RFQ UX can be demonstrated honestly without persistence. Backend setup would delay visual review without improving the preview for stakeholders.
+
+**2026-07-26 premium + conversion pass (preview only):**
+
+- Home funnel tightened: MidCta bands after Capabilities and Portfolio; Team collapsed to thin strip; Resources to short links row.
+- Hero intake anchors: `#intake` and `#contact`; bottom CTA offers Full RFQ + quick note → `#intake` + mailto Book a Call.
+- LogoCloud: removed fake customer marks; honest trust claims only (AS9100 processes, materials, quotes in 24h, ITAR-ready).
+- ValueProp: card grid → hairline proof columns (fewer mega-cards).
+- Sticky mobile convert bar (dismissible once, `localStorage`); body padding when visible so CTAs stay clear; respects reduced motion.
+- Still no production email / SMS / DB / Formspree / Resend.
 
 **Production later needs:**
 
@@ -48,6 +58,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ backend: file upload (S3 or similar), spam protection, CRM/email notification, optional ITAR-aware handling
 - Analytics, SEO meta polish, legal pages (privacy/terms)
 - Real contact details and certifications copy review
+- Real (approved) customer marks only if/when cleared — never invent logos
 
 ## Logo assets (designer swap paths)
 
@@ -65,15 +76,16 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 |------|---------|--------------|
 | Hero video/poster | Pexels/Unsplash CNC footage (full-bleed) | Own shop footage |
 | Section imagery | Unsplash CNC/aerospace (`data-placeholder` / "Placeholder" caption) | Owned photography |
-| Logo cloud | Fake SVG marks + Blue Origin/SpaceX/Anduril/Lockheed labels | Real (approved) customer marks or remove |
+| Logo cloud | Honest claim strip (AS9100 / materials / 24h quotes / ITAR-ready) | Real (approved) customer marks only if cleared |
 | Contact | sales@milltrue.com, 555 number, Austin address | Real contact |
 | Portfolio case studies | Sample titanium bracket / sensor housing | Real (cleared) projects |
 
 ## Design deltas vs reference-source
 
-- Hero is a conversion composition: brand + headline + trust chips (AS9100 / aerospace-defense / 24h quotes from existing site claims) + compact contact intake card; Full RFQ + capabilities are secondary
-- AS9100 trust line also remains on LogoCloud eyebrow
-- Framer Motion replaced with CSS `animate-fade-up` / `animate-fade-in` + FAQ grid expand
+- Hero is a conversion composition: brand + headline + trust chips (AS9100 / aerospace-defense / 24h quotes) + compact contact intake card (`#intake` / `#contact`); Full RFQ + capabilities are secondary
+- Trust strip (LogoCloud) uses claim language only — no fake customer logos
+- Mid-page soft CTA bands after Capabilities and Portfolio; footer CTA is benefit-led (Full RFQ / quick note / Book a Call)
+- Framer Motion replaced with CSS `animate-fade-up` / `animate-fade-in` + FAQ grid expand; `prefers-reduced-motion` respected
 - Brand mark is custom geometric SVG (not lucide Cuboid)
 
 ## Stack

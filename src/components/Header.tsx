@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
 
@@ -10,24 +10,38 @@ const navLinks = [
   { label: 'Capabilities', href: withBase('#capabilities') },
   { label: 'Industries', href: withBase('#industries') },
   { label: 'Projects', href: withBase('#projects') },
-  { label: 'About', href: withBase('#about') },
-  { label: 'Resources', href: withBase('#resources') },
+  { label: 'Quality', href: withBase('#quality') },
+  { label: 'Contact', href: withBase('#intake') },
 ];
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
+    <nav
+      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none ${
+        scrolled || isMobileMenuOpen
+          ? 'border-zinc-800/80 bg-zinc-950/95 backdrop-blur-xl'
+          : 'border-transparent bg-zinc-950/55 backdrop-blur-md'
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between md:h-20">
+        <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
           <a
             href={withBase()}
             className="group flex min-h-11 items-center gap-2.5 rounded-lg sm:gap-3"
             aria-label="MillTrue home"
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white transition-transform group-hover:scale-105 md:h-10 md:w-10">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white md:h-10 md:w-10">
               <img
                 src={withBase('milltrue-mark.svg')}
                 alt=""
@@ -42,19 +56,19 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             </span>
           </a>
 
-          <div className="hidden items-center space-x-6 lg:flex lg:space-x-10">
+          <div className="hidden items-center gap-8 lg:flex xl:gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="rounded-sm text-sm font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
+                className="rounded-sm text-[13px] font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
               >
                 {link.label}
               </a>
             ))}
             <a
               href={withBase('rfq')}
-              className="group flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+              className="group flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
             >
               Request Quote
@@ -82,21 +96,23 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="space-y-1 border-b border-zinc-800 bg-zinc-950 px-4 pb-6 pt-2 lg:hidden"
+          className="border-b border-zinc-800 bg-zinc-950 px-4 pb-6 pt-1 lg:hidden"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="flex min-h-11 items-center rounded-lg py-3 text-base font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
+          <div className="space-y-0.5">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="flex min-h-11 items-center rounded-lg px-1 py-3 text-base font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:text-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
           <a
             href={withBase('rfq')}
-            className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+            className="mt-4 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-current={currentPage === 'rfq' ? 'page' : undefined}
           >

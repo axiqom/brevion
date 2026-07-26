@@ -1,30 +1,27 @@
 ---
-const logos = [
-  { name: 'Blue Origin', path: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
-  { name: 'SpaceX', path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' },
-  { name: 'Anduril', path: 'M13 2.05v3.03c3.39 1.22 6 4.3 6 8.01 0 4.71-3.81 8.53-8.5 8.53S2 17.8 2 13.09c0-3.71 2.61-6.79 6-8.01V2.05C3.47 3.37 0 7.82 0 13.09 0 19.67 5.37 25 12 25s12-5.33 12-11.91c0-5.27-3.47-9.72-8-11.04z' },
-  { name: 'Lockheed', path: 'M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99z' },
+import { ShieldCheck, Clock, Layers, FileCheck } from 'lucide-react';
+
+const claims = [
+  { icon: ShieldCheck, label: 'AS9100 processes' },
+  { icon: Layers, label: 'Aerospace metals & engineering plastics' },
+  { icon: Clock, label: 'Quotes in 24h' },
+  { icon: FileCheck, label: 'ITAR-ready workflow' },
 ];
 ---
-<section class="border-b border-zinc-900 bg-zinc-950 py-14 md:py-16" data-placeholder="logo-cloud">
+<section class="border-b border-zinc-900 bg-zinc-950 py-10 md:py-12" aria-label="Trust signals">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <p class="mb-8 text-center text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 md:mb-10">
-      AS9100 processes · Trusted by industry leaders
+    <p class="mb-7 text-center text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500 md:mb-8">
+      Built for mission-critical programs
     </p>
-    <div class="flex flex-wrap items-center justify-center gap-10 opacity-50 grayscale md:gap-20">
-      {logos.map((logo) => (
-        <div class="flex items-center gap-3">
-          <svg class="h-7 w-7 fill-current text-white md:h-8 md:w-8" viewBox="0 0 24 24" aria-hidden="true">
-            <path d={logo.path} />
-          </svg>
-          <span class="font-display text-lg font-bold uppercase tracking-widest text-white md:text-xl">
-            {logo.name}
+    <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+      {claims.map((claim) => (
+        <li class="flex min-h-11 items-center gap-3 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 px-4 py-3.5">
+          <claim.icon size={18} strokeWidth={1.75} className="shrink-0 text-zinc-300" aria-hidden="true" />
+          <span class="text-sm font-semibold tracking-tight text-zinc-200">
+            {claim.label}
           </span>
-        </div>
+        </li>
       ))}
-    </div>
-    <p class="mt-8 text-center text-[10px] font-medium uppercase tracking-widest text-zinc-600">
-      Placeholder customer marks
-    </p>
+    </ul>
   </div>
 </section>

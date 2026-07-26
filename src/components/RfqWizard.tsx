@@ -17,9 +17,9 @@ const TOTAL_STEPS = 5;
 const STEP_LABELS = ['Contact', 'Files', 'Details', 'Timeline', 'Review'] as const;
 
 const inputClass =
-  'w-full min-h-11 rounded-2xl border border-zinc-800 bg-zinc-950/50 px-4 py-3.5 font-medium text-white transition-all placeholder-zinc-700 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:px-5 sm:py-4';
+  'w-full min-h-11 rounded-xl border border-zinc-700/80 bg-zinc-950/80 px-3.5 py-3.5 text-sm font-medium text-white transition-colors placeholder:text-zinc-600 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
 
-const labelClass = 'mb-2.5 block text-xs font-bold uppercase tracking-widest text-zinc-400 sm:mb-3';
+const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400 sm:mb-2';
 
 export default function RfqWizard() {
   const [step, setStep] = useState(1);
@@ -61,9 +61,8 @@ export default function RfqWizard() {
   if (isSubmitted) {
     return (
       <div className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden bg-zinc-950 px-4 py-12 sm:py-16">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[min(600px,80vw)] w-[min(600px,80vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-800/30 blur-[120px]" />
-        <div className="animate-fade-up relative z-10 w-full max-w-2xl rounded-[1.5rem] border border-zinc-800 bg-zinc-900/50 p-6 text-center shadow-2xl backdrop-blur-xl sm:rounded-[2rem] sm:p-10 md:rounded-[2.5rem] md:p-16">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-zinc-950 shadow-lg sm:mb-8 sm:h-20 sm:w-20 sm:rounded-3xl md:mb-10 md:h-24 md:w-24">
+        <div className="animate-fade-up relative z-10 w-full max-w-2xl rounded-[1.5rem] border border-zinc-800 bg-zinc-900/70 p-6 text-center sm:rounded-[2rem] sm:p-10 md:rounded-[2.5rem] md:p-16">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-zinc-950 sm:mb-8 sm:h-20 sm:w-20 sm:rounded-3xl md:mb-10 md:h-24 md:w-24">
             <CheckCircle2 size={40} aria-hidden="true" />
           </div>
           <h2 className="mb-3 font-display text-3xl font-bold uppercase tracking-tight text-white sm:mb-4 sm:text-4xl md:mb-6 md:text-5xl">
@@ -90,11 +89,16 @@ export default function RfqWizard() {
   }
 
   return (
-    <div className="relative flex min-h-[85vh] flex-col overflow-x-hidden bg-zinc-950 px-4 py-8 pb-20 sm:py-12 md:py-24">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[min(500px,60vw)] w-[min(1000px,140vw)] -translate-x-1/2 rounded-full bg-zinc-900/50 blur-[120px]" />
+    <div className="relative flex min-h-[85vh] flex-col overflow-x-hidden bg-zinc-950 px-4 py-8 pb-20 sm:py-12 md:py-20">
       <div className="relative z-10 mx-auto w-full max-w-4xl">
-        <div className="mb-8 md:mb-16">
-          <div className="mb-4 flex items-center justify-between gap-3 md:mb-6">
+        <div className="mb-6 md:mb-10">
+          <p className="mb-2 font-display text-xs font-bold uppercase tracking-[0.22em] text-zinc-500">
+            MillTrue RFQ
+          </p>
+          <h1 className="mb-6 font-display text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl md:mb-8">
+            Request a quote
+          </h1>
+          <div className="mb-4 flex items-center justify-between gap-3 md:mb-5">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
               Step {step} of {TOTAL_STEPS}
             </span>
@@ -115,9 +119,9 @@ export default function RfqWizard() {
               </span>
             ))}
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full border border-zinc-800 bg-zinc-900">
+          <div className="h-1.5 w-full overflow-hidden rounded-full border border-zinc-800 bg-zinc-900">
             <div
-              className="h-full rounded-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.35)] transition-[width] duration-300 ease-in-out"
+              className="h-full rounded-full bg-white transition-[width] duration-300 ease-in-out motion-reduce:transition-none"
               style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
             />
           </div>
@@ -125,7 +129,7 @@ export default function RfqWizard() {
 
         <form
           onSubmit={handleSubmit}
-          className="relative flex min-h-0 flex-col rounded-[1.5rem] border border-zinc-800 bg-zinc-900/50 p-4 shadow-2xl backdrop-blur-xl sm:min-h-[520px] sm:rounded-[2rem] sm:p-6 md:min-h-[600px] md:rounded-[2.5rem] md:p-12 lg:p-16"
+          className="relative flex min-h-0 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:min-h-[520px] sm:rounded-3xl sm:p-6 md:min-h-[560px] md:p-10 lg:p-12"
         >
           <div key={animKey} className="animate-fade-in flex-grow">
             {step === 1 && (

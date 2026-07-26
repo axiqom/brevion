@@ -37,7 +37,7 @@ const trustChips = [
   <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-14 pt-24 sm:px-6 sm:pb-16 md:pb-20 md:pt-28 lg:px-8">
     <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
       <div class="animate-fade-up opacity-0" style="animation-delay: 0.05s">
-        <div class="mb-5 flex items-center gap-2.5 sm:gap-3 md:mb-7">
+        <div class="mb-5 flex items-center gap-2.5 sm:gap-3 md:mb-6">
           <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white sm:h-11 sm:w-11 md:h-12 md:w-12">
             <img
               src={withBase('milltrue-mark.svg')}
@@ -57,7 +57,7 @@ const trustChips = [
           Precision CNC for aerospace, defense & robotics.
         </h1>
         <p class="mb-6 max-w-lg text-base font-medium leading-relaxed text-zinc-300 sm:mb-7 md:text-lg">
-          Prototype to production — mission-critical parts with clear quotes and AS9100-minded process discipline.
+          Prototype to production — tight tolerances, DFM feedback, and quotes in 24 hours.
         </p>
 
         <ul class="mb-6 flex flex-wrap gap-2 sm:mb-8" aria-label="Trust signals">
@@ -86,8 +86,14 @@ const trustChips = [
         </div>
       </div>
 
-      <div class="animate-fade-up w-full max-w-md opacity-0 md:ml-auto md:max-w-none" style="animation-delay: 0.12s">
-        <HeroContactForm client:load />
+      <div
+        id="intake"
+        class="animate-fade-up w-full max-w-md scroll-mt-28 opacity-0 md:ml-auto md:max-w-none"
+        style="animation-delay: 0.12s"
+      >
+        <div id="contact">
+          <HeroContactForm client:load />
+        </div>
       </div>
 
       <div class="flex flex-col gap-3 md:hidden">

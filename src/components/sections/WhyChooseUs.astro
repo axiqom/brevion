@@ -2,32 +2,37 @@
 import { Zap, Brain, Clock, MessageCircle, ShieldCheck, Factory } from 'lucide-react';
 
 const points = [
-  { icon: Zap, title: 'Fast Quotes', desc: 'Most RFQs are returned within 24 hours with complete DFM feedback.' },
-  { icon: Brain, title: 'Engineering-Driven', desc: "We don't just run code. We optimize your parts for manufacturability." },
-  { icon: Clock, title: 'Reliable Lead Times', desc: 'When we give you a delivery date, we hit it. No excuses.' },
-  { icon: MessageCircle, title: 'Transparent Communication', desc: "You'll always know the status of your parts on the shop floor." },
-  { icon: ShieldCheck, title: 'Quality First', desc: 'AS9100 compliant processes ensure your parts meet print every time.' },
-  { icon: Factory, title: 'Production Ready', desc: 'We scale seamlessly from your first prototype to full production runs.' },
+  { icon: Zap, title: 'Quotes in 24h', desc: 'Most RFQs return with price, lead time, and DFM notes within a day.' },
+  { icon: Brain, title: 'Engineering-led', desc: 'We flag manufacturability issues before they become scrap or delay.' },
+  { icon: Clock, title: 'Lead times you can plan on', desc: 'Committed dates — not optimistic estimates that slip.' },
+  { icon: MessageCircle, title: 'Shop-floor status', desc: 'Clear updates from programming through inspection and ship.' },
+  { icon: ShieldCheck, title: 'AS9100 process discipline', desc: 'Documented quality steps so parts meet print every run.' },
+  { icon: Factory, title: 'Prototype → production', desc: 'Scale from first article to volume without changing shops.' },
 ];
 ---
-<section class="border-t border-zinc-900 bg-zinc-950 py-24 md:py-32">
+<section class="border-t border-zinc-900 bg-zinc-950 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-16 max-w-3xl text-center md:mb-24">
-      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
-        Why Choose MillTrue
+    <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
+      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+        Why MillTrue
       </h2>
+      <p class="text-base font-medium text-zinc-400 md:text-lg">
+        Proof-oriented partnership for buyers who live in specs and schedules.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
       {points.map((pt) => (
-        <div class="flex flex-col items-center text-center">
-          <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900 text-white shadow-lg shadow-zinc-900/50 md:mb-8 md:h-16 md:w-16">
-            <pt.icon size={28} strokeWidth={1.5} aria-hidden="true" />
+        <div class="flex gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-white">
+            <pt.icon size={20} strokeWidth={1.5} aria-hidden="true" />
           </div>
-          <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-white md:mb-4 md:text-2xl">
-            {pt.title}
-          </h3>
-          <p class="text-base leading-relaxed text-zinc-400 md:text-lg">{pt.desc}</p>
+          <div>
+            <h3 class="mb-1.5 text-base font-bold uppercase tracking-tight text-white md:text-lg">
+              {pt.title}
+            </h3>
+            <p class="text-sm leading-relaxed text-zinc-400 md:text-[15px]">{pt.desc}</p>
+          </div>
         </div>
       ))}
     </div>

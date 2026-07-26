@@ -3,11 +3,14 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 const inputClass =
-  'w-full min-h-11 rounded-xl border border-zinc-700/80 bg-zinc-950/80 px-3.5 py-3 text-sm font-medium text-white transition-all placeholder-zinc-600 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl border border-zinc-600/80 bg-zinc-950/90 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
+
+const inputErrorClass =
+  'w-full min-h-11 rounded-xl border border-red-500/70 bg-zinc-950/90 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400 sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400';
 
-const errorClass = 'mt-1.5 text-xs font-medium text-red-400';
+const errorClass = 'mt-1.5 text-xs font-medium text-red-300';
 
 type Fields = {
   name: string;
@@ -74,7 +77,7 @@ export default function HeroContactForm() {
   if (submitted) {
     return (
       <div
-        className="rounded-2xl border border-zinc-700/70 bg-zinc-900/85 p-5 shadow-2xl backdrop-blur-xl sm:rounded-3xl sm:p-6"
+        className="rounded-2xl border border-zinc-600/80 bg-zinc-900/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:rounded-3xl sm:p-6"
         role="status"
         aria-live="polite"
         aria-atomic="true"
@@ -115,17 +118,19 @@ export default function HeroContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-zinc-700/70 bg-zinc-900/85 p-4 shadow-2xl backdrop-blur-xl sm:rounded-3xl sm:p-6"
+      className="rounded-2xl border border-zinc-600/80 bg-zinc-900/95 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:rounded-3xl sm:p-6"
       aria-labelledby={`${formId}-title`}
     >
       <div className="mb-4 border-b border-zinc-800 pb-4 sm:mb-5">
         <h2 id={`${formId}-title`} className="font-display text-lg font-bold uppercase tracking-tight text-white sm:text-xl">
           Start a conversation
         </h2>
-        <p className="mt-1 text-sm text-zinc-400">Quick intake — no CAD required yet.</p>
+        <p className="mt-1.5 text-sm leading-snug text-zinc-400">
+          Quick intake — part type, material, qty. No CAD required yet.
+        </p>
       </div>
 
-      <div className="space-y-3.5 sm:space-y-4">
+      <div className="space-y-4">
         <div>
           <label className={labelClass} htmlFor={fieldIds.name}>
             Name *
@@ -134,7 +139,7 @@ export default function HeroContactForm() {
             id={fieldIds.name}
             type="text"
             autoComplete="name"
-            className={inputClass}
+            className={errors.name ? inputErrorClass : inputClass}
             value={values.name}
             onChange={(e) => setField('name', e.target.value)}
             aria-invalid={Boolean(errors.name)}
@@ -155,7 +160,7 @@ export default function HeroContactForm() {
             id={fieldIds.company}
             type="text"
             autoComplete="organization"
-            className={inputClass}
+            className={errors.company ? inputErrorClass : inputClass}
             value={values.company}
             onChange={(e) => setField('company', e.target.value)}
             aria-invalid={Boolean(errors.company)}
@@ -177,7 +182,7 @@ export default function HeroContactForm() {
             type="email"
             autoComplete="email"
             inputMode="email"
-            className={inputClass}
+            className={errors.email ? inputErrorClass : inputClass}
             value={values.email}
             onChange={(e) => setField('email', e.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -211,7 +216,7 @@ export default function HeroContactForm() {
           <textarea
             id={fieldIds.need}
             rows={3}
-            className={`${inputClass} min-h-[5.5rem] resize-none`}
+            className={`${errors.need ? inputErrorClass : inputClass} min-h-[5.5rem] resize-none`}
             placeholder="Part type, material, qty, timeline…"
             value={values.need}
             onChange={(e) => setField('need', e.target.value)}
@@ -245,7 +250,7 @@ export default function HeroContactForm() {
                   className={`inline-flex min-h-11 min-w-[5.5rem] items-center justify-center rounded-full border px-4 text-xs font-bold uppercase tracking-widest transition-colors ${
                     selected
                       ? 'border-white bg-white text-zinc-950'
-                      : 'border-zinc-700 bg-zinc-950/50 text-zinc-300 hover:border-zinc-500'
+                      : 'border-zinc-600 bg-zinc-950/60 text-zinc-300 hover:border-zinc-500'
                   }`}
                 >
                   {opt.label}

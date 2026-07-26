@@ -1,64 +1,36 @@
 ---
-import { ArrowRight, BookOpen, Layers, PenTool } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
-const resources = [
-  {
-    icon: BookOpen,
-    category: 'Guide',
-    title: 'Designing for Manufacturability (DFM) in 5-Axis CNC',
-    desc: 'Learn how to optimize your CAD models to reduce machining time and costs.',
-  },
-  {
-    icon: Layers,
-    category: 'Material Reference',
-    title: 'Titanium Grades: 6Al-4V vs Grade 2',
-    desc: 'A comprehensive comparison for aerospace and medical applications.',
-  },
-  {
-    icon: PenTool,
-    category: 'Technical',
-    title: 'Understanding GD&T and Surface Finishes',
-    desc: 'How tolerance stacking affects pricing and why true position matters.',
-  },
+const links = [
+  { label: 'DFM for 5-axis CNC', href: '#' },
+  { label: 'Titanium grades quick ref', href: '#' },
+  { label: 'GD&T & surface finish', href: '#' },
 ];
 ---
-<section id="resources" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-24 md:py-32">
+<section id="resources" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-10 md:py-12">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end md:gap-8">
-      <div class="max-w-2xl">
-        <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
-          Engineering Resources
+    <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="mb-1 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
+          Engineering notes
         </h2>
-        <p class="text-lg font-medium text-zinc-400 md:text-xl">
-          Technical guides, material data, and manufacturing insights to help you design better parts.
+        <p class="text-sm font-medium text-zinc-500">
+          Short references for print review and material selection.
         </p>
       </div>
-      <span class="hidden text-sm font-bold uppercase tracking-widest text-zinc-500 md:inline-flex md:items-center md:gap-2">
-        View All Resources <ArrowRight size={18} aria-hidden="true" />
-      </span>
-    </div>
-
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-      {resources.map((res) => (
-        <article class="group block rounded-[2rem] border border-zinc-800 bg-zinc-900/50 p-8 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900 md:rounded-[2.5rem] md:p-10">
-          <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-800 text-white transition-transform group-hover:scale-110 md:mb-10 md:h-14 md:w-14">
-            <res.icon size={26} strokeWidth={1.5} aria-hidden="true" />
-          </div>
-          <span class="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 md:mb-4">
-            {res.category}
-          </span>
-          <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-white md:mb-4 md:text-2xl">
-            {res.title}
-          </h3>
-          <p class="mb-8 text-base leading-relaxed text-zinc-400 md:mb-10 md:text-lg">
-            {res.desc}
-          </p>
-          <div class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white">
-            Read Article
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-2" aria-hidden="true" />
-          </div>
-        </article>
-      ))}
+      <ul class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="inline-flex min-h-11 items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+            >
+              {link.label}
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>

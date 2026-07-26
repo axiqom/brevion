@@ -36,11 +36,11 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-zinc-800 bg-zinc-900 py-24 md:py-32">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-14 text-center md:mb-20">
-          <h2 className="mb-6 font-display text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
-            Frequently Asked Questions
+    <section className="border-t border-zinc-800 bg-zinc-900 py-20 md:py-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center md:mb-12">
+          <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+            FAQ
           </h2>
         </div>
 
@@ -50,7 +50,7 @@ export default function Faq() {
             return (
               <div
                 key={faq.q}
-                className="overflow-hidden rounded-[1.5rem] border border-zinc-800 bg-zinc-950 md:rounded-[2rem]"
+                className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950"
               >
                 <button
                   type="button"
@@ -61,12 +61,12 @@ export default function Faq() {
                   <span className="pr-4 text-base font-bold text-white sm:pr-6 sm:text-lg md:text-xl">{faq.q}</span>
                   <ChevronDown
                     size={22}
-                    className={`shrink-0 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  className={`shrink-0 text-zinc-500 transition-transform duration-300 motion-reduce:transition-none ${isOpen ? 'rotate-180' : ''}`}
                     aria-hidden="true"
                   />
                 </button>
                 <div
-                  className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                  className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
                     isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                   }`}
                 >

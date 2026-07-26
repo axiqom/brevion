@@ -1,58 +1,52 @@
 ---
 import { PenTool, Target, Layers } from 'lucide-react';
----
-<section class="relative overflow-hidden border-b border-zinc-900 bg-zinc-950 py-24 md:py-32">
-  <div class="pointer-events-none absolute left-1/2 top-0 -z-10 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-zinc-800/30 blur-[100px]" />
 
+const pillars = [
+  {
+    icon: PenTool,
+    title: 'DFM before chips fly',
+    desc: 'Tolerance stack-ups, cost drivers, and material callouts reviewed before the first toolpath.',
+    featured: false,
+  },
+  {
+    icon: Target,
+    title: 'First article to production',
+    desc: 'Repeatable setups and fixturing so article one matches part one thousand.',
+    featured: true,
+  },
+  {
+    icon: Layers,
+    title: 'One owner, clear lead time',
+    desc: 'A single point of contact from quote through finishing, inspection, and ship.',
+    featured: false,
+  },
+];
+---
+<section class="relative overflow-hidden border-b border-zinc-900 bg-zinc-950 py-20 md:py-24">
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-16 max-w-3xl text-center md:mb-24">
-      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
-        Manufacturing shouldn't feel complicated.
+    <div class="mx-auto mb-12 max-w-2xl text-center md:mb-16">
+      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+        Predictable manufacturing.
       </h2>
-      <p class="text-lg font-medium text-zinc-400 md:text-xl">
-        We've built our entire process around predictability. When you send us a complex part, you should know exactly when it will arrive.
+      <p class="text-base font-medium text-zinc-400 md:text-lg">
+        Specs in. Lead time out. No black-box shop floors.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-      <div class="group relative overflow-hidden rounded-[2rem] border border-zinc-800/50 bg-zinc-900/50 p-10 backdrop-blur-md transition-all duration-500 hover:bg-zinc-900 md:rounded-[2.5rem] md:p-12">
-        <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/5 blur-3xl transition-colors group-hover:bg-white/10" />
-        <div class="relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-zinc-700 bg-zinc-800 text-white md:mb-10 md:h-16 md:w-16 md:rounded-3xl">
-          <PenTool size={28} strokeWidth={1.5} aria-hidden="true" />
+    <div class="grid grid-cols-1 gap-8 border-t border-zinc-800 pt-10 md:grid-cols-3 md:gap-10 md:pt-12">
+      {pillars.map((pillar) => (
+        <div class={`md:border-l md:pl-8 ${pillar.featured ? 'md:border-white/40' : 'md:border-zinc-800'} first:md:border-l-0 first:md:pl-0`}>
+          <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-white">
+            <pillar.icon size={20} strokeWidth={1.5} aria-hidden="true" />
+          </div>
+          <h3 class="mb-2.5 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
+            {pillar.title}
+          </h3>
+          <p class="text-sm leading-relaxed text-zinc-400 md:text-base">
+            {pillar.desc}
+          </p>
         </div>
-        <h3 class="relative z-10 mb-4 text-2xl font-bold tracking-tight text-white md:text-3xl">
-          Engineering Support
-        </h3>
-        <p class="relative z-10 text-base leading-relaxed text-zinc-400 md:text-lg">
-          Need help designing your part? We'll optimize it for manufacturing, identifying cost drivers and potential tolerance stacking issues before chips fly.
-        </p>
-      </div>
-
-      <div class="group relative overflow-hidden rounded-[2rem] border border-white bg-zinc-100 p-10 text-zinc-950 shadow-2xl md:-translate-y-4 md:rounded-[2.5rem] md:p-12">
-        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-zinc-300/50 blur-3xl" />
-        <div class="relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-zinc-200 bg-white text-zinc-950 shadow-sm md:mb-10 md:h-16 md:w-16 md:rounded-3xl">
-          <Target size={28} strokeWidth={1.5} aria-hidden="true" />
-        </div>
-        <h3 class="relative z-10 mb-4 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-          Precision Manufacturing
-        </h3>
-        <p class="relative z-10 text-base font-medium leading-relaxed text-zinc-600 md:text-lg">
-          From first-article prototype to full-scale production. We guarantee repeatability across every run with tightly controlled processes and advanced fixturing.
-        </p>
-      </div>
-
-      <div class="group relative overflow-hidden rounded-[2rem] border border-zinc-800/50 bg-zinc-900/50 p-10 backdrop-blur-md transition-all duration-500 hover:bg-zinc-900 md:rounded-[2.5rem] md:p-12">
-        <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/5 blur-3xl transition-colors group-hover:bg-white/10" />
-        <div class="relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-zinc-700 bg-zinc-800 text-white md:mb-10 md:h-16 md:w-16 md:rounded-3xl">
-          <Layers size={28} strokeWidth={1.5} aria-hidden="true" />
-        </div>
-        <h3 class="relative z-10 mb-4 text-2xl font-bold tracking-tight text-white md:text-3xl">
-          Project Management
-        </h3>
-        <p class="relative z-10 text-base leading-relaxed text-zinc-400 md:text-lg">
-          One point of contact. Transparent communication. Reliable delivery. We manage the supply chain, finishing, and logistics so you don't have to.
-        </p>
-      </div>
+      ))}
     </div>
   </div>
 </section>

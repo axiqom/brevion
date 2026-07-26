@@ -38,33 +38,33 @@ const industries = [
   },
 ];
 ---
-<section id="industries" class="scroll-mt-28 border-t border-zinc-800 bg-zinc-900 py-24 md:py-32">
+<section id="industries" class="scroll-mt-28 border-t border-zinc-800 bg-zinc-900 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-16 max-w-3xl md:mb-24">
-      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
+    <div class="mb-12 max-w-2xl md:mb-14">
+      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
         Industries
       </h2>
-      <p class="text-lg text-zinc-400 md:text-xl">
-        We manufacture parts that go to space, perform surgeries, and automate the world.
+      <p class="text-base text-zinc-400 md:text-lg">
+        Mission-critical hardware for aerospace, defense, space, medical, and automation.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
       {industries.map((ind) => (
-        <div class={`group relative min-h-[280px] overflow-hidden rounded-[1.5rem] bg-zinc-950 sm:min-h-[340px] sm:rounded-[2rem] md:min-h-[400px] md:rounded-[2.5rem] ${ind.span}`}>
+        <div class={`group relative aspect-[4/3] min-h-[240px] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 sm:min-h-[280px] md:aspect-auto md:min-h-[320px] md:rounded-3xl ${ind.span}`}>
           <img
             src={ind.img}
-            alt={ind.name}
-            class="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity transition-all duration-700 group-hover:scale-105 group-hover:opacity-20"
+            alt=""
+            class="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
             data-placeholder="industry"
           />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent p-6 sm:p-8 md:p-12">
-            <h3 class="mb-2 text-2xl font-bold uppercase tracking-tight text-white sm:mb-3 sm:text-3xl md:mb-4 md:text-4xl">
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent p-6 sm:p-8 md:p-10">
+            <h3 class="mb-1.5 text-xl font-bold uppercase tracking-tight text-white sm:text-2xl md:mb-2 md:text-3xl">
               {ind.name}
             </h3>
-            <p class="max-w-sm text-sm font-medium text-zinc-400 sm:text-base md:text-lg">{ind.desc}</p>
+            <p class="max-w-sm text-sm font-medium text-zinc-400 md:text-base">{ind.desc}</p>
           </div>
-          <span class="placeholder-caption">Placeholder</span>
+          <span class="placeholder-caption">{ind.name} · Placeholder</span>
         </div>
       ))}
     </div>

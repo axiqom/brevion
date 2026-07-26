@@ -25,19 +25,20 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
 ## Hero composition
 
 - Full-bleed dark video/poster plane (edge-to-edge); no inset media cards or floating overlays
-- First viewport: MillTrue brand mark + wordmark, one headline, one supporting sentence, one CTA group
-- Certification / trust line lives in LogoCloud (not as a hero badge)
+- Conversion hero: MillTrue brand + wordmark, one headline, one supporting sentence, compact trust chips, secondary CTA group, and contact intake card (`#intake` / `#contact`)
+- Primary trust strip (AS9100 / materials / 24h / ITAR-ready) lives in LogoCloud — no fake customer logos
 
 ## Pages
 
-1. **Home** (`/`) — full landing: Hero, LogoCloud, ValueProp, Capabilities, Industries, Timeline, Portfolio, WhyChooseUs, Quality, Team, Resources, FAQ, CTA
+1. **Home** (`/`) — conversion landing: Hero (intake) → trust strip → ValueProp → Capabilities → MidCta → Industries → Timeline → Portfolio → MidCta → WhyChooseUs → Quality → thin Team strip → Resources links → FAQ → CTA
 2. **RFQ** (`/rfq`) — 5-step mock quote wizard (Contact → Files → Details → Timeline → Review) ending in thank-you state; client-only, nothing stored externally
 
 ## Layout
 
-- Sticky blurred nav with Request Quote CTA; section anchors `#capabilities` `#industries` `#projects` `#about` `#resources`
+- Sticky blurred nav with Request Quote CTA; section anchors `#capabilities` `#industries` `#projects` `#quality` `#about` `#resources` `#intake` / `#contact`
 - Footer with company blurb + placeholder contact
-- PrototypeDisclaimer badge (unobtrusive; bottom-left on mobile, bottom-right on `sm+`; does not block CTAs)
+- PrototypeDisclaimer badge (unobtrusive; bottom-left on mobile above convert bar, bottom-right on `sm+`; does not block CTAs)
+- Optional dismissible mobile convert bar (Talk to MillTrue / Full RFQ) after scroll
 - Mobile-first; WCAG-minded contrast, keyboard focus rings, touch targets ≥44px
 
 ## Stack notes
