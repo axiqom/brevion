@@ -8,15 +8,18 @@ import {
 } from 'react';
 import { MessageSquare, X, Send, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
+import {
+  OPENING_CHIPS,
+  emptyState,
+  loadState,
+  respond,
+  saveState,
+  type Chip,
+  type ConversationState,
+  type DeskReply,
+} from '../lib/milltrueChatBrain';
 
 type Role = 'bot' | 'user';
-type Topic = 'quote' | 'certs' | 'cad' | 'materials' | 'dfm' | 'general';
-
-type Chip = {
-  label: string;
-  send?: string;
-  href?: string;
-};
 
 type ChatMessage = {
   id: string;
@@ -28,192 +31,18 @@ type ChatMessage = {
   suggestions?: Chip[];
 };
 
-type DeskReply = {
-  bubbles: string[];
-  topic: Topic;
-  chips: Chip[];
-  actions?: boolean;
-};
-
-const THREAD_KEY = 'milltrue-chat-v3-thread';
-const TOPIC_KEY = 'milltrue-chat-v3-topic';
+const THREAD_KEY = 'milltrue-chat-v4-thread';
 const LEGACY_KEYS = [
   'milltrue-chat-thread',
   'milltrue-chat-topic',
   'milltrue-chat-v2-thread',
   'milltrue-chat-v2-topic',
+  'milltrue-chat-v3-thread',
+  'milltrue-chat-v3-topic',
 ];
-
-const OPENING_CHIPS: Chip[] = [
-  { label: '24h quote', send: 'Need a 24h quote' },
-  { label: 'AS9100 / ITAR', send: 'AS9100 / ITAR?' },
-  { label: 'CAD upload', send: 'How do I upload CAD?' },
-  { label: 'Tolerances', send: 'What tolerances and materials?' },
-];
-
-const CHIPS_BY_TOPIC: Record<Topic, Chip[]> = {
-  quote: [
-    { label: 'Start quote', href: 'intake' },
-    { label: 'Full RFQ', href: 'rfq' },
-    { label: 'Lead times', send: 'What is typical lead time?' },
-    { label: 'Attach STEP', send: 'How do I attach a STEP file?' },
-  ],
-  certs: [
-    { label: 'Start quote', href: 'intake' },
-    { label: 'NDA?', send: 'Do you support NDAs?' },
-    { label: 'FAI / AS9102', send: 'Do you offer AS9102 FAI?' },
-    { label: 'Full RFQ', href: 'rfq' },
-  ],
-  cad: [
-    { label: 'Start quote', href: 'intake' },
-    { label: 'Full RFQ', href: 'rfq' },
-    { label: 'Formats?', send: 'What CAD formats do you accept?' },
-    { label: 'NDA first?', send: 'Do you support NDAs?' },
-  ],
-  materials: [
-    { label: 'Start quote', href: 'intake' },
-    { label: 'DFM review?', send: 'Do you do DFM review?' },
-    { label: 'Lead times', send: 'What is typical lead time?' },
-    { label: 'Full RFQ', href: 'rfq' },
-  ],
-  dfm: [
-    { label: 'Start quote', href: 'intake' },
-    { label: 'Full RFQ', href: 'rfq' },
-    { label: 'Prototype timing', send: 'What is prototype lead time?' },
-    { label: 'Upload CAD', send: 'How do I upload CAD?' },
-  ],
-  general: OPENING_CHIPS,
-};
 
 function suggestionChips(chips: Chip[]): Chip[] {
   return chips.filter((c) => Boolean(c.send)).slice(0, 4);
-}
-
-function detectTopic(input: string): Topic {
-  const t = input.toLowerCase();
-  if (/24\s*h|quote|rfq|pricing|price|cost|how\s*fast|turnaround|lead\s*time|bid/.test(t)) return 'quote';
-  if (/as9100|itar|cert|fai|as9102|export|nda|compliance|quality\s*system/.test(t)) return 'certs';
-  if (/upload|cad|step|stp|drawing|file|iges|dxf|dwg|solidworks|sldprt|zip|attach/.test(t)) return 'cad';
-  if (/toleran|material|titanium|aluminum|aluminium|peek|inconel|stainless|delrin|ultem|±|0\.0001|alloy|plastic/.test(t))
-    return 'materials';
-  if (/dfm|design|engineer|prototype|production|cam|reverse\s*eng|machin/.test(t)) return 'dfm';
-  return 'general';
-}
-
-function buildReply(input: string, lastTopic: Topic | null): DeskReply {
-  const t = input.toLowerCase();
-  const topic = detectTopic(input);
-
-  if (/nda|non.?disclosure|confidential/.test(t)) {
-    return {
-      topic: 'certs',
-      bubbles: [
-        'NDAs are routine before proprietary or controlled files. Email sales@milltrue.com, or note NDA-required on the RFQ — we will not open CAD until paperwork is set.',
-      ],
-      chips: CHIPS_BY_TOPIC.certs,
-      actions: true,
-    };
-  }
-
-  if (/format|accept|file\s*type|extension/.test(t) && topic === 'cad') {
-    return {
-      topic: 'cad',
-      bubbles: [
-        'Preferred: STEP (.step/.stp) plus a PDF drawing. Also: IGES, DXF/DWG, SolidWorks, ZIP. Open Full RFQ to attach.',
-      ],
-      chips: CHIPS_BY_TOPIC.cad,
-      actions: true,
-    };
-  }
-
-  if (/fai|as9102/.test(t)) {
-    return {
-      topic: 'certs',
-      bubbles: [
-        'AS9102 FAI is available when your print requires it. Call it out on the RFQ and engineering will confirm scope.',
-      ],
-      chips: CHIPS_BY_TOPIC.certs,
-      actions: true,
-    };
-  }
-
-  if (topic === 'quote' || /24\s*h|quote|rfq|pricing|lead\s*time|how\s*fast|turnaround|bid/.test(t)) {
-    return {
-      topic: 'quote',
-      bubbles: [
-        'Most quote paths return within 24h once we have part type, material, and qty.',
-        'Start a short note or open Full RFQ to attach drawings.',
-      ],
-      chips: CHIPS_BY_TOPIC.quote,
-      actions: true,
-    };
-  }
-
-  if (topic === 'certs') {
-    return {
-      topic: 'certs',
-      bubbles: [
-        'AS9100-minded process discipline and an ITAR-ready workflow. AS9102 FAI and NDAs available when required.',
-      ],
-      chips: CHIPS_BY_TOPIC.certs,
-      actions: true,
-    };
-  }
-
-  if (topic === 'cad') {
-    return {
-      topic: 'cad',
-      bubbles: [
-        'Preferred package: STEP plus a PDF drawing for tolerances. Open Full RFQ to attach — or Start quote for a short note first.',
-      ],
-      chips: CHIPS_BY_TOPIC.cad,
-      actions: true,
-    };
-  }
-
-  if (topic === 'materials') {
-    return {
-      topic: 'materials',
-      bubbles: [
-        'Critical dims held to ±0.0001" where the print demands it. Aerospace metals and engineering plastics (Delrin, PEEK, Ultem). DFM before chips fly.',
-      ],
-      chips: CHIPS_BY_TOPIC.materials,
-      actions: true,
-    };
-  }
-
-  if (topic === 'dfm') {
-    return {
-      topic: 'dfm',
-      bubbles: [
-        'CAD/reverse engineering, DFM, and CAM before cut. Prototypes typically 2–3 weeks; production 4–6 weeks depending on material and finish.',
-      ],
-      chips: CHIPS_BY_TOPIC.dfm,
-      actions: true,
-    };
-  }
-
-  if (/hello|hi\b|hey|good\s*(morning|afternoon)|thanks|thank/.test(t)) {
-    const bias = lastTopic && lastTopic !== 'general' ? lastTopic : 'general';
-    return {
-      topic: bias,
-      bubbles: ['Ask about quotes, certs, tolerances, or CAD — or jump straight to a quote.'],
-      chips: CHIPS_BY_TOPIC[bias],
-      actions: true,
-    };
-  }
-
-  const fallbackChips =
-    lastTopic && lastTopic !== 'general' ? CHIPS_BY_TOPIC[lastTopic] : CHIPS_BY_TOPIC.general;
-
-  return {
-    topic: lastTopic || 'general',
-    bubbles: [
-      'I can cover 24h quotes, ±0.0001", AS9100 / ITAR-ready, DFM, and CAD formats. Or start a quote when you are ready.',
-    ],
-    chips: fallbackChips,
-    actions: true,
-  };
 }
 
 function prefersReducedMotion(): boolean {
@@ -246,7 +75,7 @@ export default function MillTrueChat() {
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [lastTopic, setLastTopic] = useState<Topic | null>(null);
+  const [deskState, setDeskState] = useState<ConversationState>(() => emptyState());
   const [hydrated, setHydrated] = useState(false);
   const [welcomeDone, setWelcomeDone] = useState(false);
 
@@ -257,10 +86,15 @@ export default function MillTrueChat() {
   const prevFocus = useRef<HTMLElement | null>(null);
   const runRef = useRef<{ cancelled: boolean }>({ cancelled: false });
   const messagesRef = useRef<ChatMessage[]>([]);
+  const deskRef = useRef<ConversationState>(emptyState());
 
   useEffect(() => {
     messagesRef.current = messages;
   }, [messages]);
+
+  useEffect(() => {
+    deskRef.current = deskState;
+  }, [deskState]);
 
   useEffect(() => {
     clearLegacyStorage();
@@ -273,14 +107,12 @@ export default function MillTrueChat() {
           setWelcomeDone(true);
         }
       }
-      const topicRaw = localStorage.getItem(TOPIC_KEY) as Topic | null;
-      if (topicRaw && topicRaw in CHIPS_BY_TOPIC) {
-        setLastTopic(topicRaw);
-      }
+      const loaded = loadState();
+      setDeskState(loaded);
+      deskRef.current = loaded;
     } catch {
       try {
         localStorage.removeItem(THREAD_KEY);
-        localStorage.removeItem(TOPIC_KEY);
       } catch {
         /* ignore */
       }
@@ -301,13 +133,9 @@ export default function MillTrueChat() {
   }, [messages, hydrated]);
 
   useEffect(() => {
-    if (!lastTopic) return;
-    try {
-      localStorage.setItem(TOPIC_KEY, lastTopic);
-    } catch {
-      /* ignore */
-    }
-  }, [lastTopic]);
+    if (!hydrated) return;
+    saveState(deskState);
+  }, [deskState, hydrated]);
 
   useEffect(() => {
     const sync = () => setBarVisible(document.body.classList.contains('has-mobile-convert'));
@@ -370,8 +198,6 @@ export default function MillTrueChat() {
         setTyping(false);
       }
     }
-
-    setLastTopic(reply.topic);
   }, []);
 
   const playWelcome = useCallback(async () => {
@@ -385,7 +211,7 @@ export default function MillTrueChat() {
       {
         id: uid(),
         role: 'bot',
-        text: 'Hi — ask about quotes, certs, CAD, or tolerances. I will point you to a quote when you are ready.',
+        text: 'Hi — ask in plain language about quotes, certs, CAD, or materials. I will remember what you share and steer you toward a quote when it makes sense.',
         suggestions: OPENING_CHIPS,
       },
     ]);
@@ -451,7 +277,10 @@ export default function MillTrueChat() {
     clearThreadSuggestions();
     setMessages((prev) => [...prev, { id: uid(), role: 'user', text }]);
     setInput('');
-    void deliverReply(buildReply(text, lastTopic));
+    const { reply, state } = respond(text, deskRef.current);
+    deskRef.current = state;
+    setDeskState(state);
+    void deliverReply(reply);
   };
 
   const onComposerKey = (e: ReactKeyboardEvent<HTMLInputElement>) => {

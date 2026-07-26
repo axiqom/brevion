@@ -37,7 +37,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
 - Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
-- **MillTrueChat** (`MillTrueChat.tsx`): messenger-style FAQ chatbot (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM / Intercom**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM — no overlay/pointer-events steal). When open: compact MillTrue header, thread-first layout, welcome bubble with **in-thread** suggestion pills, typing dots, bot/user bubbles; **Start quote** / **Full RFQ** only under the latest bot turn; follow-up suggestions also in-thread (cleared on next send). Composer is **input + send only** — no permanent form action bar / chip grid / FAQ disclaimer footer. Mailto is a quiet focusable header link. Storage keys `milltrue-chat-v3-*` (legacy v1/v2 cleared). z-[47] above MobileConvertBar; lifts when convert bar visible. Production messaging (Intercom/Crisp/LLM) TBD.
+- **MillTrueChat** (`MillTrueChat.tsx` + `src/lib/milltrueChatBrain.ts`): messenger-style hybrid desk brain (home + RFQ via BaseLayout). Client-side slot extraction + scored intents + modular plain-text replies — **no external LLM / Intercom / API keys**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM). When open: compact MillTrue header, thread-first layout, welcome bubble with **in-thread** suggestion pills, typing dots, bot/user bubbles; **Start quote** / **Full RFQ** under useful/quote-ready bot turns; follow-up suggestions in-thread (cleared on next send). Composer is **input + send only**. Conversation slots/intents in `sessionStorage` (`milltrue-chat-v4-state`); thread in `localStorage` (`milltrue-chat-v4-thread`; legacy v1–v3 cleared). z-[47] above MobileConvertBar. Production messaging (Intercom/Crisp/LLM) TBD.
 - Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
@@ -66,6 +66,12 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Rewrote MillTrueChat so closed state mounts **launcher only** (no hidden dialog / inset-0 shell). Label **Chat**.
 - Simple chatbot UX: welcome bubble, chips → user message → bot reply → Start quote / Full RFQ; free text; `milltrue-chat-v2` storage.
 - Still client-side FAQ only — real AI / Intercom noted under Production needs.
+
+**2026-07-26 hybrid plain-text chat brain (preview / Pages):**
+
+- Replaced brittle single-topic FAQ matchers with `milltrueChatBrain.ts`: normalize free text, extract soft slots (material/cert/urgency/part/qty/CAD/NDA), score multi-intent phrases, persist `conversationState` in sessionStorage, compose ack+answer+next-step prose with light variants.
+- Compound messages (e.g. titanium + AS9100 + quote this week) answered in one coherent reply; follow-ups use memory (e.g. NDA after titanium quote).
+- Still no live LLM — note under Production needs if Mendel wants API-backed chat later.
 
 **2026-07-26 messenger chatbot feel (not form) (preview / Pages):**
 
@@ -107,7 +113,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Real photography / video assets (optional: replace local stock under `public/media/` and hero with owned shop photos)
 - **Hero intake + RFQ email hookup:** form endpoint or serverless action → CRM/email (e.g. Resend or ESP) with spam protection; keep hero as low-friction path and RFQ for drawings/CAD uploads
 - RFQ backend: file upload (S3 or similar), spam protection, CRM/email notification, optional ITAR-aware handling
-- **Production messaging:** Intercom, Crisp, or custom LLM-backed agent (current MillTrueChat is client-side FAQ only)
+- **Production messaging:** Intercom, Crisp, or custom LLM-backed agent (current MillTrueChat is a hybrid client desk brain — slot memory + plain-text composition, no LLM API yet)
 - Analytics, SEO meta polish, legal pages (privacy/terms)
 - Real contact details (phone when available) and certifications copy review
 - Real (approved) customer marks only if/when cleared — never invent logos
