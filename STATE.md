@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Interactive chat UX — typing-first, minimal presets
+- **focus:** Interactive chat UX live on Pages (typing-first)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Await Mendel hard-refresh confirm; optional milltrue.com domain
-- **updated:** 2026-07-26T21:05:00.000Z
+- **next:** Optional milltrue.com domain; production LLM later if Mendel wants
+- **updated:** 2026-07-26T21:08:00.000Z
 
 ## Current focus
-Chat opens to a short greeting + typing invitation (no chip wall). Soft 0–2 work shortcuts only; hide after 2 free-text turns or while typing. Longer typing delay + staggered ack/answer bubbles.
+Typing-first MillTrue chat: no chip wall on open, 0–2 work shortcuts, longer typing + staggered bubbles. Live on Pages (commit 3deba96). Playwright 6/6.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Hard-refresh Pages after deploy; confirm chat feels messenger-like
+Await Mendel hard-refresh confirm
