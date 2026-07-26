@@ -35,15 +35,15 @@ const capabilities = [
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
       {capabilities.map((group) => (
-        <div class="group relative h-[420px] overflow-hidden rounded-[2rem] bg-zinc-900 md:h-[480px] md:rounded-[2.5rem]">
+        <div class="group relative h-[380px] overflow-hidden rounded-[1.5rem] bg-zinc-900 sm:h-[420px] sm:rounded-[2rem] md:h-[480px] md:rounded-[2.5rem]">
           <img
             src={group.img}
             alt={`${group.title} capability`}
             class="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-luminosity transition-all duration-700 group-hover:scale-110 group-hover:opacity-20"
             data-placeholder="capability"
           />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent p-8 md:p-10">
-            <h3 class="mb-6 text-2xl font-bold uppercase tracking-tight text-white md:mb-8 md:text-3xl">
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent p-6 sm:p-8 md:p-10">
+            <h3 class="mb-4 text-2xl font-bold uppercase tracking-tight text-white sm:mb-6 md:mb-8 md:text-3xl">
               {group.title}
             </h3>
             <ul class="space-y-3 md:space-y-4">

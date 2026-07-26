@@ -51,18 +51,18 @@ const industries = [
 
     <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
       {industries.map((ind) => (
-        <div class={`group relative min-h-[340px] overflow-hidden rounded-[2rem] bg-zinc-950 md:min-h-[400px] md:rounded-[2.5rem] ${ind.span}`}>
+        <div class={`group relative min-h-[280px] overflow-hidden rounded-[1.5rem] bg-zinc-950 sm:min-h-[340px] sm:rounded-[2rem] md:min-h-[400px] md:rounded-[2.5rem] ${ind.span}`}>
           <img
             src={ind.img}
             alt={ind.name}
             class="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity transition-all duration-700 group-hover:scale-105 group-hover:opacity-20"
             data-placeholder="industry"
           />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent p-8 md:p-12">
-            <h3 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:mb-4 md:text-4xl">
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent p-6 sm:p-8 md:p-12">
+            <h3 class="mb-2 text-2xl font-bold uppercase tracking-tight text-white sm:mb-3 sm:text-3xl md:mb-4 md:text-4xl">
               {ind.name}
             </h3>
-            <p class="max-w-sm text-base font-medium text-zinc-400 md:text-lg">{ind.desc}</p>
+            <p class="max-w-sm text-sm font-medium text-zinc-400 sm:text-base md:text-lg">{ind.desc}</p>
           </div>
           <span class="placeholder-caption">Placeholder</span>
         </div>

@@ -11,26 +11,50 @@ interface Props {
 }
 
 const {
-  title = 'AERIS — Precision CNC Manufacturing',
+  title = 'MillTrue — Precision CNC Manufacturing',
   description = 'Precision manufacturing for aerospace, defense, robotics, and advanced technology. From prototype to production.',
   currentPage = 'home',
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'MillTrue',
+      legalName: 'MillTrue Manufacturing',
+      description,
+      email: 'sales@milltrue.com',
+      telephone: '+1-555-123-4567',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '100 Precision Way',
+        addressLocality: 'Austin',
+        addressRegion: 'TX',
+        postalCode: '78744',
+        addressCountry: 'US',
+      },
+    })} />
   </head>
-  <body class="min-h-screen flex flex-col bg-zinc-950 text-zinc-400">
+  <body class="flex min-h-screen flex-col overflow-x-hidden bg-zinc-950 text-zinc-400">
     <Header client:load currentPage={currentPage} />
     <main class="flex-grow">
       <slot />

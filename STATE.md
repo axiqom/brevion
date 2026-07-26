@@ -1,20 +1,15 @@
-# Session state — AERIS
+# STATE — MillTrue (aeris-cnc)
 
-Slug: `aeris-cnc`  
-Last updated: (not set)
+- **focus:** MillTrue rebrand + logo + responsive polish
+- **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
+- **next:** Await preview feedback
+- **updated:** 2026-07-26T15:35:00.000Z
 
 ## Current focus
-
-Awaiting first build.
+MillTrue rebrand complete (slug remains `aeris-cnc` for port 4007)
 
 ## Active preview
-
-(none)
+https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Next step
-
-Complete design intake and send first preview link.
-
-## Notes
-
-(Agent updates this file when focus, preview URL, or next step changes.)
+Awaiting feedback on preview

@@ -56,9 +56,9 @@ export default function Faq() {
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between px-6 py-6 text-left md:px-8 md:py-8"
+                  className="flex min-h-11 w-full items-center justify-between px-4 py-5 text-left sm:px-6 sm:py-6 md:px-8 md:py-8"
                 >
-                  <span className="pr-6 text-lg font-bold text-white md:text-xl">{faq.q}</span>
+                  <span className="pr-4 text-base font-bold text-white sm:pr-6 sm:text-lg md:text-xl">{faq.q}</span>
                   <ChevronDown
                     size={22}
                     className={`shrink-0 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}

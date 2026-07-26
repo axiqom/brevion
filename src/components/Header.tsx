@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, ArrowRight, Cuboid } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 interface HeaderProps {
   currentPage?: 'home' | 'rfq';
@@ -22,19 +22,26 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
         <div className="flex h-16 items-center justify-between md:h-20">
           <a
             href="/"
-            className="group flex items-center gap-3 rounded-lg"
-            aria-label="AERIS home"
+            className="group flex min-h-11 items-center gap-2.5 rounded-lg sm:gap-3"
+            aria-label="MillTrue home"
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-zinc-950 transition-transform group-hover:scale-105 md:h-10 md:w-10">
-              <Cuboid size={20} aria-hidden="true" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white transition-transform group-hover:scale-105 md:h-10 md:w-10">
+              <img
+                src="/milltrue-mark.svg"
+                alt=""
+                width={22}
+                height={22}
+                className="h-5 w-5 md:h-[22px] md:w-[22px]"
+                aria-hidden="true"
+              />
             </div>
-            <span className="font-display text-xl font-bold uppercase tracking-widest text-white md:text-2xl">
-              AERIS
+            <span className="font-display text-lg font-bold uppercase tracking-[0.14em] text-white sm:text-xl sm:tracking-widest md:text-2xl">
+              MillTrue
             </span>
           </a>
 
-          <div className="hidden items-center space-x-8 md:flex lg:space-x-10">
+          <div className="hidden items-center space-x-6 lg:flex lg:space-x-10">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -46,7 +53,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             ))}
             <a
               href="/rfq"
-              className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+              className="group flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
             >
               Request Quote
@@ -60,7 +67,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
 
           <button
             type="button"
-            className="rounded-lg p-2 text-white md:hidden"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-white lg:hidden"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav"
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -74,13 +81,13 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="space-y-1 border-b border-zinc-800 bg-zinc-950 px-4 pb-6 pt-2 md:hidden"
+          className="space-y-1 border-b border-zinc-800 bg-zinc-950 px-4 pb-6 pt-2 lg:hidden"
         >
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="block rounded-lg py-3 text-base font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
+              className="flex min-h-11 items-center rounded-lg py-3 text-base font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
@@ -88,7 +95,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
           ))}
           <a
             href="/rfq"
-            className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+            className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-current={currentPage === 'rfq' ? 'page' : undefined}
           >

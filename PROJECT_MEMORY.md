@@ -1,11 +1,14 @@
-# Project memory — AERIS
+# Project memory — MillTrue
 
-Slug: `aeris-cnc`  
+Slug: `aeris-cnc` (do not rename — sticky preview tunnel port 4007)  
+Display brand: **MillTrue** / MillTrue Manufacturing  
 Learned preferences and patterns for this prototype (agent-maintained).
 
 ## Design patterns
 
-(none yet)
+- Brand mark: geometric true-running spindle/crosshair SVGs in `public/` (not lucide Cuboid)
+- Contact placeholder email: sales@milltrue.com
+- Domain to buy later: milltrue.com (do not purchase from agent sessions)
 
 ## User feedback themes
 
@@ -13,4 +16,4 @@ Learned preferences and patterns for this prototype (agent-maintained).
 
 ## Style notes
 
-(none yet)
+- Dark zinc industrial; Manrope + Rajdhani; lucide for UI icons only; no emoji
