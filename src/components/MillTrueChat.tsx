@@ -32,8 +32,9 @@ type DeskReply = {
   actions?: boolean;
 };
 
-const THREAD_KEY = 'milltrue-chat-thread';
-const TOPIC_KEY = 'milltrue-chat-topic';
+const THREAD_KEY = 'milltrue-chat-v2-thread';
+const TOPIC_KEY = 'milltrue-chat-v2-topic';
+const LEGACY_KEYS = ['milltrue-chat-thread', 'milltrue-chat-topic'];
 
 const OPENING_CHIPS: Chip[] = [
   { label: '24h quote', send: 'Need a 24h quote' },
@@ -128,7 +129,8 @@ function buildReply(input: string, lastTopic: Topic | null): DeskReply {
     return {
       topic: 'quote',
       bubbles: [
-        'Most quote paths return within 24h once we have part type, material, and qty. Start a short note or open Full RFQ to attach drawings.',
+        'Most quote paths return within 24h once we have part type, material, and qty.',
+        'Start a short note or open Full RFQ to attach drawings.',
       ],
       chips: CHIPS_BY_TOPIC.quote,
       actions: true,
@@ -217,6 +219,14 @@ function sleep(ms: number) {
   });
 }
 
+function clearLegacyStorage() {
+  try {
+    for (const key of LEGACY_KEYS) localStorage.removeItem(key);
+  } catch {
+    /* ignore */
+  }
+}
+
 export default function MillTrueChat() {
   const panelId = useId();
   const [open, setOpen] = useState(false);
@@ -242,6 +252,7 @@ export default function MillTrueChat() {
   }, [messages]);
 
   useEffect(() => {
+    clearLegacyStorage();
     try {
       const raw = localStorage.getItem(THREAD_KEY);
       if (raw) {
@@ -257,7 +268,12 @@ export default function MillTrueChat() {
         setChips(CHIPS_BY_TOPIC[topicRaw]);
       }
     } catch {
-      /* ignore */
+      try {
+        localStorage.removeItem(THREAD_KEY);
+        localStorage.removeItem(TOPIC_KEY);
+      } catch {
+        /* ignore */
+      }
     }
     setHydrated(true);
     return () => {
@@ -298,6 +314,8 @@ export default function MillTrueChat() {
   }, [messages, typing, open]);
 
   const close = useCallback(() => {
+    runRef.current.cancelled = true;
+    setTyping(false);
     setOpen(false);
     window.setTimeout(() => {
       prevFocus.current?.focus();
@@ -306,7 +324,7 @@ export default function MillTrueChat() {
   }, []);
 
   const deliverReply = useCallback(async (reply: DeskReply) => {
-    runRef.current.cancelled = false;
+    runRef.current = { cancelled: false };
     setTyping(true);
     const delay = prefersReducedMotion() ? 80 : 280;
     await sleep(delay);
@@ -339,12 +357,19 @@ export default function MillTrueChat() {
     await sleep(prefersReducedMotion() ? 60 : 220);
     if (runRef.current.cancelled) return;
     setTyping(false);
-    setMessages([{ id: uid(), role: 'bot', text: 'Common questions below — or ask about quotes, certs, CAD, or tolerances.' }]);
+    setMessages([
+      {
+        id: uid(),
+        role: 'bot',
+        text: 'Hi — ask a common CNC question below, or type your own. I steer you to a quote when you are ready.',
+      },
+    ]);
     setChips(OPENING_CHIPS);
   }, [welcomeDone]);
 
   const openPanel = () => {
     prevFocus.current = document.activeElement as HTMLElement | null;
+    runRef.current = { cancelled: false };
     setOpen(true);
   };
 
@@ -429,42 +454,40 @@ export default function MillTrueChat() {
   const rfqHref = withBase('rfq');
   const bottomClass = barVisible ? 'bottom-[5.75rem]' : 'bottom-5 md:bottom-6';
 
-  return (
-    <div className="pointer-events-none fixed inset-0 z-[46] overflow-hidden">
+  // P0: when closed, mount ONLY the launcher — no overlay shell, no hidden dialog in DOM.
+  if (!open) {
+    return (
       <button
         ref={launcherRef}
         type="button"
-        onClick={() => (open ? close() : openPanel())}
-        className={`pointer-events-auto fixed right-4 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-full bg-zinc-900/90 px-4 text-white shadow-[0_16px_48px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-[transform,opacity,bottom] duration-200 hover:bg-zinc-800 motion-reduce:transition-none md:right-6 ${bottomClass} ${
-          open ? 'scale-95 opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
-        aria-expanded={open}
+        onClick={openPanel}
+        className={`pointer-events-auto fixed right-4 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-full bg-zinc-900/90 px-4 text-white shadow-[0_16px_48px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-[transform,opacity,bottom] duration-200 hover:bg-zinc-800 motion-reduce:transition-none md:right-6 ${bottomClass}`}
+        aria-expanded={false}
         aria-controls={panelId}
-        aria-label={open ? 'Close help' : 'Open help'}
+        aria-label="Open chat"
+        data-milltrue-chat-launcher="true"
       >
         <MessageSquare size={20} aria-hidden="true" />
-        <span className="hidden text-xs font-bold uppercase tracking-widest sm:inline">Ask</span>
+        <span className="hidden text-xs font-bold uppercase tracking-widest sm:inline">Chat</span>
       </button>
+    );
+  }
 
-      <div
-        ref={panelRef}
-        id={panelId}
-        role="dialog"
-        aria-modal="true"
-        aria-label="MillTrue help"
-        className={`fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl bg-zinc-950/95 shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl transition-[opacity,transform] duration-200 motion-reduce:transition-none sm:right-6 sm:w-[24rem] ${bottomClass} ${
-          open
-            ? 'pointer-events-auto translate-y-0 opacity-100'
-            : 'pointer-events-none translate-y-3 opacity-0'
-        }`}
-        style={{ maxHeight: 'min(32rem, calc(100dvh - 6rem))' }}
-        aria-hidden={!open}
-        inert={!open ? true : undefined}
-      >
+  return (
+    <div
+      ref={panelRef}
+      id={panelId}
+      role="dialog"
+      aria-modal="true"
+      aria-label="MillTrue chat"
+      data-milltrue-chat-panel="true"
+      className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl bg-zinc-950/95 shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl sm:right-6 sm:w-[24rem] ${bottomClass}`}
+      style={{ maxHeight: 'min(32rem, calc(100dvh - 6rem))' }}
+    >
         <div className="flex items-start justify-between gap-3 px-4 pb-3 pt-4 sm:px-5 sm:pt-5">
           <div>
             <p className="font-display text-sm font-bold uppercase tracking-[0.18em] text-white">
-              MillTrue help
+              MillTrue chat
             </p>
             <p className="mt-0.5 text-xs font-medium text-zinc-400">Quick answers → quote / RFQ</p>
           </div>
@@ -472,7 +495,7 @@ export default function MillTrueChat() {
             type="button"
             onClick={close}
             className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-zinc-800/80 text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
-            aria-label="Close help"
+            aria-label="Close chat"
           >
             <X size={18} aria-hidden="true" />
           </button>
@@ -588,6 +611,5 @@ export default function MillTrueChat() {
           </p>
         </div>
       </div>
-    </div>
   );
 }
