@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Simple Chat bot rewrite — launcher-only when closed; deploy + verify
+- **focus:** Simple Chat bot always-open rewrite live on Pages (verified)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Push Pages, Playwright verify, WhatsApp Mendel
-- **updated:** 2026-07-26T20:49:00.000Z
+- **next:** Optional milltrue.com domain; production LLM later
+- **updated:** 2026-07-26T20:51:00.000Z
 
 ## Current focus
-Simple Chat bot that always opens (P0 mount-only-launcher)
+Chat launcher-only mount + FAQ chatbot live
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Deploy + hard verify live Pages
+Awaiting Mendel hard-refresh confirm
