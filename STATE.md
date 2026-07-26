@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Premium + conversion pass (home funnel, trust strip, mid CTAs)
+- **focus:** Premium + conversion pass live on Pages (verified)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Mendel review of conversion layout; production email hookup later
-- **updated:** 2026-07-26T16:55:00.000Z
+- **next:** Optional milltrue.com custom domain; production email hookup later
+- **updated:** 2026-07-26T16:55:30.000Z
 
 ## Current focus
-Premium visual polish + conversion funnel pass — prototype preview only
+Premium polish + conversion funnel live on GitHub Pages (commit 73dacee)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Await Mendel feedback on conversion architecture; wire real email later (documented in HANDOFF)
+Mendel review of live conversion layout; wire real email later (documented in HANDOFF)
