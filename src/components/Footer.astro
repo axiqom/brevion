@@ -1,13 +1,14 @@
 ---
+import { withBase } from '../lib/base';
 ---
 <footer class="border-t border-zinc-900 bg-zinc-950 py-12 text-zinc-500 sm:py-16">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-4">
       <div class="col-span-1 md:col-span-2">
-        <a href="/" class="mb-6 flex w-fit items-center gap-3 rounded-lg" aria-label="MillTrue home">
+        <a href={withBase()} class="mb-6 flex w-fit items-center gap-3 rounded-lg" aria-label="MillTrue home">
           <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white">
             <img
-              src="/milltrue-mark.svg"
+              src={withBase('milltrue-mark.svg')}
               alt=""
               width={22}
               height={22}
@@ -26,10 +27,10 @@
       <div>
         <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Company</h4>
         <ul class="space-y-4 text-sm font-medium">
-          <li><a href="/#capabilities" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Capabilities</a></li>
-          <li><a href="/#industries" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Industries</a></li>
-          <li><a href="/#projects" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Projects</a></li>
-          <li><a href="/#about" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">About Us</a></li>
+          <li><a href={withBase('#capabilities')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Capabilities</a></li>
+          <li><a href={withBase('#industries')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Industries</a></li>
+          <li><a href={withBase('#projects')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Projects</a></li>
+          <li><a href={withBase('#about')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">About Us</a></li>
         </ul>
       </div>
       <div>
@@ -41,7 +42,7 @@
             </a>
           </li>
           <li>
-            <a href="tel:+15551234567" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+            <a href="tel:+155****4567" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
               +1 (555) 123-4567
             </a>
           </li>

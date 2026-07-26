@@ -2,6 +2,7 @@
 import PrototypeDisclaimer from '../components/PrototypeDisclaimer.astro';
 import Header from '../components/Header';
 import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/base';
 import '../styles/global.css';
 
 interface Props {
@@ -29,7 +30,7 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <title>{title}</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

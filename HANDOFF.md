@@ -10,6 +10,25 @@ Brand name is locked to MillTrue. Logo SVGs, photography, and some contact detai
 
 **Buy ASAP (do not purchase from this session):** milltrue.com — register when ready; placeholders currently use `sales@milltrue.com`.
 
+Custom domain can later point at GitHub Pages (`axiqom/milltrue`). Not configured in the Pages go-live task.
+
+## Live hosting (Mendel-approved exception)
+
+**Public GitHub Pages** (production marketing site requested by Mendel 2026-07-26):
+
+| Item | Value |
+|------|-------|
+| Repo | `https://github.com/axiqom/milltrue` (public — Pages Free requires public) |
+| Pages URL | `https://axiqom.github.io/milltrue/` |
+| Deploy | GitHub Actions `.github/workflows/deploy-pages.yml` |
+| Local slug | `aeris-cnc` (unchanged; sticky preview port 4007) |
+| Origin remote | `jewgo-team/aeris-cnc` (private working copy) |
+| Pages remote | `pages` → `axiqom/milltrue` |
+
+`webdev-policy-check` may flag hosting — intentional exception for Mendel-requested Pages go-live. Prototype disclaimer remains on the site.
+
+Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; local/sticky preview still uses `/`.
+
 ## Backend decision
 
 **Current:** none / mock client state only. **Unchanged.**

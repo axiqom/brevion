@@ -10,6 +10,7 @@ import {
   MessageSquare,
   Briefcase,
 } from 'lucide-react';
+import { withBase } from '../lib/base';
 
 const TOTAL_STEPS = 5;
 
@@ -78,7 +79,7 @@ export default function RfqWizard() {
             Preview only — nothing was submitted
           </p>
           <a
-            href="/"
+            href={withBase()}
             className="inline-flex min-h-11 items-center rounded-full bg-zinc-800 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-zinc-700 hover:text-zinc-200"
           >
             Return Home

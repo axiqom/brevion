@@ -1,15 +1,19 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** MillTrue rebrand + logo + responsive polish
+- **focus:** Live on GitHub Pages
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
-- **next:** Await preview feedback
-- **updated:** 2026-07-26T15:35:00.000Z
+- **pages:** https://axiqom.github.io/milltrue/
+- **next:** Optional milltrue.com custom domain later
+- **updated:** 2026-07-26T16:40:00.000Z
 
 ## Current focus
-Preview live (shared tunnel)
+GitHub Pages live deploy (`axiqom/milltrue`)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
+## Live site
+https://axiqom.github.io/milltrue/
+
 ## Next step
-Awaiting feedback on preview
+Await feedback; custom domain milltrue.com can be wired later (DNS not set in this task)

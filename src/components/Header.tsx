@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { withBase } from '../lib/base';
 
 interface HeaderProps {
   currentPage?: 'home' | 'rfq';
 }
 
 const navLinks = [
-  { label: 'Capabilities', href: '/#capabilities' },
-  { label: 'Industries', href: '/#industries' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'About', href: '/#about' },
-  { label: 'Resources', href: '/#resources' },
+  { label: 'Capabilities', href: withBase('#capabilities') },
+  { label: 'Industries', href: withBase('#industries') },
+  { label: 'Projects', href: withBase('#projects') },
+  { label: 'About', href: withBase('#about') },
+  { label: 'Resources', href: withBase('#resources') },
 ];
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -21,14 +22,14 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">
           <a
-            href="/"
+            href={withBase()}
             className="group flex min-h-11 items-center gap-2.5 rounded-lg sm:gap-3"
             aria-label="MillTrue home"
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white transition-transform group-hover:scale-105 md:h-10 md:w-10">
               <img
-                src="/milltrue-mark.svg"
+                src={withBase('milltrue-mark.svg')}
                 alt=""
                 width={22}
                 height={22}
@@ -52,7 +53,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               </a>
             ))}
             <a
-              href="/rfq"
+              href={withBase('rfq')}
               className="group flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
             >
@@ -94,7 +95,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             </a>
           ))}
           <a
-            href="/rfq"
+            href={withBase('rfq')}
             className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-current={currentPage === 'rfq' ? 'page' : undefined}

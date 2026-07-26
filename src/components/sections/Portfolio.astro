@@ -1,5 +1,6 @@
 ---
 import { ArrowRight } from 'lucide-react';
+import { withBase } from '../../lib/base';
 
 const projects = [
   {
@@ -34,7 +35,7 @@ const projects = [
         </p>
       </div>
       <a
-        href="/rfq"
+        href={withBase('rfq')}
         class="inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-zinc-400 md:flex"
       >
         View All Projects <ArrowRight size={18} aria-hidden="true" />
@@ -90,7 +91,7 @@ const projects = [
     </div>
 
     <a
-      href="/rfq"
+      href={withBase('rfq')}
       class="mt-16 flex w-full items-center justify-center gap-2 rounded-full bg-white py-5 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 md:hidden"
     >
       View All Projects <ArrowRight size={18} aria-hidden="true" />
