@@ -41,6 +41,15 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 **Why:** Marketing + first-contact + RFQ UX can be demonstrated honestly without persistence. Backend setup would delay visual review without improving the preview for stakeholders.
 
+**2026-07-26 EnSima conversion-pattern pass (preview only):**
+
+- Hero reframed around buyer need (tolerance / lead time / DFM / AS9100) — primary CTA → `#intake`, secondary Full RFQ; intake form kept.
+- Capabilities: numbered 01–04 cards with concrete metrics (5-axis, ±0.0001", 24h, AS9102 FAI, Type II/III, 2–3 wk proto) + self-select bullets.
+- WhyChooseUs → proof section: big-number stats strip + MillTrue vs typical shop comparison (no fake logos).
+- Section rhythm: thin eyebrows on Capabilities / Industries / Quality / Portfolio / WhyChooseUs (+ ValueProp).
+- MidCta after Capabilities + Portfolio only; Cta + MobileConvertBar copy tightened to Request quote / Full RFQ.
+- Still no production email / SMS / DB / Formspree / Resend; existing truthful claims only.
+
 **2026-07-26 premium + conversion pass (preview only):**
 
 - Home funnel tightened: MidCta bands after Capabilities and Portfolio; Team collapsed to thin strip; Resources to short links row.
@@ -82,9 +91,11 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 
 ## Design deltas vs reference-source
 
-- Hero is a conversion composition: brand + headline + trust chips (AS9100 / aerospace-defense / 24h quotes) + compact contact intake card (`#intake` / `#contact`); Full RFQ + capabilities are secondary
+- Hero sells the need (tolerances / lead times / DFM / certs): brand + headline + trust chips + primary Request quote → `#intake` + secondary Full RFQ; contact intake card kept
+- Capabilities: EnSima-style numbered cards (01–04) with concrete metrics and self-select bullets — not lifestyle fluff
+- WhyChooseUs: stats strip + MillTrue vs typical shop comparison (truthful claims only)
 - Trust strip (LogoCloud) uses claim language only — no fake customer logos
-- Mid-page soft CTA bands after Capabilities and Portfolio; footer CTA is benefit-led (Full RFQ / quick note / Book a Call)
+- Mid-page soft CTA bands after Capabilities and Portfolio; footer CTA primary = Request quote → `#intake`
 - Framer Motion replaced with CSS `animate-fade-up` / `animate-fade-in` + FAQ grid expand; `prefers-reduced-motion` respected
 - Brand mark is custom geometric SVG (not lucide Cuboid)
 

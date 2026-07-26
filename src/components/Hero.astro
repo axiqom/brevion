@@ -3,8 +3,8 @@ import HeroContactForm from './HeroContactForm';
 import { withBase } from '../lib/base';
 
 const trustChips = [
+  '±0.0001" where needed',
   'AS9100 processes',
-  'Aerospace & defense',
   'Quotes in 24h',
 ];
 ---
@@ -54,10 +54,10 @@ const trustChips = [
         </div>
 
         <h1 class="mb-4 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-5 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          Precision CNC for aerospace, defense & robotics.
+          When tolerances and lead times can&apos;t slip.
         </h1>
         <p class="mb-6 max-w-lg text-base font-medium leading-relaxed text-zinc-300 sm:mb-7 md:text-lg">
-          Prototype to production — tight tolerances, DFM feedback, and quotes in 24 hours.
+          Hold critical dims to print. Get DFM before the first chip. Quotes in 24h — AS9100-minded, ITAR-ready, prototype to production.
         </p>
 
         <ul class="mb-6 flex flex-wrap gap-2 sm:mb-8" aria-label="Trust signals">
@@ -72,16 +72,16 @@ const trustChips = [
 
         <div class="hidden gap-3 md:flex">
           <a
+            href="#intake"
+            class="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 sm:text-sm"
+          >
+            Request quote
+          </a>
+          <a
             href={withBase('rfq')}
             class="inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-zinc-500 hover:bg-zinc-900/70 sm:text-sm"
           >
             Full RFQ
-          </a>
-          <a
-            href="#capabilities"
-            class="inline-flex min-h-11 items-center justify-center rounded-full border border-transparent px-5 py-3 text-xs font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:text-white sm:text-sm"
-          >
-            View capabilities
           </a>
         </div>
       </div>
@@ -98,16 +98,16 @@ const trustChips = [
 
       <div class="flex flex-col gap-3 md:hidden">
         <a
+          href="#intake"
+          class="flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-zinc-950"
+        >
+          Request quote
+        </a>
+        <a
           href={withBase('rfq')}
           class="flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md"
         >
           Full RFQ
-        </a>
-        <a
-          href="#capabilities"
-          class="flex min-h-11 items-center justify-center rounded-full border border-transparent px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-300"
-        >
-          View capabilities
         </a>
       </div>
     </div>

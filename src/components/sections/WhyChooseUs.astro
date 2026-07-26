@@ -1,37 +1,111 @@
 ---
-import { Zap, Brain, Clock, MessageCircle, ShieldCheck, Factory } from 'lucide-react';
+const stats = [
+  { value: '±0.0001"', label: 'Critical dims where needed' },
+  { value: '24h', label: 'Most quotes returned' },
+  { value: '5-axis', label: 'CNC milling capacity' },
+  { value: 'AS9100', label: 'Process discipline' },
+  { value: '2–3 wk', label: 'Typical prototype lead' },
+];
 
-const points = [
-  { icon: Zap, title: 'Quotes in 24h', desc: 'Most RFQs return with price, lead time, and DFM notes within a day.' },
-  { icon: Brain, title: 'Engineering-led', desc: 'We flag manufacturability issues before they become scrap or delay.' },
-  { icon: Clock, title: 'Lead times you can plan on', desc: 'Committed dates — not optimistic estimates that slip.' },
-  { icon: MessageCircle, title: 'Shop-floor status', desc: 'Clear updates from programming through inspection and ship.' },
-  { icon: ShieldCheck, title: 'AS9100 process discipline', desc: 'Documented quality steps so parts meet print every run.' },
-  { icon: Factory, title: 'Prototype → production', desc: 'Scale from first article to volume without changing shops.' },
+const rows = [
+  {
+    facet: 'Prototype → production',
+    milltrue: 'First article to volume in one shop — no vendor hop.',
+    typical: 'Proto shop handoff to a production vendor.',
+  },
+  {
+    facet: 'Certs & documentation',
+    milltrue: 'AS9100-minded controls; AS9102 FAI when required.',
+    typical: 'Inconsistent process docs; FAI often extra.',
+  },
+  {
+    facet: 'Materials',
+    milltrue: 'Aerospace metals & engineering plastics.',
+    typical: 'Limited specialty alloys and plastics.',
+  },
+  {
+    facet: 'Turnaround',
+    milltrue: 'Quotes in 24h; 2–3 wk proto, 4–6 wk production.',
+    typical: 'Slow quotes; fuzzy dates that slip.',
+  },
+  {
+    facet: 'DFM / first article',
+    milltrue: 'DFM before chips fly; FAI validates setup.',
+    typical: 'Quote-and-hope — issues found on the floor.',
+  },
 ];
 ---
 <section class="border-t border-zinc-900 bg-zinc-950 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+        Proof
+      </p>
       <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
-        Why MillTrue
+        MillTrue vs a typical shop
       </h2>
       <p class="text-base font-medium text-zinc-400 md:text-lg">
-        Proof-oriented partnership for buyers who live in specs and schedules.
+        Specs, schedules, and documentation — not slogans.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
-      {points.map((pt) => (
-        <div class="flex gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-white">
-            <pt.icon size={20} strokeWidth={1.5} aria-hidden="true" />
+    <div class="mb-12 grid grid-cols-2 gap-3 sm:gap-4 md:mb-16 md:grid-cols-5">
+      {stats.map((stat) => (
+        <div class="flex min-h-[5.5rem] flex-col justify-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-4 py-5 text-center md:rounded-3xl md:px-3 md:py-6">
+          <p class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[1.65rem] lg:text-3xl">
+            {stat.value}
+          </p>
+          <p class="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* Mobile: stacked cards */}
+    <div class="space-y-3 md:hidden">
+      {rows.map((row) => (
+        <article class="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40">
+          <p class="border-b border-zinc-800 px-4 py-3 text-xs font-bold uppercase tracking-widest text-zinc-500">
+            {row.facet}
+          </p>
+          <div class="grid grid-cols-1 divide-y divide-zinc-800">
+            <div class="px-4 py-4">
+              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-white">MillTrue</p>
+              <p class="text-sm leading-relaxed text-zinc-300">{row.milltrue}</p>
+            </div>
+            <div class="px-4 py-4">
+              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">Typical shop</p>
+              <p class="text-sm leading-relaxed text-zinc-500">{row.typical}</p>
+            </div>
           </div>
-          <div>
-            <h3 class="mb-1.5 text-base font-bold uppercase tracking-tight text-white md:text-lg">
-              {pt.title}
-            </h3>
-            <p class="text-sm leading-relaxed text-zinc-400 md:text-[15px]">{pt.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    {/* Desktop: comparison table */}
+    <div class="hidden overflow-hidden rounded-3xl border border-zinc-800 md:block">
+      <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-b border-zinc-800 bg-zinc-900/60">
+        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 lg:px-6">
+          Facet
+        </div>
+        <div class="border-l border-zinc-800 px-5 py-4 text-xs font-bold uppercase tracking-widest text-white lg:px-6">
+          MillTrue
+        </div>
+        <div class="border-l border-zinc-800 px-5 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 lg:px-6">
+          Typical shop
+        </div>
+      </div>
+      {rows.map((row) => (
+        <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-b border-zinc-800 last:border-b-0">
+          <div class="flex items-center px-5 py-5 text-sm font-bold uppercase tracking-tight text-zinc-300 lg:px-6 lg:text-base">
+            {row.facet}
+          </div>
+          <div class="border-l border-zinc-800 bg-zinc-900/30 px-5 py-5 text-sm leading-relaxed text-zinc-200 lg:px-6 lg:text-[15px]">
+            {row.milltrue}
+          </div>
+          <div class="border-l border-zinc-800 px-5 py-5 text-sm leading-relaxed text-zinc-500 lg:px-6 lg:text-[15px]">
+            {row.typical}
           </div>
         </div>
       ))}

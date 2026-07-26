@@ -1,6 +1,5 @@
 ---
 import { ArrowRight } from 'lucide-react';
-import { withBase } from '../../lib/base';
 
 const projects = [
   {
@@ -29,18 +28,21 @@ const projects = [
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end">
       <div class="max-w-2xl">
+        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+          Portfolio
+        </p>
         <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
           Sample work
         </h2>
         <p class="text-base text-zinc-400 md:text-lg">
-          Representative jobs — material, tolerance, and approach. Placeholder imagery until cleared project photos ship.
+          Representative jobs — material, tolerance, and approach. Placeholder imagery until cleared photos ship.
         </p>
       </div>
       <a
-        href={withBase('rfq')}
+        href="#intake"
         class="inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-zinc-400"
       >
-        Start an RFQ <ArrowRight size={18} aria-hidden="true" />
+        Request quote <ArrowRight size={18} aria-hidden="true" />
       </a>
     </div>
 

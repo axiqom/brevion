@@ -25,7 +25,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
 ## Hero composition
 
 - Full-bleed dark video/poster plane (edge-to-edge); no inset media cards or floating overlays
-- Conversion hero: MillTrue brand + wordmark, one headline, one supporting sentence, compact trust chips, secondary CTA group, and contact intake card (`#intake` / `#contact`)
+- Conversion hero: MillTrue brand + wordmark, need-focused headline (tolerances / lead times), one supporting sentence (DFM / AS9100 / ITAR / proto→prod), compact trust chips, primary Request quote → `#intake`, secondary Full RFQ, and contact intake card (`#intake` / `#contact`)
 - Primary trust strip (AS9100 / materials / 24h / ITAR-ready) lives in LogoCloud — no fake customer logos
 
 ## Pages

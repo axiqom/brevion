@@ -10,25 +10,28 @@ import { withBase } from '../../lib/base';
 
   <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+        Next step
+      </p>
       <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-white sm:text-4xl md:mb-5 md:text-5xl lg:text-6xl">
-        Clear quotes. DFM in the loop. Parts on schedule.
+        Send the print. Get a number.
       </h2>
       <p class="mx-auto mb-8 max-w-2xl text-base font-medium leading-relaxed text-zinc-400 sm:text-lg md:mb-10">
-        Send the print for a full RFQ — or drop a short note if you want an engineer to start the conversation.
+        Quotes in 24h with DFM notes — or a short note if you want an engineer on the line first.
       </p>
       <div class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
         <a
-          href={withBase('rfq')}
+          href="#intake"
           class="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
         >
-          Full RFQ
+          Request quote
           <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
         </a>
         <a
-          href="#intake"
+          href={withBase('rfq')}
           class="inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-600 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-zinc-500 hover:bg-zinc-900"
         >
-          Prefer a quick note?
+          Full RFQ
         </a>
         <a
           href="mailto:sales@milltrue.com"
@@ -37,13 +40,6 @@ import { withBase } from '../../lib/base';
           Book a Call
         </a>
       </div>
-      <p class="mt-6 hidden text-sm text-zinc-500 md:block">
-        Or jump to the{' '}
-        <a href="#intake" class="font-semibold text-zinc-300 underline-offset-2 hover:text-white hover:underline">
-          hero intake
-        </a>{' '}
-        for a quick note — no CAD required.
-      </p>
     </div>
   </div>
 </section>

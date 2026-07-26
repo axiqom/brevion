@@ -56,7 +56,7 @@ export default function MobileConvertBar() {
           href="#intake"
           className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-white px-4 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
         >
-          Talk to MillTrue
+          Request quote
         </a>
         <a
           href={withBase('rfq')}

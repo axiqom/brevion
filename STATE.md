@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Premium + conversion pass live on Pages (verified)
+- **focus:** EnSima-style conversion-pattern pass (preview only)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com custom domain; production email hookup later
-- **updated:** 2026-07-26T16:55:30.000Z
+- **next:** Mendel review of conversion layout; optional milltrue.com domain
+- **updated:** 2026-07-26T17:10:00.000Z
 
 ## Current focus
-Premium polish + conversion funnel live on GitHub Pages (commit 73dacee)
+EnSima conversion-pattern pass: need-focused hero, numbered capability cards, MillTrue-vs-typical proof + stats, repeated #intake / RFQ CTAs. Brand stays MillTrue. No invented certs/logos.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Mendel review of live conversion layout; wire real email later (documented in HANDOFF)
+Mendel review of EnSima conversion layout; wire real email later (documented in HANDOFF)
