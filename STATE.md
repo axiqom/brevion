@@ -1,9 +1,9 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Hero conversion polish (eyebrow, stats, form-first CTAs)
+- **focus:** Hero conversion polish live on Pages (verified)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Mendel review of hero polish; wire real email later
+- **next:** Optional milltrue.com domain; production email later
 - **updated:** 2026-07-26T17:20:00.000Z
 
 ## Current focus
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Mendel review of hero conversion polish; wire real email later (documented in HANDOFF)
+Live hero polish verified; optional domain + real email later (HANDOFF)
