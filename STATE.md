@@ -6,7 +6,7 @@
 - **updated:** 2026-07-26T15:35:00.000Z
 
 ## Current focus
-MillTrue rebrand complete (slug remains `aeris-cnc` for port 4007)
+Preview live (shared tunnel)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
