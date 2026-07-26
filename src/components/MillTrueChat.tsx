@@ -9,7 +9,6 @@ import {
 import { MessageSquare, X, Send, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
 import {
-  OPENING_CHIPS,
   emptyState,
   loadState,
   respond,
@@ -31,7 +30,8 @@ type ChatMessage = {
   suggestions?: Chip[];
 };
 
-const THREAD_KEY = 'milltrue-chat-v4-thread';
+const THREAD_KEY = 'milltrue-chat-v5-thread';
+const FREE_TEXT_KEY = 'milltrue-chat-v5-free-text';
 const LEGACY_KEYS = [
   'milltrue-chat-thread',
   'milltrue-chat-topic',
@@ -39,10 +39,12 @@ const LEGACY_KEYS = [
   'milltrue-chat-v2-topic',
   'milltrue-chat-v3-thread',
   'milltrue-chat-v3-topic',
+  'milltrue-chat-v4-thread',
 ];
 
+/** Soft cap — never more than 2 pills in the thread. */
 function suggestionChips(chips: Chip[]): Chip[] {
-  return chips.filter((c) => Boolean(c.send)).slice(0, 4);
+  return chips.filter((c) => Boolean(c.send)).slice(0, 2);
 }
 
 function prefersReducedMotion(): boolean {
@@ -78,6 +80,8 @@ export default function MillTrueChat() {
   const [deskState, setDeskState] = useState<ConversationState>(() => emptyState());
   const [hydrated, setHydrated] = useState(false);
   const [welcomeDone, setWelcomeDone] = useState(false);
+  /** Free-text user turns (not chip taps). Hide presets after 2+. */
+  const [freeTextTurns, setFreeTextTurns] = useState(0);
 
   const panelRef = useRef<HTMLDivElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
@@ -87,6 +91,7 @@ export default function MillTrueChat() {
   const runRef = useRef<{ cancelled: boolean }>({ cancelled: false });
   const messagesRef = useRef<ChatMessage[]>([]);
   const deskRef = useRef<ConversationState>(emptyState());
+  const freeTextRef = useRef(0);
 
   useEffect(() => {
     messagesRef.current = messages;
@@ -95,6 +100,10 @@ export default function MillTrueChat() {
   useEffect(() => {
     deskRef.current = deskState;
   }, [deskState]);
+
+  useEffect(() => {
+    freeTextRef.current = freeTextTurns;
+  }, [freeTextTurns]);
 
   useEffect(() => {
     clearLegacyStorage();
@@ -107,12 +116,18 @@ export default function MillTrueChat() {
           setWelcomeDone(true);
         }
       }
+      const ft = Number(localStorage.getItem(FREE_TEXT_KEY) || '0');
+      if (Number.isFinite(ft) && ft > 0) {
+        setFreeTextTurns(ft);
+        freeTextRef.current = ft;
+      }
       const loaded = loadState();
       setDeskState(loaded);
       deskRef.current = loaded;
     } catch {
       try {
         localStorage.removeItem(THREAD_KEY);
+        localStorage.removeItem(FREE_TEXT_KEY);
       } catch {
         /* ignore */
       }
@@ -131,6 +146,15 @@ export default function MillTrueChat() {
       /* ignore */
     }
   }, [messages, hydrated]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      localStorage.setItem(FREE_TEXT_KEY, String(freeTextTurns));
+    } catch {
+      /* ignore */
+    }
+  }, [freeTextTurns, hydrated]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -171,12 +195,15 @@ export default function MillTrueChat() {
   const deliverReply = useCallback(async (reply: DeskReply) => {
     runRef.current = { cancelled: false };
     setTyping(true);
-    const delay = prefersReducedMotion() ? 80 : 280;
+    // Natural desk delay — longer than a form FAQ snap
+    const delay = prefersReducedMotion() ? 90 : 520 + Math.floor(Math.random() * 280);
     await sleep(delay);
     if (runRef.current.cancelled) return;
     setTyping(false);
 
-    const nextSuggestions = suggestionChips(reply.chips);
+    // Hide presets once the user is typing freely (2+ free-text turns)
+    const allowSuggestions = freeTextRef.current < 2;
+    const nextSuggestions = allowSuggestions ? suggestionChips(reply.chips) : [];
 
     for (let i = 0; i < reply.bubbles.length; i++) {
       if (runRef.current.cancelled) return;
@@ -188,12 +215,12 @@ export default function MillTrueChat() {
           role: 'bot',
           text: reply.bubbles[i],
           actions: isLast ? reply.actions : false,
-          suggestions: isLast ? nextSuggestions : undefined,
+          suggestions: isLast && nextSuggestions.length ? nextSuggestions : undefined,
         },
       ]);
       if (!isLast) {
         setTyping(true);
-        await sleep(prefersReducedMotion() ? 60 : 220);
+        await sleep(prefersReducedMotion() ? 70 : 340 + Math.floor(Math.random() * 180));
         if (runRef.current.cancelled) return;
         setTyping(false);
       }
@@ -204,15 +231,15 @@ export default function MillTrueChat() {
     if (welcomeDone || messagesRef.current.length > 0) return;
     setWelcomeDone(true);
     setTyping(true);
-    await sleep(prefersReducedMotion() ? 60 : 220);
+    await sleep(prefersReducedMotion() ? 70 : 380);
     if (runRef.current.cancelled) return;
     setTyping(false);
+    // Opening: invite typing — no chip wall on first paint
     setMessages([
       {
         id: uid(),
         role: 'bot',
-        text: 'Hi — ask in plain language about quotes, certs, CAD, or materials. I will remember what you share and steer you toward a quote when it makes sense.',
-        suggestions: OPENING_CHIPS,
+        text: 'Hi — just type what you need. Quotes, CAD, materials, whatever the job is.',
       },
     ]);
   }, [welcomeDone]);
@@ -271,12 +298,17 @@ export default function MillTrueChat() {
     return () => panel.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
-  const sendText = (raw: string) => {
+  const sendText = (raw: string, fromChip = false) => {
     const text = raw.trim();
     if (!text) return;
     clearThreadSuggestions();
     setMessages((prev) => [...prev, { id: uid(), role: 'user', text }]);
     setInput('');
+    if (!fromChip) {
+      const next = freeTextRef.current + 1;
+      freeTextRef.current = next;
+      setFreeTextTurns(next);
+    }
     const { reply, state } = respond(text, deskRef.current);
     deskRef.current = state;
     setDeskState(state);
@@ -293,6 +325,7 @@ export default function MillTrueChat() {
   const intakeHref = withBase('#intake');
   const rfqHref = withBase('rfq');
   const bottomClass = barVisible ? 'bottom-[5.75rem]' : 'bottom-5 md:bottom-6';
+  const hideSuggestions = input.trim().length > 0 || freeTextTurns >= 2;
 
   // P0: when closed, mount ONLY the launcher — no overlay shell, no hidden dialog in DOM.
   if (!open) {
@@ -333,7 +366,6 @@ export default function MillTrueChat() {
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate font-display text-sm font-bold text-white">MillTrue</p>
-          <p className="truncate text-xs text-zinc-500">Ask about quotes, certs, CAD</p>
         </div>
         <a
           href="mailto:sales@milltrue.com"
@@ -360,7 +392,12 @@ export default function MillTrueChat() {
         data-milltrue-chat-thread="true"
       >
         {messages.map((m) => (
-          <div key={m.id} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+          <div
+            key={m.id}
+            className={`flex flex-col animate-fade-in motion-reduce:animate-none ${
+              m.role === 'user' ? 'items-end' : 'items-start'
+            }`}
+          >
             <div
               className={`max-w-[88%] px-3.5 py-2.5 text-sm leading-relaxed ${
                 m.role === 'user'
@@ -390,7 +427,10 @@ export default function MillTrueChat() {
               </div>
             ) : null}
 
-            {m.role === 'bot' && m.suggestions && m.suggestions.length > 0 ? (
+            {m.role === 'bot' &&
+            !hideSuggestions &&
+            m.suggestions &&
+            m.suggestions.length > 0 ? (
               <div
                 className="mt-1.5 flex max-w-full gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 data-milltrue-chat-suggestions="true"
@@ -399,7 +439,7 @@ export default function MillTrueChat() {
                   <button
                     key={s.label}
                     type="button"
-                    onClick={() => s.send && sendText(s.send)}
+                    onClick={() => s.send && sendText(s.send, true)}
                     className="inline-flex min-h-10 shrink-0 items-center rounded-full bg-zinc-900/80 px-3 text-xs font-medium text-zinc-300 ring-1 ring-zinc-700/80 transition-colors hover:bg-zinc-800 hover:text-white"
                   >
                     {s.label}
@@ -412,7 +452,10 @@ export default function MillTrueChat() {
 
         {typing ? (
           <div className="flex justify-start" aria-label="Typing">
-            <div className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-zinc-800/90 px-4 py-3">
+            <div
+              className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-zinc-800/90 px-4 py-3"
+              data-milltrue-chat-typing="true"
+            >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400" />
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:120ms]" />
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:240ms]" />
@@ -429,7 +472,7 @@ export default function MillTrueChat() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onComposerKey}
-            placeholder="Message…"
+            placeholder="Just type what you need…"
             className="min-h-11 flex-1 rounded-full bg-zinc-800/70 px-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/15"
             aria-label="Message"
           />

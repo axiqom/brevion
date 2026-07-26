@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Hybrid plain-text chat brain live on Pages
+- **focus:** Interactive chat UX — typing-first, minimal presets
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production LLM later if Mendel wants
-- **updated:** 2026-07-26T21:00:00.000Z
+- **next:** Await Mendel hard-refresh confirm; optional milltrue.com domain
+- **updated:** 2026-07-26T21:05:00.000Z
 
 ## Current focus
-Hybrid client desk brain — free-text slots + plain conversational replies (not FAQ menu)
+Chat opens to a short greeting + typing invitation (no chip wall). Soft 0–2 work shortcuts only; hide after 2 free-text turns or while typing. Longer typing delay + staggered ack/answer bubbles.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Awaiting Mendel hard-refresh confirm on hybrid plain-text chat
+Hard-refresh Pages after deploy; confirm chat feels messenger-like

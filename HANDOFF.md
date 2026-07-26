@@ -37,7 +37,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
 - Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
-- **MillTrueChat** (`MillTrueChat.tsx` + `src/lib/milltrueChatBrain.ts`): messenger-style hybrid desk brain (home + RFQ via BaseLayout). Client-side slot extraction + scored intents + modular plain-text replies — **no external LLM / Intercom / API keys**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM). When open: compact MillTrue header, thread-first layout, welcome bubble with **in-thread** suggestion pills, typing dots, bot/user bubbles; **Start quote** / **Full RFQ** under useful/quote-ready bot turns; follow-up suggestions in-thread (cleared on next send). Composer is **input + send only**. Conversation slots/intents in `sessionStorage` (`milltrue-chat-v4-state`); thread in `localStorage` (`milltrue-chat-v4-thread`; legacy v1–v3 cleared). z-[47] above MobileConvertBar. Production messaging (Intercom/Crisp/LLM) TBD.
+- **MillTrueChat** (`MillTrueChat.tsx` + `src/lib/milltrueChatBrain.ts`): messenger-style hybrid desk brain (home + RFQ via BaseLayout). Client-side slot extraction + scored intents + modular plain-text replies — **no external LLM / Intercom / API keys**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM). When open: quiet MillTrue header, thread-first layout, typing-first welcome (no chip wall), longer typing delay + staggered bubbles; soft **0–2 work-oriented** in-thread shortcuts (hidden while typing / after 2 free-text turns); **Start quote** / **Full RFQ** under useful/quote-ready bot turns. Composer is **input + send only**. Conversation slots/intents in `sessionStorage` (`milltrue-chat-v4-state`); thread in `localStorage` (`milltrue-chat-v5-thread`; legacy v1–v4 cleared). z-[47] above MobileConvertBar. Production messaging (Intercom/Crisp/LLM) TBD.
 - Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
@@ -72,6 +72,12 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Replaced brittle single-topic FAQ matchers with `milltrueChatBrain.ts`: normalize free text, extract soft slots (material/cert/urgency/part/qty/CAD/NDA), score multi-intent phrases, persist `conversationState` in sessionStorage, compose ack+answer+next-step prose with light variants.
 - Compound messages (e.g. titanium + AS9100 + quote this week) answered in one coherent reply; follow-ups use memory (e.g. NDA after titanium quote).
 - Still no live LLM — note under Production needs if Mendel wants API-backed chat later.
+
+**2026-07-26 interactive chat UX / less presets (preview / Pages):**
+
+- Opening turn invites typing only (no suggestion chip wall). Soft 0–2 work-oriented shortcuts after some turns; hide while composer has text or after 2 free-text sends. No cert / lead-time / tolerance chip menus.
+- Longer typing indicator delay + staggered ack/answer bubbles; quiet MillTrue header (no certs subtitle). Storage thread key `milltrue-chat-v5-thread`.
+- Still client-side hybrid brain — live LLM under Production needs.
 
 **2026-07-26 messenger chatbot feel (not form) (preview / Pages):**
 

@@ -49,41 +49,37 @@ export type ConversationState = {
 
 export const STATE_KEY = 'milltrue-chat-v4-state';
 
+/** Soft shortcuts only — work-oriented, never a cert/lead-time/tolerance menu. */
 const OPENING_CHIPS: Chip[] = [
-  { label: '24h quote', send: 'Need a 24h quote' },
-  { label: 'AS9100 / ITAR', send: 'AS9100 / ITAR?' },
+  { label: 'Need a quote', send: 'I need a quote on a part' },
   { label: 'CAD upload', send: 'How do I upload CAD?' },
-  { label: 'Tolerances', send: 'What tolerances and materials?' },
 ];
 
 const CHIPS_BY_INTENT: Record<Intent, Chip[]> = {
   quote: [
-    { label: 'Lead times', send: 'What is typical lead time?' },
     { label: 'Attach STEP', send: 'How do I attach a STEP file?' },
-    { label: 'NDA?', send: 'Do you support NDAs?' },
+    { label: 'Describe the job', send: 'It is a titanium bracket, prototype qty 10' },
   ],
   certs: [
-    { label: 'NDA?', send: 'Do you support NDAs?' },
-    { label: 'FAI / AS9102', send: 'Do you offer AS9102 FAI?' },
-    { label: '24h quote', send: 'Need a 24h quote' },
+    { label: 'Get a quote', send: 'I need a quote on a part' },
+    { label: 'Upload CAD', send: 'How do I upload CAD?' },
   ],
   cad: [
-    { label: 'Formats?', send: 'What CAD formats do you accept?' },
-    { label: 'NDA first?', send: 'Do you support NDAs?' },
-    { label: '24h quote', send: 'Need a 24h quote' },
+    { label: 'CAD formats', send: 'What CAD formats do you accept?' },
+    { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   materials: [
-    { label: 'DFM review?', send: 'Do you do DFM review?' },
-    { label: 'Lead times', send: 'What is typical lead time?' },
-    { label: '24h quote', send: 'Need a 24h quote' },
+    { label: 'DFM review', send: 'Do you do DFM review?' },
+    { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   dfm: [
-    { label: 'Prototype timing', send: 'What is prototype lead time?' },
     { label: 'Upload CAD', send: 'How do I upload CAD?' },
-    { label: '24h quote', send: 'Need a 24h quote' },
+    { label: 'Get a quote', send: 'I need a quote on a part' },
   ],
   hello: OPENING_CHIPS,
-  thanks: OPENING_CHIPS,
+  thanks: [
+    { label: 'Get a quote', send: 'I need a quote on a part' },
+  ],
   other: OPENING_CHIPS,
 };
 
@@ -548,15 +544,11 @@ function composeBubbles(
   // On NDA follow-ups, skip re-acking material/cert so the answer stays plain
   const useAck = ack && !turn.askedNda && (slots.material || slots.cert || slots.partType || slots.urgency);
 
-  if (useAck) {
-    const combined = `${ack} ${answers[0]}`;
-    if (combined.length < 320) {
-      bubbles.push(combined);
-      if (answers[1]) bubbles.push(answers[1]);
-    } else {
-      bubbles.push(ack);
-      bubbles.push(...answers);
-    }
+  // Prefer staggered ack + answer (messenger feel) over one dense dump
+  if (useAck && ack) {
+    bubbles.push(ack);
+    // Leave room for optional next-step on the answer bubble (cap 2 total)
+    bubbles.push(answers[0]);
   } else {
     bubbles.push(...answers);
   }
@@ -574,14 +566,17 @@ function composeBubbles(
   return bubbles.slice(0, 2).map((b) => b.replace(/\s+/g, ' ').trim());
 }
 
+/**
+ * At most 0–2 soft shortcuts. Never a permanent menu.
+ * When quote/RFQ actions are already showing, skip chips (CTA buttons are enough).
+ */
 function suggestionChipsFor(topic: Intent, slots: Slots, showActionsSoon: boolean): Chip[] {
+  if (showActionsSoon) return [];
   const base = CHIPS_BY_INTENT[topic] || OPENING_CHIPS;
-  const sends = base.filter((c) => c.send).slice(0, showActionsSoon ? 3 : 4);
-  // Sparse: prefer send shortcuts only (actions are separate buttons)
-  if (slots.nda) {
-    return [{ label: '24h quote', send: 'Need a 24h quote' }, { label: 'CAD formats', send: 'What CAD formats do you accept?' }, ...sends].slice(0, 3);
+  if (slots.nda || slots.cadMention) {
+    return [{ label: 'Get a quote', send: 'I need a quote on a part' }].slice(0, 1);
   }
-  return sends;
+  return base.filter((c) => Boolean(c.send)).slice(0, 2);
 }
 
 /**
