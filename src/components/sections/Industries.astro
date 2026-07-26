@@ -1,0 +1,72 @@
+---
+const industries = [
+  {
+    name: 'Aerospace',
+    desc: 'Complex lightweight components built to exacting tolerances.',
+    img: 'https://images.unsplash.com/photo-1541186877-bb5a745edde5?q=80&w=1200&auto=format&fit=crop',
+    span: 'md:col-span-2',
+  },
+  {
+    name: 'Defense',
+    desc: 'Mission-critical parts manufactured with precision and consistency.',
+    img: 'https://images.unsplash.com/photo-1579227114347-15d08fc37cae?q=80&w=800&auto=format&fit=crop',
+    span: 'md:col-span-1',
+  },
+  {
+    name: 'Space',
+    desc: 'Launch systems. Ground support. Satellite hardware.',
+    img: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=800&auto=format&fit=crop',
+    span: 'md:col-span-1',
+  },
+  {
+    name: 'Medical',
+    desc: 'Precision components where consistency matters.',
+    img: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop',
+    span: 'md:col-span-2',
+  },
+  {
+    name: 'Industrial Automation',
+    desc: 'Machine components. Custom tooling. Fixtures.',
+    img: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1200&auto=format&fit=crop',
+    span: 'md:col-span-2',
+  },
+  {
+    name: 'Robotics',
+    desc: 'High-performance components for automation systems.',
+    img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop',
+    span: 'md:col-span-1',
+  },
+];
+---
+<section id="industries" class="scroll-mt-28 border-t border-zinc-800 bg-zinc-900 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 max-w-3xl md:mb-24">
+      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
+        Industries
+      </h2>
+      <p class="text-lg text-zinc-400 md:text-xl">
+        We manufacture parts that go to space, perform surgeries, and automate the world.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+      {industries.map((ind) => (
+        <div class={`group relative min-h-[340px] overflow-hidden rounded-[2rem] bg-zinc-950 md:min-h-[400px] md:rounded-[2.5rem] ${ind.span}`}>
+          <img
+            src={ind.img}
+            alt={ind.name}
+            class="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-luminosity transition-all duration-700 group-hover:scale-105 group-hover:opacity-20"
+            data-placeholder="industry"
+          />
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent p-8 md:p-12">
+            <h3 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:mb-4 md:text-4xl">
+              {ind.name}
+            </h3>
+            <p class="max-w-sm text-base font-medium text-zinc-400 md:text-lg">{ind.desc}</p>
+          </div>
+          <span class="placeholder-caption">Placeholder</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+import { ArrowRight, BookOpen, Layers, PenTool } from 'lucide-react';
+
+const resources = [
+  {
+    icon: BookOpen,
+    category: 'Guide',
+    title: 'Designing for Manufacturability (DFM) in 5-Axis CNC',
+    desc: 'Learn how to optimize your CAD models to reduce machining time and costs.',
+  },
+  {
+    icon: Layers,
+    category: 'Material Reference',
+    title: 'Titanium Grades: 6Al-4V vs Grade 2',
+    desc: 'A comprehensive comparison for aerospace and medical applications.',
+  },
+  {
+    icon: PenTool,
+    category: 'Technical',
+    title: 'Understanding GD&T and Surface Finishes',
+    desc: 'How tolerance stacking affects pricing and why true position matters.',
+  },
+];
+---
+<section id="resources" class="scroll-mt-28 border-t border-zinc-900 bg-zinc-950 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end md:gap-8">
+      <div class="max-w-2xl">
+        <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
+          Engineering Resources
+        </h2>
+        <p class="text-lg font-medium text-zinc-400 md:text-xl">
+          Technical guides, material data, and manufacturing insights to help you design better parts.
+        </p>
+      </div>
+      <span class="hidden text-sm font-bold uppercase tracking-widest text-zinc-500 md:inline-flex md:items-center md:gap-2">
+        View All Resources <ArrowRight size={18} aria-hidden="true" />
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+      {resources.map((res) => (
+        <article class="group block rounded-[2rem] border border-zinc-800 bg-zinc-900/50 p-8 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900 md:rounded-[2.5rem] md:p-10">
+          <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-800 text-white transition-transform group-hover:scale-110 md:mb-10 md:h-14 md:w-14">
+            <res.icon size={26} strokeWidth={1.5} aria-hidden="true" />
+          </div>
+          <span class="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 md:mb-4">
+            {res.category}
+          </span>
+          <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-white md:mb-4 md:text-2xl">
+            {res.title}
+          </h3>
+          <p class="mb-8 text-base leading-relaxed text-zinc-400 md:mb-10 md:text-lg">
+            {res.desc}
+          </p>
+          <div class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white">
+            Read Article
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-2" aria-hidden="true" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

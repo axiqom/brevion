@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RfqWizard from '../components/RfqWizard';
+---
+<BaseLayout
+  title="Request a Quote — AERIS"
+  description="Submit your CAD files and requirements for a precision CNC manufacturing quote. Preview only — mock form."
+  currentPage="rfq"
+>
+  <RfqWizard client:load />
+</BaseLayout>

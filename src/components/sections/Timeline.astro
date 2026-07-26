@@ -1,0 +1,47 @@
+---
+import { Upload, CheckCircle2, FileText, Settings, Microscope, PackageSearch } from 'lucide-react';
+
+const steps = [
+  { icon: Upload, title: 'Upload CAD', desc: 'Submit your STEP files and requirements through our secure portal.' },
+  { icon: FileText, title: 'Engineering Review', desc: 'We review for manufacturability and identify potential cost savings.' },
+  { icon: CheckCircle2, title: 'Quote', desc: 'Receive a detailed, transparent quote with guaranteed lead times.' },
+  { icon: Settings, title: 'Manufacturing', desc: 'Our skilled machinists program and produce your parts.' },
+  { icon: Microscope, title: 'Inspection', desc: 'Rigorous quality control and documentation against your drawing.' },
+  { icon: PackageSearch, title: 'Delivery', desc: 'Parts are securely packaged and shipped on schedule.' },
+];
+---
+<section class="border-t border-zinc-900 bg-zinc-950 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto mb-16 max-w-3xl text-center md:mb-24">
+      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl lg:text-6xl">
+        From idea to finished part.
+      </h2>
+      <p class="text-lg text-zinc-400 md:text-xl">
+        A streamlined process designed to eliminate friction and deliver precision components faster.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute left-12 right-12 top-14 hidden h-px bg-zinc-800 md:block" />
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
+        {steps.map((step, idx) => (
+          <div class="relative flex flex-col items-center text-center">
+            <div class="group relative z-10 mb-6 flex h-24 w-24 items-center justify-center rounded-[1.75rem] border border-zinc-700 bg-zinc-900 text-white shadow-xl transition-colors hover:border-zinc-500 md:mb-8 md:h-28 md:w-28 md:rounded-[2rem]">
+              <step.icon size={32} strokeWidth={1.5} className="transition-transform group-hover:scale-110" aria-hidden="true" />
+              <div class="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-4 border-zinc-950 bg-white text-xs font-bold text-zinc-950 shadow-sm md:h-8 md:w-8 md:text-sm">
+                {idx + 1}
+              </div>
+            </div>
+            <h3 class="mb-2 text-lg font-bold uppercase tracking-tight text-white md:mb-3 md:text-xl">
+              {step.title}
+            </h3>
+            <p class="px-2 text-sm font-medium text-zinc-500">{step.desc}</p>
+            {idx !== steps.length - 1 && (
+              <div class="my-5 h-8 w-px bg-zinc-800 md:hidden" />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

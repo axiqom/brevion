@@ -1,0 +1,54 @@
+---
+import { Cuboid } from 'lucide-react';
+---
+<footer class="border-t border-zinc-900 bg-zinc-950 py-16 text-zinc-500">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-4">
+      <div class="col-span-1 md:col-span-2">
+        <a href="/" class="mb-6 flex items-center gap-3 rounded-lg w-fit">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-white">
+            <Cuboid size={22} aria-hidden="true" />
+          </div>
+          <span class="font-display text-2xl font-bold uppercase tracking-widest text-white">
+            AERIS
+          </span>
+        </a>
+        <p class="max-w-sm text-sm font-medium leading-relaxed">
+          Precision manufacturing for mission-critical industries. From prototype to production, we deliver components that perform in the most demanding environments.
+        </p>
+      </div>
+      <div>
+        <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Company</h4>
+        <ul class="space-y-4 text-sm font-medium">
+          <li><a href="/#capabilities" class="rounded-sm transition-colors hover:text-white">Capabilities</a></li>
+          <li><a href="/#industries" class="rounded-sm transition-colors hover:text-white">Industries</a></li>
+          <li><a href="/#projects" class="rounded-sm transition-colors hover:text-white">Projects</a></li>
+          <li><a href="/#about" class="rounded-sm transition-colors hover:text-white">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h4>
+        <ul class="space-y-4 text-sm font-medium">
+          <li>
+            <a href="mailto:sales@aerismfg.com" class="rounded-sm transition-colors hover:text-white">
+              sales@aerismfg.com
+            </a>
+          </li>
+          <li>
+            <a href="tel:+15551234567" class="rounded-sm transition-colors hover:text-white">
+              +1 (555) 123-4567
+            </a>
+          </li>
+          <li>100 Precision Way<br />Austin, TX 78744</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-zinc-900 pt-8 text-xs font-bold uppercase tracking-widest md:flex-row">
+      <p>&copy; {new Date().getFullYear()} Aeris Manufacturing.</p>
+      <div class="flex space-x-6">
+        <a href="#" class="rounded-sm transition-colors hover:text-white">Privacy Policy</a>
+        <a href="#" class="rounded-sm transition-colors hover:text-white">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

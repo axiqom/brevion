@@ -1,0 +1,41 @@
+---
+import { ShieldCheck, Ruler, CheckSquare, Search, Award, FileText } from 'lucide-react';
+
+const points = [
+  { icon: Search, title: 'Inspection', desc: 'Every part is inspected before it leaves our facility using calibrated CMM and vision systems.' },
+  { icon: FileText, title: 'Documentation', desc: 'Comprehensive inspection reports and AS9102 First Article Inspection reports available.' },
+  { icon: Award, title: 'Material Traceability', desc: 'Full material certifications provided. We know exactly where your raw material came from.' },
+  { icon: Ruler, title: 'Tight Tolerances', desc: 'Consistently holding tolerances down to ±0.0001" on critical dimensions.' },
+  { icon: ShieldCheck, title: 'Repeatability', desc: 'Robust fixturing and proven CAM strategies ensure the 1,000th part matches the 1st.' },
+  { icon: CheckSquare, title: 'First Article', desc: 'Rigorous FAI process to validate programming and setup before full production runs.' },
+];
+---
+<section class="relative overflow-hidden border-t border-zinc-900 bg-zinc-950 py-24 text-white md:py-32">
+  <div
+    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=3000&auto=format&fit=crop')] bg-cover bg-center opacity-[0.05] mix-blend-luminosity"
+    data-placeholder="quality-bg"
+  />
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 max-w-3xl md:mb-24">
+      <h2 class="mb-6 text-4xl font-bold uppercase tracking-tight md:text-5xl lg:text-6xl">
+        Quality isn't an afterthought.
+      </h2>
+      <p class="text-lg font-medium text-zinc-400 md:text-xl">
+        It's built into every stage of production. From material arrival to final packaging, our quality management system ensures precision is verified and documented.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      {points.map((pt) => (
+        <div class="group rounded-[1.75rem] border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-xl transition-all duration-300 hover:border-zinc-700 md:rounded-[2rem] md:p-10">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-800 text-white transition-transform group-hover:scale-110 md:mb-8 md:h-14 md:w-14">
+            <pt.icon size={26} strokeWidth={1.5} aria-hidden="true" />
+          </div>
+          <h3 class="mb-3 text-xl font-bold uppercase tracking-tight md:mb-4 md:text-2xl">{pt.title}</h3>
+          <p class="text-base leading-relaxed text-zinc-400 md:text-lg">{pt.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
