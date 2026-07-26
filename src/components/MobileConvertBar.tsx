@@ -47,7 +47,7 @@ export default function MobileConvertBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[45] border-t border-zinc-800 bg-zinc-950/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl motion-reduce:transition-none md:hidden"
+      className="fixed inset-x-0 bottom-0 z-[45] bg-zinc-950/90 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-10px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl motion-reduce:transition-none md:hidden"
       role="region"
       aria-label="Quick contact"
     >
@@ -60,7 +60,7 @@ export default function MobileConvertBar() {
         </a>
         <a
           href={withBase('rfq')}
-          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-full border border-zinc-600 px-4 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:border-zinc-500"
+          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-full bg-zinc-800 px-4 text-xs font-bold uppercase tracking-widest text-zinc-200 transition-colors hover:bg-zinc-700"
         >
           Full RFQ
           <ArrowRight size={14} aria-hidden="true" />
@@ -68,7 +68,7 @@ export default function MobileConvertBar() {
         <button
           type="button"
           onClick={dismiss}
-          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-white"
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
           aria-label="Dismiss convert bar"
         >
           <X size={18} aria-hidden="true" />

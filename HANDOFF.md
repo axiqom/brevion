@@ -43,10 +43,12 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 **2026-07-26 hero conversion polish (preview only):**
 
-- Hero: eyebrow (Precision CNC · Aerospace / Defense / Robotics), slightly quieter MillTrue mark, need-led H1, one support line, compact 3-stat strip (±0.0001" / 24h / AS9100) + trust chips.
+- Hero: major redesign (t_9b9925d2). Full-bleed real photo hero (no video, no placeholder text), borderless composition for stats and form.
+- Form: elevated surface with blur/shadow (no rings/borders), borderless inputs with focus rings only for a11y.
+- Mobile convert bar: borderless shadow edge, softer contrast.
+- Eyebrow (Precision CNC · Aerospace / Defense / Robotics), slightly quieter MillTrue mark, need-led H1, one support line, compact text stats + trust chips.
 - Removed redundant desktop/mobile Request quote buttons that only jumped to in-view `#intake`; quiet Full RFQ text link under support / below form.
-- Intake form is the product CTA: sharper “Talk to engineering” copy, 2-col compact fields, “Request quote” submit, 24h follow-up expectation, mailto + Full RFQ footer; stronger card contrast. Hero video “Placeholder” caption removed.
-- Header `#intake` / MobileConvertBar / Capabilities / proof untouched. Still no production email.
+- Header `#intake` / Capabilities / proof untouched. Still no production email.
 
 **2026-07-26 EnSima conversion-pattern pass (preview only):**
 
@@ -90,7 +92,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 
 | Slot | Current | Replace with |
 |------|---------|--------------|
-| Hero video/poster | Pexels/Unsplash CNC footage (full-bleed) | Own shop footage |
+| Hero image | Local `public/hero-cnc.jpg` (+ `hero-cnc-sm.jpg`) full-bleed | Own shop photography |
 | Section imagery | Unsplash CNC/aerospace (`data-placeholder` / "Placeholder" caption) | Owned photography |
 | Logo cloud | Honest claim strip (AS9100 / materials / 24h quotes / ITAR-ready) | Real (approved) customer marks only if cleared |
 | Contact | sales@milltrue.com, 555 number, Austin address | Real contact |

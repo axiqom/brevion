@@ -15,34 +15,26 @@ const stats = [
 ];
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-zinc-950">
-  <div class="absolute inset-0 overflow-hidden bg-zinc-950" data-placeholder="hero-video">
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      poster="https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=3000&auto=format&fit=crop"
-      class="h-full w-full object-cover opacity-40 mix-blend-luminosity motion-reduce:hidden"
-    >
-      <source
-        src="https://videos.pexels.com/video-files/3204962/3204962-hd_1920_1080_25fps.mp4"
-        type="video/mp4"
+  <div class="absolute inset-0 overflow-hidden bg-zinc-950">
+    <picture>
+      <source media="(min-width: 768px)" srcset={withBase('hero-cnc.jpg')} />
+      <img
+        src={withBase('hero-cnc-sm.jpg')}
+        alt=""
+        class="h-full w-full object-cover object-center opacity-75"
+        aria-hidden="true"
       />
-    </video>
-    <img
-      src="https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=3000&auto=format&fit=crop"
-      alt=""
-      class="hidden h-full w-full object-cover opacity-40 mix-blend-luminosity motion-reduce:block"
-      aria-hidden="true"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/45"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/55 to-zinc-950/75"></div>
-    <div class="absolute inset-y-0 right-0 hidden w-[55%] bg-gradient-to-l from-zinc-950/85 via-zinc-950/40 to-transparent md:block" aria-hidden="true"></div>
+    </picture>
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/40 to-transparent"></div>
+    <div class="absolute inset-y-0 right-0 hidden w-[55%] bg-gradient-to-l from-zinc-950/90 via-zinc-950/40 to-transparent md:block" aria-hidden="true"></div>
   </div>
 
   <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-14 pt-24 sm:px-6 sm:pb-16 md:pb-20 md:pt-28 lg:px-8">
-    <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
-      <div class="animate-fade-up opacity-0" style="animation-delay: 0.05s">
+    <div class="grid items-start gap-8 md:grid-cols-2 md:items-center md:gap-10 lg:gap-14">
+      
+      {/* 1. Header & Text */}
+      <div class="animate-fade-up opacity-0 md:col-start-1 md:row-start-1 md:self-end md:pb-4" style="animation-delay: 0.05s">
         <div class="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
           <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white sm:h-9 sm:w-9">
             <img
@@ -66,44 +58,15 @@ const stats = [
         <h1 class="mb-3 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-4 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
           When tolerances and lead times can&apos;t slip.
         </h1>
-        <p class="mb-5 max-w-lg text-sm font-medium leading-relaxed text-zinc-300 sm:mb-6 sm:text-base md:text-lg">
+        <p class="max-w-lg text-sm font-medium leading-relaxed text-zinc-300 sm:text-base md:text-lg">
           Hold critical dims to print. Quotes in 24h — AS9100-minded, ITAR-ready, with DFM before the first chip.
         </p>
-
-        <dl class="mb-5 grid grid-cols-3 gap-2 sm:mb-6 sm:gap-3" aria-label="Key capabilities">
-          {stats.map((stat) => (
-            <div class="rounded-xl border border-zinc-700/60 bg-zinc-950/50 px-2.5 py-3 backdrop-blur-md sm:px-3 sm:py-3.5">
-              <dt class="font-display text-base font-bold tracking-tight text-white sm:text-lg md:text-xl">
-                {stat.value}
-              </dt>
-              <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[11px]">
-                {stat.label}
-              </dd>
-            </div>
-          ))}
-        </dl>
-
-        <ul class="mb-5 flex flex-wrap gap-2 sm:mb-6" aria-label="Trust signals">
-          {trustChips.map((chip) => (
-            <li
-              class="inline-flex min-h-9 items-center rounded-full border border-zinc-600/70 bg-zinc-950/55 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-200 backdrop-blur-md sm:text-xs"
-            >
-              {chip}
-            </li>
-          ))}
-        </ul>
-
-        <a
-          href={withBase('rfq')}
-          class="hidden text-sm font-medium text-zinc-400 underline-offset-4 transition-colors hover:text-zinc-200 hover:underline md:inline-flex md:min-h-11 md:items-center"
-        >
-          Prefer drawings or CAD? Full RFQ →
-        </a>
       </div>
 
+      {/* 2. Form (Primary CTA) */}
       <div
         id="intake"
-        class="animate-fade-up w-full max-w-md scroll-mt-28 opacity-0 md:ml-auto md:max-w-none"
+        class="animate-fade-up w-full max-w-md scroll-mt-28 opacity-0 md:col-start-2 md:row-span-2 md:ml-auto md:max-w-none"
         style="animation-delay: 0.12s"
       >
         <div id="contact">
@@ -111,7 +74,33 @@ const stats = [
         </div>
       </div>
 
-      <div class="md:hidden">
+      {/* 3. Stats & Trust (Below form on mobile, bottom left on desktop) */}
+      <div class="animate-fade-up opacity-0 md:col-start-1 md:row-start-2 md:self-start md:pt-2" style="animation-delay: 0.15s">
+        <dl class="mb-5 flex flex-wrap items-center gap-x-6 gap-y-4 sm:mb-6 sm:gap-8" aria-label="Key capabilities">
+          {stats.map((stat, i) => (
+            <>
+              {i > 0 && <div class="hidden h-10 w-px bg-zinc-700/50 sm:block" aria-hidden="true"></div>}
+              <div class="flex flex-col">
+                <dt class="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
+                  {stat.value}
+                </dt>
+                <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[11px]">
+                  {stat.label}
+                </dd>
+              </div>
+            </>
+          ))}
+        </dl>
+
+        <ul class="mb-6 flex flex-wrap items-center gap-2.5 text-[10px] font-bold uppercase tracking-wider text-zinc-300 sm:mb-8 sm:text-[11px]" aria-label="Trust signals">
+          {trustChips.map((chip, i) => (
+            <>
+              <li>{chip}</li>
+              {i < trustChips.length - 1 && <li aria-hidden="true" class="text-zinc-600">&middot;</li>}
+            </>
+          ))}
+        </ul>
+
         <a
           href={withBase('rfq')}
           class="inline-flex min-h-11 items-center text-sm font-medium text-zinc-400 underline-offset-4 transition-colors hover:text-zinc-200 hover:underline"
@@ -119,6 +108,7 @@ const stats = [
           Prefer drawings or CAD? Full RFQ →
         </a>
       </div>
+
     </div>
   </div>
 </section>

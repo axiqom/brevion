@@ -3,17 +3,17 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 const inputClass =
-  'w-full min-h-11 rounded-xl border border-zinc-500/70 bg-zinc-950/95 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl bg-zinc-800/70 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-white/20 sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const inputErrorClass =
-  'w-full min-h-11 rounded-xl border border-red-500/70 bg-zinc-950/95 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400 sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl bg-zinc-800/70 border-l-2 border-red-400 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-400/20 sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400';
 
-const errorClass = 'mt-1.5 text-xs font-medium text-red-300';
+const errorClass = 'mt-1.5 text-xs font-medium text-red-400';
 
 const cardClass =
-  'rounded-2xl border border-zinc-500/80 bg-zinc-900 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.7)] ring-1 ring-white/10 backdrop-blur-xl sm:rounded-3xl sm:p-6';
+  'rounded-2xl bg-zinc-900/60 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:rounded-3xl sm:p-6';
 
 type Fields = {
   name: string;
@@ -119,11 +119,11 @@ export default function HeroContactForm() {
       className={cardClass}
       aria-labelledby={`${formId}-title`}
     >
-      <div className="mb-4 border-b border-zinc-800 pb-4 sm:mb-5">
+      <div className="mb-5 pb-2 sm:mb-6">
         <h2 id={`${formId}-title`} className="font-display text-lg font-bold uppercase tracking-tight text-white sm:text-xl">
           Talk to engineering
         </h2>
-        <p className="mt-1.5 text-sm leading-snug text-zinc-400">
+        <p className="mt-1.5 text-sm leading-snug text-zinc-300">
           Get a 24h quote path — part type, material, qty. No CAD required yet.
         </p>
       </div>
@@ -249,10 +249,10 @@ export default function HeroContactForm() {
                   role="radio"
                   aria-checked={selected}
                   onClick={() => setField('preferred', selected ? '' : opt.value)}
-                  className={`inline-flex min-h-11 min-w-[5.5rem] items-center justify-center rounded-full border px-4 text-xs font-bold uppercase tracking-widest transition-colors ${
+                  className={`inline-flex min-h-11 min-w-[5.5rem] items-center justify-center rounded-full px-4 text-xs font-bold uppercase tracking-widest transition-colors ${
                     selected
-                      ? 'border-white bg-white text-zinc-950'
-                      : 'border-zinc-600 bg-zinc-950/60 text-zinc-300 hover:border-zinc-500'
+                      ? 'bg-white text-zinc-950'
+                      : 'bg-zinc-800/70 text-zinc-300 hover:bg-zinc-700'
                   }`}
                 >
                   {opt.label}
