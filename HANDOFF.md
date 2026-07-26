@@ -37,7 +37,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
 - Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
-- **MillTrueChat** (`MillTrueChat.tsx`): simple FAQ chatbot (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM / Intercom**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM — no overlay/pointer-events steal). When open, panel mounts with welcome bubble, starter chips, free-text composer, follow-up chips, in-thread **Start quote** / **Full RFQ**, mailto footer. Storage keys `milltrue-chat-v2-*` (legacy keys cleared). z-[47] above MobileConvertBar; lifts when convert bar visible. Production messaging (Intercom/Crisp/LLM) TBD.
+- **MillTrueChat** (`MillTrueChat.tsx`): messenger-style FAQ chatbot (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM / Intercom**. Launcher label **Chat** (`data-milltrue-chat-launcher`); when closed, **only the launcher is mounted** (dialog not in DOM — no overlay/pointer-events steal). When open: compact MillTrue header, thread-first layout, welcome bubble with **in-thread** suggestion pills, typing dots, bot/user bubbles; **Start quote** / **Full RFQ** only under the latest bot turn; follow-up suggestions also in-thread (cleared on next send). Composer is **input + send only** — no permanent form action bar / chip grid / FAQ disclaimer footer. Mailto is a quiet focusable header link. Storage keys `milltrue-chat-v3-*` (legacy v1/v2 cleared). z-[47] above MobileConvertBar; lifts when convert bar visible. Production messaging (Intercom/Crisp/LLM) TBD.
 - Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
@@ -66,6 +66,13 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Rewrote MillTrueChat so closed state mounts **launcher only** (no hidden dialog / inset-0 shell). Label **Chat**.
 - Simple chatbot UX: welcome bubble, chips → user message → bot reply → Start quote / Full RFQ; free text; `milltrue-chat-v2` storage.
 - Still client-side FAQ only — real AI / Intercom noted under Production needs.
+
+**2026-07-26 messenger chatbot feel (not form) (preview / Pages):**
+
+- Removed permanent Start quote / Full RFQ / Email footer under composer and the standalone chip grid between thread and composer.
+- Suggestions + quote/RFQ CTAs live **inside the thread** under bot turns; composer is one message field + send.
+- Compact messenger header (MT mark + MillTrue + quiet subtitle). Storage bumped to `milltrue-chat-v3`.
+- Still client-side FAQ only — real AI / Intercom under Production needs.
 
 **2026-07-26 hero conversion polish (preview only):**
 

@@ -6,23 +6,26 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react';
-import { MessageSquare, X, Send, ArrowRight, Mail } from 'lucide-react';
+import { MessageSquare, X, Send, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 type Role = 'bot' | 'user';
 type Topic = 'quote' | 'certs' | 'cad' | 'materials' | 'dfm' | 'general';
 
-type ChatMessage = {
-  id: string;
-  role: Role;
-  text: string;
-  actions?: boolean;
-};
-
 type Chip = {
   label: string;
   send?: string;
   href?: string;
+};
+
+type ChatMessage = {
+  id: string;
+  role: Role;
+  text: string;
+  /** Start quote / Full RFQ under this bot turn */
+  actions?: boolean;
+  /** In-thread suggestion pills (send-only) under this bot turn */
+  suggestions?: Chip[];
 };
 
 type DeskReply = {
@@ -32,9 +35,14 @@ type DeskReply = {
   actions?: boolean;
 };
 
-const THREAD_KEY = 'milltrue-chat-v2-thread';
-const TOPIC_KEY = 'milltrue-chat-v2-topic';
-const LEGACY_KEYS = ['milltrue-chat-thread', 'milltrue-chat-topic'];
+const THREAD_KEY = 'milltrue-chat-v3-thread';
+const TOPIC_KEY = 'milltrue-chat-v3-topic';
+const LEGACY_KEYS = [
+  'milltrue-chat-thread',
+  'milltrue-chat-topic',
+  'milltrue-chat-v2-thread',
+  'milltrue-chat-v2-topic',
+];
 
 const OPENING_CHIPS: Chip[] = [
   { label: '24h quote', send: 'Need a 24h quote' },
@@ -76,6 +84,10 @@ const CHIPS_BY_TOPIC: Record<Topic, Chip[]> = {
   ],
   general: OPENING_CHIPS,
 };
+
+function suggestionChips(chips: Chip[]): Chip[] {
+  return chips.filter((c) => Boolean(c.send)).slice(0, 4);
+}
 
 function detectTopic(input: string): Topic {
   const t = input.toLowerCase();
@@ -185,7 +197,7 @@ function buildReply(input: string, lastTopic: Topic | null): DeskReply {
     const bias = lastTopic && lastTopic !== 'general' ? lastTopic : 'general';
     return {
       topic: bias,
-      bubbles: ['Ask about quotes, certs, tolerances, or CAD — or jump straight to Start quote / Full RFQ.'],
+      bubbles: ['Ask about quotes, certs, tolerances, or CAD — or jump straight to a quote.'],
       chips: CHIPS_BY_TOPIC[bias],
       actions: true,
     };
@@ -197,7 +209,7 @@ function buildReply(input: string, lastTopic: Topic | null): DeskReply {
   return {
     topic: lastTopic || 'general',
     bubbles: [
-      'I can cover 24h quotes, ±0.0001", AS9100 / ITAR-ready, DFM, and CAD formats. For anything else: Start quote, Full RFQ, or sales@milltrue.com.',
+      'I can cover 24h quotes, ±0.0001", AS9100 / ITAR-ready, DFM, and CAD formats. Or start a quote when you are ready.',
     ],
     chips: fallbackChips,
     actions: true,
@@ -234,7 +246,6 @@ export default function MillTrueChat() {
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [chips, setChips] = useState<Chip[]>(OPENING_CHIPS);
   const [lastTopic, setLastTopic] = useState<Topic | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [welcomeDone, setWelcomeDone] = useState(false);
@@ -265,7 +276,6 @@ export default function MillTrueChat() {
       const topicRaw = localStorage.getItem(TOPIC_KEY) as Topic | null;
       if (topicRaw && topicRaw in CHIPS_BY_TOPIC) {
         setLastTopic(topicRaw);
-        setChips(CHIPS_BY_TOPIC[topicRaw]);
       }
     } catch {
       try {
@@ -323,6 +333,13 @@ export default function MillTrueChat() {
     }, 0);
   }, []);
 
+  /** Clear stale suggestion pills from prior bot turns so only the latest turn shows them. */
+  const clearThreadSuggestions = useCallback(() => {
+    setMessages((prev) =>
+      prev.map((m) => (m.suggestions?.length ? { ...m, suggestions: undefined } : m)),
+    );
+  }, []);
+
   const deliverReply = useCallback(async (reply: DeskReply) => {
     runRef.current = { cancelled: false };
     setTyping(true);
@@ -331,12 +348,20 @@ export default function MillTrueChat() {
     if (runRef.current.cancelled) return;
     setTyping(false);
 
+    const nextSuggestions = suggestionChips(reply.chips);
+
     for (let i = 0; i < reply.bubbles.length; i++) {
       if (runRef.current.cancelled) return;
       const isLast = i === reply.bubbles.length - 1;
       setMessages((prev) => [
         ...prev,
-        { id: uid(), role: 'bot', text: reply.bubbles[i], actions: isLast ? reply.actions : false },
+        {
+          id: uid(),
+          role: 'bot',
+          text: reply.bubbles[i],
+          actions: isLast ? reply.actions : false,
+          suggestions: isLast ? nextSuggestions : undefined,
+        },
       ]);
       if (!isLast) {
         setTyping(true);
@@ -347,7 +372,6 @@ export default function MillTrueChat() {
     }
 
     setLastTopic(reply.topic);
-    setChips(reply.chips);
   }, []);
 
   const playWelcome = useCallback(async () => {
@@ -361,10 +385,10 @@ export default function MillTrueChat() {
       {
         id: uid(),
         role: 'bot',
-        text: 'Hi — ask a common CNC question below, or type your own. I steer you to a quote when you are ready.',
+        text: 'Hi — ask about quotes, certs, CAD, or tolerances. I will point you to a quote when you are ready.',
+        suggestions: OPENING_CHIPS,
       },
     ]);
-    setChips(OPENING_CHIPS);
   }, [welcomeDone]);
 
   const openPanel = () => {
@@ -424,23 +448,10 @@ export default function MillTrueChat() {
   const sendText = (raw: string) => {
     const text = raw.trim();
     if (!text) return;
+    clearThreadSuggestions();
     setMessages((prev) => [...prev, { id: uid(), role: 'user', text }]);
     setInput('');
     void deliverReply(buildReply(text, lastTopic));
-  };
-
-  const handleChip = (chip: Chip) => {
-    if (chip.href === 'intake') {
-      close();
-      window.location.href = withBase('#intake');
-      return;
-    }
-    if (chip.href === 'rfq') {
-      close();
-      window.location.href = withBase('rfq');
-      return;
-    }
-    if (chip.send) sendText(chip.send);
   };
 
   const onComposerKey = (e: ReactKeyboardEvent<HTMLInputElement>) => {
@@ -482,134 +493,127 @@ export default function MillTrueChat() {
       aria-label="MillTrue chat"
       data-milltrue-chat-panel="true"
       className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl bg-zinc-950/95 shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl sm:right-6 sm:w-[24rem] ${bottomClass}`}
-      style={{ maxHeight: 'min(32rem, calc(100dvh - 6rem))' }}
+      style={{ height: 'min(34rem, calc(100dvh - 5.5rem))' }}
     >
-        <div className="flex items-start justify-between gap-3 px-4 pb-3 pt-4 sm:px-5 sm:pt-5">
-          <div>
-            <p className="font-display text-sm font-bold uppercase tracking-[0.18em] text-white">
-              MillTrue chat
-            </p>
-            <p className="mt-0.5 text-xs font-medium text-zinc-400">Quick answers → quote / RFQ</p>
-          </div>
-          <button
-            type="button"
-            onClick={close}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-zinc-800/80 text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
-            aria-label="Close chat"
-          >
-            <X size={18} aria-hidden="true" />
-          </button>
-        </div>
-
+      <header className="flex shrink-0 items-center gap-3 px-3.5 pb-2.5 pt-3.5 sm:px-4">
         <div
-          ref={threadRef}
-          className="flex-1 space-y-3 overflow-y-auto px-4 pb-3 sm:px-5"
-          role="log"
-          aria-live="polite"
-          aria-relevant="additions"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-[10px] font-bold uppercase tracking-wider text-zinc-200"
+          aria-hidden="true"
         >
-          {messages.map((m) => (
-            <div key={m.id} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
-              <div
-                className={`max-w-[92%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
-                  m.role === 'user' ? 'bg-white text-zinc-950' : 'bg-zinc-800/80 text-zinc-200'
-                }`}
-              >
-                {m.text}
-              </div>
-              {m.role === 'bot' && m.actions ? (
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  <a
-                    href={intakeHref}
-                    onClick={close}
-                    className="inline-flex min-h-10 items-center gap-1 rounded-full bg-white px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-950 hover:bg-zinc-200"
-                  >
-                    Start quote <ArrowRight size={12} aria-hidden="true" />
-                  </a>
-                  <a
-                    href={rfqHref}
-                    onClick={close}
-                    className="inline-flex min-h-10 items-center rounded-full bg-zinc-800/80 px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-200 hover:bg-zinc-700"
-                  >
-                    Full RFQ
-                  </a>
-                </div>
-              ) : null}
-            </div>
-          ))}
-          {typing ? (
-            <div className="flex justify-start" aria-label="Loading answer">
-              <div className="inline-flex items-center gap-1.5 rounded-2xl bg-zinc-800/80 px-4 py-3">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400" />
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:120ms]" />
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:240ms]" />
-              </div>
-            </div>
-          ) : null}
+          MT
         </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-display text-sm font-bold text-white">MillTrue</p>
+          <p className="truncate text-xs text-zinc-500">Ask about quotes, certs, CAD</p>
+        </div>
+        <a
+          href="mailto:sales@milltrue.com"
+          className="sr-only focus:not-sr-only focus:absolute focus:right-14 focus:top-3 focus:rounded-md focus:bg-zinc-800 focus:px-2 focus:py-1 focus:text-xs focus:text-zinc-200"
+        >
+          Email sales
+        </a>
+        <button
+          type="button"
+          onClick={close}
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full text-zinc-400 transition-colors hover:bg-zinc-800/80 hover:text-white"
+          aria-label="Close chat"
+        >
+          <X size={18} aria-hidden="true" />
+        </button>
+      </header>
 
-        {chips.length > 0 ? (
-          <div className="flex flex-wrap gap-2 px-4 pb-2 sm:px-5">
-            {chips.slice(0, 4).map((c) => (
-              <button
-                key={c.label}
-                type="button"
-                onClick={() => handleChip(c)}
-                className="inline-flex min-h-11 items-center rounded-full bg-zinc-800/70 px-3.5 text-xs font-bold uppercase tracking-wider text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
+      <div
+        ref={threadRef}
+        className="min-h-0 flex-1 space-y-2.5 overflow-y-auto px-3.5 pb-3 sm:px-4"
+        role="log"
+        aria-live="polite"
+        aria-relevant="additions"
+        data-milltrue-chat-thread="true"
+      >
+        {messages.map((m) => (
+          <div key={m.id} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+            <div
+              className={`max-w-[88%] px-3.5 py-2.5 text-sm leading-relaxed ${
+                m.role === 'user'
+                  ? 'rounded-2xl rounded-br-md bg-white text-zinc-950'
+                  : 'rounded-2xl rounded-bl-md bg-zinc-800/90 text-zinc-200'
+              }`}
+            >
+              {m.text}
+            </div>
+
+            {m.role === 'bot' && m.actions ? (
+              <div className="mt-1.5 flex flex-wrap gap-1.5" data-milltrue-chat-actions="true">
+                <a
+                  href={intakeHref}
+                  onClick={close}
+                  className="inline-flex min-h-10 items-center gap-1 rounded-full bg-white px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-950 hover:bg-zinc-200"
+                >
+                  Start quote <ArrowRight size={12} aria-hidden="true" />
+                </a>
+                <a
+                  href={rfqHref}
+                  onClick={close}
+                  className="inline-flex min-h-10 items-center rounded-full bg-zinc-800 px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-200 hover:bg-zinc-700"
+                >
+                  Full RFQ
+                </a>
+              </div>
+            ) : null}
+
+            {m.role === 'bot' && m.suggestions && m.suggestions.length > 0 ? (
+              <div
+                className="mt-1.5 flex max-w-full gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                data-milltrue-chat-suggestions="true"
               >
-                {c.label}
-              </button>
-            ))}
+                {m.suggestions.map((s) => (
+                  <button
+                    key={s.label}
+                    type="button"
+                    onClick={() => s.send && sendText(s.send)}
+                    className="inline-flex min-h-10 shrink-0 items-center rounded-full bg-zinc-900/80 px-3 text-xs font-medium text-zinc-300 ring-1 ring-zinc-700/80 transition-colors hover:bg-zinc-800 hover:text-white"
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ))}
+
+        {typing ? (
+          <div className="flex justify-start" aria-label="Typing">
+            <div className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-zinc-800/90 px-4 py-3">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:120ms]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:240ms]" />
+            </div>
           </div>
         ) : null}
+      </div>
 
-        <div className="border-t border-zinc-800/60 px-3 py-3 sm:px-4">
-          <div className="mb-2 flex gap-1.5">
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={onComposerKey}
-              placeholder="Ask about quote, certs, CAD…"
-              className="min-h-11 flex-1 rounded-full bg-zinc-800/70 px-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/20"
-              aria-label="Ask a question"
-            />
-            <button
-              type="button"
-              onClick={() => sendText(input)}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white text-zinc-950 transition-colors hover:bg-zinc-200"
-              aria-label="Send question"
-            >
-              <Send size={16} aria-hidden="true" />
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            <a
-              href={intakeHref}
-              onClick={close}
-              className="inline-flex min-h-10 items-center gap-1 rounded-full bg-zinc-800/80 px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-200 hover:bg-zinc-700"
-            >
-              Start quote <ArrowRight size={12} aria-hidden="true" />
-            </a>
-            <a
-              href={rfqHref}
-              onClick={close}
-              className="inline-flex min-h-10 items-center rounded-full bg-zinc-800/80 px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-200 hover:bg-zinc-700"
-            >
-              Full RFQ
-            </a>
-            <a
-              href="mailto:sales@milltrue.com"
-              className="inline-flex min-h-10 items-center gap-1 rounded-full px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white"
-            >
-              <Mail size={12} aria-hidden="true" /> Email
-            </a>
-          </div>
-          <p className="mt-2 px-1 text-[9px] leading-snug text-zinc-600">
-            FAQ answers from site claims — not a live agent.
-          </p>
+      <div className="shrink-0 px-3 pb-3 pt-1 sm:px-4" data-milltrue-chat-composer="true">
+        <div className="flex items-center gap-1.5">
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onComposerKey}
+            placeholder="Message…"
+            className="min-h-11 flex-1 rounded-full bg-zinc-800/70 px-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/15"
+            aria-label="Message"
+          />
+          <button
+            type="button"
+            onClick={() => sendText(input)}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white text-zinc-950 transition-colors hover:bg-zinc-200"
+            aria-label="Send"
+          >
+            <Send size={16} aria-hidden="true" />
+          </button>
         </div>
       </div>
+    </div>
   );
 }
