@@ -37,7 +37,7 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
 - Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
-- **MillTrueChat** (`MillTrueChat.tsx`): always-on messaging widget (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM / Intercom**. Feels alive via presence chrome (Engineering desk · Online), word-stream replies, multi-bubble pacing, contextual follow-up chips, soft launcher nudge, optional idle line, in-thread Start quote / Open RFQ action cards. Thread + topic + contact in `localStorage`. Quiet footnote: guided desk answers, not a live agent. Escape hatches: `#intake`, Full RFQ, mailto. Production messaging (Intercom/Crisp/LLM) TBD.
+- **MillTrueChat** (`MillTrueChat.tsx`): always-on FAQ help widget (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM / Intercom**. Launcher **Ask**; header **MillTrue help**. Short FAQ answers (1 bubble) with chips that steer to **Start quote** (`#intake`) / **Full RFQ** (`/rfq/`) / mailto. No online-presence theater, unread nudge, Seen receipts, or blocking contact capture. Thread + topic in `localStorage`. Panel uses `pointer-events-auto` only when open (closed panel must not steal clicks). Quiet footnote: FAQ from site claims, not a live agent. Production messaging (Intercom/Crisp/LLM) TBD.
 - Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
@@ -55,6 +55,11 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 - MillTrueChat upgraded: online presence, streaming/multi-bubble replies, topic-biased chips, soft proactive launcher badge, desk-style contact ask, in-thread quote/RFQ actions.
 - Still client-side simulation only — no LLM API, Intercom, or paid chat provider.
+
+**2026-07-26 FAQ desk simplify + click fix (preview / Pages):**
+
+- Fixed closed-panel Tailwind `pointer-events-auto` + `pointer-events-none` conflict that blocked the Ask/Message launcher on live Pages.
+- Softened Intercom-feel into FAQ → RFQ: MillTrue help header, no presence/unread/Seen/contact interrupt; short answers + Start quote / Full RFQ handoffs.
 
 **2026-07-26 hero conversion polish (preview only):**
 

@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Alive interactive chat live on Pages (verified)
+- **focus:** FAQ help chat click fix + simplify (shipping to Pages)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production LLM/Intercom later
-- **updated:** 2026-07-26T20:22:00.000Z
+- **next:** Verify Ask launcher on live Pages; optional milltrue.com domain
+- **updated:** 2026-07-26T20:40:00.000Z
 
 ## Current focus
-Alive MillTrueChat live on GitHub Pages
+Fix Ask launcher click + FAQ→RFQ simplify
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Awaiting feedback; milltrue.com domain when ready
+Push pages + verify Ask opens FAQ chips / RFQ handoff
