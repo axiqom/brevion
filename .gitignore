@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+.env
+.webdev.env
+preview.db
+preview.db-wal
+preview.db-shm
