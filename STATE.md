@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Alive interactive chat shipping to Pages
+- **focus:** Alive interactive chat live on Pages (verified)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Verify Pages deploy; Mendel WhatsApp notify
-- **updated:** 2026-07-26T20:20:00.000Z
+- **next:** Optional milltrue.com domain; production LLM/Intercom later
+- **updated:** 2026-07-26T20:22:00.000Z
 
 ## Current focus
-Alive MillTrueChat (presence, streaming, contextual chips, soft proactive)
+Alive MillTrueChat live on GitHub Pages
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Deploy + verify live Pages chat aliveness
+Awaiting feedback; milltrue.com domain when ready
