@@ -1,8 +1,14 @@
 ---
-import { ArrowRight } from 'lucide-react';
+import HeroContactForm from './HeroContactForm';
 import { withBase } from '../lib/base';
+
+const trustChips = [
+  'AS9100 processes',
+  'Aerospace & defense',
+  'Quotes in 24h',
+];
 ---
-<section class="relative flex min-h-[100svh] items-end overflow-hidden bg-zinc-950">
+<section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-zinc-950">
   <div class="absolute inset-0 overflow-hidden bg-zinc-950" data-placeholder="hero-video">
     <video
       autoplay
@@ -10,55 +16,92 @@ import { withBase } from '../lib/base';
       muted
       playsinline
       poster="https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=3000&auto=format&fit=crop"
-      class="h-full w-full object-cover opacity-45 mix-blend-luminosity"
+      class="h-full w-full object-cover opacity-40 mix-blend-luminosity motion-reduce:hidden"
     >
       <source
         src="https://videos.pexels.com/video-files/3204962/3204962-hd_1920_1080_25fps.mp4"
         type="video/mp4"
       />
     </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/75 to-zinc-950/35"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-transparent to-zinc-950/40"></div>
+    <img
+      src="https://images.unsplash.com/photo-1565439390119-c4dbafddb4eb?q=80&w=3000&auto=format&fit=crop"
+      alt=""
+      class="hidden h-full w-full object-cover opacity-40 mix-blend-luminosity motion-reduce:block"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/55 to-zinc-950/70"></div>
     <span class="placeholder-caption">Placeholder</span>
   </div>
 
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-24 sm:px-6 sm:pb-20 md:pb-28 md:pt-28 lg:px-8">
-    <div class="max-w-4xl animate-fade-up opacity-0" style="animation-delay: 0.05s">
-      <div class="mb-6 flex items-center gap-2.5 sm:gap-3 md:mb-10">
-        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white sm:h-11 sm:w-11 md:h-12 md:w-12">
-          <img
-            src={withBase('milltrue-mark.svg')}
-            alt=""
-            width={26}
-            height={26}
-            class="h-5 w-5 sm:h-6 sm:w-6"
-            aria-hidden="true"
-          />
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-14 pt-24 sm:px-6 sm:pb-16 md:pb-20 md:pt-28 lg:px-8">
+    <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
+      <div class="animate-fade-up opacity-0" style="animation-delay: 0.05s">
+        <div class="mb-5 flex items-center gap-2.5 sm:gap-3 md:mb-7">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white sm:h-11 sm:w-11 md:h-12 md:w-12">
+            <img
+              src={withBase('milltrue-mark.svg')}
+              alt=""
+              width={26}
+              height={26}
+              class="h-5 w-5 sm:h-6 sm:w-6"
+              aria-hidden="true"
+            />
+          </div>
+          <p class="font-display text-2xl font-bold uppercase tracking-[0.18em] text-white sm:text-3xl sm:tracking-[0.22em] md:text-4xl md:tracking-[0.28em]">
+            MillTrue
+          </p>
         </div>
-        <p class="font-display text-2xl font-bold uppercase tracking-[0.18em] text-white sm:text-3xl sm:tracking-[0.22em] md:text-4xl md:tracking-[0.28em]">
-          MillTrue
+
+        <h1 class="mb-4 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-5 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+          Precision CNC for aerospace, defense & robotics.
+        </h1>
+        <p class="mb-6 max-w-lg text-base font-medium leading-relaxed text-zinc-300 sm:mb-7 md:text-lg">
+          Prototype to production — mission-critical parts with clear quotes and AS9100-minded process discipline.
         </p>
+
+        <ul class="mb-6 flex flex-wrap gap-2 sm:mb-8" aria-label="Trust signals">
+          {trustChips.map((chip) => (
+            <li
+              class="inline-flex min-h-9 items-center rounded-full border border-zinc-600/70 bg-zinc-950/55 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-200 backdrop-blur-md sm:text-xs"
+            >
+              {chip}
+            </li>
+          ))}
+        </ul>
+
+        <div class="hidden gap-3 md:flex">
+          <a
+            href={withBase('rfq')}
+            class="inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-zinc-500 hover:bg-zinc-900/70 sm:text-sm"
+          >
+            Full RFQ
+          </a>
+          <a
+            href="#capabilities"
+            class="inline-flex min-h-11 items-center justify-center rounded-full border border-transparent px-5 py-3 text-xs font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:text-white sm:text-sm"
+          >
+            View capabilities
+          </a>
+        </div>
       </div>
 
-      <h1 class="mb-5 max-w-3xl text-[2rem] font-bold uppercase leading-[0.95] tracking-tight text-white sm:mb-6 sm:text-5xl md:mb-8 md:text-6xl lg:text-7xl">
-        Precision Mission-Critical Manufacturing.
-      </h1>
-      <p class="mb-8 max-w-2xl text-base font-medium leading-relaxed text-zinc-300 sm:mb-10 md:mb-12 md:text-lg lg:text-xl">
-        From prototype to production, we manufacture precision components for aerospace, defense, robotics, industrial automation, and advanced technology companies.
-      </p>
-      <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+      <div class="animate-fade-up w-full max-w-md opacity-0 md:ml-auto md:max-w-none" style="animation-delay: 0.12s">
+        <HeroContactForm client:load />
+      </div>
+
+      <div class="flex flex-col gap-3 md:hidden">
         <a
           href={withBase('rfq')}
-          class="group flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 md:px-10 md:py-5 md:text-base"
+          class="flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md"
         >
-          Request a Quote
-          <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          Full RFQ
         </a>
         <a
           href="#capabilities"
-          class="flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-8 py-4 text-center text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-zinc-500 hover:bg-zinc-900/70 md:px-10 md:py-5 md:text-base"
+          class="flex min-h-11 items-center justify-center rounded-full border border-transparent px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-300"
         >
-          View Capabilities
+          View capabilities
         </a>
       </div>
     </div>

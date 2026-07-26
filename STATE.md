@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** Live on GitHub Pages
+- **focus:** Hero conversion + contact intake on live Pages
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com custom domain later
-- **updated:** 2026-07-26T16:40:00.000Z
+- **next:** Verify live Pages after deploy; optional milltrue.com custom domain later
+- **updated:** 2026-07-26T16:50:00.000Z
 
 ## Current focus
-GitHub Pages live deploy (`axiqom/milltrue`)
+Hero conversion layout + hero contact intake (mock submit)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Await feedback; custom domain milltrue.com can be wired later (DNS not set in this task)
+Deploy to `pages` remote and verify public URL shows intake form
