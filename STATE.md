@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** UX trifecta + AI chat — deploying to Pages
+- **focus:** UX trifecta + AI chat live on Pages (verified)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Wait for deploy-pages; verify home + RFQ + chat launcher
-- **updated:** 2026-07-26T20:12:00.000Z
+- **next:** Optional milltrue.com domain; production email / Intercom later
+- **updated:** 2026-07-26T20:15:00.000Z
 
 ## Current focus
-UX conversion trifecta + AI chat shipping to GitHub Pages
+UX conversion trifecta + AI chat live on GitHub Pages
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Verify GitHub Pages after Actions deploy
+Awaiting feedback; milltrue.com domain when ready
