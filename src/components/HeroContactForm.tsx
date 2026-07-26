@@ -3,14 +3,17 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 const inputClass =
-  'w-full min-h-11 rounded-xl border border-zinc-600/80 bg-zinc-950/90 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl border border-zinc-500/70 bg-zinc-950/95 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-white focus:outline-none focus:ring-1 focus:ring-white sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const inputErrorClass =
-  'w-full min-h-11 rounded-xl border border-red-500/70 bg-zinc-950/90 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400 sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl border border-red-500/70 bg-zinc-950/95 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-500 focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400 sm:rounded-2xl sm:px-4 sm:py-3.5';
 
 const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400';
 
 const errorClass = 'mt-1.5 text-xs font-medium text-red-300';
+
+const cardClass =
+  'rounded-2xl border border-zinc-500/80 bg-zinc-900 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.7)] ring-1 ring-white/10 backdrop-blur-xl sm:rounded-3xl sm:p-6';
 
 type Fields = {
   name: string;
@@ -76,20 +79,15 @@ export default function HeroContactForm() {
 
   if (submitted) {
     return (
-      <div
-        className="rounded-2xl border border-zinc-600/80 bg-zinc-900/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:rounded-3xl sm:p-6"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      >
+      <div className={cardClass} role="status" aria-live="polite" aria-atomic="true">
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-zinc-950">
           <CheckCircle2 size={24} aria-hidden="true" />
         </div>
         <h2 className="mb-2 font-display text-xl font-bold uppercase tracking-tight text-white sm:text-2xl">
-          Got it — we will follow up.
+          Got it — engineer follow-up next.
         </h2>
         <p className="mb-3 text-sm leading-relaxed text-zinc-300">
-          Thanks for reaching out. An engineer will review your note and contact you shortly.
+          Thanks for reaching out. We aim to respond within 24h with a quote path. Have drawings or CAD ready?
         </p>
         <p className="mb-5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Preview only — nothing was submitted
@@ -118,95 +116,99 @@ export default function HeroContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-zinc-600/80 bg-zinc-900/95 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:rounded-3xl sm:p-6"
+      className={cardClass}
       aria-labelledby={`${formId}-title`}
     >
       <div className="mb-4 border-b border-zinc-800 pb-4 sm:mb-5">
         <h2 id={`${formId}-title`} className="font-display text-lg font-bold uppercase tracking-tight text-white sm:text-xl">
-          Start a conversation
+          Talk to engineering
         </h2>
         <p className="mt-1.5 text-sm leading-snug text-zinc-400">
-          Quick intake — part type, material, qty. No CAD required yet.
+          Get a 24h quote path — part type, material, qty. No CAD required yet.
         </p>
       </div>
 
-      <div className="space-y-4">
-        <div>
-          <label className={labelClass} htmlFor={fieldIds.name}>
-            Name *
-          </label>
-          <input
-            id={fieldIds.name}
-            type="text"
-            autoComplete="name"
-            className={errors.name ? inputErrorClass : inputClass}
-            value={values.name}
-            onChange={(e) => setField('name', e.target.value)}
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? `${fieldIds.name}-error` : undefined}
-          />
-          {errors.name ? (
-            <p id={`${fieldIds.name}-error`} className={errorClass} role="alert">
-              {errors.name}
-            </p>
-          ) : null}
+      <div className="space-y-3.5 sm:space-y-4">
+        <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+          <div>
+            <label className={labelClass} htmlFor={fieldIds.name}>
+              Name *
+            </label>
+            <input
+              id={fieldIds.name}
+              type="text"
+              autoComplete="name"
+              className={errors.name ? inputErrorClass : inputClass}
+              value={values.name}
+              onChange={(e) => setField('name', e.target.value)}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? `${fieldIds.name}-error` : undefined}
+            />
+            {errors.name ? (
+              <p id={`${fieldIds.name}-error`} className={errorClass} role="alert">
+                {errors.name}
+              </p>
+            ) : null}
+          </div>
+
+          <div>
+            <label className={labelClass} htmlFor={fieldIds.company}>
+              Company *
+            </label>
+            <input
+              id={fieldIds.company}
+              type="text"
+              autoComplete="organization"
+              className={errors.company ? inputErrorClass : inputClass}
+              value={values.company}
+              onChange={(e) => setField('company', e.target.value)}
+              aria-invalid={Boolean(errors.company)}
+              aria-describedby={errors.company ? `${fieldIds.company}-error` : undefined}
+            />
+            {errors.company ? (
+              <p id={`${fieldIds.company}-error`} className={errorClass} role="alert">
+                {errors.company}
+              </p>
+            ) : null}
+          </div>
         </div>
 
-        <div>
-          <label className={labelClass} htmlFor={fieldIds.company}>
-            Company *
-          </label>
-          <input
-            id={fieldIds.company}
-            type="text"
-            autoComplete="organization"
-            className={errors.company ? inputErrorClass : inputClass}
-            value={values.company}
-            onChange={(e) => setField('company', e.target.value)}
-            aria-invalid={Boolean(errors.company)}
-            aria-describedby={errors.company ? `${fieldIds.company}-error` : undefined}
-          />
-          {errors.company ? (
-            <p id={`${fieldIds.company}-error`} className={errorClass} role="alert">
-              {errors.company}
-            </p>
-          ) : null}
-        </div>
+        <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+          <div>
+            <label className={labelClass} htmlFor={fieldIds.email}>
+              Work email *
+            </label>
+            <input
+              id={fieldIds.email}
+              type="email"
+              autoComplete="email"
+              inputMode="email"
+              className={errors.email ? inputErrorClass : inputClass}
+              value={values.email}
+              onChange={(e) => setField('email', e.target.value)}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? `${fieldIds.email}-error` : undefined}
+            />
+            {errors.email ? (
+              <p id={`${fieldIds.email}-error`} className={errorClass} role="alert">
+                {errors.email}
+              </p>
+            ) : null}
+          </div>
 
-        <div>
-          <label className={labelClass} htmlFor={fieldIds.email}>
-            Work email *
-          </label>
-          <input
-            id={fieldIds.email}
-            type="email"
-            autoComplete="email"
-            inputMode="email"
-            className={errors.email ? inputErrorClass : inputClass}
-            value={values.email}
-            onChange={(e) => setField('email', e.target.value)}
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? `${fieldIds.email}-error` : undefined}
-          />
-          {errors.email ? (
-            <p id={`${fieldIds.email}-error`} className={errorClass} role="alert">
-              {errors.email}
-            </p>
-          ) : null}
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor={fieldIds.phone}>
-            Phone
-          </label>
-          <input
-            id={fieldIds.phone}
-            type="tel"
-            autoComplete="tel"
-            className={inputClass}
-            value={values.phone}
-            onChange={(e) => setField('phone', e.target.value)}
-          />
+          <div>
+            <label className={labelClass} htmlFor={fieldIds.phone}>
+              Phone
+            </label>
+            <input
+              id={fieldIds.phone}
+              type="tel"
+              autoComplete="tel"
+              className={inputClass}
+              value={values.phone}
+              onChange={(e) => setField('phone', e.target.value)}
+            />
+          </div>
         </div>
 
         <div>
@@ -267,11 +269,21 @@ export default function HeroContactForm() {
           disabled={submitting}
           className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
         >
-          {submitting ? 'Sending…' : 'Send message'}
+          {submitting ? 'Sending…' : 'Request quote'}
           {!submitting ? <ArrowRight size={16} aria-hidden="true" /> : null}
         </button>
+        <p className="text-center text-[11px] font-medium leading-snug text-zinc-400">
+          Engineer follow-up within 24h — preview submit only.
+        </p>
         <p className="text-center text-[11px] font-medium text-zinc-500">
-          Need drawings or CAD?{' '}
+          Prefer email?{' '}
+          <a
+            href="mailto:sales@milltrue.com"
+            className="text-zinc-300 underline-offset-2 hover:text-white hover:underline"
+          >
+            sales@milltrue.com
+          </a>
+          {' · '}
           <a href={withBase('rfq')} className="text-zinc-300 underline-offset-2 hover:text-white hover:underline">
             Full RFQ
           </a>

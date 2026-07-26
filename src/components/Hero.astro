@@ -3,9 +3,15 @@ import HeroContactForm from './HeroContactForm';
 import { withBase } from '../lib/base';
 
 const trustChips = [
-  '±0.0001" where needed',
-  'AS9100 processes',
-  'Quotes in 24h',
+  'ITAR-ready',
+  'DFM before first chip',
+  'Proto → production',
+];
+
+const stats = [
+  { value: '±0.0001"', label: 'where needed' },
+  { value: '24h', label: 'quote path' },
+  { value: 'AS9100', label: 'processes' },
 ];
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-zinc-950">
@@ -30,37 +36,54 @@ const trustChips = [
       aria-hidden="true"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/45"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/55 to-zinc-950/70"></div>
-    <span class="placeholder-caption">Placeholder</span>
+    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/55 to-zinc-950/75"></div>
+    <div class="absolute inset-y-0 right-0 hidden w-[55%] bg-gradient-to-l from-zinc-950/85 via-zinc-950/40 to-transparent md:block" aria-hidden="true"></div>
   </div>
 
   <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-14 pt-24 sm:px-6 sm:pb-16 md:pb-20 md:pt-28 lg:px-8">
     <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
       <div class="animate-fade-up opacity-0" style="animation-delay: 0.05s">
-        <div class="mb-5 flex items-center gap-2.5 sm:gap-3 md:mb-6">
-          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white sm:h-11 sm:w-11 md:h-12 md:w-12">
+        <div class="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
+          <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white sm:h-9 sm:w-9">
             <img
               src={withBase('milltrue-mark.svg')}
               alt=""
-              width={26}
-              height={26}
-              class="h-5 w-5 sm:h-6 sm:w-6"
+              width={20}
+              height={20}
+              class="h-4 w-4 sm:h-[18px] sm:w-[18px]"
               aria-hidden="true"
             />
           </div>
-          <p class="font-display text-2xl font-bold uppercase tracking-[0.18em] text-white sm:text-3xl sm:tracking-[0.22em] md:text-4xl md:tracking-[0.28em]">
+          <p class="font-display text-lg font-bold uppercase tracking-[0.16em] text-white/90 sm:text-xl sm:tracking-[0.2em] md:text-2xl md:tracking-[0.22em]">
             MillTrue
           </p>
         </div>
 
-        <h1 class="mb-4 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-5 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          When tolerances and lead times can&apos;t slip.
-        </h1>
-        <p class="mb-6 max-w-lg text-base font-medium leading-relaxed text-zinc-300 sm:mb-7 md:text-lg">
-          Hold critical dims to print. Get DFM before the first chip. Quotes in 24h — AS9100-minded, ITAR-ready, prototype to production.
+        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400 sm:mb-3.5 sm:text-xs sm:tracking-[0.22em]">
+          Precision CNC · Aerospace / Defense / Robotics
         </p>
 
-        <ul class="mb-6 flex flex-wrap gap-2 sm:mb-8" aria-label="Trust signals">
+        <h1 class="mb-3 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-white sm:mb-4 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+          When tolerances and lead times can&apos;t slip.
+        </h1>
+        <p class="mb-5 max-w-lg text-sm font-medium leading-relaxed text-zinc-300 sm:mb-6 sm:text-base md:text-lg">
+          Hold critical dims to print. Quotes in 24h — AS9100-minded, ITAR-ready, with DFM before the first chip.
+        </p>
+
+        <dl class="mb-5 grid grid-cols-3 gap-2 sm:mb-6 sm:gap-3" aria-label="Key capabilities">
+          {stats.map((stat) => (
+            <div class="rounded-xl border border-zinc-700/60 bg-zinc-950/50 px-2.5 py-3 backdrop-blur-md sm:px-3 sm:py-3.5">
+              <dt class="font-display text-base font-bold tracking-tight text-white sm:text-lg md:text-xl">
+                {stat.value}
+              </dt>
+              <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400 sm:text-[11px]">
+                {stat.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <ul class="mb-5 flex flex-wrap gap-2 sm:mb-6" aria-label="Trust signals">
           {trustChips.map((chip) => (
             <li
               class="inline-flex min-h-9 items-center rounded-full border border-zinc-600/70 bg-zinc-950/55 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-200 backdrop-blur-md sm:text-xs"
@@ -70,20 +93,12 @@ const trustChips = [
           ))}
         </ul>
 
-        <div class="hidden gap-3 md:flex">
-          <a
-            href="#intake"
-            class="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 sm:text-sm"
-          >
-            Request quote
-          </a>
-          <a
-            href={withBase('rfq')}
-            class="inline-flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-zinc-500 hover:bg-zinc-900/70 sm:text-sm"
-          >
-            Full RFQ
-          </a>
-        </div>
+        <a
+          href={withBase('rfq')}
+          class="hidden text-sm font-medium text-zinc-400 underline-offset-4 transition-colors hover:text-zinc-200 hover:underline md:inline-flex md:min-h-11 md:items-center"
+        >
+          Prefer drawings or CAD? Full RFQ →
+        </a>
       </div>
 
       <div
@@ -96,18 +111,12 @@ const trustChips = [
         </div>
       </div>
 
-      <div class="flex flex-col gap-3 md:hidden">
-        <a
-          href="#intake"
-          class="flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-zinc-950"
-        >
-          Request quote
-        </a>
+      <div class="md:hidden">
         <a
           href={withBase('rfq')}
-          class="flex min-h-11 items-center justify-center rounded-full border border-zinc-600/60 bg-zinc-950/40 px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md"
+          class="inline-flex min-h-11 items-center text-sm font-medium text-zinc-400 underline-offset-4 transition-colors hover:text-zinc-200 hover:underline"
         >
-          Full RFQ
+          Prefer drawings or CAD? Full RFQ →
         </a>
       </div>
     </div>

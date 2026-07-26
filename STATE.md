@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** EnSima conversion-pattern pass live on Pages (verified)
+- **focus:** Hero conversion polish (eyebrow, stats, form-first CTAs)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com custom domain; production email hookup later
-- **updated:** 2026-07-26T17:10:30.000Z
+- **next:** Mendel review of hero polish; wire real email later
+- **updated:** 2026-07-26T17:20:00.000Z
 
 ## Current focus
-EnSima conversion-pattern pass live (commit 13072ce): need-led hero, numbered capability cards 01–04, MillTrue-vs-typical proof + stats, repeated Request quote / RFQ. Brand stays MillTrue.
+Hero conversion polish: need-led H1 + eyebrow, compact stats, intake form as primary CTA (redundant left/mobile Request quote removed). Brand stays MillTrue.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Mendel review of live EnSima conversion layout; wire real email later (documented in HANDOFF)
+Mendel review of hero conversion polish; wire real email later (documented in HANDOFF)

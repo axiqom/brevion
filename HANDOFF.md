@@ -41,9 +41,16 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 **Why:** Marketing + first-contact + RFQ UX can be demonstrated honestly without persistence. Backend setup would delay visual review without improving the preview for stakeholders.
 
+**2026-07-26 hero conversion polish (preview only):**
+
+- Hero: eyebrow (Precision CNC · Aerospace / Defense / Robotics), slightly quieter MillTrue mark, need-led H1, one support line, compact 3-stat strip (±0.0001" / 24h / AS9100) + trust chips.
+- Removed redundant desktop/mobile Request quote buttons that only jumped to in-view `#intake`; quiet Full RFQ text link under support / below form.
+- Intake form is the product CTA: sharper “Talk to engineering” copy, 2-col compact fields, “Request quote” submit, 24h follow-up expectation, mailto + Full RFQ footer; stronger card contrast. Hero video “Placeholder” caption removed.
+- Header `#intake` / MobileConvertBar / Capabilities / proof untouched. Still no production email.
+
 **2026-07-26 EnSima conversion-pattern pass (preview only):**
 
-- Hero reframed around buyer need (tolerance / lead time / DFM / AS9100) — primary CTA → `#intake`, secondary Full RFQ; intake form kept.
+- Hero reframed around buyer need (tolerance / lead time / DFM / AS9100) — intake form primary; secondary Full RFQ.
 - Capabilities: numbered 01–04 cards with concrete metrics (5-axis, ±0.0001", 24h, AS9102 FAI, Type II/III, 2–3 wk proto) + self-select bullets.
 - WhyChooseUs → proof section: big-number stats strip + MillTrue vs typical shop comparison (no fake logos).
 - Section rhythm: thin eyebrows on Capabilities / Industries / Quality / Portfolio / WhyChooseUs (+ ValueProp).
@@ -91,7 +98,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 
 ## Design deltas vs reference-source
 
-- Hero sells the need (tolerances / lead times / DFM / certs): brand + headline + trust chips + primary Request quote → `#intake` + secondary Full RFQ; contact intake card kept
+- Hero sells the need (tolerances / lead times / DFM / certs): brand + eyebrow + headline + stats/chips + intake form as primary CTA; quiet Full RFQ secondary
 - Capabilities: EnSima-style numbered cards (01–04) with concrete metrics and self-select bullets — not lifestyle fluff
 - WhyChooseUs: stats strip + MillTrue vs typical shop comparison (truthful claims only)
 - Trust strip (LogoCloud) uses claim language only — no fake customer logos
