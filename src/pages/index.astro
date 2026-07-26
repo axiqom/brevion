@@ -1,35 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import LogoCloud from '../components/sections/LogoCloud.astro';
-import ValueProp from '../components/sections/ValueProp.astro';
 import Capabilities from '../components/sections/Capabilities.astro';
-import MidCta from '../components/sections/MidCta.astro';
-import Industries from '../components/sections/Industries.astro';
-import Timeline from '../components/sections/Timeline.astro';
 import Portfolio from '../components/sections/Portfolio.astro';
 import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
-import Quality from '../components/sections/Quality.astro';
-import Team from '../components/sections/Team.astro';
-import Resources from '../components/sections/Resources.astro';
 import Faq from '../components/sections/Faq';
 import Cta from '../components/sections/Cta.astro';
 import MobileConvertBar from '../components/MobileConvertBar';
 ---
 <BaseLayout title="MillTrue — Precision CNC Manufacturing" currentPage="home">
   <Hero />
-  <LogoCloud />
-  <ValueProp />
   <Capabilities />
-  <MidCta line="Specs ready? Share the print — DFM notes and a lead time in 24h." />
-  <Industries />
-  <Timeline />
-  <Portfolio />
-  <MidCta line="First article or production scale-up? Request a quote or send the full RFQ." />
   <WhyChooseUs />
-  <Quality />
-  <Team />
-  <Resources />
+  <Portfolio />
   <Faq client:load />
   <Cta />
   <MobileConvertBar client:load />

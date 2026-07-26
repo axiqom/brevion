@@ -33,13 +33,23 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 **Current:** none / mock client state only. **Unchanged.**
 
-- Hero contact intake (`HeroContactForm.tsx`) is preview-only: validates client-side, shows thank-you / follow-up success state. No API, no email, no storage.
-- RFQ form is preview-only: multi-step UI, local file list in memory, submit shows thank-you. No API, no email, no storage.
+- Hero contact intake (`HeroContactForm.tsx`) is preview-only: 3 primary fields (company, work email, need); phone/preference behind progressive disclosure; validates client-side; success lists next steps (full RFQ + 24h reply claim). No API, no email.
+- RFQ form is preview-only: 5-step wizard with progress labels, CAD upload polish + NDA note, draft in `localStorage` (`milltrue-rfq-draft`), success page (not toast), `?capability=` prefill from Capabilities cards. Files stay in-memory for the session.
 - FAQ accordion is client-side only.
-- Mobile convert bar (`MobileConvertBar.tsx`) is UI-only; dismiss preference in `localStorage` (`milltrue-mobile-convert-dismissed`).
+- Mobile convert bar (`MobileConvertBar.tsx`): sticky Request quote → `#intake` when intake off-screen (IntersectionObserver); hides when `#intake` in view; mailto + Full RFQ; dismiss in `localStorage`.
+- **MillTrueChat** (`MillTrueChat.tsx`): always-on messaging widget (home + RFQ via BaseLayout). Client-side rule/FAQ intent matching only — **no external LLM**. Optional name/email capture in `localStorage`. Escape hatches: `#intake`, Full RFQ, mailto. Production messaging (Intercom/Crisp/LLM) TBD.
+- Fake **555 phone numbers removed** site-wide (Footer, JSON-LD, docs). Contact path = mailto `sales@milltrue.com` + chat + RFQ only until a real number exists.
 - No auth, database, payments, Stripe, Supabase, Resend, Formspree, or managed cloud services.
 
 **Why:** Marketing + first-contact + RFQ UX can be demonstrated honestly without persistence. Backend setup would delay visual review without improving the preview for stakeholders.
+
+**2026-07-26 UX conversion trifecta + AI chat (preview only):**
+
+- Shorter hero intake (3 fields + expand optional); mobile bar demotes when intake visible.
+- Home trimmed: Hero → Capabilities → Proof → Portfolio → FAQ → final CTA (removed Team/Timeline/Industries/Quality/ValueProp/Resources/LogoCloud/extra MidCtas from the live path).
+- RFQ wizard polish + capability deep-links.
+- MillTrueChat preview widget mounted globally.
+- Still no production email / SMS / DB / Formspree / Resend / LLM API.
 
 **2026-07-26 hero conversion polish (preview only):**
 
@@ -74,8 +84,9 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Real photography / video assets (optional: replace local stock under `public/media/` and hero with owned shop photos)
 - **Hero intake + RFQ email hookup:** form endpoint or serverless action → CRM/email (e.g. Resend or ESP) with spam protection; keep hero as low-friction path and RFQ for drawings/CAD uploads
 - RFQ backend: file upload (S3 or similar), spam protection, CRM/email notification, optional ITAR-aware handling
+- **Production messaging:** Intercom, Crisp, or custom LLM-backed agent (current MillTrueChat is client-side FAQ only)
 - Analytics, SEO meta polish, legal pages (privacy/terms)
-- Real contact details and certifications copy review
+- Real contact details (phone when available) and certifications copy review
 - Real (approved) customer marks only if/when cleared — never invent logos
 
 ## Logo assets (designer swap paths)
@@ -95,7 +106,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 | Hero image | Local `public/hero-cnc.jpg` (+ `hero-cnc-sm.jpg`) full-bleed | Own shop photography |
 | Section imagery | Local `public/media/` (cap-*, ind-*, port-*, team-*, bg-*) via `withBase('media/...')` | Owned / cleared photography |
 | Logo cloud | Honest claim strip (AS9100 / materials / 24h quotes / ITAR-ready) | Real (approved) customer marks only if cleared |
-| Contact | sales@milltrue.com, 555 number, Austin address | Real contact |
+| Contact | sales@milltrue.com (no phone until real number) | Real phone + address when available |
 | Portfolio case studies | Sample titanium bracket / sensor housing | Real (cleared) projects |
 
 **2026-07-26 $100k polish + local media:** Unsplash hotlinks and placeholder captions removed from Capabilities / Industries / Portfolio / Team / Quality / Cta. Soft-surface zinc language site-wide (including RFQ). PrototypeDisclaimer retained.
@@ -114,7 +125,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 ## Stack
 
 - Astro 5 + Tailwind 3 + `@astrojs/react`
-- React islands (`client:load`) for hero contact intake, RFQ wizard, FAQ, mobile nav
+- React islands (`client:load`) for hero contact intake, RFQ wizard, FAQ, mobile nav, MillTrueChat
 - lucide-react icons (UI only)
 - Fonts: Manrope + Rajdhani (Google Fonts)
 

@@ -1,13 +1,13 @@
 # STATE — MillTrue (aeris-cnc)
 
-- **focus:** $100k polish live on Pages (verified)
+- **focus:** UX trifecta + AI chat — deploying to Pages
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production email later
-- **updated:** 2026-07-26T17:42:30.000Z
+- **next:** Wait for deploy-pages; verify home + RFQ + chat launcher
+- **updated:** 2026-07-26T20:12:00.000Z
 
 ## Current focus
-Agency-grade polish live: local `public/media/` section imagery, no Unsplash/placeholder chrome, soft-surface cards/CTAs/RFQ. Hero redesign preserved. Brand MillTrue. Commit `ca74cc7`.
+UX conversion trifecta + AI chat shipping to GitHub Pages
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -16,4 +16,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/milltrue/
 
 ## Next step
-Optional domain + real email later (HANDOFF)
+Verify GitHub Pages after Actions deploy

@@ -5,6 +5,7 @@ const capabilities = [
   {
     num: '01',
     title: 'Engineering',
+    slug: 'engineering',
     metrics: ['DFM before cut', 'CAD → CAM'],
     items: ['CAD / reverse engineering', 'DFM analysis', 'CAM programming'],
     select: 'Need design help or manufacturability review first.',
@@ -14,6 +15,7 @@ const capabilities = [
   {
     num: '02',
     title: 'Manufacturing',
+    slug: 'manufacturing',
     metrics: ['3 / 4 / 5-axis', '2–3 wk prototypes'],
     items: ['Mill: 3-, 4-, 5-axis CNC', 'Turn: CNC turning', 'Prototype → production'],
     select: 'Self-select mill vs turn, proto vs volume.',
@@ -23,6 +25,7 @@ const capabilities = [
   {
     num: '03',
     title: 'Quality',
+    slug: 'quality',
     metrics: ['±0.0001"', 'AS9102 FAI'],
     items: ['CMM inspection', 'AS9102 FAI when required', 'Full material traceability'],
     select: 'For prints that demand documented first article.',
@@ -32,6 +35,7 @@ const capabilities = [
   {
     num: '04',
     title: 'Finishing',
+    slug: 'finishing',
     metrics: ['Type II / III anodize', 'One handoff'],
     items: ['Anodize Type II & III', 'Powder coat / heat treat', 'Laser engrave + hardware'],
     select: 'Machining and finishing coordinated — no vendor hop.',
@@ -89,9 +93,15 @@ const capabilities = [
                 </li>
               ))}
             </ul>
-            <p class="mt-auto pt-4 text-xs font-medium leading-relaxed text-zinc-500">
+            <p class="mb-4 text-xs font-medium leading-relaxed text-zinc-500">
               {group.select}
             </p>
+            <a
+              href={withBase(`rfq?capability=${group.slug}`)}
+              class="mt-auto inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:text-white"
+            >
+              Start RFQ →
+            </a>
           </div>
         </article>
       ))}

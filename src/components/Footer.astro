@@ -1,7 +1,7 @@
 ---
 import { withBase } from '../lib/base';
 ---
-<footer class="border-t border-zinc-900/60 bg-zinc-950 py-12 pb-24 text-zinc-500 sm:py-14 md:pb-14">
+<footer class="border-t border-zinc-900/60 bg-zinc-950 py-12 pb-28 text-zinc-500 sm:py-14 md:pb-14">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-12">
       <div class="col-span-1 md:col-span-2">
@@ -29,7 +29,7 @@ import { withBase } from '../lib/base';
         <ul class="space-y-1 text-sm font-medium">
           <li><a href={withBase('#capabilities')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Capabilities</a></li>
           <li><a href={withBase('#projects')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Projects</a></li>
-          <li><a href={withBase('#quality')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Quality</a></li>
+          <li><a href={withBase('#proof')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Proof</a></li>
           <li><a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Contact</a></li>
         </ul>
       </div>
@@ -42,11 +42,15 @@ import { withBase } from '../lib/base';
             </a>
           </li>
           <li>
-            <a href="tel:+15551234567" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
-              +1 (555) 123-4567
+            <a href={withBase('rfq')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+              Full RFQ
             </a>
           </li>
-          <li class="pt-2 leading-relaxed">100 Precision Way<br />Austin, TX 78744</li>
+          <li>
+            <a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+              Request quote
+            </a>
+          </li>
         </ul>
       </div>
     </div>

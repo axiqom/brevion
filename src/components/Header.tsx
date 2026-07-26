@@ -8,9 +8,8 @@ interface HeaderProps {
 
 const navLinks = [
   { label: 'Capabilities', href: withBase('#capabilities') },
-  { label: 'Industries', href: withBase('#industries') },
+  { label: 'Proof', href: withBase('#proof') },
   { label: 'Projects', href: withBase('#projects') },
-  { label: 'Quality', href: withBase('#quality') },
   { label: 'Contact', href: withBase('#intake') },
 ];
 

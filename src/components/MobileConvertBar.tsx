@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, Mail, X } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 const STORAGE_KEY = 'milltrue-mobile-convert-dismissed';
 
 export default function MobileConvertBar() {
-  const [visible, setVisible] = useState(false);
+  const [intakeVisible, setIntakeVisible] = useState(true);
   const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
@@ -19,23 +19,31 @@ export default function MobileConvertBar() {
     }
     setDismissed(false);
 
-    const onScroll = () => {
-      setVisible(window.scrollY > Math.min(window.innerHeight * 0.55, 480));
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const intake = document.getElementById('intake');
+    if (!intake || typeof IntersectionObserver === 'undefined') {
+      setIntakeVisible(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIntakeVisible(entry.isIntersecting && entry.intersectionRatio > 0.12);
+      },
+      { root: null, threshold: [0, 0.12, 0.35, 0.6], rootMargin: '-48px 0px 0px 0px' },
+    );
+    observer.observe(intake);
+    return () => observer.disconnect();
   }, []);
 
+  const show = !dismissed && !intakeVisible;
+
   useEffect(() => {
-    const show = !dismissed && visible;
     document.body.classList.toggle('has-mobile-convert', show);
     return () => document.body.classList.remove('has-mobile-convert');
-  }, [dismissed, visible]);
+  }, [show]);
 
   const dismiss = () => {
     setDismissed(true);
-    setVisible(false);
     try {
       localStorage.setItem(STORAGE_KEY, '1');
     } catch {
@@ -43,7 +51,7 @@ export default function MobileConvertBar() {
     }
   };
 
-  if (dismissed || !visible) return null;
+  if (!show) return null;
 
   return (
     <div
@@ -54,16 +62,23 @@ export default function MobileConvertBar() {
       <div className="mx-auto flex max-w-lg items-center gap-2">
         <a
           href="#intake"
-          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-white px-4 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-white px-3 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200"
         >
           Request quote
         </a>
         <a
           href={withBase('rfq')}
-          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-full bg-zinc-800 px-4 text-xs font-bold uppercase tracking-widest text-zinc-200 transition-colors hover:bg-zinc-700"
+          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-full bg-zinc-800 px-3 text-xs font-bold uppercase tracking-widest text-zinc-200 transition-colors hover:bg-zinc-700"
         >
           Full RFQ
           <ArrowRight size={14} aria-hidden="true" />
+        </a>
+        <a
+          href="mailto:sales@milltrue.com"
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
+          aria-label="Email sales@milltrue.com"
+        >
+          <Mail size={18} aria-hidden="true" />
         </a>
         <button
           type="button"
@@ -77,4 +92,3 @@ export default function MobileConvertBar() {
     </div>
   );
 }
-

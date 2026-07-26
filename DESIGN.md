@@ -12,7 +12,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
   - Lockup: `/public/milltrue-logo.svg`
   - Favicon: `/public/favicon.svg`
 - **Images:** Local section media under `public/media/` (capabilities, industries, portfolio, team, Quality/CTA backgrounds); hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
-- **Contact:** sales@milltrue.com, +1 (555) 123-4567, 100 Precision Way, Austin TX (placeholder)
+- **Contact:** sales@milltrue.com (mailto + chat + RFQ; no phone until a real number exists)
 
 ## Visual language
 

@@ -2,6 +2,7 @@
 import PrototypeDisclaimer from '../components/PrototypeDisclaimer.astro';
 import Header from '../components/Header';
 import Footer from '../components/Footer.astro';
+import MillTrueChat from '../components/MillTrueChat';
 import { withBase } from '../lib/base';
 import '../styles/global.css';
 
@@ -44,15 +45,7 @@ const {
       legalName: 'MillTrue Manufacturing',
       description,
       email: 'sales@milltrue.com',
-      telephone: '+1-555-123-4567',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '100 Precision Way',
-        addressLocality: 'Austin',
-        addressRegion: 'TX',
-        postalCode: '78744',
-        addressCountry: 'US',
-      },
+      url: 'https://axiqom.github.io/milltrue/',
     })} />
   </head>
   <body class="flex min-h-screen flex-col overflow-x-hidden bg-zinc-950 text-zinc-400">
@@ -61,6 +54,7 @@ const {
       <slot />
     </main>
     <Footer />
+    <MillTrueChat client:load />
     <PrototypeDisclaimer />
   </body>
 </html>
