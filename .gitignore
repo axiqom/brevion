@@ -6,3 +6,6 @@ dist
 preview.db
 preview.db-wal
 preview.db-shm
+
+# local QA screenshots
+.hermes-qa/
