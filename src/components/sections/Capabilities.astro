@@ -38,8 +38,8 @@ const capabilities = [
 ---
 <section id="capabilities" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
-      <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
+    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
+      <h2 class="max-w-xl text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         Capabilities
       </h2>
       <a
@@ -50,37 +50,32 @@ const capabilities = [
       </a>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
       {capabilities.map((cap) => (
-        <article class="group flex flex-col overflow-hidden rounded-xl border border-aluminum/30 bg-porcelain shadow-[0_12px_40px_rgba(69,63,58,0.06)] transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(69,63,58,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:rounded-2xl">
-          <div class="relative aspect-[16/10] overflow-hidden bg-carbon">
-            <img
-              src={cap.img}
-              alt={cap.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.03]"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-carbon/70 via-transparent to-transparent" />
-            <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain/90 md:text-3xl">
+        <a
+          href={withBase('capabilities')}
+          class="group relative flex min-h-[280px] flex-col overflow-hidden rounded-xl bg-carbon outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[320px] md:rounded-2xl lg:min-h-[360px]"
+        >
+          <img
+            src={cap.img}
+            alt={cap.alt}
+            class="absolute inset-0 h-full w-full object-cover opacity-75 transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-90"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-carbon/95 via-carbon/40 to-carbon/10" />
+          <div class="relative z-10 mt-auto flex flex-col p-6 sm:p-8 md:p-10">
+            <span class="mb-4 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain/50 md:text-3xl">
               {cap.num}
             </span>
-          </div>
-          <div class="flex flex-1 flex-col p-5 sm:p-6">
-            <h3 class="mb-2 text-lg font-bold uppercase tracking-tight text-carbon md:text-xl">
+            <h3 class="mb-2 text-xl font-bold uppercase tracking-tight text-porcelain md:text-2xl">
               {cap.title}
             </h3>
-            <p class="mb-5 text-sm font-medium leading-relaxed text-carbon/60">
+            <p class="max-w-sm text-sm font-medium leading-relaxed text-porcelain/70 md:text-base">
               {cap.line}
             </p>
-            <a
-              href={withBase(`rfq?capability=${cap.slug}`)}
-              class="mt-auto inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-            >
-              Start RFQ →
-            </a>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>

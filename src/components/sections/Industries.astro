@@ -30,8 +30,8 @@ const industries = [
 ---
 <section id="industries" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
-      <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
+    <div class="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
+      <h2 class="max-w-xl text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         Industries We Serve
       </h2>
       <a
@@ -46,17 +46,17 @@ const industries = [
       {industries.map((ind) => (
         <a
           href={withBase('industries')}
-          class={`group relative aspect-[4/3] min-h-[220px] overflow-hidden rounded-xl bg-carbon outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[260px] md:aspect-auto md:min-h-[300px] md:rounded-2xl ${ind.span}`}
+          class={`group relative aspect-[4/3] min-h-[240px] overflow-hidden rounded-xl bg-carbon outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[280px] md:aspect-auto md:min-h-[340px] md:rounded-2xl ${ind.span}`}
         >
           <img
             src={ind.img}
             alt={ind.alt}
-            class="absolute inset-0 h-full w-full object-cover opacity-70 transition-[transform,opacity] duration-500 motion-reduce:transition-none group-hover:scale-[1.03] group-hover:opacity-85"
+            class="absolute inset-0 h-full w-full object-cover opacity-70 transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-88"
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-carbon/90 via-carbon/35 to-transparent p-6 sm:p-8">
-            <h3 class="text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl">
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-carbon/90 via-carbon/35 to-transparent p-6 sm:p-8 md:p-10">
+            <h3 class="text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl md:text-3xl">
               {ind.name}
             </h3>
           </div>

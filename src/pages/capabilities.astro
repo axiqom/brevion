@@ -9,7 +9,6 @@ const capabilities = [
     title: 'CNC Milling',
     slug: 'milling',
     line: 'High-precision machining for complex components.',
-    facts: ['3 / 4 / 5-axis', 'Complex geometries', 'Prototype → production'],
     img: withBase('media/cap-manufacturing.jpg'),
     alt: 'CNC machining center cutting a precision metal part',
   },
@@ -18,7 +17,6 @@ const capabilities = [
     title: 'CNC Turning',
     slug: 'turning',
     line: 'Production-ready turned components.',
-    facts: ['CNC lathes', 'Repeatable diameters', 'Production runs'],
     img: withBase('media/cap-finishing.jpg'),
     alt: 'Finished precision turned and machined parts',
   },
@@ -27,7 +25,6 @@ const capabilities = [
     title: 'Prototype Manufacturing',
     slug: 'prototype',
     line: 'CAD to first articles.',
-    facts: ['DFM before cut', 'CAD → CAM', 'Fast iteration'],
     img: withBase('media/cap-engineering.jpg'),
     alt: 'Engineer reviewing CAD model and toolpaths on a workstation',
   },
@@ -36,7 +33,6 @@ const capabilities = [
     title: 'Production Manufacturing',
     slug: 'production',
     line: 'Repeatable process control.',
-    facts: ['Stable setups', 'Batch consistency', 'Documented process'],
     img: withBase('media/cap-manufacturing.jpg'),
     alt: 'CNC production machining of precision metal components',
   },
@@ -45,7 +41,6 @@ const capabilities = [
     title: 'Assembly',
     slug: 'assembly',
     line: 'Machining and build in one handoff.',
-    facts: ['Hardware install', 'Sub-assemblies', 'One handoff'],
     img: withBase('media/cap-finishing.jpg'),
     alt: 'Assembled precision components ready for delivery',
   },
@@ -54,7 +49,6 @@ const capabilities = [
     title: 'Inspection',
     slug: 'inspection',
     line: 'Inspection throughout every stage of manufacturing.',
-    facts: ['CMM inspection', 'Dimensional reports', 'Traceability'],
     img: withBase('media/cap-quality.jpg'),
     alt: 'Coordinate measuring machine inspecting a machined component',
   },
@@ -65,9 +59,9 @@ const capabilities = [
   description="CNC milling, CNC turning, prototype and production manufacturing, assembly, and inspection."
   currentPage="capabilities"
 >
-  <section class="border-b border-aluminum/40 bg-porcelain py-20 md:py-28">
+  <section class="border-b border-aluminum/40 bg-porcelain py-24 md:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-aluminum">
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-aluminum">
         Capabilities
       </p>
       <h1 class="max-w-3xl text-4xl font-bold uppercase tracking-tight text-carbon md:text-5xl lg:text-6xl">
@@ -79,59 +73,67 @@ const capabilities = [
     </div>
   </section>
 
-  <section class="bg-aluminum/10 py-16 md:py-24">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {capabilities.map((cap) => (
-          <article class="group flex flex-col overflow-hidden rounded-xl border border-aluminum/30 bg-porcelain shadow-[0_12px_40px_rgba(69,63,58,0.06)] transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(69,63,58,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:rounded-2xl">
-            <div class="relative aspect-[16/10] overflow-hidden bg-carbon">
-              <img
-                src={cap.img}
-                alt={cap.alt}
-                class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.03]"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-carbon/75 via-transparent to-transparent" />
-              <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain/90 md:text-3xl">
-                {cap.num}
-              </span>
-            </div>
-            <div class="flex flex-1 flex-col p-5 sm:p-6 md:p-7">
-              <h2 class="mb-3 text-xl font-bold uppercase tracking-tight text-carbon md:text-2xl">
-                {cap.title}
-              </h2>
-              <p class="mb-5 text-sm font-medium leading-relaxed text-carbon/60 md:text-base">
-                {cap.line}
-              </p>
-              <ul class="mb-6 space-y-2.5">
-                {cap.facts.map((fact) => (
-                  <li class="flex items-start gap-2.5 text-sm font-medium text-carbon/70">
-                    <span class="mt-2 h-1 w-1 shrink-0 rounded-sm bg-gold" aria-hidden="true" />
-                    {fact}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={withBase(`rfq?capability=${cap.slug}`)}
-                class="mt-auto inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-              >
-                Start RFQ →
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+  <section class="bg-porcelain pb-8 md:pb-12">
+    <div class="mx-auto max-w-7xl space-y-5 px-4 sm:px-6 md:space-y-6 lg:px-8">
+      {capabilities.map((cap, idx) => (
+        <article
+          class={`group grid overflow-hidden rounded-xl bg-aluminum/10 md:rounded-2xl lg:grid-cols-2 ${
+            idx % 2 === 1 ? 'lg:[&>figure]:order-2' : ''
+          }`}
+        >
+          <figure class="relative aspect-[16/10] overflow-hidden bg-carbon lg:aspect-auto lg:min-h-[380px]">
+            <img
+              src={cap.img}
+              alt={cap.alt}
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-carbon/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-carbon/20" />
+            <span class="absolute left-5 top-5 font-display text-3xl font-bold tabular-nums tracking-tight text-porcelain/80 md:left-6 md:top-6 md:text-4xl">
+              {cap.num}
+            </span>
+          </figure>
+          <div class="flex flex-col justify-center px-6 py-10 sm:px-8 md:px-12 md:py-14">
+            <h2 class="mb-4 text-2xl font-bold uppercase tracking-tight text-carbon md:text-3xl lg:text-4xl">
+              {cap.title}
+            </h2>
+            <p class="mb-8 max-w-md text-base font-medium leading-relaxed text-carbon/65 md:text-lg">
+              {cap.line}
+            </p>
+            <a
+              href={withBase(`rfq?capability=${cap.slug}`)}
+              class="inline-flex min-h-11 w-fit items-center text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+            >
+              Start RFQ →
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section id="cta" class="border-t border-aluminum/40 bg-porcelain py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <section id="cta" class="relative overflow-hidden border-t border-aluminum/40 bg-carbon py-24 md:py-32">
+    <div class="absolute inset-0">
+      <img
+        src={withBase('media/bg-cta.jpg')}
+        alt=""
+        class="h-full w-full object-cover opacity-35"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/80 to-carbon/55" aria-hidden="true" />
+    </div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-        <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl">
+        <h2 class="text-3xl font-bold uppercase tracking-tight text-porcelain md:text-4xl lg:text-5xl">
           Ready to Start?
         </h2>
-        <a href={withBase('rfq')} class="btn-primary px-8 py-4">
+        <a
+          href={withBase('rfq')}
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold"
+        >
           Request a Quote
         </a>
       </div>

@@ -1,57 +1,50 @@
 ---
-import { ArrowRight } from 'lucide-react';
 import { withBase } from '../../lib/base';
 
 const projects = [
   {
-    title: 'Lightweight titanium bracket',
-    industry: 'Aircraft hardware',
+    title: 'Titanium bracket',
     material: 'Titanium',
-    detail: 'Structural fit',
-    challenge: 'Cut weight without losing strength where parts meet.',
-    solution: 'Machined away non-critical areas; held mating faces carefully.',
+    focus: 'Structural fit',
     img: withBase('media/port-01.jpg'),
     alt: 'Precision-machined titanium bracket on a dark surface',
   },
   {
     title: 'Sensor housing',
-    industry: 'Defense systems',
     material: 'Aluminum',
-    detail: 'Smooth interior',
-    challenge: 'Complex inside shape with a surface finish that keeps optics lined up.',
-    solution: 'Custom tooling and careful multi-step boring to the drawing.',
+    focus: 'Interior finish',
     img: withBase('media/port-02.jpg'),
     alt: 'Machined aluminum optical sensor housing with fine surface finish',
   },
 ];
 ---
-<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-24 md:py-28">
+<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-14 flex flex-col justify-between gap-5 md:mb-16 md:flex-row md:items-end">
+    <div class="mb-14 flex flex-col justify-between gap-5 md:mb-20 md:flex-row md:items-end">
       <div class="max-w-2xl">
         <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           Sample work
         </h2>
         <p class="text-base text-carbon/65 md:text-lg">
-          A few example jobs — what the part needed and how we approached it.
+          Representative jobs — material and focus.
         </p>
       </div>
       <a
-        href="#intake"
-        class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-carbon transition-colors duration-150 hover:text-gold"
+        href={withBase('work')}
+        class="inline-flex min-h-11 items-center text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
       >
-        Request quote <ArrowRight size={18} aria-hidden="true" />
+        View work →
       </a>
     </div>
 
     <div class="space-y-20 md:space-y-24">
       {projects.map((proj, idx) => (
         <div class={`flex flex-col items-stretch gap-10 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-          <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-xl border border-aluminum/30 bg-carbon shadow-[0_14px_40px_rgba(69,63,58,0.10)] md:rounded-2xl lg:w-1/2">
+          <figure class="group relative aspect-[5/4] w-full overflow-hidden rounded-xl bg-carbon md:rounded-2xl lg:w-1/2">
             <img
               src={proj.img}
               alt={proj.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-75 transition-transform duration-500 motion-reduce:transition-none hover:scale-[1.02]"
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
               loading="lazy"
               decoding="async"
             />
@@ -59,32 +52,17 @@ const projects = [
           </figure>
 
           <div class="flex w-full flex-col justify-center lg:w-1/2">
-            <p class="mb-3 text-sm font-medium text-aluminum">
-              {proj.industry}
-            </p>
-            <h3 class="mb-8 text-2xl font-bold uppercase leading-tight tracking-tight text-carbon md:mb-10 md:text-3xl lg:text-4xl">
+            <h3 class="mb-10 text-2xl font-bold uppercase leading-tight tracking-tight text-carbon md:text-3xl lg:text-4xl">
               {proj.title}
             </h3>
-
-            <div class="mb-8 flex gap-10 border-b border-aluminum/35 pb-8">
+            <div class="flex gap-12 border-t border-aluminum/40 pt-8">
               <div>
-                <span class="mb-1.5 block text-sm font-medium text-aluminum">Material</span>
-                <span class="text-base font-semibold text-carbon md:text-lg">{proj.material}</span>
+                <span class="mb-2 block text-[11px] font-semibold uppercase tracking-widest text-aluminum">Material</span>
+                <span class="text-lg font-semibold text-carbon md:text-xl">{proj.material}</span>
               </div>
               <div>
-                <span class="mb-1.5 block text-sm font-medium text-aluminum">Focus</span>
-                <span class="text-base font-semibold text-carbon md:text-lg">{proj.detail}</span>
-              </div>
-            </div>
-
-            <div class="space-y-6">
-              <div>
-                <h4 class="mb-2 text-sm font-semibold text-carbon">Challenge</h4>
-                <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.challenge}</p>
-              </div>
-              <div>
-                <h4 class="mb-2 text-sm font-semibold text-carbon">Approach</h4>
-                <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.solution}</p>
+                <span class="mb-2 block text-[11px] font-semibold uppercase tracking-widest text-aluminum">Focus</span>
+                <span class="text-lg font-semibold text-carbon md:text-xl">{proj.focus}</span>
               </div>
             </div>
           </div>

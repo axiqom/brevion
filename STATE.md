@@ -1,20 +1,13 @@
-focus: Multi-page premium rebuild live (sticky + Pages)
+focus: Multi-page porcelain rebuild live — Mendel visual confirm
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel visual confirm on multi-page photographic site
+next: Mendel confirm multi-page photo IA (no hero logo)
 
 ## Current focus
-Mendel multi-page IA + photographic polish (no hero logo)
+Multi-page porcelain Brand Guidelines rebuild (/, /capabilities, /industries, /work, /rfq)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
-## Pages
-- `/` Home
-- `/capabilities`
-- `/industries`
-- `/work`
-- `/rfq`
-
 ## Next step
-Await Mendel confirm on live multi-page look
+Mendel visual confirm on multi-page photography + nav
