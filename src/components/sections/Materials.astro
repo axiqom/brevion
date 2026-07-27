@@ -10,28 +10,31 @@ const materials = [
   'Engineering Plastics',
 ];
 ---
-<section id="materials" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
+<section id="materials" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-28 md:py-40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-end gap-12 lg:grid-cols-12 lg:gap-20">
+    <div class="grid items-end gap-14 lg:grid-cols-12 lg:gap-24">
       <div class="lg:col-span-5">
         <div class="group relative aspect-[4/5] overflow-hidden rounded-xl bg-carbon md:rounded-2xl lg:aspect-[3/4]">
           <img
             src={withBase('media/bg-quality.jpg')}
-            alt="Precision machined metal surfaces and inspection detail"
-            class="absolute inset-0 h-full w-full object-cover opacity-85 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
+            alt="End mill positioned over a machined aluminum workpiece"
+            class="absolute inset-0 h-full w-full object-cover object-[center_30%] opacity-90 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-carbon/55 to-transparent" aria-hidden="true" />
+          <div class="absolute inset-0 bg-gradient-to-t from-carbon/50 to-transparent" aria-hidden="true" />
         </div>
       </div>
       <div class="lg:col-span-7">
-        <h2 class="mb-12 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-16 md:text-4xl lg:text-5xl">
+        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
           Materials
+        </p>
+        <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-16 md:text-4xl lg:text-5xl">
+          Metals and plastics
         </h2>
         <ul class="grid grid-cols-1 gap-x-14 gap-y-0 sm:grid-cols-2">
           {materials.map((name) => (
-            <li class="border-t border-aluminum/40 py-6 text-base font-medium text-carbon md:text-lg lg:text-xl">
+            <li class="border-t border-aluminum/40 py-7 text-base font-medium text-carbon md:text-lg lg:text-xl">
               {name}
             </li>
           ))}

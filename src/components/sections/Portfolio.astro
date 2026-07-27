@@ -3,29 +3,32 @@ import { withBase } from '../../lib/base';
 
 const projects = [
   {
-    title: 'Titanium bracket',
+    title: 'Titanium airfoil',
     material: 'Titanium',
-    focus: 'Structural fit',
+    focus: 'Contour',
     img: withBase('media/port-01.jpg'),
-    alt: 'Precision-machined titanium bracket on a dark surface',
+    alt: 'Transonic turbine blade cascade in a precision test rig',
   },
   {
-    title: 'Sensor housing',
+    title: 'Aluminum housing',
     material: 'Aluminum',
-    focus: 'Interior finish',
+    focus: 'Bore finish',
     img: withBase('media/port-02.jpg'),
-    alt: 'Machined aluminum optical sensor housing with fine surface finish',
+    alt: 'Machined aluminum alloy housings with finished flange faces and threaded bores',
   },
 ];
 ---
-<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
+<section id="projects" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-28 md:py-40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-14 flex flex-col justify-between gap-5 md:mb-20 md:flex-row md:items-end">
+    <div class="mb-16 flex flex-col justify-between gap-6 md:mb-24 md:flex-row md:items-end">
       <div class="max-w-2xl">
+        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
+          Work
+        </p>
         <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           Sample work
         </h2>
-        <p class="text-base text-carbon/65 md:text-lg">
+        <p class="text-base text-carbon/60 md:text-lg">
           Representative jobs — material and focus.
         </p>
       </div>
@@ -37,18 +40,18 @@ const projects = [
       </a>
     </div>
 
-    <div class="space-y-20 md:space-y-24">
+    <div class="space-y-20 md:space-y-28">
       {projects.map((proj, idx) => (
-        <div class={`flex flex-col items-stretch gap-10 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+        <div class={`flex flex-col items-stretch gap-10 lg:gap-16 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
           <figure class="group relative aspect-[5/4] w-full overflow-hidden rounded-xl bg-carbon md:rounded-2xl lg:w-1/2">
             <img
               src={proj.img}
               alt={proj.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
+              class="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03]"
               loading="lazy"
               decoding="async"
             />
-            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon/40 to-transparent" aria-hidden="true" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon/35 to-transparent" aria-hidden="true" />
           </figure>
 
           <div class="flex w-full flex-col justify-center lg:w-1/2">

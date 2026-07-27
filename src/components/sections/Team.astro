@@ -1,43 +1,16 @@
 ---
-import { withBase } from '../../lib/base';
-
-const portraits = [
-  {
-    src: withBase('media/team-01.jpg'),
-    alt: 'Brevion engineer at a CAD workstation',
-  },
-  {
-    src: withBase('media/team-02.jpg'),
-    alt: 'Machinist inspecting a precision part on the shop floor',
-  },
-  {
-    src: withBase('media/team-03.jpg'),
-    alt: 'Quality technician reviewing inspection results',
-  },
-];
+/**
+ * Team strip — photography removed (no matching portraits).
+ * Typography-only porcelain band; unused on home but kept for future.
+ */
 ---
-<section id="about" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-10 md:py-12">
-  <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-    <div class="max-w-2xl">
-      <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-carbon md:text-2xl">
-        Meet the shop
-      </h2>
-      <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">
-        Engineers and machinists under one roof — transparent process from print review to first article.
-      </p>
-    </div>
-    <div class="flex gap-2.5">
-      {portraits.map((person) => (
-        <div class="relative h-14 w-14 overflow-hidden rounded-lg border border-aluminum/40 bg-porcelain shadow-[0_8px_24px_rgba(69,63,58,0.08)] sm:h-16 sm:w-16 sm:rounded-xl">
-          <img
-            src={person.src}
-            alt={person.alt}
-            class="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      ))}
-    </div>
+<section id="team" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-20 md:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
+      Team
+    </p>
+    <h2 class="max-w-xl text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl">
+      Engineers and machinists
+    </h2>
   </div>
 </section>

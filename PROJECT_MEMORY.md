@@ -16,8 +16,13 @@ Learned preferences and patterns for this prototype (agent-maintained).
 
 ## User feedback themes
 
-(none yet)
+- Multi-page photographic IA (no hero logo); Hexagon restraint copy
+- Image↔copy must match — no duplicate assets for different claims; prefer typography-only over wrong photo (Automotive / Consumer)
+- Polish bar: Anduril / Linear / Apple Hardware / Porsche / Leica / Braun (calm confidence)
+- Photography: CNC / toolpaths / machined aluminum / inspection / robots / aerospace — NO sparks/grunge/dirty factory/posed workers
 
 ## Style notes
 
 - Porcelain light chrome; Sora only; lucide for UI icons only; no emoji; gold as accent only
+- Media map: `public/media/MANIFEST.md` — unique file per claim
+- Pages deploy: classic `gh-pages` branch only (no GitHub Actions); `GITHUB_PAGES=1 npm run build` then force-push `dist/`
