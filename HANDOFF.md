@@ -4,7 +4,7 @@
 
 Prototype preview of a precision CNC manufacturing marketing site for **Brevion**. Project slug remains `aeris-cnc` (do not rename folder/repo) so the sticky preview tunnel on port **4007** stays intact.
 
-Brand name is locked to Brevion. Logo SVGs, photography, and some contact details remain easy to swap.
+Brand name is locked to Brevion. Visual system: Brand Guidelines v1.0 (`BRAND_GUIDELINES.md`) — porcelain light chrome, Sora throughout, Carbon/Gold buttons. Official logo pack is in `public/brand/` (do not redraw). Photography and some contact details remain easy to swap.
 
 ## Domain note
 
@@ -126,15 +126,22 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 - Real contact details (phone when available) and certifications copy review
 - Real (approved) customer marks only if/when cleared — never invent logos
 
-## Logo assets (designer swap paths)
+## Logo assets (official Mendel pack)
 
-| Asset | Path | Notes |
-|-------|------|-------|
-| Mark only | `public/brevion-mark.svg` | Dark (#09090b) strokes; used in white rounded containers (Header, Hero, Footer) |
-| Full lockup | `public/brevion-logo.svg` | White mark + BREVION wordmark for dark backgrounds |
-| Favicon | `public/favicon.svg` | Mark on zinc-950 tile |
+Source: WhatsApp drop in `public/brand/raw/5.png`–`24.png` — do not redraw or AI-regenerate.
 
-Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link rel="icon">`).
+| Asset | Path | Source | Notes |
+|-------|------|--------|-------|
+| Mark (dark UI) | `public/brand/mark-light.png` | raw/11 | Cream icon; Header/Hero/Footer/RFQ (no white tile) |
+| Mark (light UI) | `public/brand/mark-dark.png` | raw/7 | Dark-framed mark |
+| Wordmark (dark UI) | `public/brand/wordmark-light.png` | raw/13 | Optional cream wordmark |
+| Favicon | `public/brand/favicon.png` | raw/7 | Square crop (+ root `favicon-32.png`) |
+| Apple touch | `public/brand/apple-touch-icon.png` | raw/7 | 180×180 |
+| Pack map | `public/brand/MANIFEST.md` | raw/5–24 | Variants / copper extras |
+
+Deprecated placeholders: `public/brevion-mark.svg`, `brevion-logo.svg`, `favicon.svg` (old geometric crosshair).
+
+Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `RfqWizard.tsx`, `BaseLayout.astro`.
 
 ## Placeholder assets still remaining
 
@@ -157,14 +164,14 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `BaseLayout.astro` (`<link
 - Trust strip (LogoCloud) uses claim language only — no fake customer logos
 - Mid-page soft CTA bands after Capabilities and Portfolio; footer CTA primary = Request quote → `#intake`
 - Framer Motion replaced with CSS `animate-fade-up` / `animate-fade-in` + FAQ grid expand; `prefers-reduced-motion` respected
-- Brand mark is custom geometric SVG (not lucide Cuboid)
+- Brand mark is official Mendel PNG pack in `public/brand/` (not lucide; do not redraw)
 
 ## Stack
 
 - Astro 5 + Tailwind 3 + `@astrojs/react`
 - React islands (`client:load`) for hero contact intake, RFQ wizard, FAQ, mobile nav, BrevionChat
 - lucide-react icons (UI only)
-- Fonts: Manrope + Rajdhani (Google Fonts)
+- Fonts: Sora (display/headings) + Manrope (body) via Google Fonts
 
 ## Routes
 

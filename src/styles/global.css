@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply overflow-x-hidden font-sans text-zinc-400 bg-zinc-950 antialiased selection:bg-white selection:text-zinc-950;
+    @apply overflow-x-hidden font-sans text-carbon/75 bg-porcelain antialiased selection:bg-gold/30 selection:text-carbon;
   }
 
   /* Reserve space so fixed mobile convert bar does not cover CTAs / footer */
@@ -25,11 +25,25 @@
   h4,
   h5,
   h6 {
-    @apply font-display tracking-tight text-white;
+    @apply font-display tracking-tight text-carbon;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-zinc-950;
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-porcelain;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-carbon px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon motion-reduce:transition-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-carbon bg-porcelain px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:border-gold hover:text-gold motion-reduce:transition-none;
+  }
+
+  .link-brand {
+    @apply text-carbon transition-colors duration-150 hover:text-gold motion-reduce:transition-none;
   }
 }
 

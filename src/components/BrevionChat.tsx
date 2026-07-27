@@ -339,7 +339,7 @@ export default function BrevionChat() {
         ref={launcherRef}
         type="button"
         onClick={openPanel}
-        className={`pointer-events-auto fixed right-4 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-full bg-zinc-900/90 px-4 text-white shadow-[0_16px_48px_rgba(0,0,0,0.55)] backdrop-blur-2xl transition-[transform,opacity,bottom] duration-200 hover:bg-zinc-800 motion-reduce:transition-none md:right-6 ${bottomClass}`}
+        className={`pointer-events-auto fixed right-4 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-xl bg-carbon px-4 text-porcelain shadow-[0_16px_48px_rgba(69,63,58,0.28)] transition-[transform,opacity,bottom] duration-200 hover:bg-gold hover:text-carbon motion-reduce:transition-none md:right-6 ${bottomClass}`}
         aria-expanded={false}
         aria-controls={panelId}
         aria-label="Open chat"
@@ -359,29 +359,29 @@ export default function BrevionChat() {
       aria-modal="true"
       aria-label="Brevion chat"
       data-brevion-chat-panel="true"
-      className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl bg-zinc-950/95 shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl sm:right-6 sm:w-[24rem] ${bottomClass}`}
+      className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl border border-aluminum/40 bg-porcelain shadow-[0_28px_90px_rgba(69,63,58,0.22)] sm:right-6 sm:w-[24rem] ${bottomClass}`}
       style={{ height: 'min(34rem, calc(100dvh - 5.5rem))' }}
     >
       <header className="flex shrink-0 items-center gap-3 px-3.5 pb-2.5 pt-3.5 sm:px-4">
         <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-[10px] font-bold uppercase tracking-wider text-zinc-200"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-carbon text-[10px] font-bold uppercase tracking-wider text-porcelain"
           aria-hidden="true"
         >
-          MT
+          BR
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-display text-sm font-bold text-white">Brevion</p>
+          <p className="truncate font-display text-sm font-bold text-carbon">Brevion</p>
         </div>
         <a
           href="mailto:sales@brevion.com"
-          className="sr-only focus:not-sr-only focus:absolute focus:right-14 focus:top-3 focus:rounded-md focus:bg-zinc-800 focus:px-2 focus:py-1 focus:text-xs focus:text-zinc-200"
+          className="sr-only focus:not-sr-only focus:absolute focus:right-14 focus:top-3 focus:rounded-md focus:bg-aluminum/30 focus:px-2 focus:py-1 focus:text-xs focus:text-carbon"
         >
           Email sales
         </a>
         <button
           type="button"
           onClick={close}
-          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full text-zinc-400 transition-colors hover:bg-zinc-800/80 hover:text-white"
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-carbon/50 transition-colors hover:bg-aluminum/20 hover:text-carbon"
           aria-label="Close chat"
         >
           <X size={18} aria-hidden="true" />
@@ -406,8 +406,8 @@ export default function BrevionChat() {
             <div
               className={`max-w-[88%] px-3.5 py-2.5 text-sm leading-relaxed ${
                 m.role === 'user'
-                  ? 'rounded-2xl rounded-br-md bg-white text-zinc-950'
-                  : 'rounded-2xl rounded-bl-md bg-zinc-800/90 text-zinc-200'
+                  ? 'rounded-2xl rounded-br-md bg-carbon text-porcelain'
+                  : 'rounded-2xl rounded-bl-md border border-aluminum/40 bg-porcelain text-carbon'
               }`}
             >
               {m.text}
@@ -418,14 +418,14 @@ export default function BrevionChat() {
                 <a
                   href={intakeHref}
                   onClick={close}
-                  className="inline-flex min-h-10 items-center gap-1 rounded-full bg-white px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-950 hover:bg-zinc-200"
+                  className="inline-flex min-h-10 items-center gap-1 rounded-lg bg-carbon px-3 text-[10px] font-bold uppercase tracking-wider text-porcelain hover:bg-gold hover:text-carbon"
                 >
                   Start quote <ArrowRight size={12} aria-hidden="true" />
                 </a>
                 <a
                   href={rfqHref}
                   onClick={close}
-                  className="inline-flex min-h-10 items-center rounded-full bg-zinc-800 px-3 text-[10px] font-bold uppercase tracking-wider text-zinc-200 hover:bg-zinc-700"
+                  className="inline-flex min-h-10 items-center rounded-lg border border-carbon bg-porcelain px-3 text-[10px] font-bold uppercase tracking-wider text-carbon hover:border-gold hover:text-gold"
                 >
                   Full RFQ
                 </a>
@@ -445,7 +445,7 @@ export default function BrevionChat() {
                     key={s.label}
                     type="button"
                     onClick={() => s.send && sendText(s.send, true)}
-                    className="inline-flex min-h-10 shrink-0 items-center rounded-full bg-zinc-900/80 px-3 text-xs font-medium text-zinc-300 ring-1 ring-zinc-700/80 transition-colors hover:bg-zinc-800 hover:text-white"
+                    className="inline-flex min-h-10 shrink-0 items-center rounded-lg border border-aluminum/50 bg-porcelain px-3 text-xs font-medium text-carbon/70 transition-colors hover:border-carbon hover:text-carbon"
                   >
                     {s.label}
                   </button>
@@ -458,12 +458,12 @@ export default function BrevionChat() {
         {typing ? (
           <div className="flex justify-start" aria-label="Typing">
             <div
-              className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-zinc-800/90 px-4 py-3"
+              className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-aluminum/40 bg-porcelain px-4 py-3"
               data-brevion-chat-typing="true"
             >
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400" />
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:120ms]" />
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:240ms]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-sm bg-aluminum" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-sm bg-aluminum [animation-delay:120ms]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-sm bg-aluminum [animation-delay:240ms]" />
             </div>
           </div>
         ) : null}
@@ -478,13 +478,13 @@ export default function BrevionChat() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onComposerKey}
             placeholder="Just type what you need…"
-            className="min-h-11 flex-1 rounded-full bg-zinc-800/70 px-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/15"
+            className="min-h-11 flex-1 rounded-lg border border-aluminum/50 bg-porcelain px-4 text-sm text-carbon placeholder:text-aluminum focus:outline-none focus:ring-2 focus:ring-gold"
             aria-label="Message"
           />
           <button
             type="button"
             onClick={() => sendText(input)}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white text-zinc-950 transition-colors hover:bg-zinc-200"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-carbon text-porcelain transition-colors hover:bg-gold hover:text-carbon"
             aria-label="Send"
           >
             <Send size={16} aria-hidden="true" />

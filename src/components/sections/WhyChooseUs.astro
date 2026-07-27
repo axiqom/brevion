@@ -34,27 +34,27 @@ const rows = [
   },
 ];
 ---
-<section id="proof" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
+<section id="proof" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
         Proof
       </p>
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         Brevion vs a typical shop
       </h2>
-      <p class="text-base font-medium text-zinc-400 md:text-lg">
+      <p class="text-base font-medium text-carbon/65 md:text-lg">
         How the work gets done — not a wall of slogans.
       </p>
     </div>
 
     <div class="mb-12 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mb-16">
       {stats.map((stat) => (
-        <div class="flex min-h-[5rem] flex-col justify-center rounded-2xl bg-zinc-900/45 px-4 py-5 text-center shadow-[0_14px_40px_rgba(0,0,0,0.28)] md:rounded-3xl md:px-3 md:py-6">
-          <p class="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-[1.45rem] lg:text-2xl">
+        <div class="flex min-h-[5rem] flex-col justify-center rounded-xl border border-aluminum/35 bg-porcelain px-4 py-5 text-center shadow-[0_10px_28px_rgba(69,63,58,0.06)] md:rounded-2xl md:px-3 md:py-6">
+          <p class="font-display text-xl font-bold tracking-tight text-carbon sm:text-2xl md:text-[1.45rem] lg:text-2xl">
             {stat.value}
           </p>
-          <p class="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">
+          <p class="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-aluminum sm:text-xs">
             {stat.label}
           </p>
         </div>
@@ -64,18 +64,18 @@ const rows = [
     {/* Mobile: stacked cards */}
     <div class="space-y-3 md:hidden">
       {rows.map((row) => (
-        <article class="overflow-hidden rounded-2xl bg-zinc-900/40 shadow-[0_14px_40px_rgba(0,0,0,0.25)]">
-          <p class="bg-zinc-900/60 px-4 py-3 text-xs font-bold uppercase tracking-widest text-zinc-500">
+        <article class="overflow-hidden rounded-xl border border-aluminum/35 bg-porcelain shadow-[0_10px_28px_rgba(69,63,58,0.06)]">
+          <p class="border-b border-aluminum/30 bg-aluminum/10 px-4 py-3 text-xs font-bold uppercase tracking-widest text-aluminum">
             {row.facet}
           </p>
-          <div class="grid grid-cols-1 divide-y divide-zinc-800/60">
+          <div class="grid grid-cols-1 divide-y divide-aluminum/30">
             <div class="px-4 py-4">
-              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-white">Brevion</p>
-              <p class="text-sm leading-relaxed text-zinc-300">{row.brevion}</p>
+              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-carbon">Brevion</p>
+              <p class="text-sm leading-relaxed text-carbon/70">{row.brevion}</p>
             </div>
             <div class="px-4 py-4">
-              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">Typical shop</p>
-              <p class="text-sm leading-relaxed text-zinc-500">{row.typical}</p>
+              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-aluminum">Typical shop</p>
+              <p class="text-sm leading-relaxed text-aluminum">{row.typical}</p>
             </div>
           </div>
         </article>
@@ -83,27 +83,27 @@ const rows = [
     </div>
 
     {/* Desktop: comparison table */}
-    <div class="hidden overflow-hidden rounded-3xl bg-zinc-900/35 shadow-[0_20px_60px_rgba(0,0,0,0.3)] md:block">
-      <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] bg-zinc-900/55">
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 lg:px-6">
+    <div class="hidden overflow-hidden rounded-2xl border border-aluminum/35 bg-porcelain shadow-[0_12px_36px_rgba(69,63,58,0.07)] md:block">
+      <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-b border-aluminum/35 bg-aluminum/10">
+        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-aluminum lg:px-6">
           Facet
         </div>
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-white lg:px-6">
+        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-carbon lg:px-6">
           Brevion
         </div>
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 lg:px-6">
+        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-aluminum lg:px-6">
           Typical shop
         </div>
       </div>
       {rows.map((row) => (
-        <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-t border-zinc-800/50">
-          <div class="flex items-center px-5 py-5 text-sm font-bold uppercase tracking-tight text-zinc-300 lg:px-6 lg:text-base">
+        <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-t border-aluminum/30">
+          <div class="flex items-center px-5 py-5 text-sm font-bold uppercase tracking-tight text-carbon/80 lg:px-6 lg:text-base">
             {row.facet}
           </div>
-          <div class="bg-zinc-900/25 px-5 py-5 text-sm leading-relaxed text-zinc-200 lg:px-6 lg:text-[15px]">
+          <div class="bg-gold/10 px-5 py-5 text-sm leading-relaxed text-carbon lg:px-6 lg:text-[15px]">
             {row.brevion}
           </div>
-          <div class="px-5 py-5 text-sm leading-relaxed text-zinc-500 lg:px-6 lg:text-[15px]">
+          <div class="px-5 py-5 text-sm leading-relaxed text-aluminum lg:px-6 lg:text-[15px]">
             {row.typical}
           </div>
         </div>

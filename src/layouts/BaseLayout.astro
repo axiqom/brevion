@@ -31,11 +31,13 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <title>{title}</title>
-    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('brand/favicon.png')} type="image/png" sizes="192x192" />
+    <link rel="icon" href={withBase('favicon-32.png')} type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href={withBase('brand/apple-touch-icon.png')} sizes="180x180" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -48,7 +50,7 @@ const {
       url: 'https://axiqom.github.io/milltrue/',
     })} />
   </head>
-  <body class="flex min-h-screen flex-col overflow-x-hidden bg-zinc-950 text-zinc-400">
+  <body class="flex min-h-screen flex-col overflow-x-hidden bg-porcelain text-carbon/75">
     <Header client:load currentPage={currentPage} />
     <main class="flex-grow">
       <slot />

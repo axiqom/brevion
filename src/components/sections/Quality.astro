@@ -13,34 +13,34 @@ const points = [
 
 const bgUrl = withBase('media/bg-quality.jpg');
 ---
-<section id="quality" class="scroll-mt-28 relative overflow-hidden border-t border-zinc-900/60 bg-zinc-950 py-20 text-white md:py-24">
+<section id="quality" class="scroll-mt-28 relative overflow-hidden border-t border-aluminum/40 bg-porcelain py-20 text-carbon md:py-24">
   <div
-    class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity"
+    class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.06]"
     style={`background-image:url(${bgUrl})`}
     aria-hidden="true"
   />
 
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 max-w-2xl md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
         Quality
       </p>
       <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight md:text-4xl lg:text-5xl">
         Verified. Documented. Repeatable.
       </h2>
-      <p class="text-base font-medium text-zinc-400 md:text-lg">
+      <p class="text-base font-medium text-carbon/65 md:text-lg">
         AS9100-minded controls from material receipt through packaging — down to ±0.0001" where needed.
       </p>
     </div>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
       {points.map((pt) => (
-        <div class="rounded-2xl bg-zinc-900/45 p-6 shadow-[0_16px_48px_rgba(0,0,0,0.28)] backdrop-blur-sm transition-colors duration-300 hover:bg-zinc-900/70 motion-reduce:transition-none md:rounded-3xl md:p-7">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-800/90 text-white">
+        <div class="rounded-xl border border-aluminum/35 bg-porcelain p-6 shadow-[0_12px_32px_rgba(69,63,58,0.06)] transition-colors duration-200 hover:border-aluminum/55 motion-reduce:transition-none md:rounded-2xl md:p-7">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-carbon text-porcelain">
             <pt.icon size={22} strokeWidth={1.5} aria-hidden="true" />
           </div>
           <h3 class="mb-2 text-lg font-bold uppercase tracking-tight md:text-xl">{pt.title}</h3>
-          <p class="text-sm leading-relaxed text-zinc-400 md:text-[15px]">{pt.desc}</p>
+          <p class="text-sm leading-relaxed text-carbon/65 md:text-[15px]">{pt.desc}</p>
         </div>
       ))}
     </div>

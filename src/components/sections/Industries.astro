@@ -46,16 +46,16 @@ const industries = [
   },
 ];
 ---
-<section id="industries" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-900/30 py-20 md:py-24">
+<section id="industries" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 max-w-2xl md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
         Industries
       </p>
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         Where the prints come from
       </h2>
-      <p class="text-base text-zinc-400 md:text-lg">
+      <p class="text-base text-carbon/65 md:text-lg">
         Aerospace, defense, space, medical, and automation — mission-critical hardware.
       </p>
     </div>
@@ -64,20 +64,20 @@ const industries = [
       {industries.map((ind) => (
         <a
           href="#intake"
-          class={`group relative aspect-[4/3] min-h-[240px] overflow-hidden rounded-2xl bg-zinc-950 shadow-[0_24px_70px_rgba(0,0,0,0.4)] outline-none transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_80px_rgba(0,0,0,0.55)] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[280px] md:aspect-auto md:min-h-[320px] md:rounded-3xl ${ind.span}`}
+          class={`group relative aspect-[4/3] min-h-[240px] overflow-hidden rounded-xl bg-carbon shadow-[0_14px_40px_rgba(69,63,58,0.12)] outline-none transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_rgba(69,63,58,0.16)] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[280px] md:aspect-auto md:min-h-[320px] md:rounded-2xl ${ind.span}`}
         >
           <img
             src={ind.img}
             alt={ind.alt}
-            class="absolute inset-0 h-full w-full object-cover opacity-45 mix-blend-luminosity transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-60"
+            class="absolute inset-0 h-full w-full object-cover opacity-55 transition-[transform,opacity] duration-500 motion-reduce:transition-none group-hover:scale-[1.03] group-hover:opacity-70"
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950 via-zinc-950/55 to-transparent p-6 sm:p-8 md:p-10">
-            <h3 class="mb-1.5 text-xl font-bold uppercase tracking-tight text-white sm:text-2xl md:mb-2 md:text-3xl">
+          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-carbon via-carbon/55 to-transparent p-6 sm:p-8 md:p-10">
+            <h3 class="mb-1.5 text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl md:mb-2 md:text-3xl">
               {ind.name}
             </h3>
-            <p class="max-w-sm text-sm font-medium text-zinc-400 md:text-base">{ind.desc}</p>
+            <p class="max-w-sm text-sm font-medium text-porcelain/75 md:text-base">{ind.desc}</p>
           </div>
         </a>
       ))}

@@ -44,61 +44,61 @@ const capabilities = [
   },
 ];
 ---
-<section id="capabilities" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
+<section id="capabilities" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 max-w-2xl md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
         Capabilities
       </p>
-      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         Four desks. Concrete numbers.
       </h2>
-      <p class="text-base text-zinc-400 md:text-lg">
+      <p class="text-base text-carbon/65 md:text-lg">
         Engineering, multi-axis machining, inspection, and finishing — pick the lane that matches your print.
       </p>
     </div>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
       {capabilities.map((group) => (
-        <article class="group flex flex-col overflow-hidden rounded-2xl bg-zinc-900/40 shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition-[transform,background-color] duration-300 hover:bg-zinc-900/70 focus-within:ring-2 focus-within:ring-white/20 motion-reduce:transition-none md:rounded-3xl">
-          <div class="relative aspect-[16/10] overflow-hidden bg-zinc-950">
+        <article class="group flex flex-col overflow-hidden rounded-xl border border-aluminum/35 bg-porcelain shadow-[0_12px_36px_rgba(69,63,58,0.07)] transition-[transform,border-color] duration-200 hover:border-aluminum/55 focus-within:ring-2 focus-within:ring-gold/30 motion-reduce:transition-none md:rounded-2xl">
+          <div class="relative aspect-[16/10] overflow-hidden bg-carbon">
             <img
               src={group.img}
               alt={group.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-50 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-65"
+              class="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.03] group-hover:opacity-70"
               loading="lazy"
               decoding="async"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent" />
-            <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-white/90 md:text-3xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-carbon/20 to-transparent" />
+            <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain md:text-3xl">
               {group.num}
             </span>
           </div>
           <div class="flex flex-1 flex-col p-5 sm:p-6 md:p-7">
-            <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
+            <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-carbon md:text-2xl">
               {group.title}
             </h3>
             <div class="mb-4 flex flex-wrap gap-2">
               {group.metrics.map((m) => (
-                <span class="inline-flex min-h-9 items-center rounded-full bg-zinc-800/80 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-zinc-200">
+                <span class="inline-flex min-h-9 items-center rounded-md border border-aluminum/40 bg-porcelain px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-carbon">
                   {m}
                 </span>
               ))}
             </div>
             <ul class="mb-4 space-y-2.5">
               {group.items.map((item) => (
-                <li class="flex items-start gap-2.5 text-sm font-medium text-zinc-400">
-                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-zinc-500" aria-hidden="true" />
+                <li class="flex items-start gap-2.5 text-sm font-medium text-carbon/65">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-sm bg-gold" aria-hidden="true" />
                   {item}
                 </li>
               ))}
             </ul>
-            <p class="mb-4 text-xs font-medium leading-relaxed text-zinc-500">
+            <p class="mb-4 text-xs font-medium leading-relaxed text-aluminum">
               {group.select}
             </p>
             <a
               href={withBase(`rfq?capability=${group.slug}`)}
-              class="mt-auto inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-widest text-zinc-300 transition-colors hover:text-white"
+              class="mt-auto inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
             >
               Start RFQ →
             </a>

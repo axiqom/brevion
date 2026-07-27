@@ -1,64 +1,67 @@
 ---
 import { withBase } from '../lib/base';
 ---
-<footer class="border-t border-zinc-900/60 bg-zinc-950 py-12 pb-28 text-zinc-500 sm:py-14 md:pb-14">
+<footer class="border-t border-aluminum/50 bg-porcelain py-12 pb-28 text-aluminum sm:py-14 md:pb-14">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-12">
       <div class="col-span-1 md:col-span-2">
         <a href={withBase()} class="mb-5 flex w-fit items-center gap-3 rounded-lg" aria-label="Brevion home">
-          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white">
-            <img
-              src={withBase('brevion-mark.svg')}
-              alt=""
-              width={22}
-              height={22}
-              class="h-[22px] w-[22px]"
-              aria-hidden="true"
-            />
-          </div>
-          <span class="font-display text-xl font-bold uppercase tracking-widest text-white sm:text-2xl">
-            Brevion
+          <img
+            src={withBase('brand/mark-dark.png')}
+            alt=""
+            width={40}
+            height={36}
+            class="h-10 w-auto shrink-0"
+            aria-hidden="true"
+          />
+          <span class="flex flex-col leading-none">
+            <span class="font-display text-xl font-bold uppercase tracking-widest text-carbon sm:text-2xl">
+              Brevion
+            </span>
+            <span class="mt-0.5 text-[9px] font-medium uppercase tracking-[0.3em] text-aluminum">
+              Systems
+            </span>
           </span>
         </a>
-        <p class="max-w-sm text-sm font-medium leading-relaxed text-zinc-500">
+        <p class="max-w-sm text-sm font-medium leading-relaxed text-carbon/60">
           Precision CNC for aerospace, defense, and robotics — from first article to production scale.
         </p>
       </div>
       <div>
-        <h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-white">Company</h4>
-        <ul class="space-y-1 text-sm font-medium">
-          <li><a href={withBase('#capabilities')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Capabilities</a></li>
-          <li><a href={withBase('#projects')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Projects</a></li>
-          <li><a href={withBase('#proof')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Proof</a></li>
-          <li><a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Contact</a></li>
+        <h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-carbon">Company</h4>
+        <ul class="space-y-1 text-sm font-medium text-carbon/70">
+          <li><a href={withBase('#capabilities')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">Capabilities</a></li>
+          <li><a href={withBase('#projects')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">Projects</a></li>
+          <li><a href={withBase('#proof')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">Proof</a></li>
+          <li><a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-white">Contact</h4>
-        <ul class="space-y-1 text-sm font-medium">
+        <h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-carbon">Contact</h4>
+        <ul class="space-y-1 text-sm font-medium text-carbon/70">
           <li>
-            <a href="mailto:sales@brevion.com" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+            <a href="mailto:sales@brevion.com" class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
               sales@brevion.com
             </a>
           </li>
           <li>
-            <a href={withBase('rfq')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+            <a href={withBase('rfq')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
               Full RFQ
             </a>
           </li>
           <li>
-            <a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">
+            <a href={withBase('#intake')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
               Request quote
             </a>
           </li>
         </ul>
       </div>
     </div>
-    <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-zinc-900/60 pt-8 text-xs font-bold uppercase tracking-widest sm:mt-12 md:flex-row">
+    <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-aluminum/40 pt-8 text-xs font-semibold uppercase tracking-widest text-aluminum sm:mt-12 md:flex-row">
       <p>&copy; {new Date().getFullYear()} Brevion Systems.</p>
       <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        <a href="#" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Privacy Policy</a>
-        <a href="#" class="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-white">Terms of Service</a>
+        <a href="#" class="inline-flex min-h-11 items-center rounded-sm text-carbon/60 transition-colors duration-150 hover:text-gold">Privacy Policy</a>
+        <a href="#" class="inline-flex min-h-11 items-center rounded-sm text-carbon/60 transition-colors duration-150 hover:text-gold">Terms of Service</a>
       </div>
     </div>
   </div>

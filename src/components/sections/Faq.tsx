@@ -36,10 +36,10 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-zinc-900/60 bg-zinc-900/30 py-20 md:py-24">
+    <section className="border-t border-aluminum/40 bg-aluminum/10 py-20 md:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center md:mb-12">
-          <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+          <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
             FAQ
           </h2>
         </div>
@@ -50,7 +50,7 @@ export default function Faq() {
             return (
               <div
                 key={faq.q}
-                className="overflow-hidden rounded-2xl bg-zinc-900/50 shadow-[0_14px_40px_rgba(0,0,0,0.28)]"
+                className="overflow-hidden rounded-xl border border-aluminum/35 bg-porcelain shadow-[0_10px_28px_rgba(69,63,58,0.06)]"
               >
                 <button
                   type="button"
@@ -58,20 +58,20 @@ export default function Faq() {
                   aria-expanded={isOpen}
                   className="flex min-h-11 w-full items-center justify-between px-4 py-5 text-left sm:px-6 sm:py-6 md:px-8 md:py-8"
                 >
-                  <span className="pr-4 text-base font-bold text-white sm:pr-6 sm:text-lg md:text-xl">{faq.q}</span>
+                  <span className="pr-4 text-base font-bold text-carbon sm:pr-6 sm:text-lg md:text-xl">{faq.q}</span>
                   <ChevronDown
                     size={22}
-                  className={`shrink-0 text-zinc-500 transition-transform duration-300 motion-reduce:transition-none ${isOpen ? 'rotate-180' : ''}`}
+                    className={`shrink-0 text-aluminum transition-transform duration-200 motion-reduce:transition-none ${isOpen ? 'rotate-180' : ''}`}
                     aria-hidden="true"
                   />
                 </button>
                 <div
-                  className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                  className={`grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${
                     isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-6 pb-6 pt-0 text-base font-medium leading-relaxed text-zinc-400 md:px-8 md:pb-8 md:text-lg">
+                    <div className="px-6 pb-6 pt-0 text-base font-medium leading-relaxed text-carbon/65 md:px-8 md:pb-8 md:text-lg">
                       {faq.a}
                     </div>
                   </div>

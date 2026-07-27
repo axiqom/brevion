@@ -10,34 +10,34 @@ const steps = [
   { icon: PackageSearch, title: 'Ship', desc: 'Packed and delivered on date.' },
 ];
 ---
-<section class="border-t border-zinc-900/60 bg-zinc-950 py-20 md:py-24">
+<section class="border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         From print to shipped part.
       </h2>
-      <p class="text-base text-zinc-400 md:text-lg">
+      <p class="text-base text-carbon/65 md:text-lg">
         RFQ → DFM → machine → inspect → deliver — with a clear owner at each step.
       </p>
     </div>
 
     <div class="relative">
-      <div class="absolute left-10 right-10 top-12 hidden h-px bg-zinc-800/70 md:block" />
+      <div class="absolute left-10 right-10 top-12 hidden h-px bg-aluminum/50 md:block" />
       <div class="grid grid-cols-1 gap-1 md:grid-cols-6 md:gap-4">
         {steps.map((step, idx) => (
           <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-zinc-900/70 text-white shadow-[0_14px_40px_rgba(0,0,0,0.35)] md:mb-5 md:h-24 md:w-24 md:rounded-3xl">
+            <div class="relative z-10 mb-4 flex h-20 w-20 items-center justify-center rounded-xl border border-aluminum/40 bg-porcelain text-carbon shadow-[0_10px_28px_rgba(69,63,58,0.07)] md:mb-5 md:h-24 md:w-24 md:rounded-2xl">
               <step.icon size={26} strokeWidth={1.5} aria-hidden="true" />
-              <div class="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white text-[10px] font-bold text-zinc-950 md:h-7 md:w-7 md:text-xs">
+              <div class="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-md bg-carbon text-[10px] font-bold text-porcelain md:h-7 md:w-7 md:text-xs">
                 {idx + 1}
               </div>
             </div>
-            <h3 class="mb-1.5 text-sm font-bold uppercase tracking-tight text-white md:text-base">
+            <h3 class="mb-1.5 text-sm font-bold uppercase tracking-tight text-carbon md:text-base">
               {step.title}
             </h3>
-            <p class="px-1 text-xs font-medium leading-snug text-zinc-500 md:text-sm">{step.desc}</p>
+            <p class="px-1 text-xs font-medium leading-snug text-aluminum md:text-sm">{step.desc}</p>
             {idx !== steps.length - 1 && (
-              <div class="my-4 h-6 w-px bg-zinc-800/70 md:hidden" />
+              <div class="my-4 h-6 w-px bg-aluminum/50 md:hidden" />
             )}
           </div>
         ))}

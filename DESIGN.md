@@ -1,52 +1,57 @@
 # Brevion — Design
 
-Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerospace / defense / robotics credibility.
+Precision CNC manufacturing marketing site. Official **Brand Guidelines v1.0** porcelain light system.
 
 **Project slug:** `aeris-cnc` (folder/repo unchanged so sticky preview tunnel port 4007 stays intact). Display brand is **Brevion**.
 
 ## Brand (locked)
 
 - **Name:** Brevion (legal/display: Brevion Systems)
-- **Logo:** Geometric true-running spindle/crosshair mark + Brevion wordmark
-  - Mark: `/public/brevion-mark.svg`
-  - Lockup: `/public/brevion-logo.svg`
-  - Favicon: `/public/favicon.svg`
-- **Images:** Local section media under `public/media/` (capabilities, industries, portfolio, team, Quality/CTA backgrounds); hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
+- **Guidelines:** `BRAND_GUIDELINES.md` (source of truth)
+- **Logo:** Official Mendel Brevion pack (exact PNGs; never redraw)
+  - Mark (porcelain / light chrome): `/public/brand/mark-dark.png`
+  - Mark (dark media overlays / hero photo): `/public/brand/mark-light.png`
+  - Wordmark (optional dark UI): `/public/brand/wordmark-light.png`
+  - Favicon: `/public/brand/favicon.png` + apple-touch
+  - Pack map: `/public/brand/MANIFEST.md` (`raw/` untouched)
+  - Root aliases synced: `brevion-mark.png`, `favicon.png`, `apple-touch-icon.png`
+- **Images:** Local section media under `public/media/`; hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
 - **Contact:** sales@brevion.com (mailto + chat + RFQ; no phone until a real number exists)
 
-## Visual language
+## Visual language (Brand Guidelines v1.0)
 
-- **Palette:** zinc-950 / zinc-900 / zinc-800 surfaces; white primary CTAs; zinc-400 body text
-- **Fonts:** Manrope (body), Rajdhani (display / headings) via Google Fonts in BaseLayout
-- **Icons:** lucide-react only — no emoji (brand mark is custom SVG, not a lucide icon)
-- **Shape:** large rounded corners (2–2.5rem), soft surfaces (blur / opacity / shadow) over hard borders where chrome feels prototype-y; luminosity-blended imagery
-- **Motion:** 3 subtle intentional motions — hero CSS fade-up, RFQ step fade-in, FAQ accordion expand — not noisy
+- **Palette:** Porcelain `#F5F2ED` (~65%) · Carbon Taupe `#453F3A` (~20%) · Warm Aluminum `#B8AEA1` (~10%) · Brevion Gold `#FFB668` (~5%) · Light Gold `#FDCE7E` (hover/soft only)
+- **Fonts:** Sora throughout (headings Bold/SemiBold; body Regular/Medium). No Manrope / Rajdhani.
+- **SYSTEMS descriptor:** tracking ~+200–300
+- **Buttons:** Primary = Carbon bg, Gold hover · Secondary = Carbon outline on Porcelain · Links = Carbon → Gold hover
+- **Icons:** lucide-react only — no emoji
+- **Shape:** rounded rects / squares (`rounded-lg`–`rounded-2xl`); avoid circles unless functional
+- **Motion:** fast, purposeful, no bounce — hero fade-up, RFQ step fade-in, FAQ accordion
+- **Gold:** accent only — never flood layouts
 
 ## Hero composition
 
-- Full-bleed dark video/poster plane (edge-to-edge); no inset media cards or floating overlays
-- Conversion hero: Brevion brand + wordmark, need-focused headline (tolerances / lead times), one supporting sentence (DFM / AS9100 / ITAR / proto→prod), compact trust chips, primary Request quote → `#intake`, secondary Full RFQ, and contact intake card (`#intake` / `#contact`)
-- Primary trust strip (AS9100 / materials / 24h / ITAR-ready) lives in LogoCloud — no fake customer logos
+- Full-bleed CNC photography (edge-to-edge); dark carbon overlays (`to-carbon/10`, no pure black); light text on media
+- Intake card on porcelain surface with brand buttons
+- Lockup: mark-light + BREVION + SYSTEMS (tracking ~0.3em) on dark photo; capability strip + trust chips; Request quote → `#intake`, Full RFQ secondary
+
+## Compliance (Brand Guidelines v1.0)
+
+Pass as of 2026-07-27: porcelain card elevations (no chalk-white `bg-white/*`); carbon replaces black gradients; Sora only; Carbon→Gold primary / Carbon outline secondary / Carbon→Gold links; gold accent-only; RFQ progress + chat typing use `rounded-sm` (no decorative circles).
 
 ## Pages
 
-1. **Home** (`/`) — conversion landing: Hero (intake) → trust strip → ValueProp → Capabilities → MidCta → Industries → Timeline → Portfolio → MidCta → WhyChooseUs → Quality → thin Team strip → Resources links → FAQ → CTA
-2. **RFQ** (`/rfq`) — 5-step mock quote wizard (Contact → Files → Details → Timeline → Review) ending in thank-you state; client-only, nothing stored externally
+1. **Home** (`/`) — Hero (intake) → trust strip → ValueProp → Capabilities → MidCta → Industries → Timeline → Portfolio → MidCta → WhyChooseUs → Quality → Team → Resources → FAQ → CTA
+2. **RFQ** (`/rfq`) — 5-step mock quote wizard; client-only
 
 ## Layout
 
-- Sticky blurred nav with Request Quote CTA; section anchors `#capabilities` `#industries` `#projects` `#quality` `#about` `#resources` `#intake` / `#contact`
-- Footer with company blurb + placeholder contact
-- PrototypeDisclaimer badge (unobtrusive; bottom-left on mobile above convert bar, bottom-right on `sm+`; does not block CTAs)
-- Optional dismissible mobile convert bar (Talk to Brevion / Full RFQ) after scroll
-- Mobile-first; WCAG-minded contrast, keyboard focus rings, touch targets ≥44px
+- Sticky porcelain nav with Carbon primary CTA; section anchors unchanged
+- Footer porcelain + aluminum borders
+- PrototypeDisclaimer; optional mobile convert bar
+- Mobile-first; WCAG-minded contrast; touch targets ≥44px
 
 ## Stack notes
 
-- Astro components for static sections; React islands (`client:load`) for Header mobile menu, FAQ accordion, RFQ wizard
-- Astro `devToolbar` disabled in `astro.config.mjs`
+- Astro + React islands; `devToolbar` disabled
 - Backend: none / mock (see HANDOFF.md)
-
-## Reference
-
-Ported from Vite/React prototype (AI Studio export). Astro + React islands for interactive sections. Hero polished to full-bleed brand-first (reference used floating side cards — intentionally dropped).

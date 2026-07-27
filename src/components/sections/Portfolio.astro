@@ -25,23 +25,23 @@ const projects = [
   },
 ];
 ---
-<section id="projects" class="scroll-mt-28 border-t border-zinc-900/60 bg-zinc-900/30 py-20 md:py-24">
+<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-12 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end">
       <div class="max-w-2xl">
-        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500">
+        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
           Portfolio
         </p>
-        <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+        <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           Sample work
         </h2>
-        <p class="text-base text-zinc-400 md:text-lg">
+        <p class="text-base text-carbon/65 md:text-lg">
           Representative sample jobs — material, tolerance, and machining approach.
         </p>
       </div>
       <a
         href="#intake"
-        class="inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-zinc-400"
+        class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
       >
         Request quote <ArrowRight size={18} aria-hidden="true" />
       </a>
@@ -50,44 +50,44 @@ const projects = [
     <div class="space-y-16 md:space-y-20">
       {projects.map((proj, idx) => (
         <div class={`flex flex-col items-stretch gap-8 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-          <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-2xl bg-zinc-950 shadow-[0_28px_80px_rgba(0,0,0,0.45)] md:rounded-3xl lg:w-1/2">
+          <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-xl border border-aluminum/30 bg-carbon shadow-[0_14px_40px_rgba(69,63,58,0.10)] md:rounded-2xl lg:w-1/2">
             <img
               src={proj.img}
               alt={proj.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-luminosity transition-transform duration-700 motion-reduce:transition-none hover:scale-[1.02]"
+              class="absolute inset-0 h-full w-full object-cover opacity-75 transition-transform duration-500 motion-reduce:transition-none hover:scale-[1.02]"
               loading="lazy"
               decoding="async"
             />
-            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" aria-hidden="true" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon/40 to-transparent" aria-hidden="true" />
           </figure>
 
           <div class="flex w-full flex-col justify-center lg:w-1/2">
-            <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+            <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-aluminum">
               {proj.industry}
             </p>
-            <h3 class="mb-6 text-2xl font-bold uppercase leading-tight tracking-tight text-white md:mb-8 md:text-3xl lg:text-4xl">
+            <h3 class="mb-6 text-2xl font-bold uppercase leading-tight tracking-tight text-carbon md:mb-8 md:text-3xl lg:text-4xl">
               {proj.title}
             </h3>
 
-            <div class="mb-8 flex gap-8 pb-8 md:gap-10">
+            <div class="mb-8 flex gap-8 border-b border-aluminum/35 pb-8 md:gap-10">
               <div>
-                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-zinc-500">Material</span>
-                <span class="text-base font-bold text-white md:text-lg">{proj.material}</span>
+                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-aluminum">Material</span>
+                <span class="text-base font-bold text-carbon md:text-lg">{proj.material}</span>
               </div>
               <div>
-                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-zinc-500">Tolerance</span>
-                <span class="text-base font-bold text-white md:text-lg">{proj.tolerance}</span>
+                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-aluminum">Tolerance</span>
+                <span class="text-base font-bold text-carbon md:text-lg">{proj.tolerance}</span>
               </div>
             </div>
 
             <div class="space-y-6">
               <div>
-                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">Challenge</h4>
-                <p class="text-sm font-medium leading-relaxed text-zinc-400 md:text-base">{proj.challenge}</p>
+                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-aluminum">Challenge</h4>
+                <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.challenge}</p>
               </div>
               <div>
-                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">Approach</h4>
-                <p class="text-sm font-medium leading-relaxed text-zinc-400 md:text-base">{proj.solution}</p>
+                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-aluminum">Approach</h4>
+                <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.solution}</p>
               </div>
             </div>
           </div>

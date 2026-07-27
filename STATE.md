@@ -1,13 +1,13 @@
 # STATE — Brevion (aeris-cnc)
 
-- **focus:** Rebrand MillTrue → Brevion (Mendel locked); interim Pages path `/milltrue/`
+- **focus:** Brand Guidelines v1.0 compliance pass (porcelain elevations, hero SYSTEMS, carbon overlays, machined shapes)
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional brevion.com domain; production LLM later if Mendel wants
-- **updated:** 2026-07-27T16:58:00.000Z
+- **next:** Mendel visual review of compliance pass on sticky preview
+- **updated:** 2026-07-27T19:50:00.000Z
 
 ## Current focus
-Preview live (shared tunnel) — Brevion rebrand
+Preview live (shared tunnel)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com

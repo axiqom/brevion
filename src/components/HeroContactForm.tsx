@@ -3,17 +3,17 @@ import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import { withBase } from '../lib/base';
 
 const inputClass =
-  'w-full min-h-11 rounded-xl bg-zinc-800/70 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-white/20 sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl border border-aluminum/50 bg-porcelain px-3.5 py-3 text-sm font-medium text-carbon transition-colors placeholder:text-aluminum focus:outline-none focus:ring-2 focus:ring-gold sm:px-4 sm:py-3.5';
 
 const inputErrorClass =
-  'w-full min-h-11 rounded-xl bg-zinc-800/70 border-l-2 border-red-400 px-3.5 py-3 text-sm font-medium text-white transition-colors placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-400/20 sm:rounded-2xl sm:px-4 sm:py-3.5';
+  'w-full min-h-11 rounded-xl border border-red-400/60 bg-porcelain border-l-2 px-3.5 py-3 text-sm font-medium text-carbon transition-colors placeholder:text-aluminum focus:outline-none focus:ring-2 focus:ring-red-400/40 sm:px-4 sm:py-3.5';
 
-const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-zinc-400';
+const labelClass = 'mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-carbon/55';
 
-const errorClass = 'mt-1.5 text-xs font-medium text-red-400';
+const errorClass = 'mt-1.5 text-xs font-medium text-red-600';
 
 const cardClass =
-  'rounded-2xl bg-zinc-900/60 p-4 shadow-[0_28px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:rounded-3xl sm:p-6';
+  'rounded-2xl border border-aluminum/40 bg-porcelain p-4 shadow-[0_20px_60px_rgba(69,63,58,0.18)] sm:rounded-3xl sm:p-6';
 
 type Fields = {
   company: string;
@@ -80,30 +80,30 @@ export default function HeroContactForm() {
   if (submitted) {
     return (
       <div className={cardClass} role="status" aria-live="polite" aria-atomic="true">
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-zinc-950">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-carbon text-porcelain">
           <CheckCircle2 size={24} aria-hidden="true" />
         </div>
-        <h2 className="mb-2 font-display text-xl font-bold uppercase tracking-tight text-white sm:text-2xl">
+        <h2 className="mb-2 font-display text-xl font-bold uppercase tracking-tight text-carbon sm:text-2xl">
           Request received
         </h2>
-        <p className="mb-5 text-sm leading-relaxed text-zinc-300">
+        <p className="mb-5 text-sm leading-relaxed text-carbon/70">
           Preview only — nothing was submitted. When email is live, here&apos;s what happens next:
         </p>
-        <ol className="mb-6 space-y-3 text-sm font-medium text-zinc-300">
+        <ol className="mb-6 space-y-3 text-sm font-medium text-carbon/70">
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-[11px] font-bold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-aluminum/30 text-[11px] font-bold text-carbon">
               1
             </span>
             <span>
               Prefer drawings or CAD? Continue with the{' '}
-              <a href={withBase('rfq')} className="text-white underline-offset-2 hover:underline">
+              <a href={withBase('rfq')} className="link-brand underline-offset-2 hover:underline">
                 full RFQ
               </a>
               .
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-[11px] font-bold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-aluminum/30 text-[11px] font-bold text-carbon">
               2
             </span>
             <span>We&apos;ll reply within 24h with a quote path.</span>
@@ -111,7 +111,7 @@ export default function HeroContactForm() {
         </ol>
         <a
           href={withBase('rfq')}
-          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 sm:w-auto"
+          className="btn-primary w-full sm:w-auto"
         >
           Full RFQ with CAD upload
           <ArrowRight size={16} aria-hidden="true" />
@@ -136,10 +136,10 @@ export default function HeroContactForm() {
       aria-labelledby={`${formId}-title`}
     >
       <div className="mb-5 pb-2 sm:mb-6">
-        <h2 id={`${formId}-title`} className="font-display text-lg font-bold uppercase tracking-tight text-white sm:text-xl">
+        <h2 id={`${formId}-title`} className="font-display text-lg font-bold uppercase tracking-tight text-carbon sm:text-xl">
           Talk to engineering
         </h2>
-        <p className="mt-1.5 text-sm leading-snug text-zinc-300">
+        <p className="mt-1.5 text-sm leading-snug text-carbon/65">
           Three fields. Part, material, qty — CAD optional for now.
         </p>
       </div>
@@ -213,7 +213,7 @@ export default function HeroContactForm() {
           <button
             type="button"
             onClick={() => setShowExtras((v) => !v)}
-            className="inline-flex min-h-11 w-full items-center justify-between gap-2 rounded-xl bg-zinc-800/40 px-3.5 py-2.5 text-left text-xs font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:bg-zinc-800/70 hover:text-zinc-200 sm:rounded-2xl sm:px-4"
+            className="inline-flex min-h-11 w-full items-center justify-between gap-2 rounded-xl border border-aluminum/40 bg-porcelain px-3.5 py-2.5 text-left text-xs font-bold uppercase tracking-widest text-carbon/55 transition-colors hover:border-aluminum hover:text-carbon sm:px-4"
             aria-expanded={showExtras}
             aria-controls={`${formId}-extras`}
           >
@@ -258,10 +258,10 @@ export default function HeroContactForm() {
                         role="radio"
                         aria-checked={selected}
                         onClick={() => setField('preferred', selected ? '' : opt.value)}
-                        className={`inline-flex min-h-11 min-w-[5.5rem] items-center justify-center rounded-full px-4 text-xs font-bold uppercase tracking-widest transition-colors ${
+                        className={`inline-flex min-h-11 min-w-[5.5rem] items-center justify-center rounded-lg px-4 text-xs font-bold uppercase tracking-widest transition-colors ${
                           selected
-                            ? 'bg-white text-zinc-950'
-                            : 'bg-zinc-800/70 text-zinc-300 hover:bg-zinc-700'
+                            ? 'bg-carbon text-porcelain'
+                            : 'border border-aluminum/50 bg-porcelain text-carbon/70 hover:border-carbon hover:text-carbon'
                         }`}
                       >
                         {opt.label}
@@ -279,24 +279,24 @@ export default function HeroContactForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
+          className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? 'Sending…' : 'Request quote'}
           {!submitting ? <ArrowRight size={16} aria-hidden="true" /> : null}
         </button>
-        <p className="text-center text-[11px] font-medium leading-snug text-zinc-400">
+        <p className="text-center text-[11px] font-medium leading-snug text-carbon/50">
           Engineer follow-up within 24h — preview submit only.
         </p>
-        <p className="text-center text-[11px] font-medium text-zinc-500">
+        <p className="text-center text-[11px] font-medium text-carbon/45">
           Prefer email?{' '}
           <a
             href="mailto:sales@brevion.com"
-            className="text-zinc-300 underline-offset-2 hover:text-white hover:underline"
+            className="link-brand underline-offset-2 hover:underline"
           >
             sales@brevion.com
           </a>
           {' · '}
-          <a href={withBase('rfq')} className="text-zinc-300 underline-offset-2 hover:text-white hover:underline">
+          <a href={withBase('rfq')} className="link-brand underline-offset-2 hover:underline">
             Full RFQ
           </a>
         </p>
