@@ -9,10 +9,10 @@ Learned preferences and patterns for this prototype (agent-maintained).
 - Brand Guidelines v1.0 in `BRAND_GUIDELINES.md` — porcelain light system
 - Tokens: Porcelain `#F5F2ED`, Carbon `#453F3A`, Aluminum `#B8AEA1`, Gold `#FFB668`, Light Gold `#FDCE7E`
 - Typography: Sora throughout (guidelines supersede earlier Manrope-body request)
-- Brand mark: official Mendel PNG pack in `public/brand/raw/` (exact files — never redraw). Light chrome → `brand/mark-dark.png`; dark media → `brand/mark-light.png`; favicon `brand/favicon.png`. See `public/brand/MANIFEST.md`.
+- Brand mark: official Mendel PNG pack in `public/brand/raw/5.png`–`24.png` only (exact files — never redraw/crop/AI-generate). Light chrome → `brand/raw/7.png`; hero overlay → `brand/raw/11.png`; favicon/apple-touch → `brand/raw/7.png`. Derivatives forbidden. See `public/brand/MANIFEST.md`.
 - Contact placeholder email: sales@brevion.com
 - Domain to buy later: brevion.com (do not purchase from agent sessions)
-- Interim GitHub Pages path remains `/milltrue/` until a safe cutover
+- GitHub Pages: `https://axiqom.github.io/brevion/` (`GITHUB_PAGES=1` → base `/brevion`)
 
 ## User feedback themes
 

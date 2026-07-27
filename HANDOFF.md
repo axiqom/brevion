@@ -4,7 +4,7 @@
 
 Prototype preview of a precision CNC manufacturing marketing site for **Brevion**. Project slug remains `aeris-cnc` (do not rename folder/repo) so the sticky preview tunnel on port **4007** stays intact.
 
-Brand name is locked to Brevion. Visual system: Brand Guidelines v1.0 (`BRAND_GUIDELINES.md`) — porcelain light chrome, Sora throughout, Carbon/Gold buttons. Official logo pack is in `public/brand/` (do not redraw). Photography and some contact details remain easy to swap.
+Brand name is locked to Brevion. Visual system: Brand Guidelines v1.0 (`BRAND_GUIDELINES.md`) — porcelain light chrome, Sora throughout, Carbon/Gold buttons. Official logo pack is `public/brand/raw/5.png`–`24.png` only (do not redraw, crop, or AI-generate derivatives). Photography and some contact details remain easy to swap.
 
 ## Domain note
 
@@ -128,18 +128,16 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 ## Logo assets (official Mendel pack)
 
-Source: WhatsApp drop in `public/brand/raw/5.png`–`24.png` — do not redraw or AI-regenerate.
+Source: WhatsApp drop in `public/brand/raw/5.png`–`24.png` — exact pack files only. Do not redraw, crop/export new rasters, or AI-regenerate. CSS sizing only.
 
-| Asset | Path | Source | Notes |
-|-------|------|--------|-------|
-| Mark (dark UI) | `public/brand/mark-light.png` | raw/11 | Cream icon; Header/Hero/Footer/RFQ (no white tile) |
-| Mark (light UI) | `public/brand/mark-dark.png` | raw/7 | Dark-framed mark |
-| Wordmark (dark UI) | `public/brand/wordmark-light.png` | raw/13 | Optional cream wordmark |
-| Favicon | `public/brand/favicon.png` | raw/7 | Square crop (+ root `favicon-32.png`) |
-| Apple touch | `public/brand/apple-touch-icon.png` | raw/7 | 180×180 |
-| Pack map | `public/brand/MANIFEST.md` | raw/5–24 | Variants / copper extras |
+| Use | Path | Notes |
+|-----|------|-------|
+| Header / Footer / RFQ | `brand/raw/7.png` | Dark icon on porcelain chrome |
+| Hero (photo overlay) | `brand/raw/11.png` | Light icon on dark media |
+| Favicon + apple-touch | `brand/raw/7.png` | Direct pack file; browsers scale |
+| Pack map | `public/brand/MANIFEST.md` | Full 5–24 roles / color families |
 
-Deprecated placeholders: `public/brevion-mark.svg`, `brevion-logo.svg`, `favicon.svg` (old geometric crosshair).
+**Derivatives forbidden** — no `mark-*`, `wordmark-*`, root `brevion-mark`/`brevion-logo`, `favicon-32`/`favicon-48`, or `brevion-*-64/128/256` webp/png outside `raw/`.
 
 Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `RfqWizard.tsx`, `BaseLayout.astro`.
 
@@ -164,7 +162,7 @@ Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `RfqWizard.tsx`, `BaseLayo
 - Trust strip (LogoCloud) uses claim language only — no fake customer logos
 - Mid-page soft CTA bands after Capabilities and Portfolio; footer CTA primary = Request quote → `#intake`
 - Framer Motion replaced with CSS `animate-fade-up` / `animate-fade-in` + FAQ grid expand; `prefers-reduced-motion` respected
-- Brand mark is official Mendel PNG pack in `public/brand/` (not lucide; do not redraw)
+- Brand mark is official Mendel PNG pack in `public/brand/raw/` only (not lucide; no derivatives)
 
 ## Stack
 

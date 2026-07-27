@@ -253,10 +253,10 @@ export default function RfqWizard() {
         <div className="mb-6 md:mb-10">
           <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
             <img
-              src={withBase('brand/mark-dark.png')}
+              src={withBase('brand/raw/7.png')}
               alt=""
               width={36}
-              height={32}
+              height={36}
               className="h-8 w-auto shrink-0 sm:h-9"
               aria-hidden="true"
             />

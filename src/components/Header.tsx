@@ -41,10 +41,10 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
             <img
-              src={withBase('brand/mark-dark.png')}
+              src={withBase('brand/raw/7.png')}
               alt=""
               width={40}
-              height={36}
+              height={40}
               className="h-9 w-auto shrink-0 md:h-10"
               aria-hidden="true"
             />

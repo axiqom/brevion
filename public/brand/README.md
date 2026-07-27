@@ -1,20 +1,25 @@
 # Brevion brand web assets
 
-Source: Mendel logo pack in `raw/` (exact PNGs — do not redraw or AI-regenerate).
+Official logo pack lives in `raw/` only (`5.png`–`24.png`). Exact Mendel PNGs — do not redraw, crop, resize-export, or AI-regenerate.
 
-| File | Source | Use |
-|------|--------|-----|
-| `mark-light.png` | `raw/11.png` cream icon | Dark UI header / hero / footer / RFQ |
-| `mark-dark.png` | `raw/7.png` | Light surfaces if needed |
-| `favicon.png` | `raw/7.png` tight square | Browser favicon (`BaseLayout`) |
-| `apple-touch-icon.png` | `raw/7.png` 180×180 | Apple touch |
-| `wordmark-light.png` | `raw/13.png` | Optional horizontal cream wordmark |
-| `brevion-mark-copper*.png` | `raw/5.png` | Copper icon variants (available) |
-| `brevion-wordmark-cream*.png` | `raw/24.png` | Extra cream wordmark sizes |
-| `brevion-lockup-stacked-cream*.png` | `raw/20.png` | Optional stacked lockup |
+## Usage
 
-Also mirrored at site root for convenience: `../brevion-mark.png`, `../favicon.png`, `../apple-touch-icon.png`.
+Reference pack files directly:
 
-Deprecated placeholders (old geometric crosshair): `../brevion-mark.svg`, `../brevion-logo.svg`, `../favicon.svg`.
+```ts
+withBase('brand/raw/7.png')   // dark icon / favicon
+withBase('brand/raw/11.png')  // light icon on dark media
+```
 
-See `MANIFEST.md` for full pack map.
+| Use | File |
+|-----|------|
+| Header / Footer / RFQ | `raw/7.png` |
+| Hero photo overlay | `raw/11.png` |
+| Favicon + apple-touch | `raw/7.png` |
+
+## Forbidden
+
+- Derived rasters (`mark-*.png`, `wordmark-*.png`, `favicon*.png`, `apple-touch-icon.png`, `brevion-*.png`/`.webp` outside `raw/`)
+- Generating or cropping new logo PNGs for the site
+
+See `MANIFEST.md` for the full pack map and allowed picks.
