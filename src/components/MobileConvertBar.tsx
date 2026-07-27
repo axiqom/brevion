@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Mail, X } from 'lucide-react';
 import { withBase } from '../lib/base';
 
-const STORAGE_KEY = 'milltrue-mobile-convert-dismissed';
+const STORAGE_KEY = 'brevion-mobile-convert-dismissed';
 
 export default function MobileConvertBar() {
   const [intakeVisible, setIntakeVisible] = useState(true);
@@ -74,9 +74,9 @@ export default function MobileConvertBar() {
           <ArrowRight size={14} aria-hidden="true" />
         </a>
         <a
-          href="mailto:sales@milltrue.com"
+          href="mailto:sales@brevion.com"
           className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
-          aria-label="Email sales@milltrue.com"
+          aria-label="Email sales@brevion.com"
         >
           <Mail size={18} aria-hidden="true" />
         </a>

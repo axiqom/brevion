@@ -1,18 +1,18 @@
-# MillTrue — Design
+# Brevion — Design
 
 Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerospace / defense / robotics credibility.
 
-**Project slug:** `aeris-cnc` (folder/repo unchanged so sticky preview tunnel port 4007 stays intact). Display brand is **MillTrue**.
+**Project slug:** `aeris-cnc` (folder/repo unchanged so sticky preview tunnel port 4007 stays intact). Display brand is **Brevion**.
 
 ## Brand (locked)
 
-- **Name:** MillTrue (legal/display: MillTrue Manufacturing)
-- **Logo:** Geometric true-running spindle/crosshair mark + MillTrue wordmark
-  - Mark: `/public/milltrue-mark.svg`
-  - Lockup: `/public/milltrue-logo.svg`
+- **Name:** Brevion (legal/display: Brevion Systems)
+- **Logo:** Geometric true-running spindle/crosshair mark + Brevion wordmark
+  - Mark: `/public/brevion-mark.svg`
+  - Lockup: `/public/brevion-logo.svg`
   - Favicon: `/public/favicon.svg`
 - **Images:** Local section media under `public/media/` (capabilities, industries, portfolio, team, Quality/CTA backgrounds); hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
-- **Contact:** sales@milltrue.com (mailto + chat + RFQ; no phone until a real number exists)
+- **Contact:** sales@brevion.com (mailto + chat + RFQ; no phone until a real number exists)
 
 ## Visual language
 
@@ -25,7 +25,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
 ## Hero composition
 
 - Full-bleed dark video/poster plane (edge-to-edge); no inset media cards or floating overlays
-- Conversion hero: MillTrue brand + wordmark, need-focused headline (tolerances / lead times), one supporting sentence (DFM / AS9100 / ITAR / proto→prod), compact trust chips, primary Request quote → `#intake`, secondary Full RFQ, and contact intake card (`#intake` / `#contact`)
+- Conversion hero: Brevion brand + wordmark, need-focused headline (tolerances / lead times), one supporting sentence (DFM / AS9100 / ITAR / proto→prod), compact trust chips, primary Request quote → `#intake`, secondary Full RFQ, and contact intake card (`#intake` / `#contact`)
 - Primary trust strip (AS9100 / materials / 24h / ITAR-ready) lives in LogoCloud — no fake customer logos
 
 ## Pages
@@ -38,7 +38,7 @@ Precision CNC manufacturing marketing site. Dark industrial aesthetic for aerosp
 - Sticky blurred nav with Request Quote CTA; section anchors `#capabilities` `#industries` `#projects` `#quality` `#about` `#resources` `#intake` / `#contact`
 - Footer with company blurb + placeholder contact
 - PrototypeDisclaimer badge (unobtrusive; bottom-left on mobile above convert bar, bottom-right on `sm+`; does not block CTAs)
-- Optional dismissible mobile convert bar (Talk to MillTrue / Full RFQ) after scroll
+- Optional dismissible mobile convert bar (Talk to Brevion / Full RFQ) after scroll
 - Mobile-first; WCAG-minded contrast, keyboard focus rings, touch targets ≥44px
 
 ## Stack notes

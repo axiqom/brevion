@@ -25,7 +25,7 @@ import { withBase } from '../lib/base';
 
 const TOTAL_STEPS = 5;
 const STEP_LABELS = ['Contact', 'Files', 'Details', 'Timeline', 'Review'] as const;
-const DRAFT_KEY = 'milltrue-rfq-draft';
+const DRAFT_KEY = 'brevion-rfq-draft';
 const MAX_FILE_MB = 50;
 const ACCEPT =
   '.step,.stp,.iges,.igs,.pdf,.dxf,.dwg,.sldprt,.sldasm,.zip';
@@ -236,7 +236,7 @@ export default function RfqWizard() {
               Talk again
             </a>
             <a
-              href="mailto:sales@milltrue.com"
+              href="mailto:sales@brevion.com"
               className="inline-flex min-h-11 items-center justify-center rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
             >
               Email sales
@@ -254,7 +254,7 @@ export default function RfqWizard() {
           <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white sm:h-9 sm:w-9">
               <img
-                src={withBase('milltrue-mark.svg')}
+                src={withBase('brevion-mark.svg')}
                 alt=""
                 width={18}
                 height={18}
@@ -263,7 +263,7 @@ export default function RfqWizard() {
               />
             </div>
             <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">
-              MillTrue RFQ
+              Brevion RFQ
             </p>
           </div>
           <h1 className="mb-6 font-display text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl md:mb-8">
@@ -439,10 +439,10 @@ export default function RfqWizard() {
                     <span className="font-bold text-white">NDA-ready.</span> We regularly sign NDAs
                     before ITAR or proprietary files leave your firewall. Prefer to NDA first?{' '}
                     <a
-                      href="mailto:sales@milltrue.com?subject=NDA%20before%20RFQ"
+                      href="mailto:sales@brevion.com?subject=NDA%20before%20RFQ"
                       className="text-white underline-offset-2 hover:underline"
                     >
-                      Email sales@milltrue.com
+                      Email sales@brevion.com
                     </a>
                     .
                   </p>

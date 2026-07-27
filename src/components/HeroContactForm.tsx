@@ -290,10 +290,10 @@ export default function HeroContactForm() {
         <p className="text-center text-[11px] font-medium text-zinc-500">
           Prefer email?{' '}
           <a
-            href="mailto:sales@milltrue.com"
+            href="mailto:sales@brevion.com"
             className="text-zinc-300 underline-offset-2 hover:text-white hover:underline"
           >
-            sales@milltrue.com
+            sales@brevion.com
           </a>
           {' · '}
           <a href={withBase('rfq')} className="text-zinc-300 underline-offset-2 hover:text-white hover:underline">

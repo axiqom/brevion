@@ -1,5 +1,5 @@
 /**
- * MillTrue hybrid desk brain — client-side only.
+ * Brevion hybrid desk brain — client-side only.
  * Parses free-text like a human message, fills soft slots, composes plain-text
  * replies (ack + answer + next-step). No LLM / API keys.
  */
@@ -47,7 +47,7 @@ export type ConversationState = {
   lastTopic: Intent | null;
 };
 
-export const STATE_KEY = 'milltrue-chat-v4-state';
+export const STATE_KEY = 'brevion-chat-v4-state';
 
 /** Soft shortcuts only — work-oriented, never a cert/lead-time/tolerance menu. */
 const OPENING_CHIPS: Chip[] = [
@@ -397,8 +397,8 @@ function answerForIntent(
       if (turn?.askedNda) {
         return pick(
           [
-            'NDAs are routine before proprietary or controlled files. Email sales@milltrue.com, or mark NDA-required on the RFQ — we will not open CAD until paperwork is set.',
-            'Happy to sign an NDA first. Reach sales@milltrue.com or note it on the RFQ; controlled files stay closed until then.',
+            'NDAs are routine before proprietary or controlled files. Email sales@brevion.com, or mark NDA-required on the RFQ — we will not open CAD until paperwork is set.',
+            'Happy to sign an NDA first. Reach sales@brevion.com or note it on the RFQ; controlled files stay closed until then.',
           ],
           seed,
         );

@@ -37,12 +37,12 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
           <a
             href={withBase()}
             className="group flex min-h-11 items-center gap-2.5 rounded-lg sm:gap-3"
-            aria-label="MillTrue home"
+            aria-label="Brevion home"
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white md:h-10 md:w-10">
               <img
-                src={withBase('milltrue-mark.svg')}
+                src={withBase('brevion-mark.svg')}
                 alt=""
                 width={22}
                 height={22}
@@ -51,7 +51,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               />
             </div>
             <span className="font-display text-lg font-bold uppercase tracking-[0.14em] text-white sm:text-xl sm:tracking-widest md:text-2xl">
-              MillTrue
+              Brevion
             </span>
           </a>
 

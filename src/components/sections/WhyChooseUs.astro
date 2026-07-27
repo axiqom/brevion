@@ -9,27 +9,27 @@ const stats = [
 const rows = [
   {
     facet: 'Prototype → production',
-    milltrue: 'First article to volume in one shop — no vendor hop.',
+    brevion: 'First article to volume in one shop — no vendor hop.',
     typical: 'Proto shop handoff to a production vendor.',
   },
   {
     facet: 'Materials',
-    milltrue: 'Aerospace metals & engineering plastics.',
+    brevion: 'Aerospace metals & engineering plastics.',
     typical: 'Limited specialty alloys and plastics.',
   },
   {
     facet: 'DFM / first article',
-    milltrue: 'DFM before chips fly; FAI validates setup when required.',
+    brevion: 'DFM before chips fly; FAI validates setup when required.',
     typical: 'Quote-and-hope — issues found on the floor.',
   },
   {
     facet: 'Documentation',
-    milltrue: 'AS9100-minded controls; AS9102 FAI and NDAs when needed.',
+    brevion: 'AS9100-minded controls; AS9102 FAI and NDAs when needed.',
     typical: 'Inconsistent process docs; FAI often extra.',
   },
   {
     facet: 'Turnaround',
-    milltrue: 'Clear quote path once the job is sized; typical proto 2–3 wk, production 4–6 wk.',
+    brevion: 'Clear quote path once the job is sized; typical proto 2–3 wk, production 4–6 wk.',
     typical: 'Slow quotes; fuzzy dates that slip.',
   },
 ];
@@ -41,7 +41,7 @@ const rows = [
         Proof
       </p>
       <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
-        MillTrue vs a typical shop
+        Brevion vs a typical shop
       </h2>
       <p class="text-base font-medium text-zinc-400 md:text-lg">
         How the work gets done — not a wall of slogans.
@@ -70,8 +70,8 @@ const rows = [
           </p>
           <div class="grid grid-cols-1 divide-y divide-zinc-800/60">
             <div class="px-4 py-4">
-              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-white">MillTrue</p>
-              <p class="text-sm leading-relaxed text-zinc-300">{row.milltrue}</p>
+              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-white">Brevion</p>
+              <p class="text-sm leading-relaxed text-zinc-300">{row.brevion}</p>
             </div>
             <div class="px-4 py-4">
               <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">Typical shop</p>
@@ -89,7 +89,7 @@ const rows = [
           Facet
         </div>
         <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-white lg:px-6">
-          MillTrue
+          Brevion
         </div>
         <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 lg:px-6">
           Typical shop
@@ -101,7 +101,7 @@ const rows = [
             {row.facet}
           </div>
           <div class="bg-zinc-900/25 px-5 py-5 text-sm leading-relaxed text-zinc-200 lg:px-6 lg:text-[15px]">
-            {row.milltrue}
+            {row.brevion}
           </div>
           <div class="px-5 py-5 text-sm leading-relaxed text-zinc-500 lg:px-6 lg:text-[15px]">
             {row.typical}

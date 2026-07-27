@@ -1,19 +1,19 @@
-# STATE — MillTrue (aeris-cnc)
+# STATE — Brevion (aeris-cnc)
 
-- **focus:** Work-first chat + soft-pedaled stats live on Pages
+- **focus:** Rebrand MillTrue → Brevion (Mendel locked); interim Pages path `/milltrue/`
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
 - **pages:** https://axiqom.github.io/milltrue/
-- **next:** Optional milltrue.com domain; production LLM later if Mendel wants
-- **updated:** 2026-07-26T21:15:00.000Z
+- **next:** Optional brevion.com domain; production LLM later if Mendel wants
+- **updated:** 2026-07-27T16:58:00.000Z
 
 ## Current focus
-Dialed back certs / lead-time / tolerance lead (t_825cc49b). Chat greets about the part/job; facts still when asked. Hero capability strip. Live commit fbea49b (+ CTA soft). Playwright 6/6.
+Preview live (shared tunnel) — Brevion rebrand
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Live site
-https://axiqom.github.io/milltrue/
+https://axiqom.github.io/milltrue/ (interim URL; display brand Brevion)
 
 ## Next step
-Await Mendel hard-refresh confirm
+Awaiting feedback on preview

@@ -2,7 +2,7 @@
 import PrototypeDisclaimer from '../components/PrototypeDisclaimer.astro';
 import Header from '../components/Header';
 import Footer from '../components/Footer.astro';
-import MillTrueChat from '../components/MillTrueChat';
+import BrevionChat from '../components/BrevionChat';
 import { withBase } from '../lib/base';
 import '../styles/global.css';
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const {
-  title = 'MillTrue — Precision CNC Manufacturing',
+  title = 'Brevion — Precision CNC Manufacturing',
   description = 'Precision manufacturing for aerospace, defense, robotics, and advanced technology. From prototype to production.',
   currentPage = 'home',
 } = Astro.props;
@@ -41,10 +41,10 @@ const {
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'MillTrue',
-      legalName: 'MillTrue Manufacturing',
+      name: 'Brevion',
+      legalName: 'Brevion Systems',
       description,
-      email: 'sales@milltrue.com',
+      email: 'sales@brevion.com',
       url: 'https://axiqom.github.io/milltrue/',
     })} />
   </head>
@@ -54,7 +54,7 @@ const {
       <slot />
     </main>
     <Footer />
-    <MillTrueChat client:load />
+    <BrevionChat client:load />
     <PrototypeDisclaimer />
   </body>
 </html>

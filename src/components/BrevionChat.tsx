@@ -16,7 +16,7 @@ import {
   type Chip,
   type ConversationState,
   type DeskReply,
-} from '../lib/milltrueChatBrain';
+} from '../lib/brevionChatBrain';
 
 type Role = 'bot' | 'user';
 
@@ -30,8 +30,8 @@ type ChatMessage = {
   suggestions?: Chip[];
 };
 
-const THREAD_KEY = 'milltrue-chat-v5-thread';
-const FREE_TEXT_KEY = 'milltrue-chat-v5-free-text';
+const THREAD_KEY = 'brevion-chat-v5-thread';
+const FREE_TEXT_KEY = 'brevion-chat-v5-free-text';
 const LEGACY_KEYS = [
   'milltrue-chat-thread',
   'milltrue-chat-topic',
@@ -40,6 +40,8 @@ const LEGACY_KEYS = [
   'milltrue-chat-v3-thread',
   'milltrue-chat-v3-topic',
   'milltrue-chat-v4-thread',
+  'milltrue-chat-v5-thread',
+  'milltrue-chat-v5-free-text',
 ];
 
 /** Soft cap — never more than 2 pills in the thread. */
@@ -65,12 +67,15 @@ function sleep(ms: number) {
 function clearLegacyStorage() {
   try {
     for (const key of LEGACY_KEYS) localStorage.removeItem(key);
+    sessionStorage.removeItem('milltrue-chat-v4-state');
+    localStorage.removeItem('milltrue-rfq-draft');
+    localStorage.removeItem('milltrue-mobile-convert-dismissed');
   } catch {
     /* ignore */
   }
 }
 
-export default function MillTrueChat() {
+export default function BrevionChat() {
   const panelId = useId();
   const [open, setOpen] = useState(false);
   const [barVisible, setBarVisible] = useState(false);
@@ -338,7 +343,7 @@ export default function MillTrueChat() {
         aria-expanded={false}
         aria-controls={panelId}
         aria-label="Open chat"
-        data-milltrue-chat-launcher="true"
+        data-brevion-chat-launcher="true"
       >
         <MessageSquare size={20} aria-hidden="true" />
         <span className="hidden text-xs font-bold uppercase tracking-widest sm:inline">Chat</span>
@@ -352,8 +357,8 @@ export default function MillTrueChat() {
       id={panelId}
       role="dialog"
       aria-modal="true"
-      aria-label="MillTrue chat"
-      data-milltrue-chat-panel="true"
+      aria-label="Brevion chat"
+      data-brevion-chat-panel="true"
       className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl bg-zinc-950/95 shadow-[0_28px_90px_rgba(0,0,0,0.75)] backdrop-blur-2xl sm:right-6 sm:w-[24rem] ${bottomClass}`}
       style={{ height: 'min(34rem, calc(100dvh - 5.5rem))' }}
     >
@@ -365,10 +370,10 @@ export default function MillTrueChat() {
           MT
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-display text-sm font-bold text-white">MillTrue</p>
+          <p className="truncate font-display text-sm font-bold text-white">Brevion</p>
         </div>
         <a
-          href="mailto:sales@milltrue.com"
+          href="mailto:sales@brevion.com"
           className="sr-only focus:not-sr-only focus:absolute focus:right-14 focus:top-3 focus:rounded-md focus:bg-zinc-800 focus:px-2 focus:py-1 focus:text-xs focus:text-zinc-200"
         >
           Email sales
@@ -389,7 +394,7 @@ export default function MillTrueChat() {
         role="log"
         aria-live="polite"
         aria-relevant="additions"
-        data-milltrue-chat-thread="true"
+        data-brevion-chat-thread="true"
       >
         {messages.map((m) => (
           <div
@@ -409,7 +414,7 @@ export default function MillTrueChat() {
             </div>
 
             {m.role === 'bot' && m.actions ? (
-              <div className="mt-1.5 flex flex-wrap gap-1.5" data-milltrue-chat-actions="true">
+              <div className="mt-1.5 flex flex-wrap gap-1.5" data-brevion-chat-actions="true">
                 <a
                   href={intakeHref}
                   onClick={close}
@@ -433,7 +438,7 @@ export default function MillTrueChat() {
             m.suggestions.length > 0 ? (
               <div
                 className="mt-1.5 flex max-w-full gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                data-milltrue-chat-suggestions="true"
+                data-brevion-chat-suggestions="true"
               >
                 {m.suggestions.map((s) => (
                   <button
@@ -454,7 +459,7 @@ export default function MillTrueChat() {
           <div className="flex justify-start" aria-label="Typing">
             <div
               className="inline-flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-zinc-800/90 px-4 py-3"
-              data-milltrue-chat-typing="true"
+              data-brevion-chat-typing="true"
             >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400" />
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-400 [animation-delay:120ms]" />
@@ -464,7 +469,7 @@ export default function MillTrueChat() {
         ) : null}
       </div>
 
-      <div className="shrink-0 px-3 pb-3 pt-1 sm:px-4" data-milltrue-chat-composer="true">
+      <div className="shrink-0 px-3 pb-3 pt-1 sm:px-4" data-brevion-chat-composer="true">
         <div className="flex items-center gap-1.5">
           <input
             ref={inputRef}
