@@ -32,9 +32,9 @@ export default function ProcessStages() {
   const stage = stages[active];
 
   return (
-    <div>
+    <div className="min-w-0 max-w-full">
       <div
-        className="flex gap-2 overflow-x-auto pb-2 md:grid md:grid-cols-6 md:gap-3 md:overflow-visible md:pb-0"
+        className="process-stage-strip flex w-full min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 pr-6 touch-pan-x [-ms-overflow-style:none] [scrollbar-width:none] [-webkit-overflow-scrolling:touch] md:grid md:snap-none md:grid-cols-6 md:gap-3 md:overflow-visible md:pb-0 md:pr-0 [&::-webkit-scrollbar]:hidden"
         role="tablist"
         aria-label="Manufacturing process stages"
       >
@@ -49,7 +49,7 @@ export default function ProcessStages() {
               aria-selected={selected}
               aria-controls="process-panel"
               tabIndex={selected ? 0 : -1}
-              className={`min-h-11 shrink-0 rounded-xl border px-4 py-4 text-left transition-colors duration-150 md:rounded-2xl md:px-5 md:py-6 ${
+              className={`min-h-11 w-[9.5rem] shrink-0 snap-start rounded-xl border px-3.5 py-3.5 text-left transition-colors duration-150 sm:w-[10.5rem] sm:px-4 sm:py-4 md:w-auto md:rounded-2xl md:px-5 md:py-6 ${
                 selected
                   ? 'border-carbon bg-carbon text-porcelain'
                   : 'border-aluminum/30 bg-aluminum/10 text-carbon hover:border-aluminum/60'
@@ -72,13 +72,13 @@ export default function ProcessStages() {
               }}
             >
               <span
-                className={`mb-3 block font-display text-xl font-bold tabular-nums tracking-tight md:text-2xl ${
+                className={`mb-2.5 block font-display text-lg font-bold tabular-nums tracking-tight sm:mb-3 sm:text-xl md:text-2xl ${
                   selected ? 'text-porcelain/45' : 'text-aluminum'
                 }`}
               >
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              <span className="block text-sm font-semibold uppercase tracking-wide md:text-base">
+              <span className="block text-xs font-semibold uppercase tracking-wide sm:text-sm md:text-base">
                 {s.label}
               </span>
             </button>
@@ -90,7 +90,7 @@ export default function ProcessStages() {
         id="process-panel"
         role="tabpanel"
         aria-labelledby={`process-tab-${active}`}
-        className="mt-8 rounded-xl border border-aluminum/30 bg-aluminum/10 px-6 py-7 md:mt-10 md:rounded-2xl md:px-8 md:py-9"
+        className="mt-6 rounded-xl border border-aluminum/30 bg-aluminum/10 px-5 py-6 sm:mt-8 sm:px-6 sm:py-7 md:mt-10 md:rounded-2xl md:px-8 md:py-9"
       >
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-aluminum">
           {stage.label}

@@ -10,11 +10,11 @@ const materials = [
   'Engineering Plastics',
 ];
 ---
-<section id="materials" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-28 md:py-40">
+<section id="materials" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-20 sm:py-28 md:py-40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-end gap-14 lg:grid-cols-12 lg:gap-24">
+    <div class="grid items-end gap-10 sm:gap-14 lg:grid-cols-12 lg:gap-24">
       <div class="lg:col-span-5">
-        <div class="group relative aspect-[4/5] overflow-hidden rounded-xl bg-carbon md:rounded-2xl lg:aspect-[3/4]">
+        <div class="group relative aspect-[4/3] overflow-hidden rounded-xl bg-carbon sm:aspect-[4/5] md:rounded-2xl lg:aspect-[3/4]">
           <img
             src={withBase('media/bg-quality.jpg')}
             alt="End mill positioned over a machined aluminum workpiece"
@@ -26,15 +26,15 @@ const materials = [
         </div>
       </div>
       <div class="lg:col-span-7">
-        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum sm:mb-5">
           Materials
         </p>
-        <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-16 md:text-4xl lg:text-5xl">
+        <h2 class="mb-10 text-2xl font-bold uppercase tracking-tight text-carbon sm:mb-14 sm:text-3xl md:mb-16 md:text-4xl lg:text-5xl">
           Metals and plastics
         </h2>
         <ul class="grid grid-cols-1 gap-x-14 gap-y-0 sm:grid-cols-2">
           {materials.map((name) => (
-            <li class="border-t border-aluminum/40 py-7 text-base font-medium text-carbon md:text-lg lg:text-xl">
+            <li class="border-t border-aluminum/40 py-5 text-base font-medium text-carbon sm:py-7 md:text-lg lg:text-xl">
               {name}
             </li>
           ))}

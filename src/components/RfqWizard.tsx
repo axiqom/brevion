@@ -249,7 +249,7 @@ export default function RfqWizard() {
   }
 
   return (
-    <div className="relative flex min-h-[85vh] flex-col overflow-x-hidden bg-porcelain px-4 py-8 pb-20 sm:py-12 md:py-20">
+    <div className="relative flex min-h-[85vh] flex-col overflow-x-clip bg-porcelain px-4 py-6 pb-[max(5rem,env(safe-area-inset-bottom))] sm:py-12 md:py-20">
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         <div className="mb-6 md:mb-10">
           <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
@@ -269,6 +269,31 @@ export default function RfqWizard() {
               {STEP_LABELS[step - 1]}
             </span>
           </div>
+          {/* Compact step dots on phones; labeled strip from sm up */}
+          <div className="mb-3 flex gap-1 sm:hidden" aria-label="RFQ steps">
+            {STEP_LABELS.map((label, i) => {
+              const n = i + 1;
+              const active = n === step;
+              const done = n < step;
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => goTo(n)}
+                  className="flex min-h-11 flex-1 items-center justify-center px-0.5"
+                  aria-label={`${label} (step ${n})`}
+                  aria-current={active ? 'step' : undefined}
+                >
+                  <span
+                    className={`block h-2.5 w-full rounded-sm transition-colors ${
+                      active ? 'bg-gold' : done ? 'bg-carbon/45' : 'bg-aluminum/35'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+              );
+            })}
+          </div>
           <div className="mb-3 hidden gap-1 sm:flex" aria-label="RFQ steps">
             {STEP_LABELS.map((label, i) => {
               const n = i + 1;
@@ -279,7 +304,7 @@ export default function RfqWizard() {
                   key={label}
                   type="button"
                   onClick={() => goTo(n)}
-                  className={`flex-1 rounded-lg px-1 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                  className={`min-h-11 flex-1 rounded-lg px-1 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
                     active
                       ? 'bg-carbon text-porcelain'
                       : done
@@ -687,31 +712,31 @@ export default function RfqWizard() {
             )}
           </div>
 
-          <div className="mt-8 flex items-center justify-between gap-3 border-t border-aluminum/40 pt-5 sm:mt-10 sm:pt-6 md:mt-16 md:pt-8">
+          <div className="mt-8 flex flex-col-reverse gap-3 border-t border-aluminum/40 pt-5 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:pt-6 md:mt-16 md:pt-8">
             {step > 1 ? (
               <button
                 type="button"
                 onClick={handlePrev}
-                className="flex min-h-11 items-center gap-2 px-1 text-sm font-bold uppercase tracking-widest text-carbon/55 transition-colors hover:text-carbon"
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg px-1 text-sm font-bold uppercase tracking-widest text-carbon/55 transition-colors hover:text-carbon sm:min-h-11 sm:w-auto sm:justify-start"
               >
                 <ArrowLeft size={16} aria-hidden="true" /> Back
               </button>
             ) : (
-              <div />
+              <div className="hidden sm:block" />
             )}
 
             {step < TOTAL_STEPS ? (
               <button
                 type="button"
                 onClick={handleNext}
-                className="btn-primary sm:px-8 md:px-10 md:py-4"
+                className="btn-primary min-h-12 w-full sm:min-h-11 sm:w-auto sm:px-8 md:px-10 md:py-4"
               >
                 Next <ArrowRight size={18} aria-hidden="true" />
               </button>
             ) : (
               <button
                 type="submit"
-                className="btn-primary sm:px-8 md:px-10 md:py-4"
+                className="btn-primary min-h-12 w-full sm:min-h-11 sm:w-auto sm:px-8 md:px-10 md:py-4"
               >
                 Submit Project
               </button>

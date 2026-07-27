@@ -5,17 +5,33 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
-    @apply overflow-x-hidden font-sans text-carbon/75 bg-porcelain antialiased selection:bg-gold/30 selection:text-carbon;
+    @apply max-w-full overflow-x-clip font-sans text-carbon/75 bg-porcelain antialiased selection:bg-gold/30 selection:text-carbon;
+  }
+
+  /* Mobile nav open: lock scroll on html + body */
+  html.nav-open,
+  html.nav-open body {
+    overflow: hidden;
   }
 
   /* Reserve space so fixed mobile convert bar does not cover CTAs / footer */
   @media (max-width: 767px) {
     body.has-mobile-convert {
-      padding-bottom: 5.5rem;
+      padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    body.has-chat-open {
+      overflow: hidden;
+    }
+
+    /* Keep prototype chip above convert bar / chat launcher */
+    body.has-mobile-convert [data-prototype='true'] {
+      bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px) + 0.5rem);
     }
   }
 
@@ -30,6 +46,14 @@
 
   :focus-visible {
     @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-porcelain;
+  }
+
+  /* Soften section rhythm on phones without changing desktop composition */
+  @media (max-width: 639px) {
+    .section-pad {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+    }
   }
 }
 
@@ -77,35 +101,48 @@
     flex-shrink: 0;
   }
 
-  /* Surface sizes: visual mark height (wrapper), not padded canvas. */
+  /* Surface sizes: visual mark height (wrapper), not padded canvas.
+   * Mobile chrome: 36px visual (~118px wide) so lockup + menu fit 360px. */
   .brand-logo--header {
-    --brand-logo-h: 40px;
+    --brand-logo-h: 36px;
   }
 
   @media (min-width: 640px) {
+    .brand-logo--header {
+      --brand-logo-h: 40px;
+    }
+  }
+
+  @media (min-width: 768px) {
     .brand-logo--header {
       --brand-logo-h: 44px;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .brand-logo--header {
       --brand-logo-h: 48px;
     }
   }
 
   .brand-logo--footer {
-    --brand-logo-h: 40px;
+    --brand-logo-h: 36px;
   }
 
   @media (min-width: 640px) {
+    .brand-logo--footer {
+      --brand-logo-h: 40px;
+    }
+  }
+
+  @media (min-width: 768px) {
     .brand-logo--footer {
       --brand-logo-h: 44px;
     }
   }
 
   .brand-logo--hero {
-    --brand-logo-h: 40px;
+    --brand-logo-h: 36px;
   }
 
   @media (min-width: 640px) {
@@ -121,20 +158,32 @@
   }
 
   .brand-logo--rfq {
-    --brand-logo-h: 36px;
+    --brand-logo-h: 32px;
   }
 
   @media (min-width: 640px) {
+    .brand-logo--rfq {
+      --brand-logo-h: 36px;
+    }
+  }
+
+  @media (min-width: 768px) {
     .brand-logo--rfq {
       --brand-logo-h: 40px;
     }
   }
 
   .brand-logo--chat {
-    --brand-logo-h: 28px;
+    --brand-logo-h: 26px;
     --brand-logo-frac: 0.208;
     --brand-logo-cw: 1365;
     --brand-logo-ch: 416;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo--chat {
+      --brand-logo-h: 28px;
+    }
   }
 
   .brand-logo--icon {

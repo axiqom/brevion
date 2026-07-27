@@ -1,7 +1,7 @@
 ---
 import { withBase } from '../lib/base';
 ---
-<section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-carbon">
+<section class="relative flex min-h-[100svh] items-stretch overflow-x-clip overflow-y-visible bg-carbon">
   <div class="absolute inset-0 overflow-hidden bg-carbon">
     <picture>
       <source media="(min-width: 768px)" srcset={withBase('hero-cnc.jpg')} />
@@ -16,28 +16,28 @@ import { withBase } from '../lib/base';
     <div class="absolute inset-0 bg-gradient-to-r from-carbon/90 via-carbon/40 to-transparent"></div>
   </div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-4 pb-28 pt-36 sm:px-6 md:justify-center md:pb-40 md:pt-32 lg:px-8">
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-4 pb-[max(6rem,calc(5.25rem+env(safe-area-inset-bottom,0px)))] pt-[max(6.5rem,calc(4.5rem+env(safe-area-inset-top,0px)))] sm:px-6 sm:pb-28 sm:pt-36 md:justify-center md:pb-40 md:pt-32 lg:px-8">
     <div class="animate-fade-up max-w-4xl opacity-0" style="animation-delay: 0.05s">
-      <p class="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-porcelain/55">
+      <p class="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-porcelain/55 sm:mb-6 sm:text-[11px]">
         Precision CNC
       </p>
-      <h1 class="mb-7 max-w-3xl text-[2.35rem] font-bold uppercase leading-[0.92] tracking-tight text-porcelain sm:mb-8 sm:text-5xl md:text-6xl lg:text-[4.85rem]">
+      <h1 class="mb-5 max-w-3xl text-[2.05rem] font-bold uppercase leading-[0.94] tracking-tight text-porcelain sm:mb-8 sm:text-5xl sm:leading-[0.92] md:text-6xl lg:text-[4.85rem]">
         Advanced Precision Manufacturing
       </h1>
-      <p class="mb-12 max-w-xl text-base font-medium tracking-wide text-porcelain/65 sm:mb-14 sm:text-lg md:text-xl">
+      <p class="mb-9 max-w-xl text-[0.95rem] font-medium leading-relaxed tracking-wide text-porcelain/65 sm:mb-14 sm:text-lg md:text-xl">
         CNC Machining for Prototype and Production
       </p>
 
       <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
         <a
           href={withBase('rfq')}
-          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg bg-porcelain px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:px-8 sm:py-4"
         >
           Request a Quote
         </a>
         <a
           href={withBase('capabilities')}
-          class="inline-flex min-h-11 items-center justify-center rounded-lg border border-porcelain/35 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-porcelain/35 px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:px-8 sm:py-4"
         >
           View Capabilities
         </a>

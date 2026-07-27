@@ -22,22 +22,22 @@ const points = [
   },
 ];
 ---
-<section id="why-brevion" class="scroll-mt-28 border-t border-aluminum/35 bg-aluminum/10 py-28 md:py-40">
+<section id="why-brevion" class="scroll-mt-28 border-t border-aluminum/35 bg-aluminum/10 py-20 sm:py-28 md:py-40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid gap-16 lg:grid-cols-12 lg:gap-28">
+    <div class="grid gap-12 sm:gap-16 lg:grid-cols-12 lg:gap-28">
       <div class="lg:col-span-4">
-        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum sm:mb-5">
           Why Brevion
         </p>
-        <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
+        <h2 class="text-2xl font-bold uppercase tracking-tight text-carbon sm:text-3xl md:text-4xl lg:text-5xl">
           Built to tolerance
         </h2>
       </div>
       <div class="grid grid-cols-1 gap-x-14 sm:grid-cols-2 lg:col-span-8">
         {points.map((point) => (
           <details class="group border-t border-aluminum/40">
-            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 py-8 text-left outline-none transition-colors duration-150 hover:text-gold focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain [&::-webkit-details-marker]:hidden">
-              <span class="text-lg font-medium text-carbon md:text-xl lg:text-2xl">
+            <summary class="flex min-h-11 cursor-pointer list-none items-start justify-between gap-4 py-6 text-left outline-none transition-colors duration-150 hover:text-gold focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain sm:py-8 [&::-webkit-details-marker]:hidden">
+              <span class="text-base font-medium text-carbon sm:text-lg md:text-xl lg:text-2xl">
                 {point.title}
               </span>
               <span

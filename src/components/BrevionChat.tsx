@@ -176,6 +176,11 @@ export default function BrevionChat() {
   }, []);
 
   useEffect(() => {
+    document.body.classList.toggle('has-chat-open', open);
+    return () => document.body.classList.remove('has-chat-open');
+  }, [open]);
+
+  useEffect(() => {
     if (threadRef.current) {
       threadRef.current.scrollTop = threadRef.current.scrollHeight;
     }
@@ -330,8 +335,14 @@ export default function BrevionChat() {
 
   const intakeHref = withBase('#intake');
   const rfqHref = withBase('rfq');
-  const bottomClass = barVisible ? 'bottom-[5.75rem]' : 'bottom-5 md:bottom-6';
+  // Sit above the convert bar when present; always respect iOS safe-area.
+  const bottomClass = barVisible
+    ? 'bottom-[calc(6.25rem+env(safe-area-inset-bottom,0px))]'
+    : 'bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))] md:bottom-6';
   const hideSuggestions = input.trim().length > 0 || freeTextTurns >= 2;
+  const panelHeight = barVisible
+    ? 'min(34rem, calc(100dvh - 8rem - env(safe-area-inset-bottom, 0px)))'
+    : 'min(34rem, calc(100dvh - 5.5rem - env(safe-area-inset-bottom, 0px)))';
 
   // P0: when closed, mount ONLY the launcher — no overlay shell, no hidden dialog in DOM.
   if (!open) {
@@ -340,7 +351,7 @@ export default function BrevionChat() {
         ref={launcherRef}
         type="button"
         onClick={openPanel}
-        className={`pointer-events-auto fixed right-4 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-xl bg-carbon px-4 text-porcelain shadow-[0_16px_48px_rgba(69,63,58,0.28)] transition-[transform,opacity,bottom] duration-200 hover:bg-gold hover:text-carbon motion-reduce:transition-none md:right-6 ${bottomClass}`}
+        className={`pointer-events-auto fixed right-3 z-[47] inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-xl bg-carbon px-3.5 text-porcelain shadow-[0_16px_48px_rgba(69,63,58,0.28)] transition-[transform,opacity,bottom] duration-200 hover:bg-gold hover:text-carbon motion-reduce:transition-none sm:right-4 md:right-6 md:px-4 ${bottomClass}`}
         aria-expanded={false}
         aria-controls={panelId}
         aria-label="Open chat"
@@ -360,8 +371,8 @@ export default function BrevionChat() {
       aria-modal="true"
       aria-label="Brevion chat"
       data-brevion-chat-panel="true"
-      className={`pointer-events-auto fixed right-3 z-[48] flex w-[min(100%-1.5rem,22.5rem)] flex-col overflow-hidden rounded-2xl border border-aluminum/40 bg-porcelain shadow-[0_28px_90px_rgba(69,63,58,0.22)] sm:right-6 sm:w-[24rem] ${bottomClass}`}
-      style={{ height: 'min(34rem, calc(100dvh - 5.5rem))' }}
+      className={`pointer-events-auto fixed left-3 right-3 z-[48] mx-auto flex max-w-[22.5rem] flex-col overflow-hidden rounded-2xl border border-aluminum/40 bg-porcelain shadow-[0_28px_90px_rgba(69,63,58,0.22)] sm:left-auto sm:right-6 sm:mx-0 sm:w-[24rem] sm:max-w-none ${bottomClass}`}
+      style={{ height: panelHeight }}
     >
       <header className="flex shrink-0 items-center gap-3 px-3.5 pb-2.5 pt-3.5 sm:px-4">
         <div className="min-w-0 flex-1">

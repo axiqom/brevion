@@ -100,21 +100,21 @@ const capabilities = [
   description="CNC milling, CNC turning, prototype and production manufacturing, assembly, and inspection."
   currentPage="capabilities"
 >
-  <section class="border-b border-aluminum/35 bg-porcelain pt-28 pb-20 md:pt-36 md:pb-28">
+  <section class="border-b border-aluminum/35 bg-porcelain pt-24 pb-14 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <p class="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum">
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum sm:mb-6">
         Capabilities
       </p>
-      <h1 class="max-w-3xl text-4xl font-bold uppercase leading-[0.96] tracking-tight text-carbon md:text-5xl lg:text-6xl xl:text-7xl">
+      <h1 class="max-w-3xl text-3xl font-bold uppercase leading-[0.96] tracking-tight text-carbon sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
         What we machine
       </h1>
-      <p class="mt-8 max-w-lg text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
+      <p class="mt-6 max-w-lg text-base font-medium leading-relaxed text-carbon/60 sm:mt-8 md:text-lg">
         CNC milling, turning, prototype, production, assembly, and inspection. Open a card for detail.
       </p>
     </div>
   </section>
 
-  <section class="bg-porcelain pb-16 md:pb-24">
+  <section class="bg-porcelain pb-14 sm:pb-16 md:pb-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <ExpandableCardGrid client:load items={capabilities} />
     </div>
@@ -122,7 +122,7 @@ const capabilities = [
 
   <MidCta line="Have CAD for milling, turning, or a full build? Start a quote." />
 
-  <section id="cta" class="relative overflow-hidden border-t border-aluminum/40 bg-carbon py-28 md:py-36">
+  <section id="cta" class="relative overflow-hidden border-t border-aluminum/40 bg-carbon py-20 sm:py-28 md:py-36">
     <div class="absolute inset-0">
       <img
         src={withBase('media/bg-cta.jpg')}
@@ -135,13 +135,13 @@ const capabilities = [
       <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/85 to-carbon/60" aria-hidden="true" />
     </div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
-        <h2 class="max-w-xl text-3xl font-bold uppercase tracking-tight text-porcelain md:text-4xl lg:text-5xl">
+      <div class="flex flex-col items-stretch justify-between gap-8 sm:items-start sm:gap-10 md:flex-row md:items-center">
+        <h2 class="max-w-xl text-2xl font-bold uppercase tracking-tight text-porcelain sm:text-3xl md:text-4xl lg:text-5xl">
           Ready to Start?
         </h2>
         <a
           href={withBase('rfq')}
-          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold"
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:w-auto"
         >
           Request a Quote
         </a>

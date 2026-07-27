@@ -1,13 +1,13 @@
-focus: Fictiv expandable cards + CTA funnel — review required
+focus: Mobile optimization pass — review
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel review — expandable capability/industry cards + CTA path
+next: Mendel review — mobile UX at 360/390/430
 
 ## Current focus
-Fictiv-style expandable image cards + EnSima CTA rhythm (hero → cards → MidCta → proof → Ready to Start)
+Mobile polish: header drawer, overflow, expandable cards, convert bar/chat stacking, RFQ, page rhythm
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Next step
-Awaiting Mendel review (kanban review-required)
+Awaiting Mendel mobile review

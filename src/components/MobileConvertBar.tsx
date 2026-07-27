@@ -7,6 +7,7 @@ const STORAGE_KEY = 'brevion-mobile-convert-dismissed';
 export default function MobileConvertBar() {
   const [ctaVisible, setCtaVisible] = useState(true);
   const [dismissed, setDismissed] = useState(true);
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -35,7 +36,16 @@ export default function MobileConvertBar() {
     return () => observer.disconnect();
   }, []);
 
-  const show = !dismissed && !ctaVisible;
+  // Yield bottom chrome to the chat panel while it is open.
+  useEffect(() => {
+    const sync = () => setChatOpen(document.body.classList.contains('has-chat-open'));
+    sync();
+    const obs = new MutationObserver(sync);
+    obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    return () => obs.disconnect();
+  }, []);
+
+  const show = !dismissed && !ctaVisible && !chatOpen;
 
   useEffect(() => {
     document.body.classList.toggle('has-mobile-convert', show);
@@ -55,7 +65,7 @@ export default function MobileConvertBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[45] border-t border-aluminum/40 bg-porcelain/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_28px_rgba(69,63,58,0.10)] backdrop-blur-xl motion-reduce:transition-none md:hidden"
+      className="mobile-convert-bar fixed inset-x-0 bottom-0 z-[45] border-t border-aluminum/40 bg-porcelain/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_28px_rgba(69,63,58,0.10)] backdrop-blur-xl motion-reduce:transition-none md:hidden"
       role="region"
       aria-label="Quick contact"
     >
