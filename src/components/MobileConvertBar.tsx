@@ -5,7 +5,7 @@ import { withBase } from '../lib/base';
 const STORAGE_KEY = 'brevion-mobile-convert-dismissed';
 
 export default function MobileConvertBar() {
-  const [intakeVisible, setIntakeVisible] = useState(true);
+  const [ctaVisible, setCtaVisible] = useState(true);
   const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
@@ -19,23 +19,23 @@ export default function MobileConvertBar() {
     }
     setDismissed(false);
 
-    const intake = document.getElementById('intake');
-    if (!intake || typeof IntersectionObserver === 'undefined') {
-      setIntakeVisible(false);
+    const cta = document.getElementById('cta');
+    if (!cta || typeof IntersectionObserver === 'undefined') {
+      setCtaVisible(false);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIntakeVisible(entry.isIntersecting && entry.intersectionRatio > 0.12);
+        setCtaVisible(entry.isIntersecting && entry.intersectionRatio > 0.12);
       },
       { root: null, threshold: [0, 0.12, 0.35, 0.6], rootMargin: '-48px 0px 0px 0px' },
     );
-    observer.observe(intake);
+    observer.observe(cta);
     return () => observer.disconnect();
   }, []);
 
-  const show = !dismissed && !intakeVisible;
+  const show = !dismissed && !ctaVisible;
 
   useEffect(() => {
     document.body.classList.toggle('has-mobile-convert', show);
@@ -61,16 +61,10 @@ export default function MobileConvertBar() {
     >
       <div className="mx-auto flex max-w-lg items-center gap-2">
         <a
-          href="#intake"
-          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-lg bg-carbon px-3 text-xs font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
-        >
-          Request quote
-        </a>
-        <a
           href={withBase('rfq')}
-          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-lg border border-carbon bg-porcelain px-3 text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:border-gold hover:text-gold"
+          className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-carbon px-3 text-xs font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
         >
-          Full RFQ
+          Request a Quote
           <ArrowRight size={14} aria-hidden="true" />
         </a>
         <a

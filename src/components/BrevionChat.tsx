@@ -245,7 +245,7 @@ export default function BrevionChat() {
       {
         id: uid(),
         role: 'bot',
-        text: 'Hi — tell me about the part or job and I will help from there.',
+        text: 'Tell me about the part or job.',
       },
     ]);
   }, [welcomeDone]);

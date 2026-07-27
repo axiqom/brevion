@@ -1,13 +1,13 @@
-focus: logo pack fill colors matched to surfaces (chrome 18.png, hero 15.png on carbon plate)
+focus: Mendel Hexagon/Siemens restraint copy shipped on home
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel visual confirm porcelain chrome + hero carbon plate
+next: Confirm live Pages + sticky after copy deploy
 
 ## Current focus
-Logo fill remapping shipped — porcelain chrome uses 18.png; hero 15.png on bg-carbon plate.
+Mendel copy brief applied — strip density, engineering restraint voice
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Next step
-Awaiting Mendel visual confirm on sticky + Pages
+Verify Pages + sticky after gh-pages publish

@@ -1,19 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import Industries from '../components/sections/Industries.astro';
 import Capabilities from '../components/sections/Capabilities.astro';
-import Portfolio from '../components/sections/Portfolio.astro';
 import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
-import Faq from '../components/sections/Faq';
+import Timeline from '../components/sections/Timeline.astro';
+import Materials from '../components/sections/Materials.astro';
 import Cta from '../components/sections/Cta.astro';
 import MobileConvertBar from '../components/MobileConvertBar';
 ---
-<BaseLayout title="Brevion — Precision CNC Manufacturing" currentPage="home">
+<BaseLayout
+  title="Brevion — Advanced Precision Manufacturing"
+  description="CNC machining for prototype and production. CNC milling, CNC turning, assembly, and inspection."
+  currentPage="home"
+>
   <Hero />
+  <Industries />
   <Capabilities />
   <WhyChooseUs />
-  <Portfolio />
-  <Faq client:load />
+  <Timeline />
+  <Materials />
   <Cta />
   <MobileConvertBar client:load />
 </BaseLayout>

@@ -346,12 +346,19 @@ function isQuoteReady(slots: Slots, intents: Intent[]): boolean {
   return wantsQuote && hasSubstance;
 }
 
+function certPlain(label: string): string {
+  if (label === 'AS9100') return 'aerospace-style quality controls (AS9100)';
+  if (label === 'AS9102 FAI') return 'first-article inspection paperwork (AS9102)';
+  if (label === 'ITAR') return 'controlled-file handling (ITAR)';
+  return label;
+}
+
 function slotAck(slots: Slots, seed: number): string | null {
   const bits: string[] = [];
   if (slots.material) bits.push(slots.material);
   if (slots.partType) bits.push(slots.partType);
-  if (slots.cert) bits.push(slots.cert);
-  if (slots.itar) bits.push('ITAR');
+  if (slots.cert) bits.push(certPlain(slots.cert));
+  if (slots.itar) bits.push(certPlain('ITAR'));
   if (slots.urgency && slots.urgency !== 'lead-time question') bits.push(slots.urgency);
 
   if (!bits.length) return null;
@@ -404,12 +411,12 @@ function answerForIntent(
         );
       }
       if (turn?.askedFai || slots.cert === 'AS9102 FAI') {
-        return 'AS9102 FAI is available when your print requires it. Call it out on the RFQ and engineering will confirm scope.';
+        return 'First-article inspection paperwork (AS9102) is available when your drawing requires it. Call it out on the RFQ and we will confirm what is included.';
       }
       return pick(
         [
-          'Yes — AS9100-minded process discipline with an ITAR-ready workflow. FAI or NDA when your program needs them.',
-          'We can support AS9100-minded controls and ITAR-ready handling. Say if you need FAI or an NDA.',
+          'AS9100-minded process controls. ITAR-ready handling when required. FAI or NDA on request.',
+          'We support AS9100-minded controls and ITAR-ready handling. Ask for FAI or an NDA if needed.',
         ],
         seed,
       );
@@ -425,16 +432,16 @@ function answerForIntent(
       if (turn?.askedTolerance) {
         return pick(
           [
-            'Critical dims held to print — including ±0.0001" where the drawing demands it.',
-            'We hold tight tolerances to print, down to ±0.0001" on critical dims when required.',
+            'Critical dimensions are held to your drawing — including very tight ones when the drawing calls for them.',
+            'We hold tight dimensions to your drawing when required. Call out the critical ones on the RFQ.',
           ],
           seed,
         );
       }
       return pick(
         [
-          'Aerospace metals and engineering plastics are in the mix — titanium, aluminum, stainless, Inconel, Delrin, PEEK, Ultem.',
-          'We machine common aerospace metals and plastics. Share the alloy or plastic and we will confirm fit.',
+          'Aluminum, stainless, titanium, brass, copper, and engineering plastics.',
+          'Common metals and engineering plastics. Share the alloy or plastic and we will confirm fit.',
         ],
         seed,
       );
@@ -450,16 +457,16 @@ function answerForIntent(
       }
       return pick(
         [
-          'CAD/reverse engineering, DFM, and CAM happen before cut — we catch issues before the first chip.',
-          'We DFM the job before chips fly. Share the part or drawing and we will flag fit-for-process notes.',
+          'We review your design before we cut metal — sketch, sample, or drawing — and flag issues early.',
+          'Share the part or drawing and we will suggest changes that make it easier to make before machining starts.',
         ],
         seed,
       );
     case 'hello':
       return pick(
         [
-          'Hey — tell me about the part or what you are trying to get made.',
-          'Hi — describe the job in plain language and I will help from there.',
+          'Tell me about the part.',
+          'Describe the job and I will help from there.',
         ],
         seed,
       );

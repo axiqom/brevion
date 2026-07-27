@@ -1,113 +1,24 @@
 ---
-/** Capability-led strip — certs / 24h / tolerance live lower in the comparison, not as a billboard. */
-const stats = [
-  { value: '5-axis', label: 'CNC milling capacity' },
-  { value: 'Metals + plastics', label: 'Aerospace shop mix' },
-  { value: 'One shop', label: 'Proto → production' },
-];
-
-const rows = [
-  {
-    facet: 'Prototype → production',
-    brevion: 'First article to volume in one shop — no vendor hop.',
-    typical: 'Proto shop handoff to a production vendor.',
-  },
-  {
-    facet: 'Materials',
-    brevion: 'Aerospace metals & engineering plastics.',
-    typical: 'Limited specialty alloys and plastics.',
-  },
-  {
-    facet: 'DFM / first article',
-    brevion: 'DFM before chips fly; FAI validates setup when required.',
-    typical: 'Quote-and-hope — issues found on the floor.',
-  },
-  {
-    facet: 'Documentation',
-    brevion: 'AS9100-minded controls; AS9102 FAI and NDAs when needed.',
-    typical: 'Inconsistent process docs; FAI often extra.',
-  },
-  {
-    facet: 'Turnaround',
-    brevion: 'Clear quote path once the job is sized; typical proto 2–3 wk, production 4–6 wk.',
-    typical: 'Slow quotes; fuzzy dates that slip.',
-  },
+const points = [
+  'Experienced Engineers',
+  'Modern Equipment',
+  'Tight Tolerances',
+  'Reliable Lead Times',
+  'Quality Inspection',
 ];
 ---
-<section id="proof" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
+<section id="why-brevion" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
-        Proof
-      </p>
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
-        Brevion vs a typical shop
-      </h2>
-      <p class="text-base font-medium text-carbon/65 md:text-lg">
-        How the work gets done — not a wall of slogans.
-      </p>
-    </div>
+    <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-20 md:text-4xl lg:text-5xl">
+      Why Brevion
+    </h2>
 
-    <div class="mb-12 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mb-16">
-      {stats.map((stat) => (
-        <div class="flex min-h-[5rem] flex-col justify-center rounded-xl border border-aluminum/35 bg-porcelain px-4 py-5 text-center shadow-[0_10px_28px_rgba(69,63,58,0.06)] md:rounded-2xl md:px-3 md:py-6">
-          <p class="font-display text-xl font-bold tracking-tight text-carbon sm:text-2xl md:text-[1.45rem] lg:text-2xl">
-            {stat.value}
-          </p>
-          <p class="mt-1.5 text-[11px] font-bold uppercase tracking-wider text-aluminum sm:text-xs">
-            {stat.label}
-          </p>
-        </div>
+    <ul class="grid grid-cols-1 gap-x-12 gap-y-6 sm:grid-cols-2 md:grid-cols-3 md:gap-y-8 lg:grid-cols-5">
+      {points.map((point) => (
+        <li class="border-t border-aluminum/40 pt-5 text-base font-medium text-carbon md:text-lg">
+          {point}
+        </li>
       ))}
-    </div>
-
-    {/* Mobile: stacked cards */}
-    <div class="space-y-3 md:hidden">
-      {rows.map((row) => (
-        <article class="overflow-hidden rounded-xl border border-aluminum/35 bg-porcelain shadow-[0_10px_28px_rgba(69,63,58,0.06)]">
-          <p class="border-b border-aluminum/30 bg-aluminum/10 px-4 py-3 text-xs font-bold uppercase tracking-widest text-aluminum">
-            {row.facet}
-          </p>
-          <div class="grid grid-cols-1 divide-y divide-aluminum/30">
-            <div class="px-4 py-4">
-              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-carbon">Brevion</p>
-              <p class="text-sm leading-relaxed text-carbon/70">{row.brevion}</p>
-            </div>
-            <div class="px-4 py-4">
-              <p class="mb-1.5 text-[11px] font-bold uppercase tracking-widest text-aluminum">Typical shop</p>
-              <p class="text-sm leading-relaxed text-aluminum">{row.typical}</p>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    {/* Desktop: comparison table */}
-    <div class="hidden overflow-hidden rounded-2xl border border-aluminum/35 bg-porcelain shadow-[0_12px_36px_rgba(69,63,58,0.07)] md:block">
-      <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-b border-aluminum/35 bg-aluminum/10">
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-aluminum lg:px-6">
-          Facet
-        </div>
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-carbon lg:px-6">
-          Brevion
-        </div>
-        <div class="px-5 py-4 text-xs font-bold uppercase tracking-widest text-aluminum lg:px-6">
-          Typical shop
-        </div>
-      </div>
-      {rows.map((row) => (
-        <div class="grid grid-cols-[minmax(9rem,0.9fr)_1.2fr_1.2fr] border-t border-aluminum/30">
-          <div class="flex items-center px-5 py-5 text-sm font-bold uppercase tracking-tight text-carbon/80 lg:px-6 lg:text-base">
-            {row.facet}
-          </div>
-          <div class="bg-gold/10 px-5 py-5 text-sm leading-relaxed text-carbon lg:px-6 lg:text-[15px]">
-            {row.brevion}
-          </div>
-          <div class="px-5 py-5 text-sm leading-relaxed text-aluminum lg:px-6 lg:text-[15px]">
-            {row.typical}
-          </div>
-        </div>
-      ))}
-    </div>
+    </ul>
   </div>
 </section>

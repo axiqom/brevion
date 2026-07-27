@@ -4,52 +4,49 @@ import { withBase } from '../../lib/base';
 
 const projects = [
   {
-    title: 'Titanium Aerospace Bracket',
-    industry: 'Aerospace',
-    material: 'Ti-6Al-4V',
-    tolerance: '±0.0005"',
-    challenge: 'Reduce weight while holding structural strength under dynamic loads.',
-    solution: '5-axis strategy to lighten non-critical sections; tight control on mating faces.',
+    title: 'Lightweight titanium bracket',
+    industry: 'Aircraft hardware',
+    material: 'Titanium',
+    detail: 'Structural fit',
+    challenge: 'Cut weight without losing strength where parts meet.',
+    solution: 'Machined away non-critical areas; held mating faces carefully.',
     img: withBase('media/port-01.jpg'),
-    alt: 'Precision-machined titanium aerospace bracket on a dark surface',
+    alt: 'Precision-machined titanium bracket on a dark surface',
   },
   {
-    title: 'Optical Sensor Housing',
-    industry: 'Defense',
-    material: 'Aluminum 7075-T6',
-    tolerance: '±0.0002"',
-    challenge: 'Complex internals with surface finish critical to optics alignment.',
-    solution: 'Custom tooling and multi-stage precision boring against print.',
+    title: 'Sensor housing',
+    industry: 'Defense systems',
+    material: 'Aluminum',
+    detail: 'Smooth interior',
+    challenge: 'Complex inside shape with a surface finish that keeps optics lined up.',
+    solution: 'Custom tooling and careful multi-step boring to the drawing.',
     img: withBase('media/port-02.jpg'),
     alt: 'Machined aluminum optical sensor housing with fine surface finish',
   },
 ];
 ---
-<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
+<section id="projects" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-24 md:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-12 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end">
+    <div class="mb-14 flex flex-col justify-between gap-5 md:mb-16 md:flex-row md:items-end">
       <div class="max-w-2xl">
-        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
-          Portfolio
-        </p>
-        <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
+        <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           Sample work
         </h2>
         <p class="text-base text-carbon/65 md:text-lg">
-          Representative sample jobs — material, tolerance, and machining approach.
+          A few example jobs — what the part needed and how we approached it.
         </p>
       </div>
       <a
         href="#intake"
-        class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+        class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-carbon transition-colors duration-150 hover:text-gold"
       >
         Request quote <ArrowRight size={18} aria-hidden="true" />
       </a>
     </div>
 
-    <div class="space-y-16 md:space-y-20">
+    <div class="space-y-20 md:space-y-24">
       {projects.map((proj, idx) => (
-        <div class={`flex flex-col items-stretch gap-8 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+        <div class={`flex flex-col items-stretch gap-10 lg:gap-14 ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
           <figure class="relative aspect-[5/4] w-full overflow-hidden rounded-xl border border-aluminum/30 bg-carbon shadow-[0_14px_40px_rgba(69,63,58,0.10)] md:rounded-2xl lg:w-1/2">
             <img
               src={proj.img}
@@ -62,31 +59,31 @@ const projects = [
           </figure>
 
           <div class="flex w-full flex-col justify-center lg:w-1/2">
-            <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-aluminum">
+            <p class="mb-3 text-sm font-medium text-aluminum">
               {proj.industry}
             </p>
-            <h3 class="mb-6 text-2xl font-bold uppercase leading-tight tracking-tight text-carbon md:mb-8 md:text-3xl lg:text-4xl">
+            <h3 class="mb-8 text-2xl font-bold uppercase leading-tight tracking-tight text-carbon md:mb-10 md:text-3xl lg:text-4xl">
               {proj.title}
             </h3>
 
-            <div class="mb-8 flex gap-8 border-b border-aluminum/35 pb-8 md:gap-10">
+            <div class="mb-8 flex gap-10 border-b border-aluminum/35 pb-8">
               <div>
-                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-aluminum">Material</span>
-                <span class="text-base font-bold text-carbon md:text-lg">{proj.material}</span>
+                <span class="mb-1.5 block text-sm font-medium text-aluminum">Material</span>
+                <span class="text-base font-semibold text-carbon md:text-lg">{proj.material}</span>
               </div>
               <div>
-                <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-aluminum">Tolerance</span>
-                <span class="text-base font-bold text-carbon md:text-lg">{proj.tolerance}</span>
+                <span class="mb-1.5 block text-sm font-medium text-aluminum">Focus</span>
+                <span class="text-base font-semibold text-carbon md:text-lg">{proj.detail}</span>
               </div>
             </div>
 
             <div class="space-y-6">
               <div>
-                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-aluminum">Challenge</h4>
+                <h4 class="mb-2 text-sm font-semibold text-carbon">Challenge</h4>
                 <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.challenge}</p>
               </div>
               <div>
-                <h4 class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-aluminum">Approach</h4>
+                <h4 class="mb-2 text-sm font-semibold text-carbon">Approach</h4>
                 <p class="text-sm font-medium leading-relaxed text-carbon/65 md:text-base">{proj.solution}</p>
               </div>
             </div>

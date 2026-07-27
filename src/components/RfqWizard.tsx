@@ -32,10 +32,12 @@ const ACCEPT =
   '.step,.stp,.iges,.igs,.pdf,.dxf,.dwg,.sldprt,.sldasm,.zip';
 
 const CAPABILITY_NOTES: Record<string, string> = {
-  engineering: 'Capability focus: Engineering / DFM — CAD review and manufacturability before cut.',
-  manufacturing: 'Capability focus: Manufacturing — 3/4/5-axis mill, CNC turn, proto → production.',
-  quality: 'Capability focus: Quality — CMM, AS9102 FAI when required, material traceability.',
-  finishing: 'Capability focus: Finishing — anodize Type II/III, powder coat, heat treat, hardware.',
+  milling: 'Capability: CNC Milling',
+  turning: 'Capability: CNC Turning',
+  prototype: 'Capability: Prototype Manufacturing',
+  production: 'Capability: Production Manufacturing',
+  assembly: 'Capability: Assembly',
+  inspection: 'Capability: Inspection',
 };
 
 type Draft = {
@@ -214,14 +216,10 @@ export default function RfqWizard() {
             <CheckCircle2 size={40} aria-hidden="true" />
           </div>
           <h2 className="mb-3 font-display text-3xl font-bold uppercase tracking-tight text-carbon sm:mb-4 sm:text-4xl">
-            RFQ received
+            Request received
           </h2>
-          <p className="mb-2 text-base font-medium text-carbon/70 sm:text-lg">
+          <p className="mb-8 text-base font-medium text-carbon/70 sm:mb-10 sm:text-lg">
             Preview only — nothing was uploaded or emailed.
-          </p>
-          <p className="mb-8 text-sm leading-relaxed text-carbon/55 sm:mb-10 sm:text-base">
-            When production intake is live, an engineer reviews your package and replies within{' '}
-            <span className="text-carbon">24h</span> with a quote path and DFM notes.
           </p>
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <a
@@ -229,12 +227,6 @@ export default function RfqWizard() {
               className="btn-primary"
             >
               Home
-            </a>
-            <a
-              href={withBase('#intake')}
-              className="btn-secondary"
-            >
-              Talk again
             </a>
             <a
               href="mailto:sales@brevion.com"
@@ -322,11 +314,10 @@ export default function RfqWizard() {
                   </div>
                   <div>
                     <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-carbon sm:text-3xl">
-                      Who should we reach?
+                      Contact
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-carbon/55 sm:text-base">
-                      Start with contact details. Next you&apos;ll upload CAD/drawings, then part
-                      specs and timeline — draft saves automatically in this browser.
+                      Contact details, then files, part specs, and timeline.
                     </p>
                   </div>
                 </div>
@@ -417,10 +408,10 @@ export default function RfqWizard() {
                   </div>
                   <div>
                     <h2 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-carbon sm:text-3xl">
-                      Upload CAD & drawings
+                      Upload drawings & files
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-carbon/55">
-                      STEP + PDF preferred. Files stay in this browser only until production upload is wired.
+                      STEP model + PDF drawing preferred. Files stay in this browser only until production upload is wired.
                     </p>
                   </div>
                 </div>
@@ -464,7 +455,7 @@ export default function RfqWizard() {
                   className={`flex min-h-[200px] flex-grow cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-aluminum/60 bg-porcelain p-6 transition-colors focus-visible:ring-2 focus-visible:ring-gold sm:min-h-[240px] sm:rounded-3xl sm:p-10 ${
                     dragOver ? 'border-gold bg-gold/10 ring-1 ring-gold/50' : 'hover:border-carbon hover:bg-aluminum/10'
                   }`}
-                  aria-label="Upload CAD or drawing files"
+                  aria-label="Upload drawing or part files"
                 >
                   <UploadCloud size={44} className="mb-4 text-carbon/45" aria-hidden="true" />
                   <p className="mb-2 text-center text-lg font-bold text-carbon sm:text-xl">
@@ -569,7 +560,7 @@ export default function RfqWizard() {
                     >
                       <option value="standard">Standard (±0.005")</option>
                       <option value="tight">Tight (±0.001")</option>
-                      <option value="extreme">Extreme (±0.0001")</option>
+                      <option value="extreme">Very tight (call out on drawing)</option>
                     </select>
                   </div>
                   <div className="md:col-span-2">
@@ -579,7 +570,7 @@ export default function RfqWizard() {
                     <input
                       id="rfq-finish"
                       type="text"
-                      placeholder="e.g. As Machined, Anodize Type II Black, Bead Blast"
+                      placeholder="e.g. As machined, black anodize, bead blast"
                       className={inputClass}
                       value={draft.finish}
                       onChange={(e) => update('finish', e.target.value)}
@@ -678,7 +669,7 @@ export default function RfqWizard() {
                   <textarea
                     id="rfq-notes"
                     rows={6}
-                    placeholder="Certifications (AS9100, ITAR), end-use environment, assembly needs…"
+                    placeholder="Quality paperwork, NDAs, end-use environment, assembly needs…"
                     className={`${inputClass} min-h-[10rem] resize-none`}
                     value={draft.notes}
                     onChange={(e) => update('notes', e.target.value)}

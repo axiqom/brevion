@@ -8,10 +8,10 @@ interface HeaderProps {
 }
 
 const navLinks = [
+  { label: 'Industries', href: withBase('#industries') },
   { label: 'Capabilities', href: withBase('#capabilities') },
-  { label: 'Proof', href: withBase('#proof') },
-  { label: 'Projects', href: withBase('#projects') },
-  { label: 'Contact', href: withBase('#intake') },
+  { label: 'Process', href: withBase('#process') },
+  { label: 'Materials', href: withBase('#materials') },
 ];
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -59,7 +59,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               className="group flex min-h-11 items-center gap-2 rounded-lg bg-carbon px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
             >
-              Request Quote
+              Request a Quote
               <ArrowRight
                 size={16}
                 className="transition-transform duration-150 group-hover:translate-x-0.5"
@@ -104,7 +104,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             onClick={() => setIsMobileMenuOpen(false)}
             aria-current={currentPage === 'rfq' ? 'page' : undefined}
           >
-            Request Quote
+            Request a Quote
           </a>
         </div>
       )}

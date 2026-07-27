@@ -1,48 +1,18 @@
 ---
-import { ArrowRight } from 'lucide-react';
 import { withBase } from '../../lib/base';
-
-const bgUrl = withBase('media/bg-cta.jpg');
 ---
-<section class="relative overflow-hidden border-t border-aluminum/40 bg-porcelain py-20 md:py-28">
-  <div
-    class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.06]"
-    style={`background-image:url(${bgUrl})`}
-    aria-hidden="true"
-  />
-
-  <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
-        Next step
-      </p>
-      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon sm:text-4xl md:mb-5 md:text-5xl lg:text-6xl">
-        Send the print. Get a number.
+<section id="cta" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-40">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="mb-10 text-3xl font-bold uppercase tracking-tight text-carbon sm:text-4xl md:mb-12 md:text-5xl">
+        Ready to Start?
       </h2>
-      <p class="mx-auto mb-8 max-w-2xl text-base font-medium leading-relaxed text-carbon/65 sm:text-lg md:mb-10">
-        DFM notes with your quote path — or a short note if you want an engineer on the line first.
-      </p>
-      <div class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-        <a
-          href="#intake"
-          class="group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-carbon px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
-        >
-          Request quote
-          <ArrowRight size={18} className="transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
-        </a>
-        <a
-          href={withBase('rfq')}
-          class="inline-flex min-h-11 items-center justify-center rounded-lg border border-carbon bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:border-gold hover:text-gold"
-        >
-          Full RFQ
-        </a>
-        <a
-          href="mailto:sales@brevion.com"
-          class="inline-flex min-h-11 items-center justify-center rounded-lg px-6 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-        >
-          Email sales
-        </a>
-      </div>
+      <a
+        href={withBase('rfq')}
+        class="inline-flex min-h-11 items-center justify-center rounded-lg bg-carbon px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
+      >
+        Request a Quote
+      </a>
     </div>
   </div>
 </section>

@@ -1,20 +1,6 @@
 ---
-import HeroContactForm from './HeroContactForm';
 import BrandLogo from './BrandLogo.astro';
 import { withBase } from '../lib/base';
-
-const trustChips = [
-  '5-axis milling',
-  'Aerospace metals & plastics',
-  'Proto → production',
-];
-
-/** Capability language — not a cert/clock/tolerance billboard. */
-const stats = [
-  { value: '5-axis', label: 'CNC milling' },
-  { value: 'Metals + plastics', label: 'shop mix' },
-  { value: 'Proto → prod', label: 'one shop' },
-];
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-carbon">
   <div class="absolute inset-0 overflow-hidden bg-carbon">
@@ -27,79 +13,38 @@ const stats = [
         aria-hidden="true"
       />
     </picture>
-    <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-carbon/10"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-carbon/90 via-carbon/40 to-transparent"></div>
-    <div class="absolute inset-y-0 right-0 hidden w-[55%] bg-gradient-to-l from-carbon/90 via-carbon/40 to-transparent md:block" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/50 to-carbon/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-carbon/85 via-carbon/35 to-transparent"></div>
   </div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-14 pt-24 sm:px-6 sm:pb-16 md:pb-20 md:pt-28 lg:px-8">
-    <div class="grid items-start gap-8 md:grid-cols-2 md:items-center md:gap-10 lg:gap-14">
-      
-      {/* 1. Header & Text */}
-      <div class="animate-fade-up opacity-0 md:col-start-1 md:row-start-1 md:self-end md:pb-4" style="animation-delay: 0.05s">
-        {/* 15.png Porcelain+Carbon fills need engineered Carbon Taupe — not raw photo. */}
-        <div class="mb-4 inline-flex items-center rounded-lg bg-carbon px-3 py-2 sm:mb-5 sm:px-3.5 sm:py-2.5">
-          <BrandLogo surface="hero" />
-        </div>
-
-        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-porcelain/55 sm:mb-3.5 sm:text-xs sm:tracking-[0.22em]">
-          Precision CNC · Aerospace / Defense / Robotics
-        </p>
-
-        <h1 class="mb-3 max-w-xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-porcelain sm:mb-4 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          Precision parts, machined to your print.
-        </h1>
-        <p class="max-w-lg text-sm font-medium leading-relaxed text-porcelain/75 sm:text-base md:text-lg">
-          Tell us the part, material, and quantity. We DFM before the first chip — and keep documentation ready when your program needs it.
-        </p>
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-24 pt-28 sm:px-6 md:pb-32 md:pt-32 lg:px-8">
+    <div class="animate-fade-up max-w-3xl opacity-0" style="animation-delay: 0.05s">
+      {/* 15.png Porcelain+Carbon fills need engineered Carbon Taupe — not raw photo. */}
+      <div class="mb-8 inline-flex items-center rounded-lg bg-carbon px-3 py-2 sm:mb-10 sm:px-3.5 sm:py-2.5">
+        <BrandLogo surface="hero" />
       </div>
 
-      {/* 2. Form (Primary CTA) */}
-      <div
-        id="intake"
-        class="animate-fade-up w-full max-w-md scroll-mt-28 opacity-0 md:col-start-2 md:row-span-2 md:ml-auto md:max-w-none"
-        style="animation-delay: 0.12s"
-      >
-        <div id="contact">
-          <HeroContactForm client:load />
-        </div>
-      </div>
+      <h1 class="mb-5 max-w-2xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-porcelain sm:mb-6 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+        Advanced Precision Manufacturing
+      </h1>
+      <p class="mb-10 max-w-xl text-sm font-medium tracking-wide text-porcelain/70 sm:mb-12 sm:text-base md:text-lg">
+        CNC Machining for Prototype and Production
+      </p>
 
-      {/* 3. Capabilities & Trust (secondary — not a stats billboard) */}
-      <div class="animate-fade-up opacity-0 md:col-start-1 md:row-start-2 md:self-start md:pt-2" style="animation-delay: 0.15s">
-        <dl class="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3 sm:mb-6 sm:gap-x-7" aria-label="Key capabilities">
-          {stats.map((stat, i) => (
-            <>
-              {i > 0 && <div class="hidden h-8 w-px bg-porcelain/25 sm:block" aria-hidden="true"></div>}
-              <div class="flex flex-col">
-                <dt class="font-display text-base font-bold tracking-tight text-porcelain sm:text-lg md:text-xl">
-                  {stat.value}
-                </dt>
-                <dd class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-porcelain/50 sm:text-[11px]">
-                  {stat.label}
-                </dd>
-              </div>
-            </>
-          ))}
-        </dl>
-
-        <ul class="mb-6 flex flex-wrap items-center gap-2.5 text-[10px] font-bold uppercase tracking-wider text-porcelain/55 sm:mb-8 sm:text-[11px]" aria-label="Trust signals">
-          {trustChips.map((chip, i) => (
-            <>
-              <li>{chip}</li>
-              {i < trustChips.length - 1 && <li aria-hidden="true" class="text-porcelain/35">&middot;</li>}
-            </>
-          ))}
-        </ul>
-
+      <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
         <a
           href={withBase('rfq')}
-          class="inline-flex min-h-11 items-center text-sm font-medium text-porcelain/60 underline-offset-4 transition-colors hover:text-gold hover:underline"
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold"
         >
-          Prefer drawings or CAD? Full RFQ →
+          Request a Quote
+        </a>
+        <a
+          href="#capabilities"
+          class="inline-flex min-h-11 items-center justify-center rounded-lg border border-porcelain/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold"
+        >
+          View Capabilities
         </a>
       </div>
-
     </div>
   </div>
 </section>

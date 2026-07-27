@@ -95,7 +95,7 @@ export default function HeroContactForm() {
               1
             </span>
             <span>
-              Prefer drawings or CAD? Continue with the{' '}
+              Prefer a drawing or file? Continue with the{' '}
               <a href={withBase('rfq')} className="link-brand underline-offset-2 hover:underline">
                 full RFQ
               </a>
@@ -113,7 +113,7 @@ export default function HeroContactForm() {
           href={withBase('rfq')}
           className="btn-primary w-full sm:w-auto"
         >
-          Full RFQ with CAD upload
+          Full RFQ with file upload
           <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>
@@ -140,7 +140,7 @@ export default function HeroContactForm() {
           Talk to engineering
         </h2>
         <p className="mt-1.5 text-sm leading-snug text-carbon/65">
-          Three fields. Part, material, qty — CAD optional for now.
+          Three fields. Part, material, qty — files optional for now.
         </p>
       </div>
 

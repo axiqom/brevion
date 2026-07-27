@@ -3,32 +3,32 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'Can you machine titanium and other superalloys?',
-    a: 'Yes. We specialize in hard metals including Titanium (Grade 2, 5), Inconel, and various stainless steels (17-4, 304, 316). Our machines are optimized for high-torque, rigid cutting required for these materials.',
+    q: 'What materials can you machine?',
+    a: 'Common metals and engineering plastics — including titanium, aluminum, stainless, Inconel, Delrin, PEEK, and Ultem. Tell us the material and we will confirm fit.',
   },
   {
-    q: 'What is your minimum order quantity?',
-    a: 'We have no strict minimum order quantity. We frequently run single-piece prototypes as well as 10,000+ piece production runs. Our quoting engine accounts for setup times appropriately.',
+    q: 'Is there a minimum order quantity?',
+    a: 'No strict minimum. We run single-piece prototypes and larger production runs. Setup time is priced into the quote either way.',
   },
   {
     q: 'How does prototype pricing differ from production?',
-    a: 'Prototype pricing includes the full NRE (Non-Recurring Engineering) cost for programming and initial setup. Once a part transitions to production, these costs are amortized, and the per-unit price drops significantly.',
+    a: 'Prototype quotes include the one-time setup and programming work. On production runs, that setup is spread across more parts, so the per-piece price usually drops.',
   },
   {
-    q: 'What are your standard lead times?',
-    a: 'Standard lead time is 2-3 weeks for prototypes and 4-6 weeks for production runs, depending on material availability and finishing requirements. We also offer expedited services for critical deadlines.',
+    q: 'What are your typical lead times?',
+    a: 'Prototypes are often a few weeks. Production runs take a bit longer, depending on material and finish. We can discuss faster options when deadlines are tight.',
   },
   {
     q: 'Can you help with part design?',
-    a: 'Absolutely. Our engineering team frequently consults on Design for Manufacturability (DFM) to help reduce costs, improve tolerances, and simplify assembly.',
+    a: 'Yes. We review your design before we cut metal — and suggest changes that make parts easier or cheaper to make when it helps.',
   },
   {
     q: 'What file formats do you accept?',
-    a: 'We prefer STEP (.step or .stp) models accompanied by a PDF drawing for tolerances and callouts. We can also work with native SolidWorks, Fusion 360, and DXF files.',
+    a: 'STEP models (.step or .stp) plus a PDF drawing work best. We also take SolidWorks, Fusion 360, DXF, and ZIP packages.',
   },
   {
     q: 'Do you sign NDAs?',
-    a: 'Yes. We regularly work with defense, aerospace, and advanced R&D clients. We are happy to sign your NDA before you share any ITAR or proprietary files.',
+    a: 'Yes. We regularly work under NDAs. Happy to sign yours before you share proprietary or controlled files.',
   },
 ];
 
@@ -36,9 +36,9 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-aluminum/40 bg-aluminum/10 py-20 md:py-24">
+    <section className="border-t border-aluminum/40 bg-aluminum/10 py-24 md:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center md:mb-12">
+        <div className="mb-12 text-center md:mb-14">
           <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
             FAQ
           </h2>

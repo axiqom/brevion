@@ -3,108 +3,61 @@ import { withBase } from '../../lib/base';
 
 const capabilities = [
   {
-    num: '01',
-    title: 'Engineering',
-    slug: 'engineering',
-    metrics: ['DFM before cut', 'CAD → CAM'],
-    items: ['CAD / reverse engineering', 'DFM analysis', 'CAM programming'],
-    select: 'Need design help or manufacturability review first.',
-    img: withBase('media/cap-engineering.jpg'),
-    alt: 'Engineer reviewing CAD model and toolpaths on a workstation',
+    title: 'CNC Milling',
+    slug: 'milling',
+    line: 'High-precision machining for complex components.',
   },
   {
-    num: '02',
-    title: 'Manufacturing',
-    slug: 'manufacturing',
-    metrics: ['3 / 4 / 5-axis', '2–3 wk prototypes'],
-    items: ['Mill: 3-, 4-, 5-axis CNC', 'Turn: CNC turning', 'Prototype → production'],
-    select: 'Self-select mill vs turn, proto vs volume.',
-    img: withBase('media/cap-manufacturing.jpg'),
-    alt: 'CNC machining center cutting a precision metal part',
+    title: 'CNC Turning',
+    slug: 'turning',
+    line: 'Production-ready turned components.',
   },
   {
-    num: '03',
-    title: 'Quality',
-    slug: 'quality',
-    metrics: ['±0.0001"', 'AS9102 FAI'],
-    items: ['CMM inspection', 'AS9102 FAI when required', 'Full material traceability'],
-    select: 'For prints that demand documented first article.',
-    img: withBase('media/cap-quality.jpg'),
-    alt: 'Coordinate measuring machine inspecting a machined component',
+    title: 'Prototype Manufacturing',
+    slug: 'prototype',
+    line: '',
   },
   {
-    num: '04',
-    title: 'Finishing',
-    slug: 'finishing',
-    metrics: ['Type II / III anodize', 'One handoff'],
-    items: ['Anodize Type II & III', 'Powder coat / heat treat', 'Laser engrave + hardware'],
-    select: 'Machining and finishing coordinated — no vendor hop.',
-    img: withBase('media/cap-finishing.jpg'),
-    alt: 'Finished precision parts with surface treatment ready for assembly',
+    title: 'Production Manufacturing',
+    slug: 'production',
+    line: '',
+  },
+  {
+    title: 'Assembly',
+    slug: 'assembly',
+    line: '',
+  },
+  {
+    title: 'Inspection',
+    slug: 'inspection',
+    line: 'Inspection throughout every stage of manufacturing.',
   },
 ];
 ---
-<section id="capabilities" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
+<section id="capabilities" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-12 max-w-2xl md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
-        Capabilities
-      </p>
-      <h2 class="mb-4 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
-        Four desks. Concrete numbers.
-      </h2>
-      <p class="text-base text-carbon/65 md:text-lg">
-        Engineering, multi-axis machining, inspection, and finishing — pick the lane that matches your print.
-      </p>
-    </div>
+    <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-20 md:text-4xl lg:text-5xl">
+      Capabilities
+    </h2>
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-      {capabilities.map((group) => (
-        <article class="group flex flex-col overflow-hidden rounded-xl border border-aluminum/35 bg-porcelain shadow-[0_12px_36px_rgba(69,63,58,0.07)] transition-[transform,border-color] duration-200 hover:border-aluminum/55 focus-within:ring-2 focus-within:ring-gold/30 motion-reduce:transition-none md:rounded-2xl">
-          <div class="relative aspect-[16/10] overflow-hidden bg-carbon">
-            <img
-              src={group.img}
-              alt={group.alt}
-              class="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.03] group-hover:opacity-70"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-carbon/20 to-transparent" />
-            <span class="absolute left-4 top-4 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain md:text-3xl">
-              {group.num}
-            </span>
-          </div>
-          <div class="flex flex-1 flex-col p-5 sm:p-6 md:p-7">
-            <h3 class="mb-3 text-xl font-bold uppercase tracking-tight text-carbon md:text-2xl">
-              {group.title}
+    <ul class="grid grid-cols-1 gap-x-16 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {capabilities.map((cap) => (
+        <li class="border-t border-aluminum/40 pt-6">
+          <a
+            href={withBase(`rfq?capability=${cap.slug}`)}
+            class="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain"
+          >
+            <h3 class="text-xl font-bold uppercase tracking-tight text-carbon transition-colors duration-150 group-hover:text-gold md:text-2xl">
+              {cap.title}
             </h3>
-            <div class="mb-4 flex flex-wrap gap-2">
-              {group.metrics.map((m) => (
-                <span class="inline-flex min-h-9 items-center rounded-md border border-aluminum/40 bg-porcelain px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-carbon">
-                  {m}
-                </span>
-              ))}
-            </div>
-            <ul class="mb-4 space-y-2.5">
-              {group.items.map((item) => (
-                <li class="flex items-start gap-2.5 text-sm font-medium text-carbon/65">
-                  <span class="mt-2 h-1 w-1 shrink-0 rounded-sm bg-gold" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p class="mb-4 text-xs font-medium leading-relaxed text-aluminum">
-              {group.select}
-            </p>
-            <a
-              href={withBase(`rfq?capability=${group.slug}`)}
-              class="mt-auto inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-            >
-              Start RFQ →
-            </a>
-          </div>
-        </article>
+            {cap.line ? (
+              <p class="mt-3 max-w-sm text-sm font-medium leading-relaxed text-carbon/60 md:text-base">
+                {cap.line}
+              </p>
+            ) : null}
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>

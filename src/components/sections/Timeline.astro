@@ -1,47 +1,28 @@
 ---
-import { Upload, CheckCircle2, FileText, Settings, Microscope, PackageSearch } from 'lucide-react';
-
 const steps = [
-  { icon: Upload, title: 'Upload CAD', desc: 'STEP + PDF drawing with tolerances.' },
-  { icon: FileText, title: 'DFM review', desc: 'Manufacturability and cost flags.' },
-  { icon: CheckCircle2, title: 'Quote', desc: 'Price, lead time, clear assumptions.' },
-  { icon: Settings, title: 'Machine', desc: 'Programmed and cut to print.' },
-  { icon: Microscope, title: 'Inspect', desc: 'CMM / FAI against your drawing.' },
-  { icon: PackageSearch, title: 'Ship', desc: 'Packed and delivered on date.' },
+  'Upload CAD',
+  'Review',
+  'Quote',
+  'Manufacture',
+  'Inspect',
+  'Deliver',
 ];
 ---
-<section class="border-t border-aluminum/40 bg-porcelain py-20 md:py-24">
+<section id="process" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
-        From print to shipped part.
-      </h2>
-      <p class="text-base text-carbon/65 md:text-lg">
-        RFQ → DFM → machine → inspect → deliver — with a clear owner at each step.
-      </p>
-    </div>
+    <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-20 md:text-4xl lg:text-5xl">
+      Process
+    </h2>
 
-    <div class="relative">
-      <div class="absolute left-10 right-10 top-12 hidden h-px bg-aluminum/50 md:block" />
-      <div class="grid grid-cols-1 gap-1 md:grid-cols-6 md:gap-4">
-        {steps.map((step, idx) => (
-          <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 mb-4 flex h-20 w-20 items-center justify-center rounded-xl border border-aluminum/40 bg-porcelain text-carbon shadow-[0_10px_28px_rgba(69,63,58,0.07)] md:mb-5 md:h-24 md:w-24 md:rounded-2xl">
-              <step.icon size={26} strokeWidth={1.5} aria-hidden="true" />
-              <div class="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-md bg-carbon text-[10px] font-bold text-porcelain md:h-7 md:w-7 md:text-xs">
-                {idx + 1}
-              </div>
-            </div>
-            <h3 class="mb-1.5 text-sm font-bold uppercase tracking-tight text-carbon md:text-base">
-              {step.title}
-            </h3>
-            <p class="px-1 text-xs font-medium leading-snug text-aluminum md:text-sm">{step.desc}</p>
-            {idx !== steps.length - 1 && (
-              <div class="my-4 h-6 w-px bg-aluminum/50 md:hidden" />
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <ol class="flex flex-col gap-0 md:flex-row md:flex-wrap md:items-baseline md:gap-x-3 md:gap-y-6">
+      {steps.map((step, idx) => (
+        <li class="flex items-baseline gap-3 border-t border-aluminum/40 py-5 md:border-t-0 md:py-0">
+          <span class="text-base font-medium text-carbon md:text-lg">{step}</span>
+          {idx !== steps.length - 1 && (
+            <span class="hidden text-aluminum md:inline" aria-hidden="true">→</span>
+          )}
+        </li>
+      ))}
+    </ol>
   </div>
 </section>

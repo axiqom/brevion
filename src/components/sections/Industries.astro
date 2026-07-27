@@ -1,86 +1,27 @@
 ---
-import { withBase } from '../../lib/base';
-
 const industries = [
-  {
-    name: 'Aerospace',
-    desc: 'Complex lightweight components built to exacting tolerances.',
-    img: withBase('media/ind-aerospace.jpg'),
-    alt: 'Aircraft structure and precision aerospace hardware',
-    span: 'md:col-span-2',
-  },
-  {
-    name: 'Defense',
-    desc: 'Mission-critical parts manufactured with precision and consistency.',
-    img: withBase('media/ind-defense.jpg'),
-    alt: 'Defense-grade precision machined components',
-    span: 'md:col-span-1',
-  },
-  {
-    name: 'Space',
-    desc: 'Launch systems. Ground support. Satellite hardware.',
-    img: withBase('media/ind-space.jpg'),
-    alt: 'Spacecraft and launch-related hardware environment',
-    span: 'md:col-span-1',
-  },
-  {
-    name: 'Medical',
-    desc: 'Precision components where consistency matters.',
-    img: withBase('media/ind-medical.jpg'),
-    alt: 'Clean precision components for medical devices',
-    span: 'md:col-span-2',
-  },
-  {
-    name: 'Industrial Automation',
-    desc: 'Machine components. Custom tooling. Fixtures.',
-    img: withBase('media/ind-industrial.jpg'),
-    alt: 'Industrial automation machinery and custom fixtures',
-    span: 'md:col-span-2',
-  },
-  {
-    name: 'Robotics',
-    desc: 'High-performance components for automation systems.',
-    img: withBase('media/ind-robotics.jpg'),
-    alt: 'Robotic arm and precision machined robotics parts',
-    span: 'md:col-span-1',
-  },
+  'Aerospace',
+  'Defense',
+  'Medical',
+  'Robotics',
+  'Industrial',
+  'Automotive',
+  'Energy',
+  'Consumer Products',
 ];
 ---
-<section id="industries" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-20 md:py-24">
+<section id="industries" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-12 max-w-2xl md:mb-14">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">
-        Industries
-      </p>
-      <h2 class="mb-3 text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
-        Where the prints come from
-      </h2>
-      <p class="text-base text-carbon/65 md:text-lg">
-        Aerospace, defense, space, medical, and automation — mission-critical hardware.
-      </p>
-    </div>
+    <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-20 md:text-4xl lg:text-5xl">
+      Industries We Serve
+    </h2>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
-      {industries.map((ind) => (
-        <a
-          href="#intake"
-          class={`group relative aspect-[4/3] min-h-[240px] overflow-hidden rounded-xl bg-carbon shadow-[0_14px_40px_rgba(69,63,58,0.12)] outline-none transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_48px_rgba(69,63,58,0.16)] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[280px] md:aspect-auto md:min-h-[320px] md:rounded-2xl ${ind.span}`}
-        >
-          <img
-            src={ind.img}
-            alt={ind.alt}
-            class="absolute inset-0 h-full w-full object-cover opacity-55 transition-[transform,opacity] duration-500 motion-reduce:transition-none group-hover:scale-[1.03] group-hover:opacity-70"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-carbon via-carbon/55 to-transparent p-6 sm:p-8 md:p-10">
-            <h3 class="mb-1.5 text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl md:mb-2 md:text-3xl">
-              {ind.name}
-            </h3>
-            <p class="max-w-sm text-sm font-medium text-porcelain/75 md:text-base">{ind.desc}</p>
-          </div>
-        </a>
+    <ul class="grid grid-cols-1 gap-x-12 gap-y-6 sm:grid-cols-2 md:grid-cols-4 md:gap-y-8">
+      {industries.map((name) => (
+        <li class="border-t border-aluminum/40 pt-5 text-base font-medium text-carbon md:text-lg">
+          {name}
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>
