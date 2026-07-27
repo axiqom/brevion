@@ -3,15 +3,24 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
 import BrandLogo from './BrandLogo';
 
+export type HeaderPage =
+  | 'home'
+  | 'capabilities'
+  | 'industries'
+  | 'work'
+  | 'rfq'
+  | 'about';
+
 interface HeaderProps {
-  currentPage?: 'home' | 'rfq';
+  currentPage?: HeaderPage;
 }
 
-const navLinks = [
-  { label: 'Industries', href: withBase('#industries') },
-  { label: 'Capabilities', href: withBase('#capabilities') },
+const navLinks: { label: string; href: string; page?: HeaderPage }[] = [
+  { label: 'Home', href: withBase(), page: 'home' },
+  { label: 'Capabilities', href: withBase('capabilities'), page: 'capabilities' },
+  { label: 'Industries', href: withBase('industries'), page: 'industries' },
+  { label: 'Work', href: withBase('work'), page: 'work' },
   { label: 'Process', href: withBase('#process') },
-  { label: 'Materials', href: withBase('#materials') },
 ];
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -44,16 +53,22 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             <BrandLogo surface="header" />
           </a>
 
-          <div className="hidden items-center gap-8 lg:flex xl:gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="rounded-sm text-[13px] font-semibold uppercase tracking-widest text-carbon/70 transition-colors duration-150 hover:text-gold"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden items-center gap-7 lg:flex xl:gap-9">
+            {navLinks.map((link) => {
+              const active = link.page != null && currentPage === link.page;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`rounded-sm text-[13px] font-semibold uppercase tracking-widest transition-colors duration-150 hover:text-gold ${
+                    active ? 'text-carbon' : 'text-carbon/70'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <a
               href={withBase('rfq')}
               className="group flex min-h-11 items-center gap-2 rounded-lg bg-carbon px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
@@ -87,16 +102,22 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
           className="border-b border-aluminum/50 bg-porcelain px-4 pb-6 pt-1 lg:hidden"
         >
           <div className="space-y-0.5">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="flex min-h-11 items-center rounded-lg px-1 py-3 text-base font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const active = link.page != null && currentPage === link.page;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`flex min-h-11 items-center rounded-lg px-1 py-3 text-base font-semibold uppercase tracking-widest transition-colors duration-150 hover:text-gold ${
+                    active ? 'text-carbon' : 'text-carbon'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
           <a
             href={withBase('rfq')}

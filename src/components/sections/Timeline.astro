@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/base';
+
 const steps = [
   'Upload CAD',
   'Review',
@@ -8,21 +10,37 @@ const steps = [
   'Deliver',
 ];
 ---
-<section id="process" class="scroll-mt-28 border-t border-aluminum/40 bg-aluminum/10 py-28 md:py-36">
+<section id="process" class="scroll-mt-28 border-t border-aluminum/40 bg-porcelain py-28 md:py-36">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h2 class="mb-14 text-3xl font-bold uppercase tracking-tight text-carbon md:mb-20 md:text-4xl lg:text-5xl">
-      Process
-    </h2>
+    <div class="mb-14 md:mb-16">
+      <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
+        Process
+      </h2>
+    </div>
 
-    <ol class="flex flex-col gap-0 md:flex-row md:flex-wrap md:items-baseline md:gap-x-3 md:gap-y-6">
+    <ol class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-3">
       {steps.map((step, idx) => (
-        <li class="flex items-baseline gap-3 border-t border-aluminum/40 py-5 md:border-t-0 md:py-0">
-          <span class="text-base font-medium text-carbon md:text-lg">{step}</span>
+        <li class="relative overflow-hidden rounded-xl border border-aluminum/35 bg-aluminum/10 p-5 md:rounded-2xl md:p-6">
+          <span class="mb-4 block font-display text-2xl font-bold tabular-nums tracking-tight text-aluminum md:text-3xl">
+            {String(idx + 1).padStart(2, '0')}
+          </span>
+          <span class="block text-base font-semibold uppercase tracking-wide text-carbon md:text-lg">
+            {step}
+          </span>
           {idx !== steps.length - 1 && (
-            <span class="hidden text-aluminum md:inline" aria-hidden="true">→</span>
+            <span class="absolute right-3 top-5 hidden text-aluminum lg:block" aria-hidden="true">→</span>
           )}
         </li>
       ))}
     </ol>
+
+    <div class="mt-12 md:mt-14">
+      <a
+        href={withBase('rfq')}
+        class="inline-flex min-h-11 items-center text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+      >
+        Start with CAD →
+      </a>
+    </div>
   </div>
 </section>

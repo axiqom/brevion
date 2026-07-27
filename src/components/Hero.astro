@@ -1,5 +1,4 @@
 ---
-import BrandLogo from './BrandLogo.astro';
 import { withBase } from '../lib/base';
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-hidden overflow-y-visible bg-carbon">
@@ -9,25 +8,20 @@ import { withBase } from '../lib/base';
       <img
         src={withBase('hero-cnc-sm.jpg')}
         alt=""
-        class="h-full w-full object-cover object-center opacity-75"
+        class="h-full w-full object-cover object-center opacity-80"
         aria-hidden="true"
       />
     </picture>
-    <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/50 to-carbon/20"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-carbon/85 via-carbon/35 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/45 to-carbon/15"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/30 to-transparent"></div>
   </div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-24 pt-28 sm:px-6 md:pb-32 md:pt-32 lg:px-8">
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-4 pb-24 pt-32 sm:px-6 md:justify-center md:pb-32 md:pt-28 lg:px-8">
     <div class="animate-fade-up max-w-3xl opacity-0" style="animation-delay: 0.05s">
-      {/* 15.png Porcelain+Carbon fills need engineered Carbon Taupe — not raw photo. */}
-      <div class="mb-8 inline-flex items-center rounded-lg bg-carbon px-3 py-2 sm:mb-10 sm:px-3.5 sm:py-2.5">
-        <BrandLogo surface="hero" />
-      </div>
-
-      <h1 class="mb-5 max-w-2xl text-[1.85rem] font-bold uppercase leading-[0.98] tracking-tight text-porcelain sm:mb-6 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+      <h1 class="mb-5 max-w-2xl text-[2rem] font-bold uppercase leading-[0.96] tracking-tight text-porcelain sm:mb-6 sm:text-5xl md:text-6xl lg:text-[4.25rem]">
         Advanced Precision Manufacturing
       </h1>
-      <p class="mb-10 max-w-xl text-sm font-medium tracking-wide text-porcelain/70 sm:mb-12 sm:text-base md:text-lg">
+      <p class="mb-10 max-w-xl text-base font-medium tracking-wide text-porcelain/70 sm:mb-12 sm:text-lg md:text-xl">
         CNC Machining for Prototype and Production
       </p>
 
@@ -39,7 +33,7 @@ import { withBase } from '../lib/base';
           Request a Quote
         </a>
         <a
-          href="#capabilities"
+          href={withBase('capabilities')}
           class="inline-flex min-h-11 items-center justify-center rounded-lg border border-porcelain/40 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold"
         >
           View Capabilities

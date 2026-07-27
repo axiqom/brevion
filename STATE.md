@@ -1,13 +1,20 @@
-focus: Mendel Hexagon/Siemens restraint copy shipped on home
+focus: Multi-page premium rebuild live (sticky + Pages)
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Confirm live Pages + sticky after copy deploy
+next: Mendel visual confirm on multi-page photographic site
 
 ## Current focus
-Mendel copy brief applied — strip density, engineering restraint voice
+Mendel multi-page IA + photographic polish (no hero logo)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
+## Pages
+- `/` Home
+- `/capabilities`
+- `/industries`
+- `/work`
+- `/rfq`
+
 ## Next step
-Verify Pages + sticky after gh-pages publish
+Await Mendel confirm on live multi-page look
