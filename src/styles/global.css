@@ -132,6 +132,9 @@
 
   .brand-logo--chat {
     --brand-logo-h: 28px;
+    --brand-logo-frac: 0.208;
+    --brand-logo-cw: 1365;
+    --brand-logo-ch: 416;
   }
 
   .brand-logo--icon {
