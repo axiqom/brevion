@@ -16,9 +16,12 @@ export type BrandLogoKind = 'horizontal' | 'mark';
 
 /** Official raw assets — never substitute 6/7 or generated crops. */
 export const BRAND_LOGO = {
-  /** Dark/mid horizontal lockup — porcelain chrome (header, footer, RFQ, chat). */
-  chrome: 'brand/raw/17.png',
-  /** Light horizontal lockup — on photo / dark hero. */
+  /**
+   * Carbon + Porcelain fills — porcelain chrome only (header, footer, RFQ, chat).
+   * Do NOT use 17.png here (17 = carbon + aluminum; aluminum surfaces only).
+   */
+  chrome: 'brand/raw/18.png',
+  /** Porcelain + Carbon fills — light lockup on solid carbon plate over dark hero. */
   hero: 'brand/raw/15.png',
   /** Mark — favicon, apple-touch, compact icon uses. */
   mark: 'brand/raw/9.png',

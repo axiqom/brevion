@@ -132,8 +132,9 @@ Source: `brevion_logo_package.zip` → `public/brand/raw/5.png` + `8.png`–`26.
 
 | Use | Path | Notes |
 |-----|------|-------|
-| Header / Footer / RFQ | `brand/raw/17.png` | Dark horizontal lockup on porcelain |
-| Hero (photo overlay) | `brand/raw/15.png` | Light horizontal lockup on dark media |
+| Header / Footer / RFQ / chat | `brand/raw/18.png` | Carbon + Porcelain fills on porcelain |
+| Hero (Carbon Taupe plate) | `brand/raw/15.png` | Porcelain + Carbon fills on solid `bg-carbon` |
+| Aluminum / mid surfaces only | `brand/raw/17.png` | Carbon + Aluminum — never on porcelain |
 | Favicon + apple-touch | `brand/raw/9.png` | Direct pack file; browsers scale |
 | Pack map | `public/brand/MANIFEST.md` | Allowed files + wiring |
 

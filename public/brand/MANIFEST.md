@@ -5,6 +5,7 @@ Forbidden: `6.png`, `7.png`, any derivatives outside `raw/` (no mark-*, wordmark
 
 | Use | File |
 |-----|------|
-| Header / Footer / RFQ (porcelain) | `raw/17.png` horizontal lockup |
-| Hero (on photo) | `raw/15.png` light horizontal lockup |
+| Header / Footer / RFQ / Chat (porcelain) | `raw/18.png` horizontal lockup (carbon + porcelain fills) |
+| Hero (on carbon plate over photo) | `raw/15.png` light horizontal lockup (porcelain + carbon fills) |
+| Aluminum / mid surfaces only | `raw/17.png` (carbon + aluminum) — do not use on porcelain |
 | Favicon + apple-touch | `raw/9.png` (browsers scale; no new rasters) |
