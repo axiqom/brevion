@@ -28,7 +28,7 @@
 - [x] Expandable cards: expand + RFQ path; scroll-into-view on phone
 - [x] Convert bar + chat coexist (bar yields when chat open; launcher offset when bar shown)
 - [x] Touch targets ≥44px on primary chrome
-- [ ] Sticky + Pages HTTP 200 verified after deploy (see commit / agent output)
+- [x] Sticky + Pages HTTP 200 verified after deploy (Playwright: no overflow @360/390/430; nav lock/Escape/RFQ; chat above convert bar)
 
 ## Known remaining issues
 
