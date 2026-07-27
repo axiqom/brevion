@@ -1,13 +1,13 @@
-focus: Fictiv-style expand cards + CTA conversion — review required
+focus: Fictiv expandable cards + CTA funnel — review required
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel review — expand-in-image cards + RFQ CTAs
+next: Mendel review — expandable capability/industry cards + CTA path
 
 ## Current focus
-Fictiv-pattern expandable capability/industry cards, interactive process stages, MidCta bands, Why accordion
+Fictiv-style expandable image cards + EnSima CTA rhythm (hero → cards → MidCta → proof → Ready to Start)
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Next step
-Awaiting review (kanban review-required)
+Awaiting Mendel review (kanban review-required)
