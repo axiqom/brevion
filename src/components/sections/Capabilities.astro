@@ -1,38 +1,63 @@
 ---
 import { withBase } from '../../lib/base';
+import ExpandableCardGrid from '../ExpandableCard';
 
 const capabilities = [
   {
+    id: 'milling',
     num: '01',
     title: 'CNC Milling',
-    slug: 'milling',
     line: 'Multi-axis milling for complex geometry.',
     img: withBase('media/cap-manufacturing.jpg'),
     alt: '5-axis CNC machining center with open enclosure and control console',
+    facts: [
+      '3-, 4-, and 5-axis milling.',
+      'Metals and engineering plastics.',
+      'Prototype through production lots.',
+    ],
+    rfqSlug: 'milling',
   },
   {
+    id: 'turning',
     num: '02',
     title: 'CNC Turning',
-    slug: 'turning',
     line: 'Turned components ready for production.',
     img: withBase('media/cap-turning.jpg'),
     alt: 'CNC lathe chuck holding a turned metal workpiece with turret tooling',
+    facts: [
+      'Lathe work for diameters and features.',
+      'Common metals and bar stock.',
+      'Fits milling when parts need both.',
+    ],
+    rfqSlug: 'turning',
   },
   {
+    id: 'prototype',
     num: '03',
     title: 'Prototype Manufacturing',
-    slug: 'prototype',
     line: 'CAD to first articles.',
     img: withBase('media/cap-engineering.jpg'),
     alt: 'Vertical machining center used for prototype and first-article work',
+    facts: [
+      'Low volume first articles from CAD.',
+      'Design review before cut.',
+      'Path to production when the design locks.',
+    ],
+    rfqSlug: 'prototype',
   },
   {
+    id: 'inspection',
     num: '04',
     title: 'Inspection',
-    slug: 'inspection',
     line: 'Inspection throughout every stage of manufacturing.',
     img: withBase('media/cap-quality.jpg'),
     alt: 'Coordinate measuring machine probe over a granite surface plate',
+    facts: [
+      'In-process and final dimensional checks.',
+      'CMM and standard metrology tools.',
+      'Documentation when the print requires it.',
+    ],
+    rfqSlug: 'inspection',
   },
 ];
 ---
@@ -46,6 +71,9 @@ const capabilities = [
         <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           What we machine
         </h2>
+        <p class="mt-5 max-w-md text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
+          Select a capability for process detail and a quote path.
+        </p>
       </div>
       <a
         href={withBase('capabilities')}
@@ -55,33 +83,6 @@ const capabilities = [
       </a>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
-      {capabilities.map((cap) => (
-        <a
-          href={withBase('capabilities')}
-          class="group relative flex min-h-[300px] flex-col overflow-hidden rounded-xl bg-carbon outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[340px] md:rounded-2xl lg:min-h-[380px]"
-        >
-          <img
-            src={cap.img}
-            alt={cap.alt}
-            class="absolute inset-0 h-full w-full object-cover opacity-80 transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-90"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-carbon/95 via-carbon/45 to-carbon/10" />
-          <div class="relative z-10 mt-auto flex flex-col p-7 sm:p-8 md:p-10">
-            <span class="mb-5 font-display text-2xl font-bold tabular-nums tracking-tight text-porcelain/45 md:text-3xl">
-              {cap.num}
-            </span>
-            <h3 class="mb-2 text-xl font-bold uppercase tracking-tight text-porcelain md:text-2xl">
-              {cap.title}
-            </h3>
-            <p class="max-w-sm text-sm font-medium leading-relaxed text-porcelain/65 md:text-base">
-              {cap.line}
-            </p>
-          </div>
-        </a>
-      ))}
-    </div>
+    <ExpandableCardGrid client:load items={capabilities} />
   </div>
 </section>

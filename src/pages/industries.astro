@@ -1,66 +1,129 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/base';
+import ExpandableCardGrid from '../components/ExpandableCard';
+import MidCta from '../components/sections/MidCta.astro';
 import MobileConvertBar from '../components/MobileConvertBar';
 
-type Industry = {
-  name: string;
-  img?: string;
-  alt?: string;
-  span: string;
-  object?: string;
-};
-
-const industries: Industry[] = [
+const industries = [
   {
-    name: 'Aerospace',
+    id: 'aerospace',
+    title: 'Aerospace',
+    line: 'Flight hardware and structural components.',
     img: withBase('media/ind-aerospace.jpg'),
     alt: 'Jet engine turbine cutaway with precision machined blades',
     span: 'md:col-span-2',
-    object: 'object-[center_40%]',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    objectClass: 'object-[center_40%]',
+    facts: [
+      'Tight-tolerance flight and structural parts.',
+      'Metals used in airframe and engine work.',
+      'Documentation when the program requires it.',
+    ],
+    rfqSlug: 'aerospace',
   },
   {
-    name: 'Defense',
+    id: 'defense',
+    title: 'Defense',
+    line: 'Controlled parts with traceability when specified.',
     img: withBase('media/ind-defense.jpg'),
     alt: 'F-35 fighter aircraft in a clean hangar',
     span: 'md:col-span-1',
-    object: 'object-center',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    facts: [
+      'Machined components for defense programs.',
+      'Traceability when the print calls for it.',
+      'NDA and controlled-file handling available.',
+    ],
+    rfqSlug: 'defense',
   },
   {
-    name: 'Medical',
+    id: 'medical',
+    title: 'Medical',
+    line: 'Implant and instrument components.',
     img: withBase('media/ind-medical.jpg'),
     alt: 'Precision metal and polymer orthopedic implant components',
     span: 'md:col-span-1',
-    object: 'object-center',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    facts: [
+      'Orthopedic and instrument components.',
+      'Metals and medical-grade plastics.',
+      'Surface and dimensional requirements per print.',
+    ],
+    rfqSlug: 'medical',
   },
   {
-    name: 'Robotics',
+    id: 'robotics',
+    title: 'Robotics',
+    line: 'Structural and motion parts for automation.',
     img: withBase('media/ind-robotics.jpg'),
     alt: 'Industrial robotic arms assembling a vehicle chassis',
     span: 'md:col-span-2',
-    object: 'object-[center_45%]',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    objectClass: 'object-[center_45%]',
+    facts: [
+      'Housings, brackets, and motion components.',
+      'Prototype frames through production lots.',
+      'Fits with assembly when needed.',
+    ],
+    rfqSlug: 'robotics',
   },
   {
-    name: 'Industrial',
+    id: 'industrial',
+    title: 'Industrial',
+    line: 'Machine and equipment components.',
     img: withBase('media/ind-industrial.jpg'),
     alt: 'CNC machining center on a clean production floor',
     span: 'md:col-span-2',
-    object: 'object-center',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    facts: [
+      'Fixtures, housings, and wear parts.',
+      'Metals for industrial equipment.',
+      'Prototype and production volumes.',
+    ],
+    rfqSlug: 'industrial',
   },
   {
-    name: 'Automotive',
+    id: 'automotive',
+    title: 'Automotive',
+    line: 'Precision parts for vehicle systems.',
     span: 'md:col-span-1',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    facts: [
+      'Brackets, housings, and drivetrain-adjacent parts.',
+      'Metals and engineering plastics.',
+      'Prototype through production.',
+    ],
+    rfqSlug: 'automotive',
   },
   {
-    name: 'Energy',
+    id: 'energy',
+    title: 'Energy',
+    line: 'Components for energy systems.',
     img: withBase('media/ind-energy.jpg'),
     alt: 'Wind turbines across an open field at sunset',
     span: 'md:col-span-1',
-    object: 'object-[center_55%]',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    objectClass: 'object-[center_55%]',
+    facts: [
+      'Structural and mechanical energy-system parts.',
+      'Corrosion-resistant metals when specified.',
+      'Documentation for field deployment when needed.',
+    ],
+    rfqSlug: 'energy',
   },
   {
-    name: 'Consumer Products',
+    id: 'consumer',
+    title: 'Consumer Products',
+    line: 'Enclosures and precision product parts.',
     span: 'md:col-span-2',
+    minHeightClass: 'min-h-[280px] sm:min-h-[320px] md:min-h-[380px]',
+    facts: [
+      'Enclosures, mechanisms, and finish-critical parts.',
+      'Metals and engineering plastics.',
+      'Low to mid volume production.',
+    ],
+    rfqSlug: 'consumer',
   },
 ];
 ---
@@ -77,48 +140,23 @@ const industries: Industry[] = [
       <h1 class="max-w-3xl text-4xl font-bold uppercase leading-[0.96] tracking-tight text-carbon md:text-5xl lg:text-6xl xl:text-7xl">
         Industries We Serve
       </h1>
+      <p class="mt-8 max-w-lg text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
+        Open a sector for typical part types and a quote path.
+      </p>
     </div>
   </section>
 
-  <section class="bg-porcelain pb-28 md:pb-36">
+  <section class="bg-porcelain pb-16 md:pb-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
-        {industries.map((ind) => (
-          <div
-            class={`group relative aspect-[4/3] min-h-[280px] overflow-hidden rounded-xl sm:min-h-[320px] md:aspect-auto md:min-h-[380px] md:rounded-2xl ${ind.img ? 'bg-carbon' : 'border border-aluminum/35 bg-aluminum/12'} ${ind.span}`}
-          >
-            {ind.img ? (
-              <>
-                <img
-                  src={ind.img}
-                  alt={ind.alt}
-                  class={`absolute inset-0 h-full w-full object-cover opacity-70 transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-90 ${ind.object ?? 'object-center'}`}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-carbon/92 via-carbon/40 to-transparent" />
-                <div class="absolute inset-0 flex flex-col justify-end p-7 sm:p-8 md:p-10">
-                  <h2 class="text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl md:text-3xl">
-                    {ind.name}
-                  </h2>
-                </div>
-              </>
-            ) : (
-              <div class="absolute inset-0 flex flex-col justify-end p-7 sm:p-8 md:p-10">
-                <div class="mb-auto mt-10 h-px w-16 bg-aluminum/80" aria-hidden="true" />
-                <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-aluminum">
-                  Precision parts
-                </p>
-                <h2 class="text-2xl font-bold uppercase tracking-tight text-carbon sm:text-3xl md:text-4xl">
-                  {ind.name}
-                </h2>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      <ExpandableCardGrid
+        client:load
+        items={industries}
+        columnsClass="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5"
+      />
     </div>
   </section>
+
+  <MidCta line="Working in aerospace, medical, or robotics? Start a quote." />
 
   <section id="cta" class="border-t border-aluminum/35 bg-aluminum/10 py-28 md:py-36">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

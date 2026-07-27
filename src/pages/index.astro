@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Industries from '../components/sections/Industries.astro';
 import Capabilities from '../components/sections/Capabilities.astro';
+import MidCta from '../components/sections/MidCta.astro';
 import Timeline from '../components/sections/Timeline.astro';
 import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
 import Materials from '../components/sections/Materials.astro';
@@ -15,8 +16,10 @@ import MobileConvertBar from '../components/MobileConvertBar';
   currentPage="home"
 >
   <Hero />
-  <Industries />
   <Capabilities />
+  <MidCta line="Ready for milling, turning, prototype, or inspection? Start a quote." />
+  <Industries />
+  <MidCta line="Aerospace, defense, medical, or robotics parts — send the drawing." />
   <Timeline />
   <WhyChooseUs />
   <Materials />

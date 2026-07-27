@@ -1,30 +1,67 @@
 ---
 import { withBase } from '../../lib/base';
+import ExpandableCardGrid from '../ExpandableCard';
 
 const industries = [
   {
-    name: 'Aerospace',
+    id: 'aerospace',
+    title: 'Aerospace',
+    line: 'Flight hardware and structural components.',
     img: withBase('media/ind-aerospace.jpg'),
     alt: 'Jet engine turbine cutaway with precision machined blades',
     span: 'md:col-span-2',
+    minHeightClass: 'min-h-[260px] sm:min-h-[300px] md:min-h-[360px]',
+    facts: [
+      'Tight-tolerance flight and structural parts.',
+      'Metals used in airframe and engine work.',
+      'Documentation when the program requires it.',
+    ],
+    rfqSlug: 'aerospace',
   },
   {
-    name: 'Defense',
+    id: 'defense',
+    title: 'Defense',
+    line: 'Controlled parts with traceability when specified.',
     img: withBase('media/ind-defense.jpg'),
     alt: 'F-35 fighter aircraft in a clean hangar',
     span: 'md:col-span-1',
+    minHeightClass: 'min-h-[260px] sm:min-h-[300px] md:min-h-[360px]',
+    facts: [
+      'Machined components for defense programs.',
+      'Traceability when the print calls for it.',
+      'NDA and controlled-file handling available.',
+    ],
+    rfqSlug: 'defense',
   },
   {
-    name: 'Medical',
+    id: 'medical',
+    title: 'Medical',
+    line: 'Implant and instrument components.',
     img: withBase('media/ind-medical.jpg'),
     alt: 'Precision metal and polymer orthopedic implant components',
     span: 'md:col-span-1',
+    minHeightClass: 'min-h-[260px] sm:min-h-[300px] md:min-h-[360px]',
+    facts: [
+      'Orthopedic and instrument components.',
+      'Metals and medical-grade plastics.',
+      'Surface and dimensional requirements per print.',
+    ],
+    rfqSlug: 'medical',
   },
   {
-    name: 'Robotics',
+    id: 'robotics',
+    title: 'Robotics',
+    line: 'Structural and motion parts for automation.',
     img: withBase('media/ind-robotics.jpg'),
     alt: 'Industrial robotic arms assembling a vehicle chassis',
     span: 'md:col-span-2',
+    minHeightClass: 'min-h-[260px] sm:min-h-[300px] md:min-h-[360px]',
+    facts: [
+      'Housings, brackets, and motion components.',
+      'Prototype frames through production lots.',
+      'Fits with assembly when needed.',
+    ],
+    rfqSlug: 'robotics',
   },
 ];
 ---
@@ -38,6 +75,9 @@ const industries = [
         <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
           Industries We Serve
         </h2>
+        <p class="mt-5 max-w-md text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
+          Open a sector for typical part types and a quote path.
+        </p>
       </div>
       <a
         href={withBase('industries')}
@@ -47,26 +87,10 @@ const industries = [
       </a>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
-      {industries.map((ind) => (
-        <a
-          href={withBase('industries')}
-          class={`group relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-xl bg-carbon outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-porcelain motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:min-h-[300px] md:aspect-auto md:min-h-[360px] md:rounded-2xl ${ind.span}`}
-        >
-          <img
-            src={ind.img}
-            alt={ind.alt}
-            class="absolute inset-0 h-full w-full object-cover opacity-70 transition-[transform,opacity] duration-700 motion-reduce:transition-none group-hover:scale-[1.04] group-hover:opacity-90"
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-carbon/92 via-carbon/35 to-transparent p-7 sm:p-8 md:p-10">
-            <h3 class="text-xl font-bold uppercase tracking-tight text-porcelain sm:text-2xl md:text-3xl">
-              {ind.name}
-            </h3>
-          </div>
-        </a>
-      ))}
-    </div>
+    <ExpandableCardGrid
+      client:load
+      items={industries}
+      columnsClass="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5"
+    />
   </div>
 </section>

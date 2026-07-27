@@ -20,6 +20,7 @@ const navLinks: { label: string; href: string; page?: HeaderPage }[] = [
   { label: 'Capabilities', href: withBase('capabilities'), page: 'capabilities' },
   { label: 'Industries', href: withBase('industries'), page: 'industries' },
   { label: 'Work', href: withBase('work'), page: 'work' },
+  // Off-home pages land on home process section via /#process (base-aware).
   { label: 'Process', href: withBase('#process') },
 ];
 

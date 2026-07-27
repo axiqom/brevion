@@ -1,62 +1,97 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/base';
+import ExpandableCardGrid from '../components/ExpandableCard';
+import MidCta from '../components/sections/MidCta.astro';
 import MobileConvertBar from '../components/MobileConvertBar';
 
 const capabilities = [
   {
+    id: 'milling',
     num: '01',
     title: 'CNC Milling',
-    slug: 'milling',
     line: 'Multi-axis milling for complex geometry.',
     img: withBase('media/cap-manufacturing.jpg'),
     alt: '5-axis CNC machining center with open enclosure and control console',
-    object: 'object-[center_40%]',
+    objectClass: 'object-[center_40%]',
+    facts: [
+      '3-, 4-, and 5-axis milling.',
+      'Metals and engineering plastics.',
+      'Prototype through production lots.',
+    ],
+    rfqSlug: 'milling',
   },
   {
+    id: 'turning',
     num: '02',
     title: 'CNC Turning',
-    slug: 'turning',
     line: 'Turned components ready for production.',
     img: withBase('media/cap-turning.jpg'),
     alt: 'CNC lathe chuck holding a turned metal workpiece with turret tooling',
-    object: 'object-center',
+    facts: [
+      'Lathe work for diameters and features.',
+      'Common metals and bar stock.',
+      'Fits milling when parts need both.',
+    ],
+    rfqSlug: 'turning',
   },
   {
+    id: 'prototype',
     num: '03',
     title: 'Prototype Manufacturing',
-    slug: 'prototype',
     line: 'CAD to first articles.',
     img: withBase('media/cap-engineering.jpg'),
     alt: 'Vertical machining center used for prototype and first-article work',
-    object: 'object-center',
+    facts: [
+      'Low volume first articles from CAD.',
+      'Design review before cut.',
+      'Path to production when the design locks.',
+    ],
+    rfqSlug: 'prototype',
   },
   {
+    id: 'production',
     num: '04',
     title: 'Production Manufacturing',
-    slug: 'production',
     line: 'Repeatable process control.',
     img: withBase('media/cap-production.jpg'),
     alt: 'Clean production floor with multiple CNC milling machines',
-    object: 'object-[center_45%]',
+    objectClass: 'object-[center_45%]',
+    facts: [
+      'Repeatable setups for production lots.',
+      'Process control across the run.',
+      'Inspection checkpoints as specified.',
+    ],
+    rfqSlug: 'production',
   },
   {
+    id: 'assembly',
     num: '05',
     title: 'Assembly',
-    slug: 'assembly',
     line: 'Machining and build in one handoff.',
     img: withBase('media/cap-assembly.jpg'),
     alt: 'Precision assembly of electronics into a machined housing',
-    object: 'object-center',
+    facts: [
+      'Machined parts plus build in one handoff.',
+      'Mechanical and light electronics fit-up.',
+      'Reduces multi-vendor coordination.',
+    ],
+    rfqSlug: 'assembly',
   },
   {
+    id: 'inspection',
     num: '06',
     title: 'Inspection',
-    slug: 'inspection',
     line: 'Inspection throughout every stage of manufacturing.',
     img: withBase('media/cap-quality.jpg'),
     alt: 'Coordinate measuring machine probe over a granite surface plate',
-    object: 'object-[center_35%]',
+    objectClass: 'object-[center_35%]',
+    facts: [
+      'In-process and final dimensional checks.',
+      'CMM and standard metrology tools.',
+      'Documentation when the print requires it.',
+    ],
+    rfqSlug: 'inspection',
   },
 ];
 ---
@@ -74,50 +109,18 @@ const capabilities = [
         What we machine
       </h1>
       <p class="mt-8 max-w-lg text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
-        CNC milling, turning, prototype, production, assembly, and inspection.
+        CNC milling, turning, prototype, production, assembly, and inspection. Open a card for detail.
       </p>
     </div>
   </section>
 
-  <section class="bg-porcelain pb-10 md:pb-16">
-    <div class="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 md:space-y-8 lg:px-8">
-      {capabilities.map((cap, idx) => (
-        <article
-          class={`group grid overflow-hidden rounded-xl bg-aluminum/10 md:rounded-2xl lg:grid-cols-2 ${
-            idx % 2 === 1 ? 'lg:[&>figure]:order-2' : ''
-          }`}
-        >
-          <figure class="relative aspect-[16/10] overflow-hidden bg-carbon lg:aspect-auto lg:min-h-[420px]">
-            <img
-              src={cap.img}
-              alt={cap.alt}
-              class={`absolute inset-0 h-full w-full object-cover opacity-85 transition-transform duration-700 motion-reduce:transition-none group-hover:scale-[1.03] ${cap.object}`}
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-carbon/55 via-transparent to-carbon/10 lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-carbon/25" />
-            <span class="absolute left-5 top-5 font-display text-3xl font-bold tabular-nums tracking-tight text-porcelain/75 md:left-7 md:top-7 md:text-4xl">
-              {cap.num}
-            </span>
-          </figure>
-          <div class="flex flex-col justify-center px-6 py-12 sm:px-10 md:px-14 md:py-16">
-            <h2 class="mb-5 text-2xl font-bold uppercase tracking-tight text-carbon md:text-3xl lg:text-4xl">
-              {cap.title}
-            </h2>
-            <p class="mb-10 max-w-md text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
-              {cap.line}
-            </p>
-            <a
-              href={withBase(`rfq?capability=${cap.slug}`)}
-              class="inline-flex min-h-11 w-fit items-center text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
-            >
-              Start RFQ →
-            </a>
-          </div>
-        </article>
-      ))}
+  <section class="bg-porcelain pb-16 md:pb-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <ExpandableCardGrid client:load items={capabilities} />
     </div>
   </section>
+
+  <MidCta line="Have CAD for milling, turning, or a full build? Start a quote." />
 
   <section id="cta" class="relative overflow-hidden border-t border-aluminum/40 bg-carbon py-28 md:py-36">
     <div class="absolute inset-0">

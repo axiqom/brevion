@@ -1,14 +1,6 @@
 ---
 import { withBase } from '../../lib/base';
-
-const steps = [
-  'Upload CAD',
-  'Review',
-  'Quote',
-  'Manufacture',
-  'Inspect',
-  'Deliver',
-];
+import ProcessStages from '../ProcessStages';
 ---
 <section id="process" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-28 md:py-40">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -19,23 +11,12 @@ const steps = [
       <h2 class="text-3xl font-bold uppercase tracking-tight text-carbon md:text-4xl lg:text-5xl">
         From CAD to delivery
       </h2>
+      <p class="mt-5 max-w-lg text-base font-medium leading-relaxed text-carbon/60 md:text-lg">
+        Six stages. Select one for the short fact.
+      </p>
     </div>
 
-    <ol class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
-      {steps.map((step, idx) => (
-        <li class="relative overflow-hidden rounded-xl border border-aluminum/30 bg-aluminum/10 px-5 py-7 md:rounded-2xl md:px-6 md:py-9">
-          <span class="mb-6 block font-display text-2xl font-bold tabular-nums tracking-tight text-aluminum md:text-3xl">
-            {String(idx + 1).padStart(2, '0')}
-          </span>
-          <span class="block text-base font-semibold uppercase tracking-wide text-carbon md:text-lg">
-            {step}
-          </span>
-          {idx !== steps.length - 1 && (
-            <span class="absolute right-4 top-7 hidden text-aluminum/70 lg:block" aria-hidden="true">→</span>
-          )}
-        </li>
-      ))}
-    </ol>
+    <ProcessStages client:load />
 
     <div class="mt-14 md:mt-16">
       <a
