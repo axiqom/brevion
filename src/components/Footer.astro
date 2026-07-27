@@ -1,4 +1,5 @@
 ---
+import BrandLogo from './BrandLogo.astro';
 import { withBase } from '../lib/base';
 ---
 <footer class="border-t border-aluminum/50 bg-porcelain py-12 pb-28 text-aluminum sm:py-14 md:pb-14">
@@ -6,13 +7,7 @@ import { withBase } from '../lib/base';
     <div class="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-12">
       <div class="col-span-1 md:col-span-2">
         <a href={withBase()} class="mb-5 flex w-fit items-center gap-3 rounded-lg" aria-label="Brevion home">
-          <img
-            src={withBase('brand/raw/17.png')}
-            alt="Brevion Systems"
-            width={180}
-            height={40}
-            class="h-9 w-auto max-w-[12rem] shrink-0 sm:h-10"
-          />
+          <BrandLogo surface="footer" />
         </a>
         <p class="max-w-sm text-sm font-medium leading-relaxed text-carbon/60">
           Precision CNC for aerospace, defense, and robotics — from first article to production scale.

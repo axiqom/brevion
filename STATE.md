@@ -1,5 +1,5 @@
 # STATE
-focus: updated logo pack only (brevion_logo_package.zip → raw/5,8–26)
+focus: logo sizing compensation (pack pad → readable lockups)
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel review of new lockups on preview + Pages
+next: Mendel visual confirm logos are lockups not specks

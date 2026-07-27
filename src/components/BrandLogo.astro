@@ -1,0 +1,42 @@
+---
+/**
+ * Astro twin of BrandLogo.tsx — same padding-compensation via `.brand-logo` CSS.
+ * Horizontal lockups: contentH/canvasH ≈ 0.208 → img height = visualH / 0.208, clipped wrapper.
+ */
+import { BRAND_LOGO, type BrandLogoKind } from '../lib/brandLogo';
+import { withBase } from '../lib/base';
+
+type Surface = 'header' | 'footer' | 'hero' | 'rfq' | 'chat';
+
+interface Props {
+  surface: Surface;
+  class?: string;
+  alt?: string;
+}
+
+const SURFACE: Record<
+  Surface,
+  { srcKey: keyof typeof BRAND_LOGO; kind: BrandLogoKind; sizeClass: string }
+> = {
+  header: { srcKey: 'chrome', kind: 'horizontal', sizeClass: 'brand-logo--header' },
+  footer: { srcKey: 'chrome', kind: 'horizontal', sizeClass: 'brand-logo--footer' },
+  hero: { srcKey: 'hero', kind: 'horizontal', sizeClass: 'brand-logo--hero' },
+  rfq: { srcKey: 'chrome', kind: 'horizontal', sizeClass: 'brand-logo--rfq' },
+  chat: { srcKey: 'chrome', kind: 'horizontal', sizeClass: 'brand-logo--chat' },
+};
+
+const { surface, class: className = '', alt = 'Brevion Systems' } = Astro.props;
+const cfg = SURFACE[surface];
+const contentAspect = cfg.kind === 'mark' ? 1009 / 900 : 1365 / 416;
+const visualH = cfg.kind === 'mark' ? 28 : surface === 'chat' ? 28 : 40;
+const width = Math.round(visualH * contentAspect);
+---
+<span class:list={['brand-logo', cfg.sizeClass, className]}>
+  <img
+    src={withBase(BRAND_LOGO[cfg.srcKey])}
+    alt={alt}
+    width={width}
+    height={visualH}
+    decoding="async"
+  />
+</span>

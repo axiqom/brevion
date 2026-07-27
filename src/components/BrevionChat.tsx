@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { MessageSquare, X, Send, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
+import BrandLogo from './BrandLogo';
 import {
   emptyState,
   loadState,
@@ -363,12 +364,7 @@ export default function BrevionChat() {
       style={{ height: 'min(34rem, calc(100dvh - 5.5rem))' }}
     >
       <header className="flex shrink-0 items-center gap-3 px-3.5 pb-2.5 pt-3.5 sm:px-4">
-        <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-carbon text-[10px] font-bold uppercase tracking-wider text-porcelain"
-          aria-hidden="true"
-        >
-          BR
-        </div>
+        <BrandLogo surface="chat" />
         <div className="min-w-0 flex-1">
           <p className="truncate font-display text-sm font-bold text-carbon">Brevion</p>
         </div>

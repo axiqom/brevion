@@ -45,6 +45,101 @@
   .link-brand {
     @apply text-carbon transition-colors duration-150 hover:text-gold motion-reduce:transition-none;
   }
+
+  /*
+   * Pack PNGs are 2000×2000 with large transparent padding.
+   * Horizontal lockups 15–18: content ~1365×416 → content_height_fraction ≈ 0.208
+   * Icon mark 9: content ~1009×900 → content_height_fraction ≈ 0.45
+   * Wrapper height = desired VISUAL mark height; img is scaled by 1/fraction so the
+   * visible artwork fills that height; overflow:hidden clips the padded canvas.
+   * Scale factor ≈ 1/0.208 ≈ 4.81 (lockup) or 1/0.45 ≈ 2.22 (icon).
+   */
+  .brand-logo {
+    --brand-logo-h: 40px;
+    --brand-logo-frac: 0.208;
+    --brand-logo-cw: 1365;
+    --brand-logo-ch: 416;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    height: var(--brand-logo-h);
+    width: calc(var(--brand-logo-h) * var(--brand-logo-cw) / var(--brand-logo-ch));
+    max-width: 100%;
+  }
+
+  .brand-logo img {
+    display: block;
+    height: calc(var(--brand-logo-h) / var(--brand-logo-frac));
+    width: auto;
+    max-width: none;
+    flex-shrink: 0;
+  }
+
+  /* Surface sizes: visual mark height (wrapper), not padded canvas. */
+  .brand-logo--header {
+    --brand-logo-h: 40px;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo--header {
+      --brand-logo-h: 44px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .brand-logo--header {
+      --brand-logo-h: 48px;
+    }
+  }
+
+  .brand-logo--footer {
+    --brand-logo-h: 40px;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo--footer {
+      --brand-logo-h: 44px;
+    }
+  }
+
+  .brand-logo--hero {
+    --brand-logo-h: 40px;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo--hero {
+      --brand-logo-h: 44px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .brand-logo--hero {
+      --brand-logo-h: 48px;
+    }
+  }
+
+  .brand-logo--rfq {
+    --brand-logo-h: 36px;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo--rfq {
+      --brand-logo-h: 40px;
+    }
+  }
+
+  .brand-logo--chat {
+    --brand-logo-h: 28px;
+  }
+
+  .brand-logo--icon {
+    --brand-logo-frac: 0.45;
+    --brand-logo-cw: 1009;
+    --brand-logo-ch: 900;
+    --brand-logo-h: 28px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

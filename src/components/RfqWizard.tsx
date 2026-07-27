@@ -22,6 +22,7 @@ import {
   Shield,
 } from 'lucide-react';
 import { withBase } from '../lib/base';
+import BrandLogo from './BrandLogo';
 
 const TOTAL_STEPS = 5;
 const STEP_LABELS = ['Contact', 'Files', 'Details', 'Timeline', 'Review'] as const;
@@ -252,13 +253,7 @@ export default function RfqWizard() {
       <div className="relative z-10 mx-auto w-full max-w-4xl">
         <div className="mb-6 md:mb-10">
           <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
-            <img
-              src={withBase('brand/raw/17.png')}
-              alt="Brevion Systems"
-              width={160}
-              height={36}
-              className="h-7 w-auto max-w-[10.5rem] shrink-0 sm:h-8"
-            />
+            <BrandLogo surface="rfq" />
             <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-carbon/55">
               RFQ
             </p>

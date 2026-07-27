@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { withBase } from '../lib/base';
+import BrandLogo from './BrandLogo';
 
 interface HeaderProps {
   currentPage?: 'home' | 'rfq';
@@ -40,13 +41,7 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             aria-label="Brevion home"
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
-            <img
-              src={withBase('brand/raw/17.png')}
-              alt="Brevion Systems"
-              width={180}
-              height={40}
-              className="h-8 w-auto max-w-[min(52vw,11.5rem)] shrink-0 sm:h-9 md:h-10 md:max-w-[13rem]"
-            />
+            <BrandLogo surface="header" />
           </a>
 
           <div className="hidden items-center gap-8 lg:flex xl:gap-10">
