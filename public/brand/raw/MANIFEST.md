@@ -1,7 +1,3 @@
-# Brevion brand logo pack (raw)
+# Official logos from brevion_logo_package.zip only: 5.png + 8-26.png. No 6/7. No derivatives.
 
-Exact Mendel pack files: `5.png`–`24.png`. Never redraw, crop for export, or AI-regenerate.
-
-Site code must reference these paths only (`withBase('brand/raw/N.png')`). Derivatives outside this folder are forbidden.
-
-See `../MANIFEST.md` for pack map and wired site picks.
+Site wiring: porcelain chrome → 17.png; hero on photo → 15.png; favicon/apple-touch → 9.png.

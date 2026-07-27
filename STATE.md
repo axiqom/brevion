@@ -1,10 +1,10 @@
 # STATE — Brevion (aeris-cnc)
 
-- **focus:** Brand Guidelines v1.0 compliance pass (porcelain elevations, hero SYSTEMS, carbon overlays, machined shapes)
+- **focus:** Official `brevion_logo_package.zip` only — `public/brand/raw/5.png` + `8–26.png`; site wired to 17/15/9; no derivatives
 - **preview:** https://carmen-subject-sellers-contribution.trycloudflare.com
-- **pages:** https://axiqom.github.io/milltrue/
-- **next:** Mendel visual review of compliance pass on sticky preview
-- **updated:** 2026-07-27T19:50:00.000Z
+- **pages:** https://axiqom.github.io/brevion/
+- **next:** Mendel visual review of new lockups on preview + Pages
+- **updated:** 2026-07-27T20:45:00.000Z
 
 ## Current focus
 Preview live (shared tunnel)
@@ -13,7 +13,7 @@ Preview live (shared tunnel)
 https://carmen-subject-sellers-contribution.trycloudflare.com
 
 ## Live site
-https://axiqom.github.io/milltrue/ (interim URL; display brand Brevion)
+https://axiqom.github.io/brevion/
 
 ## Next step
 Awaiting feedback on preview

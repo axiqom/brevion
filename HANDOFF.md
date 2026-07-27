@@ -4,7 +4,7 @@
 
 Prototype preview of a precision CNC manufacturing marketing site for **Brevion**. Project slug remains `aeris-cnc` (do not rename folder/repo) so the sticky preview tunnel on port **4007** stays intact.
 
-Brand name is locked to Brevion. Visual system: Brand Guidelines v1.0 (`BRAND_GUIDELINES.md`) — porcelain light chrome, Sora throughout, Carbon/Gold buttons. Official logo pack is `public/brand/raw/5.png`–`24.png` only (do not redraw, crop, or AI-generate derivatives). Photography and some contact details remain easy to swap.
+Brand name is locked to Brevion. Visual system: Brand Guidelines v1.0 (`BRAND_GUIDELINES.md`) — porcelain light chrome, Sora throughout, Carbon/Gold buttons. Official logo pack is `brevion_logo_package.zip` only → `public/brand/raw/5.png` + `8.png`–`26.png` (never `6.png`/`7.png`; do not redraw, crop, or AI-generate derivatives). Photography and some contact details remain easy to swap.
 
 ## Domain note
 
@@ -29,7 +29,7 @@ Custom domain can later point at GitHub Pages (`axiqom/milltrue`). Not configure
 
 `webdev-policy-check` may flag hosting — intentional exception for Mendel-requested Pages go-live. Prototype disclaimer remains on the site.
 
-Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; local/sticky preview still uses `/`.
+Build base path: `/brevion` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; local/sticky preview still uses `/`.
 
 ## Backend decision
 
@@ -128,16 +128,16 @@ Build base path: `/milltrue` when `GITHUB_PAGES=1` or `GITHUB_ACTIONS=true`; loc
 
 ## Logo assets (official Mendel pack)
 
-Source: WhatsApp drop in `public/brand/raw/5.png`–`24.png` — exact pack files only. Do not redraw, crop/export new rasters, or AI-regenerate. CSS sizing only.
+Source: `brevion_logo_package.zip` → `public/brand/raw/5.png` + `8.png`–`26.png` only (no `6.png`/`7.png`). Exact pack files only. Do not redraw, crop/export new rasters, or AI-regenerate. CSS sizing only.
 
 | Use | Path | Notes |
 |-----|------|-------|
-| Header / Footer / RFQ | `brand/raw/7.png` | Dark icon on porcelain chrome |
-| Hero (photo overlay) | `brand/raw/11.png` | Light icon on dark media |
-| Favicon + apple-touch | `brand/raw/7.png` | Direct pack file; browsers scale |
-| Pack map | `public/brand/MANIFEST.md` | Full 5–24 roles / color families |
+| Header / Footer / RFQ | `brand/raw/17.png` | Dark horizontal lockup on porcelain |
+| Hero (photo overlay) | `brand/raw/15.png` | Light horizontal lockup on dark media |
+| Favicon + apple-touch | `brand/raw/9.png` | Direct pack file; browsers scale |
+| Pack map | `public/brand/MANIFEST.md` | Allowed files + wiring |
 
-**Derivatives forbidden** — no `mark-*`, `wordmark-*`, root `brevion-mark`/`brevion-logo`, `favicon-32`/`favicon-48`, or `brevion-*-64/128/256` webp/png outside `raw/`.
+**Derivatives forbidden** — no `mark-*`, `wordmark-*`, root `brevion-mark`/`brevion-logo`, `favicon-32`/`favicon-48`, or `brevion-*-64/128/256` webp/png outside `raw/`. Never recreate `6.png`/`7.png`.
 
 Wired in: `Header.tsx`, `Hero.astro`, `Footer.astro`, `RfqWizard.tsx`, `BaseLayout.astro`.
 

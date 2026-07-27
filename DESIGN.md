@@ -8,10 +8,10 @@ Precision CNC manufacturing marketing site. Official **Brand Guidelines v1.0** p
 
 - **Name:** Brevion (legal/display: Brevion Systems)
 - **Guidelines:** `BRAND_GUIDELINES.md` (source of truth)
-- **Logo:** Official Mendel pack only — `public/brand/raw/5.png`–`24.png` via `withBase('brand/raw/N.png')`. Derivatives forbidden (no crop/resize exports, no AI redraw).
-  - Porcelain chrome (Header / Footer / RFQ): `brand/raw/7.png`
-  - Hero photo overlay: `brand/raw/11.png`
-  - Favicon + apple-touch: `brand/raw/7.png` (browsers scale; no resized favicon rasters)
+- **Logo:** Official Mendel pack only — `brevion_logo_package.zip` → `public/brand/raw/5.png` + `8.png`–`26.png` (no `6.png`/`7.png`). Via `withBase('brand/raw/N.png')`. Derivatives forbidden (no crop/resize exports, no AI redraw).
+  - Porcelain chrome (Header / Footer / RFQ): `brand/raw/17.png` (horizontal lockup; `19.png` stacked if too wide)
+  - Hero photo overlay: `brand/raw/15.png`
+  - Favicon + apple-touch: `brand/raw/9.png` (browsers scale; no resized favicon rasters)
   - Pack map: `public/brand/MANIFEST.md`
 - **Images:** Local section media under `public/media/`; hero uses `public/hero-cnc.jpg` + `hero-cnc-sm.jpg`. Always reference via `withBase()`.
 - **Contact:** sales@brevion.com (mailto + chat + RFQ; no phone until a real number exists)
@@ -31,7 +31,7 @@ Precision CNC manufacturing marketing site. Official **Brand Guidelines v1.0** p
 
 - Full-bleed CNC photography (edge-to-edge); dark carbon overlays (`to-carbon/10`, no pure black); light text on media
 - Intake card on porcelain surface with brand buttons
-- Lockup: `brand/raw/11.png` + BREVION + SYSTEMS (tracking ~0.3em) on dark photo; capability strip + trust chips; Request quote → `#intake`, Full RFQ secondary
+- Lockup: `brand/raw/15.png` (light horizontal) on dark photo; capability strip + trust chips; Request quote → `#intake`, Full RFQ secondary
 
 ## Compliance (Brand Guidelines v1.0)
 

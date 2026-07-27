@@ -253,15 +253,14 @@ export default function RfqWizard() {
         <div className="mb-6 md:mb-10">
           <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
             <img
-              src={withBase('brand/raw/7.png')}
-              alt=""
-              width={36}
+              src={withBase('brand/raw/17.png')}
+              alt="Brevion Systems"
+              width={160}
               height={36}
-              className="h-8 w-auto shrink-0 sm:h-9"
-              aria-hidden="true"
+              className="h-7 w-auto max-w-[10.5rem] shrink-0 sm:h-8"
             />
             <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-carbon/55">
-              Brevion RFQ
+              RFQ
             </p>
           </div>
           <h1 className="mb-6 font-display text-2xl font-bold uppercase tracking-tight text-carbon sm:text-3xl md:mb-8">

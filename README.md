@@ -7,4 +7,4 @@ Display brand: **Brevion**. Project slug: `aeris-cnc` (unchanged for sticky tunn
 - Design: `DESIGN.md`
 - Handoff: `HANDOFF.md`
 - Brand guidelines: `BRAND_GUIDELINES.md`
-- Logo pack: `public/brand/raw/5.png`–`24.png` only (exact Mendel files). Derivatives forbidden — see `public/brand/MANIFEST.md`.
+- Logo pack: `brevion_logo_package.zip` → `public/brand/raw/5.png` + `8.png`–`26.png` only (no `6.png`/`7.png`). Derivatives forbidden — see `public/brand/MANIFEST.md`.

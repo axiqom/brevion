@@ -41,21 +41,12 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
             <img
-              src={withBase('brand/raw/7.png')}
-              alt=""
-              width={40}
+              src={withBase('brand/raw/17.png')}
+              alt="Brevion Systems"
+              width={180}
               height={40}
-              className="h-9 w-auto shrink-0 md:h-10"
-              aria-hidden="true"
+              className="h-8 w-auto max-w-[min(52vw,11.5rem)] shrink-0 sm:h-9 md:h-10 md:max-w-[13rem]"
             />
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-lg font-bold uppercase tracking-[0.14em] text-carbon sm:text-xl sm:tracking-widest md:text-2xl">
-                Brevion
-              </span>
-              <span className="mt-0.5 hidden text-[9px] font-medium uppercase tracking-[0.3em] text-aluminum sm:block">
-                Systems
-              </span>
-            </span>
           </a>
 
           <div className="hidden items-center gap-8 lg:flex xl:gap-10">
