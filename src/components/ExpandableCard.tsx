@@ -106,6 +106,15 @@ export function ExpandableCard({ item, open, onToggle }: Props) {
               >
                 {item.line}
               </p>
+              {!open && (
+                <span
+                  className={`mt-4 inline-flex text-xs font-semibold uppercase tracking-widest ${
+                    isDark ? 'text-porcelain/80' : 'text-carbon/70'
+                  }`}
+                >
+                  Take a closer look
+                </span>
+              )}
             </div>
             <span
               className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors duration-150 ${

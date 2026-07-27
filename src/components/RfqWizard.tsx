@@ -38,6 +38,14 @@ const CAPABILITY_NOTES: Record<string, string> = {
   production: 'Capability: Production Manufacturing',
   assembly: 'Capability: Assembly',
   inspection: 'Capability: Inspection',
+  aerospace: 'Industry: Aerospace',
+  defense: 'Industry: Defense',
+  medical: 'Industry: Medical',
+  robotics: 'Industry: Robotics',
+  industrial: 'Industry: Industrial',
+  automotive: 'Industry: Automotive',
+  energy: 'Industry: Energy',
+  consumer: 'Industry: Consumer Products',
 };
 
 type Draft = {
