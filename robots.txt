@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://axiqom.github.io/brevion/sitemap.xml

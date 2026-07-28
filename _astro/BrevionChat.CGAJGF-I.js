@@ -1,4 +1,4 @@
-import{j as i}from"./jsx-runtime.D_zvdyIk.js";import{r as o}from"./index.qNTDzdXh.js";import{c as de,w as X}from"./base.BMrRU3AF.js";import{B as be}from"./BrandLogo.DmIRogVa.js";import{M as fe}from"./message-square.BVqMwDJI.js";import{X as he,A as me}from"./x.Dye_j5aP.js";/**
+import{c as de,w as X,j as i}from"./base.7SmP-3k0.js";import{r as o}from"./index.qNTDzdXh.js";import{B as be}from"./BrandLogo.LaxNurd_.js";import{M as fe}from"./message-square.DAS-gAhg.js";import{X as he}from"./x.B2pj4t7s.js";import{A as me}from"./arrow-right.boU6HpSu.js";/**
  * @license lucide-react v0.475.0 - ISC
  *
  * This source code is licensed under the ISC license.

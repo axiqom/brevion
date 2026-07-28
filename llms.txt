@@ -1,0 +1,36 @@
+# Brevion (Brevion Systems)
+
+> Precision CNC manufacturing partner for prototype through production.
+
+Brevion machines parts for mechanical, manufacturing, and sourcing engineers who already have (or will have) STEP + PDF and need a reliable mill/turn partner.
+
+## Services
+- CNC milling (3-/4-/5-axis)
+- CNC turning
+- Prototype manufacturing
+- Production manufacturing
+- Assembly
+- Inspection / metrology
+
+## Industries
+Aerospace, defense, medical, robotics, industrial, automotive, energy, consumer products.
+
+## Materials
+Aluminum, stainless steel, titanium, brass, copper, engineering plastics (e.g. Delrin, PEEK, Ultem). Other metals such as Inconel available when the print calls for them.
+
+## How to get a quote
+1. Home intake: company, work email, need — https://axiqom.github.io/brevion/#intake
+2. Full RFQ with CAD: https://axiqom.github.io/brevion/rfq/
+3. Email: sales@brevion.com
+
+NDAs are routine before proprietary or controlled files. Do not invent certifications, phone numbers, or street addresses not stated on the site.
+
+## Key pages
+- Home: https://axiqom.github.io/brevion/
+- Capabilities: https://axiqom.github.io/brevion/capabilities/
+- Industries: https://axiqom.github.io/brevion/industries/
+- Work: https://axiqom.github.io/brevion/work/
+- RFQ: https://axiqom.github.io/brevion/rfq/
+
+## Contact
+Email: sales@brevion.com
