@@ -1,5 +1,14 @@
 ---
+import HeroContactForm from './HeroContactForm';
 import { withBase } from '../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO, PUBLIC_PHONE } from '../lib/site';
+
+const capabilityStrip = [
+  'CNC milling',
+  'CNC turning',
+  'Assembly',
+  'Inspection',
+];
 ---
 <section class="relative flex min-h-[100svh] items-stretch overflow-x-clip overflow-y-visible bg-carbon">
   <div class="absolute inset-0 overflow-hidden bg-carbon">
@@ -16,31 +25,65 @@ import { withBase } from '../lib/base';
     <div class="absolute inset-0 bg-gradient-to-r from-carbon/90 via-carbon/40 to-transparent"></div>
   </div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-4 pb-[max(6rem,calc(5.25rem+env(safe-area-inset-bottom,0px)))] pt-[max(6.5rem,calc(4.5rem+env(safe-area-inset-top,0px)))] sm:px-6 sm:pb-28 sm:pt-36 md:justify-center md:pb-40 md:pt-32 lg:px-8">
-    <div class="animate-fade-up max-w-4xl opacity-0" style="animation-delay: 0.05s">
-      <p class="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-porcelain/55 sm:mb-6 sm:text-[11px]">
-        Precision CNC
-      </p>
-      <h1 class="mb-5 max-w-3xl text-[2.05rem] font-bold uppercase leading-[0.94] tracking-tight text-porcelain sm:mb-8 sm:text-5xl sm:leading-[0.92] md:text-6xl lg:text-[4.85rem]">
-        Advanced Precision Manufacturing
-      </h1>
-      <p class="mb-9 max-w-xl text-[0.95rem] font-medium leading-relaxed tracking-wide text-porcelain/65 sm:mb-14 sm:text-lg md:text-xl">
-        CNC Machining for Prototype and Production
-      </p>
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-4 pb-[max(6rem,calc(5.25rem+env(safe-area-inset-bottom,0px)))] pt-[max(6.5rem,calc(4.5rem+env(safe-area-inset-top,0px)))] sm:px-6 sm:pb-28 sm:pt-36 md:justify-center md:pb-32 md:pt-28 lg:px-8">
+    <div class="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+      <div class="animate-fade-up max-w-3xl opacity-0 lg:col-span-6" style="animation-delay: 0.05s">
+        <p class="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-porcelain/55 sm:mb-5 sm:text-[11px]">
+          Precision CNC
+        </p>
+        <h1 class="mb-4 max-w-3xl text-[2.05rem] font-bold uppercase leading-[0.94] tracking-tight text-porcelain sm:mb-6 sm:text-5xl sm:leading-[0.92] md:text-6xl lg:text-[4.25rem]">
+          Advanced Precision Manufacturing
+        </h1>
+        <p class="mb-5 max-w-xl text-[0.95rem] font-medium leading-relaxed tracking-wide text-porcelain/70 sm:mb-6 sm:text-lg md:text-xl">
+          CNC machining for prototype and production — for engineers with STEP + PDF who need a mill/turn partner.
+        </p>
 
-      <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
-        <a
-          href={withBase('rfq')}
-          class="inline-flex min-h-12 items-center justify-center rounded-lg bg-porcelain px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:px-8 sm:py-4"
-        >
-          Request a Quote
-        </a>
-        <a
-          href={withBase('capabilities')}
-          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-porcelain/35 px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:px-8 sm:py-4"
-        >
-          View Capabilities
-        </a>
+        <ul class="mb-7 flex flex-wrap gap-2 sm:mb-8" aria-label="Capabilities">
+          {capabilityStrip.map((label) => (
+            <li class="inline-flex min-h-9 items-center rounded-lg border border-porcelain/25 bg-carbon/40 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-porcelain/80 backdrop-blur-sm sm:text-[11px]">
+              {label}
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-3">
+          <a
+            href={withBase('#intake')}
+            class="inline-flex min-h-12 items-center justify-center rounded-lg bg-porcelain px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:px-7"
+          >
+            Start a quote
+          </a>
+          <a
+            href={withBase('rfq')}
+            class="inline-flex min-h-12 items-center justify-center rounded-lg border border-porcelain/35 px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:px-7"
+          >
+            Full RFQ
+          </a>
+          <a
+            href={CONTACT_MAILTO}
+            class="inline-flex min-h-11 items-center justify-center text-sm font-semibold uppercase tracking-widest text-porcelain/70 transition-colors duration-150 hover:text-gold"
+          >
+            {CONTACT_EMAIL}
+          </a>
+          {PUBLIC_PHONE ? (
+            <a
+              href={`tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`}
+              class="inline-flex min-h-11 items-center justify-center text-sm font-semibold uppercase tracking-widest text-porcelain/70 transition-colors duration-150 hover:text-gold"
+            >
+              Call
+            </a>
+          ) : null}
+        </div>
+      </div>
+
+      <div
+        id="intake"
+        class="animate-fade-up w-full scroll-mt-28 opacity-0 lg:col-span-6 lg:justify-self-end"
+        style="animation-delay: 0.12s"
+      >
+        <div id="contact" class="mx-auto w-full max-w-md lg:ml-auto lg:max-w-none">
+          <HeroContactForm client:load />
+        </div>
       </div>
     </div>
   </div>

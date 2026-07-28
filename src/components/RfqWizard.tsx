@@ -227,20 +227,20 @@ export default function RfqWizard() {
             Request received
           </h2>
           <p className="mb-8 text-base font-medium text-carbon/70 sm:mb-10 sm:text-lg">
-            Preview only — nothing was uploaded or emailed.
+            Preview only — nothing was uploaded or emailed. Send your STEP + PDF to sales@brevion.com now, or keep this RFQ draft and email when ready.
           </p>
           <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <a
-              href={withBase()}
+              href="mailto:sales@brevion.com?subject=RFQ%20from%20Brevion%20site"
               className="btn-primary"
             >
-              Home
+              Email sales@brevion.com
             </a>
             <a
-              href="mailto:sales@brevion.com"
+              href={withBase()}
               className="link-brand inline-flex min-h-11 items-center justify-center rounded-lg px-6 py-3.5 text-sm font-bold uppercase tracking-widest"
             >
-              Email sales
+              Home
             </a>
           </div>
         </div>

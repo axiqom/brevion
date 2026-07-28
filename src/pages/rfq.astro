@@ -3,9 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import RfqWizard from '../components/RfqWizard';
 ---
 <BaseLayout
-  title="Request a Quote — Brevion"
-  description="Request a quote for CNC machining. Upload CAD and requirements."
+  title="Request a CNC Quote — STEP + PDF | Brevion"
+  description="Request a Brevion CNC quote. Upload STEP + PDF, note material and qty, or email sales@brevion.com. NDA available before controlled files."
   currentPage="rfq"
+  path="rfq"
 >
   <RfqWizard client:load />
 </BaseLayout>

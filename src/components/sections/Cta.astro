@@ -1,5 +1,6 @@
 ---
 import { withBase } from '../../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO, PUBLIC_PHONE } from '../../lib/site';
 ---
 <section id="cta" class="scroll-mt-28 relative overflow-hidden border-t border-aluminum/40 bg-carbon py-24 sm:py-36 md:py-48">
   <div class="absolute inset-0">
@@ -15,15 +16,34 @@ import { withBase } from '../../lib/base';
   </div>
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl">
-      <h2 class="mb-8 text-3xl font-bold uppercase leading-[0.94] tracking-tight text-porcelain sm:mb-12 sm:text-5xl md:mb-14 md:text-6xl lg:text-7xl">
-        Ready to Start?
+      <h2 class="mb-4 text-3xl font-bold uppercase leading-[0.94] tracking-tight text-porcelain sm:mb-6 sm:text-5xl md:mb-8 md:text-6xl lg:text-7xl">
+        Send the STEP + drawing
       </h2>
-      <a
-        href={withBase('rfq')}
-        class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:w-auto"
-      >
-        Request a Quote
-      </a>
+      <p class="mb-8 max-w-lg text-base font-medium leading-relaxed text-porcelain/65 sm:mb-10 sm:text-lg">
+        Full RFQ when CAD is ready, or email {CONTACT_EMAIL} to start the conversation.
+      </p>
+      <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+        <a
+          href={withBase('rfq')}
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-porcelain px-8 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:bg-gold sm:min-h-11 sm:w-auto"
+        >
+          Request a Quote
+        </a>
+        <a
+          href={CONTACT_MAILTO}
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-porcelain/35 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:w-auto"
+        >
+          Email {CONTACT_EMAIL}
+        </a>
+        {PUBLIC_PHONE ? (
+          <a
+            href={`tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`}
+            class="inline-flex min-h-11 items-center justify-center text-sm font-semibold uppercase tracking-widest text-porcelain/70 transition-colors duration-150 hover:text-gold"
+          >
+            Call
+          </a>
+        ) : null}
+      </div>
     </div>
   </div>
 </section>

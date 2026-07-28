@@ -1,10 +1,10 @@
-focus: Mobile optimization pass — review required
+focus: SEO/AEO/GEO + conversion shipped — Mendel visual review
 preview: https://carmen-subject-sellers-contribution.trycloudflare.com
 pages: https://axiqom.github.io/brevion/
-next: Mendel review — mobile polish (360/390/430)
+next: Mendel review (kanban review-required); supply phone for Call CTAs if wanted
 
 ## Current focus
-Mobile optimization pass for sticky preview + GitHub Pages (Header a11y, Hero safe-area, ExpandableCard touch, ProcessStages snap, convert bar ↔ chat stacking, RFQ full-width).
+SEO / AEO / GEO + conversion pass shipped on sticky + Pages. Call CTAs still omitted until a real phone is provided.
 
 ## Active preview
 https://carmen-subject-sellers-contribution.trycloudflare.com
@@ -13,4 +13,4 @@ https://carmen-subject-sellers-contribution.trycloudflare.com
 https://axiqom.github.io/brevion/
 
 ## Next step
-Awaiting Mendel review (kanban review-required)
+Mendel visual review; optional phone for Call buttons; optional live form backend later

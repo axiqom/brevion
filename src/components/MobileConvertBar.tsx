@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Mail, X } from 'lucide-react';
+import { ArrowRight, Mail, Phone, X } from 'lucide-react';
 import { withBase } from '../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO, PUBLIC_PHONE } from '../lib/site';
 
 const STORAGE_KEY = 'brevion-mobile-convert-dismissed';
 
 export default function MobileConvertBar() {
-  const [ctaVisible, setCtaVisible] = useState(true);
+  const [anchorVisible, setAnchorVisible] = useState(true);
   const [dismissed, setDismissed] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -20,23 +21,23 @@ export default function MobileConvertBar() {
     }
     setDismissed(false);
 
-    const cta = document.getElementById('cta');
-    if (!cta || typeof IntersectionObserver === 'undefined') {
-      setCtaVisible(false);
+    const target =
+      document.getElementById('intake') || document.getElementById('cta');
+    if (!target || typeof IntersectionObserver === 'undefined') {
+      setAnchorVisible(false);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setCtaVisible(entry.isIntersecting && entry.intersectionRatio > 0.12);
+        setAnchorVisible(entry.isIntersecting && entry.intersectionRatio > 0.12);
       },
       { root: null, threshold: [0, 0.12, 0.35, 0.6], rootMargin: '-48px 0px 0px 0px' },
     );
-    observer.observe(cta);
+    observer.observe(target);
     return () => observer.disconnect();
   }, []);
 
-  // Yield bottom chrome to the chat panel while it is open.
   useEffect(() => {
     const sync = () => setChatOpen(document.body.classList.contains('has-chat-open'));
     sync();
@@ -45,7 +46,7 @@ export default function MobileConvertBar() {
     return () => obs.disconnect();
   }, []);
 
-  const show = !dismissed && !ctaVisible && !chatOpen;
+  const show = !dismissed && !anchorVisible && !chatOpen;
 
   useEffect(() => {
     document.body.classList.toggle('has-mobile-convert', show);
@@ -63,6 +64,10 @@ export default function MobileConvertBar() {
 
   if (!show) return null;
 
+  const telHref = PUBLIC_PHONE
+    ? `tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`
+    : '';
+
   return (
     <div
       className="mobile-convert-bar fixed inset-x-0 bottom-0 z-[45] border-t border-aluminum/40 bg-porcelain/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_28px_rgba(69,63,58,0.10)] backdrop-blur-xl motion-reduce:transition-none md:hidden"
@@ -78,12 +83,21 @@ export default function MobileConvertBar() {
           <ArrowRight size={14} aria-hidden="true" />
         </a>
         <a
-          href="mailto:sales@brevion.com"
+          href={CONTACT_MAILTO}
           className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-aluminum/50 bg-porcelain text-carbon transition-colors duration-150 hover:text-gold"
-          aria-label="Email sales@brevion.com"
+          aria-label={`Email ${CONTACT_EMAIL}`}
         >
           <Mail size={18} aria-hidden="true" />
         </a>
+        {telHref ? (
+          <a
+            href={telHref}
+            className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-aluminum/50 bg-porcelain text-carbon transition-colors duration-150 hover:text-gold"
+            aria-label={`Call ${PUBLIC_PHONE}`}
+          >
+            <Phone size={18} aria-hidden="true" />
+          </a>
+        ) : null}
         <button
           type="button"
           onClick={dismiss}

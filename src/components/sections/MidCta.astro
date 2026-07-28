@@ -1,13 +1,14 @@
 ---
 import { ArrowRight } from 'lucide-react';
 import { withBase } from '../../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO } from '../../lib/site';
 
 interface Props {
   line?: string;
 }
 
 const {
-  line = 'Have a drawing or CAD file? Start a quote.',
+  line = 'Send the STEP + drawing — start a quote or email sales@brevion.com.',
 } = Astro.props;
 ---
 <section class="border-y border-aluminum/30 bg-aluminum/10 py-8 sm:py-10 md:py-12" aria-label="Request a quote">
@@ -24,10 +25,10 @@ const {
         <ArrowRight size={16} aria-hidden="true" />
       </a>
       <a
-        href={withBase('capabilities')}
+        href={CONTACT_MAILTO}
         class="inline-flex min-h-12 items-center justify-center rounded-lg border border-carbon bg-porcelain px-6 py-3 text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:text-sm"
       >
-        View Capabilities
+        Email {CONTACT_EMAIL}
       </a>
     </div>
   </div>

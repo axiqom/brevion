@@ -1,13 +1,15 @@
 ---
 import BrandLogo from './BrandLogo.astro';
 import { withBase } from '../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO, PUBLIC_PHONE } from '../lib/site';
 
 const companyLinks = [
   { label: 'Home', href: withBase() },
   { label: 'Capabilities', href: withBase('capabilities') },
   { label: 'Industries', href: withBase('industries') },
   { label: 'Work', href: withBase('work') },
-  { label: 'Process', href: withBase('#process') },
+  { label: 'How quoting works', href: withBase('#process') },
+  { label: 'FAQ', href: withBase('#faq') },
 ];
 ---
 <footer class="border-t border-aluminum/50 bg-porcelain py-12 pb-[max(7rem,calc(5.5rem+env(safe-area-inset-bottom)))] text-aluminum sm:py-14 md:pb-14">
@@ -18,7 +20,7 @@ const companyLinks = [
           <BrandLogo surface="footer" />
         </a>
         <p class="max-w-sm text-sm font-medium leading-relaxed text-carbon/60">
-          CNC machining for prototype and production.
+          Brevion (Brevion Systems) is a precision CNC manufacturing partner for prototype and production.
         </p>
       </div>
       <div>
@@ -37,10 +39,17 @@ const companyLinks = [
         <h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-carbon">Contact</h4>
         <ul class="space-y-1 text-sm font-medium text-carbon/70">
           <li>
-            <a href="mailto:sales@brevion.com" class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
-              sales@brevion.com
+            <a href={CONTACT_MAILTO} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
+              {CONTACT_EMAIL}
             </a>
           </li>
+          {PUBLIC_PHONE ? (
+            <li>
+              <a href={`tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
+                {PUBLIC_PHONE}
+              </a>
+            </li>
+          ) : null}
           <li>
             <a href={withBase('rfq')} class="inline-flex min-h-11 items-center rounded-sm transition-colors duration-150 hover:text-gold">
               Request a Quote

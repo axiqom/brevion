@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Mail, Phone } from 'lucide-react';
 import { withBase } from '../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO, PUBLIC_PHONE } from '../lib/site';
 import BrandLogo from './BrandLogo';
 
 export type HeaderPage =
@@ -21,7 +22,7 @@ const navLinks: { label: string; href: string; page?: HeaderPage }[] = [
   { label: 'Industries', href: withBase('industries'), page: 'industries' },
   { label: 'Work', href: withBase('work'), page: 'work' },
   // Off-home pages land on home process section via /#process (base-aware).
-  { label: 'Process', href: withBase('#process') },
+  { label: 'How quoting works', href: withBase('#process') },
 ];
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -147,6 +148,24 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               );
             })}
             <a
+              href={CONTACT_MAILTO}
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[13px] font-semibold uppercase tracking-widest text-carbon/70 transition-colors duration-150 hover:text-gold"
+              aria-label={`Email ${CONTACT_EMAIL}`}
+            >
+              <Mail size={15} aria-hidden="true" />
+              Email
+            </a>
+            {PUBLIC_PHONE ? (
+              <a
+                href={`tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`}
+                className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[13px] font-semibold uppercase tracking-widest text-carbon/70 transition-colors duration-150 hover:text-gold"
+                aria-label={`Call ${PUBLIC_PHONE}`}
+              >
+                <Phone size={15} aria-hidden="true" />
+                Call
+              </a>
+            ) : null}
+            <a
               href={withBase('rfq')}
               className="group flex min-h-11 items-center gap-2 rounded-lg bg-carbon px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
@@ -201,8 +220,26 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
               );
             })}
             <a
+              href={CONTACT_MAILTO}
+              className="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-aluminum/50 bg-porcelain px-5 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+              onClick={closeMenu}
+            >
+              <Mail size={16} aria-hidden="true" />
+              Email {CONTACT_EMAIL}
+            </a>
+            {PUBLIC_PHONE ? (
+              <a
+                href={`tel:${PUBLIC_PHONE.replace(/[^\d+]/g, '')}`}
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-aluminum/50 bg-porcelain px-5 py-4 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+                onClick={closeMenu}
+              >
+                <Phone size={16} aria-hidden="true" />
+                Call
+              </a>
+            ) : null}
+            <a
               href={withBase('rfq')}
-              className="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-carbon px-5 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
+              className="mt-1 flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-carbon px-5 py-4 text-sm font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon"
               onClick={closeMenu}
               aria-current={currentPage === 'rfq' ? 'page' : undefined}
             >

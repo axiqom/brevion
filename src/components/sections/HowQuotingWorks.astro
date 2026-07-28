@@ -1,0 +1,82 @@
+---
+import { ArrowRight, FileUp, ClipboardList, Search, Mail } from 'lucide-react';
+import { withBase } from '../../lib/base';
+import { CONTACT_EMAIL, CONTACT_MAILTO } from '../../lib/site';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Gather files',
+    body: 'STEP model plus PDF drawing preferred. Note material, qty, and any NDA need.',
+    Icon: FileUp,
+  },
+  {
+    num: '02',
+    title: 'Send intake or RFQ',
+    body: 'Use the home form for a quick note, or the full RFQ when CAD is ready. Email works too.',
+    Icon: ClipboardList,
+  },
+  {
+    num: '03',
+    title: 'Engineering review',
+    body: 'We check manufacturability, material fit, and inspection needs before pricing the job.',
+    Icon: Search,
+  },
+  {
+    num: '04',
+    title: 'Quote reply',
+    body: `Reply comes by email to the address you provide. Prefer ${CONTACT_EMAIL} for a direct start.`,
+    Icon: Mail,
+  },
+];
+---
+<section id="process" class="scroll-mt-28 border-t border-aluminum/35 bg-porcelain py-20 sm:py-28 md:py-36" aria-labelledby="how-quote-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 max-w-2xl sm:mb-14 md:mb-16">
+      <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aluminum sm:mb-5">
+        How quoting works
+      </p>
+      <h2 id="how-quote-heading" class="text-2xl font-bold uppercase tracking-tight text-carbon sm:text-3xl md:text-4xl lg:text-5xl">
+        From files to a quote
+      </h2>
+      <p class="mt-4 max-w-xl text-base font-medium leading-relaxed text-carbon/60 sm:mt-5 md:text-lg">
+        Brevion (Brevion Systems) is a precision CNC manufacturing partner for mill, turn, prototype, and production work. Send STEP + PDF, get a clear quote path — no account required on this preview.
+      </p>
+    </div>
+
+    <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      {steps.map(({ num, title, body, Icon }) => (
+        <li class="rounded-xl border border-aluminum/35 bg-aluminum/10 p-5 sm:p-6">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-bold uppercase tracking-[0.22em] text-aluminum">{num}</span>
+            <Icon size={18} className="text-carbon/45" aria-hidden="true" />
+          </div>
+          <h3 class="mb-2 text-base font-bold uppercase tracking-tight text-carbon sm:text-lg">{title}</h3>
+          <p class="text-sm font-medium leading-relaxed text-carbon/65">{body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:items-center sm:gap-4">
+      <a
+        href={withBase('rfq')}
+        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-carbon px-6 py-3 text-xs font-semibold uppercase tracking-widest text-porcelain transition-colors duration-150 hover:bg-gold hover:text-carbon sm:min-h-11 sm:text-sm"
+      >
+        Open full RFQ
+        <ArrowRight size={16} aria-hidden="true" />
+      </a>
+      <a
+        href={CONTACT_MAILTO}
+        class="inline-flex min-h-12 items-center justify-center rounded-lg border border-carbon bg-porcelain px-6 py-3 text-xs font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:border-gold hover:text-gold sm:min-h-11 sm:text-sm"
+      >
+        Email {CONTACT_EMAIL}
+      </a>
+      <a
+        href={withBase('#intake')}
+        class="inline-flex min-h-11 items-center text-sm font-semibold uppercase tracking-widest text-carbon transition-colors duration-150 hover:text-gold"
+      >
+        Quick intake →
+      </a>
+    </div>
+  </div>
+</section>

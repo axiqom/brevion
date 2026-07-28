@@ -4,19 +4,134 @@ import Header from '../components/Header';
 import Footer from '../components/Footer.astro';
 import BrevionChat from '../components/BrevionChat';
 import { withBase } from '../lib/base';
+import { faqs } from '../lib/faq';
+import {
+  SITE_URL,
+  CONTACT_EMAIL,
+  PUBLIC_PHONE,
+  absoluteUrl,
+  absoluteAsset,
+  OG_IMAGE_PATH,
+} from '../lib/site';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
   currentPage?: 'home' | 'capabilities' | 'industries' | 'work' | 'rfq' | 'about';
+  /** Path under Pages base, e.g. '' | 'capabilities' | 'rfq' */
+  path?: string;
+  includeFaqSchema?: boolean;
 }
 
 const {
-  title = 'Brevion — Advanced Precision Manufacturing',
-  description = 'CNC machining for prototype and production. CNC milling, CNC turning, assembly, and inspection.',
+  title = 'Brevion — CNC Machining for Prototype & Production',
+  description =
+    'Brevion is a precision CNC manufacturing partner for milling, turning, assembly, and inspection — prototype through production. Email sales@brevion.com or start an RFQ.',
   currentPage = 'home',
+  path = '',
+  includeFaqSchema = false,
 } = Astro.props;
+
+const canonical = absoluteUrl(path);
+const ogImage = absoluteAsset(OG_IMAGE_PATH);
+const pageName =
+  currentPage === 'home'
+    ? 'Home'
+    : currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
+
+const orgSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'ManufacturingBusiness'],
+  name: 'Brevion',
+  legalName: 'Brevion Systems',
+  description:
+    'Brevion (Brevion Systems) is a precision CNC manufacturing partner for prototype and production — CNC milling, CNC turning, assembly, and inspection.',
+  email: CONTACT_EMAIL,
+  url: SITE_URL + '/',
+  logo: absoluteAsset('brand/raw/9.png'),
+  sameAs: [],
+};
+if (PUBLIC_PHONE) {
+  orgSchema.telephone = PUBLIC_PHONE;
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Brevion',
+  url: SITE_URL + '/',
+  publisher: { '@type': 'Organization', name: 'Brevion Systems' },
+};
+
+const serviceSchemas = [
+  {
+    '@type': 'Service',
+    name: 'CNC Milling',
+    serviceType: 'CNC milling',
+    provider: { '@type': 'Organization', name: 'Brevion Systems' },
+    description: 'Multi-axis CNC milling for complex geometry in metals and engineering plastics.',
+    url: absoluteUrl('capabilities') + '#milling',
+  },
+  {
+    '@type': 'Service',
+    name: 'CNC Turning',
+    serviceType: 'CNC turning',
+    provider: { '@type': 'Organization', name: 'Brevion Systems' },
+    description: 'CNC turning for diameters and features on common metals and bar stock.',
+    url: absoluteUrl('capabilities') + '#turning',
+  },
+  {
+    '@type': 'Service',
+    name: 'Assembly',
+    serviceType: 'Precision assembly',
+    provider: { '@type': 'Organization', name: 'Brevion Systems' },
+    description: 'Machined parts plus mechanical and light electronics assembly in one handoff.',
+    url: absoluteUrl('capabilities') + '#assembly',
+  },
+  {
+    '@type': 'Service',
+    name: 'Inspection',
+    serviceType: 'Dimensional inspection',
+    provider: { '@type': 'Organization', name: 'Brevion Systems' },
+    description: 'In-process and final dimensional inspection with CMM and standard metrology tools.',
+    url: absoluteUrl('capabilities') + '#inspection',
+  },
+].map((s) => ({ '@context': 'https://schema.org', ...s }));
+
+const faqSchema = includeFaqSchema
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    }
+  : null;
+
+const breadcrumbSchema =
+  currentPage !== 'home'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrl(),
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: pageName,
+            item: canonical,
+          },
+        ],
+      }
+    : null;
 ---
 <!doctype html>
 <html lang="en" class="overflow-x-clip">
@@ -24,12 +139,18 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Brevion" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
     <link rel="icon" href={withBase('brand/raw/9.png')} type="image/png" />
     <link rel="apple-touch-icon" href={withBase('brand/raw/9.png')} />
@@ -39,15 +160,17 @@ const {
       href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Brevion',
-      legalName: 'Brevion Systems',
-      description,
-      email: 'sales@brevion.com',
-      url: 'https://axiqom.github.io/brevion/',
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {serviceSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+    {faqSchema ? (
+      <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    ) : null}
+    {breadcrumbSchema ? (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    ) : null}
   </head>
   <body class="flex min-h-screen flex-col overflow-x-clip bg-porcelain text-carbon/75">
     <Header client:load currentPage={currentPage} />

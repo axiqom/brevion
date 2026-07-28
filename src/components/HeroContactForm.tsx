@@ -87,7 +87,7 @@ export default function HeroContactForm() {
           Request received
         </h2>
         <p className="mb-5 text-sm leading-relaxed text-carbon/70">
-          Preview only — nothing was submitted. When email is live, here&apos;s what happens next:
+          Preview only — nothing was submitted. To convert for real now, email sales or open the full RFQ with your STEP + PDF.
         </p>
         <ol className="mb-6 space-y-3 text-sm font-medium text-carbon/70">
           <li className="flex gap-3">
@@ -95,27 +95,41 @@ export default function HeroContactForm() {
               1
             </span>
             <span>
-              Prefer a drawing or file? Continue with the{' '}
-              <a href={withBase('rfq')} className="link-brand underline-offset-2 hover:underline">
-                full RFQ
-              </a>
-              .
+              Email{' '}
+              <a href="mailto:sales@brevion.com" className="link-brand underline-offset-2 hover:underline">
+                sales@brevion.com
+              </a>{' '}
+              with company, need, and files when ready.
             </span>
           </li>
           <li className="flex gap-3">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-aluminum/30 text-[11px] font-bold text-carbon">
               2
             </span>
-            <span>We&apos;ll reply within 24h with a quote path.</span>
+            <span>
+              Prefer structured upload? Continue with the{' '}
+              <a href={withBase('rfq')} className="link-brand underline-offset-2 hover:underline">
+                full RFQ
+              </a>
+              .
+            </span>
           </li>
         </ol>
-        <a
-          href={withBase('rfq')}
-          className="btn-primary w-full sm:w-auto"
-        >
-          Full RFQ with file upload
-          <ArrowRight size={16} aria-hidden="true" />
-        </a>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href="mailto:sales@brevion.com?subject=Quote%20request%20from%20Brevion%20site"
+            className="btn-primary w-full sm:w-auto"
+          >
+            Email sales@brevion.com
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
+          <a
+            href={withBase('rfq')}
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-carbon px-5 py-3 text-sm font-semibold uppercase tracking-widest text-carbon transition-colors hover:border-gold hover:text-gold sm:w-auto"
+          >
+            Full RFQ
+          </a>
+        </div>
       </div>
     );
   }
